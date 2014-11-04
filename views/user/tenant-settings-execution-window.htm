@@ -1,0 +1,302 @@
+﻿<div class="mainContent">
+    <form action="" method="" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" id="selectTenantForm" class="form form-inline">
+        <input type="hidden" name="authenticityToken" value="b1ad100e76ccea28cfba2fdd3a1c82f47da1f052">
+        <input type="hidden" name="url" value="/executionwindows/show">
+        <div class="well well-sm">
+            <span class="tenant-select">
+                <label for="tenantId">Tenant:</label>
+                <select id="tenantId" name="tenantId" class="form-control input-sm" chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true" allow-single-deselect="false">
+                    <option value="urn:storageos:TenantOrg:992a41c6-597f-4b0f-8d66-206c11665c13:global" selected="selected">Provider Tenant</option>
+                    <option value="urn:storageos:TenantOrg:bc6d46d4-58e6-4dd4-817b-32b805f8c14f:global">RainPole Tenant</option>
+                </select>
+            </span>
+        </div>
+    </form>
+    <div class="clear"></div>
+    <div class="section-header">
+        <h1>Execution Window Calendar</h1>
+    </div>
+    <p>Add, Remove and edit execution windows. If execution windows are enabled, requests will be scheduled for the next window instead of executing immediately.
+        <span style="font-weight:bold;">Note: All times are displayed in Local Time.</span>
+    </p>
+    <div class="clear"></div>
+    <div id="calendarMessages"></div>
+    <div id="calendar" class="fc fc-ltr">
+        <table class="fc-header" style="width:100%">
+            <tbody>
+                <tr>
+                    <td class="fc-header-left">
+                        <div id="loading" style="padding-top: 1em; display: none;">
+                            <img src="/public/img/loading.gif">Loading...
+                        </div>
+                    </td>
+                    <td class="fc-header-center">
+                        <span class="fc-header-title">
+                            <h2>Sep 8 — 14 2014</h2>
+                        </span>
+                    </td>
+                    <td class="fc-header-right">
+                        <span class="fc-button fc-button-today fc-state-default fc-corner-left fc-corner-right fc-state-disabled" unselectable="on">today</span>
+                        <span class="fc-header-space"></span>
+                        <span class="fc-button fc-button-prev fc-state-default fc-corner-left" unselectable="on">
+                            <span class="fc-text-arrow">‹</span>
+                        </span>
+                        <span class="fc-button fc-button-next fc-state-default fc-corner-right" unselectable="on">
+                            <span class="fc-text-arrow">›</span>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="fc-content" style="position: relative;">
+            <div class="fc-view fc-view-agendaWeek fc-agenda" style="position:relative" unselectable="on">
+                <table style="width:100%" class="fc-agenda-days fc-border-separate" cellspacing="0">
+                    <thead>
+                        <tr class="fc-first fc-last">
+                            <th class="fc-agenda-axis fc-widget-header fc-first" style="width: 50px;">&nbsp;</th>
+                            <th class="fc-mon fc-col0 fc-widget-header" style="width: 172px;">Mon 9/8</th>
+                            <th class="fc-tue fc-col1 fc-widget-header" style="width: 172px;">Tue 9/9</th>
+                            <th class="fc-wed fc-col2 fc-widget-header" style="width: 172px;">Wed 9/10</th>
+                            <th class="fc-thu fc-col3 fc-widget-header" style="width: 172px;">Thu 9/11</th>
+                            <th class="fc-fri fc-col4 fc-widget-header" style="width: 172px;">Fri 9/12</th>
+                            <th class="fc-sat fc-col5 fc-widget-header" style="width: 172px;">Sat 9/13</th>
+                            <th class="fc-sun fc-col6 fc-widget-header fc-last">Sun 9/14</th>
+                            <th class="fc-agenda-gutter fc-widget-header fc-last" style="display: none;">&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="fc-first fc-last">
+                            <th class="fc-agenda-axis fc-widget-header fc-first">&nbsp;</th>
+                            <td class="fc-col0 fc-mon fc-widget-content fc-state-highlight fc-today">
+                                <div style="height: 503px;">
+                                    <div class="fc-day-content">
+                                        <div style="position:relative">&nbsp;</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="fc-col1 fc-tue fc-widget-content fc-future">
+                                <div>
+                                    <div class="fc-day-content">
+                                        <div style="position:relative">&nbsp;</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="fc-col2 fc-wed fc-widget-content fc-future">
+                                <div>
+                                    <div class="fc-day-content">
+                                        <div style="position:relative">&nbsp;</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="fc-col3 fc-thu fc-widget-content fc-future">
+                                <div>
+                                    <div class="fc-day-content">
+                                        <div style="position:relative">&nbsp;</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="fc-col4 fc-fri fc-widget-content fc-future">
+                                <div>
+                                    <div class="fc-day-content">
+                                        <div style="position:relative">&nbsp;</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="fc-col5 fc-sat fc-widget-content fc-future">
+                                <div>
+                                    <div class="fc-day-content">
+                                        <div style="position:relative">&nbsp;</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="fc-col6 fc-sun fc-widget-content fc-future fc-last">
+                                <div>
+                                    <div class="fc-day-content">
+                                        <div style="position:relative">&nbsp;</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="fc-agenda-gutter fc-widget-content fc-last" style="display: none;">&nbsp;</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="position: absolute; z-index: 2; left: 0px; width: 100%; top: 20px;">
+                    <div style="position: absolute; width: 100%; overflow-x: hidden; overflow-y: auto; height: 503px;">
+                        <div style="position:relative;width:100%;overflow:hidden">
+                            <div class="fc-event-container" style="position:absolute;z-index:8;top:0;left:0"></div>
+                            <table class="fc-agenda-slots" style="width:100%" cellspacing="0">
+                                <tbody>
+                                    <tr class="fc-slot0 ">
+                                        <th class="fc-agenda-axis fc-widget-header" style="width: 50px;">12am</th>
+                                        <td class="fc-widget-content">
+                                            <div style="position:relative">&nbsp;</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="fc-slot1 ">
+                                        <th class="fc-agenda-axis fc-widget-header">1am</th>
+                                        <td class="fc-widget-content">
+                                            <div style="position:relative">&nbsp;</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="fc-slot2 ">
+                                        <th class="fc-agenda-axis fc-widget-header">2am</th>
+                                        <td class="fc-widget-content">
+                                            <div style="position:relative">&nbsp;</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="fc-slot3 ">
+                                        <th class="fc-agenda-axis fc-widget-header">3am</th>
+                                        <td class="fc-widget-content">
+                                            <div style="position:relative">&nbsp;</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="fc-slot4 ">
+                                        <th class="fc-agenda-axis fc-widget-header">4am</th>
+                                        <td class="fc-widget-content">
+                                            <div style="position:relative">&nbsp;</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="fc-slot5 ">
+                                        <th class="fc-agenda-axis fc-widget-header">5am</th>
+                                        <td class="fc-widget-content">
+                                            <div style="position:relative">&nbsp;</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="fc-slot6 ">
+                                        <th class="fc-agenda-axis fc-widget-header">6am</th>
+                                        <td class="fc-widget-content">
+                                            <div style="position:relative">&nbsp;</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="fc-slot7 ">
+                                        <th class="fc-agenda-axis fc-widget-header">7am</th>
+                                        <td class="fc-widget-content">
+                                            <div style="position:relative">&nbsp;</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="fc-slot8 ">
+                                        <th class="fc-agenda-axis fc-widget-header">8am</th>
+                                        <td class="fc-widget-content">
+                                            <div style="position:relative">&nbsp;</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="fc-slot9 ">
+                                        <th class="fc-agenda-axis fc-widget-header">9am</th>
+                                        <td class="fc-widget-content">
+                                            <div style="position:relative">&nbsp;</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="fc-slot10 ">
+                                        <th class="fc-agenda-axis fc-widget-header">10am</th>
+                                        <td class="fc-widget-content">
+                                            <div style="position:relative">&nbsp;</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="fc-slot11 ">
+                                        <th class="fc-agenda-axis fc-widget-header">11am</th>
+                                        <td class="fc-widget-content">
+                                            <div style="position:relative">&nbsp;</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="fc-slot12 ">
+                                        <th class="fc-agenda-axis fc-widget-header">12pm</th>
+                                        <td class="fc-widget-content">
+                                            <div style="position:relative">&nbsp;</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="fc-slot13 ">
+                                        <th class="fc-agenda-axis fc-widget-header">1pm</th>
+                                        <td class="fc-widget-content">
+                                            <div style="position:relative">&nbsp;</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="fc-slot14 ">
+                                        <th class="fc-agenda-axis fc-widget-header">2pm</th>
+                                        <td class="fc-widget-content">
+                                            <div style="position:relative">&nbsp;</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="fc-slot15 ">
+                                        <th class="fc-agenda-axis fc-widget-header">3pm</th>
+                                        <td class="fc-widget-content">
+                                            <div style="position:relative">&nbsp;</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="fc-slot16 ">
+                                        <th class="fc-agenda-axis fc-widget-header">4pm</th>
+                                        <td class="fc-widget-content">
+                                            <div style="position:relative">&nbsp;</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="fc-slot17 ">
+                                        <th class="fc-agenda-axis fc-widget-header">5pm</th>
+                                        <td class="fc-widget-content">
+                                            <div style="position:relative">&nbsp;</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="fc-slot18 ">
+                                        <th class="fc-agenda-axis fc-widget-header">6pm</th>
+                                        <td class="fc-widget-content">
+                                            <div style="position:relative">&nbsp;</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="fc-slot19 ">
+                                        <th class="fc-agenda-axis fc-widget-header">7pm</th>
+                                        <td class="fc-widget-content">
+                                            <div style="position:relative">&nbsp;</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="fc-slot20 ">
+                                        <th class="fc-agenda-axis fc-widget-header">8pm</th>
+                                        <td class="fc-widget-content">
+                                            <div style="position:relative">&nbsp;</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="fc-slot21 ">
+                                        <th class="fc-agenda-axis fc-widget-header">9pm</th>
+                                        <td class="fc-widget-content">
+                                            <div style="position:relative">&nbsp;</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="fc-slot22 ">
+                                        <th class="fc-agenda-axis fc-widget-header">10pm</th>
+                                        <td class="fc-widget-content">
+                                            <div style="position:relative">&nbsp;</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="fc-slot23 ">
+                                        <th class="fc-agenda-axis fc-widget-header">11pm</th>
+                                        <td class="fc-widget-content">
+                                            <div style="position:relative">&nbsp;</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="eventEditor" class="modal fade">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <button type="button" class="close" data-dismiss="modal">�</button>
+                    <h4 class="modal-title">Edit Execution Window</h4>
+                </div>
+                <div class="modal-body ">
+                    <div class="clearfix"></div>
+                </div>
+                <div class="modal-footer ">
+                    <a href="" class="btn btn-default" id="eventCancel">
+                        <span class="glyphicon glyphicon-remove "></span>Cancel</a>
+                    <a href="" class="btn btn-danger" id="eventDelete">
+                        <span class="glyphicon glyphicon-trash "></span>Delete</a>
+                    <a href="" class="btn btn-primary" id="eventSave">
+                        <span class="glyphicon glyphicon-check "></span>Save</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+<div class="mainContent">
+	<div class="container">
+		<div class="form-header">
+			<div style="display:none" class="image">
+			</div>
+			<div class="title">
+				<h2>
+					User Preferences      
+				</h2>
+			</div>
+			<div style="clear:both"></div>
+		</div>
+		<div class="clear"></div>
+		<p style="display:none" class="alert alert-success" id="alerts_success">
+			<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+			<span class="message"></span>
+		</p>
+		<p style="display:none" class="alert alert-danger" id="alerts_error">
+			<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+			<span class="message"></span>
+		</p>
+		<p style="display:none" class="alert alert-warning" id="alerts_warning">
+			<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+			<span class="message"></span>
+		</p>
+		<p style="display:none" class="alert alert-info" id="alerts_info">
+			<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+			<span class="message"></span>
+		</p>
+		<form autocomplete="off" class="form form-horizontal" enctype="application/x-www-form-urlencoded" accept-charset="utf-8" method="post">
+			<input type="hidden" value="1948987e7192510c0249e8a878515d1283c065d2" name="authenticityToken">
+			<input type="hidden" value="" name="user.id">
+			<div class="form-group  " id="user_notifyByEmailControlGroup">
+				<label for="user_notifyByEmail" class="control-label col-sm-3">E-mail Notification:</label>
+				<div class="col-sm-6 controls">
+					<div class="checkbox">
+						<input type="checkbox" value="true" name="user.notifyByEmail" id="user_notifyByEmail" class="span0"><input type="hidden" value="false" name="user.notifyByEmail" id="user_notifyByEmailFalse">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<span class="help-inline"></span>
+				</div>
+			</div>
+			<div class="form-group" id="user_emailControlGroup">
+				<label for="user_email" class="control-label col-sm-3">E-mail Address:</label>
+				<div class="col-sm-6 controls">
+					<input type="text" autocomplete="off" value="" name="user.email" id="user_email" class="form-control span6 disabled" disabled="">
+				</div>
+				<div class="col-sm-3">
+					<span class="help-inline"></span>
+				</div>
+			</div>
+			<div class="form-group button-bar">
+				<div class="col-sm-offset-3 col-sm-9">
+					<button name="button.save" class="btn btn-primary btn-large " type="submit">
+					<span class="glyphicon glyphicon-ok-sign "></span>  Save  </button>  <button name="button.cancel" class="btn btn-default btn-large " type="button">
+					<span class="glyphicon glyphicon-trash "></span>  Cancel  </button>  <span class="extraButtons">
+					</span>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

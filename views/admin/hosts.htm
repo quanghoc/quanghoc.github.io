@@ -1,0 +1,337 @@
+<div class="mainContent" ng-controller="HostsCtrl">
+	<form method="" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" id="selectTenantForm" class="form form-inline">
+		<div class="well well-sm">
+			<span class="tenant-select">
+				<label for="tenantId">Tenant:</label>
+				<select chosen="{inherit_select_classes:true}" disable-search="true" id="tenantId" class="form-control input-sm" name="tenantId">
+					<option value=""></option>
+					<option value="0">Provider Tenant</option>
+					<option value="1">RainPole Tenant</option>
+				</select>
+			</span>
+		</div>
+	</form>
+	<div class="clear"></div>
+	<p id="alerts_success" class="alert alert-success" style="display:none">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">?</button>
+		<span class="message"></span>
+	</p>
+	<p id="alerts_error" class="alert alert-danger" style="display:none">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">?</button>
+		<span class="message"></span>
+	</p>
+	<p id="alerts_warning" class="alert alert-warning" style="display:none">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">?</button>
+		<span class="message"></span>
+	</p>
+	<p id="alerts_info" class="alert alert-info" style="display:none">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">?</button>
+		<span class="message"></span>
+	</p>
+	<div class="section-header pull-left ">
+		<h1 class="">Hosts</h1>
+	</div>
+	<div id="host" class="dataTableContainer">
+		<div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline" role="grid">
+			<div class="dataTables_filter" id="DataTables_Table_0_filter">
+				<label>
+					<input type="text" aria-controls="DataTables_Table_0" class="form-control input-sm search-query" placeholder="Search...">
+				</label>
+			</div>
+			<table class="table table-hover table-condensed table-styled dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
+				<thead>
+					<tr role="row">
+						<th class="selection sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="">
+							<div class="th-wrapper">
+								<input type="checkbox" name="selectAll">
+							</div>
+						</th>
+						<th class="expandable sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="">
+							<div class="th-wrapper"></div>
+						</th>
+						<th class="name sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">
+							<div class="th-wrapper">Name</div>
+						</th>
+						<th class="hostname sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Host: activate to sort column ascending">
+							<div class="th-wrapper">Host</div>
+						</th>
+						<th class="type sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Operating System: activate to sort column ascending">
+							<div class="th-wrapper">Operating System</div>
+						</th>
+						<th class="discoverable sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Discoverable: activate to sort column ascending">
+							<div class="th-wrapper">Discoverable</div>
+						</th>
+						<th class="discoveryStatus sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending">
+							<div class="th-wrapper">Status</div>
+						</th>
+						<th class="actions sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="Edit">
+							<div class="th-wrapper">Edit</div>
+						</th>
+					</tr>
+				</thead>
+				<tbody role="alert" aria-live="polite" aria-relevant="all">
+					<tr class="odd">
+						<td class="selection">
+							<input type="checkbox" name="selected" value="urn:storageos:Host:7d145510-eb7a-4ae2-92f1-3c3b0ac6a4b0:vdc1" onchange="table.host.updateSelection(this)">
+						</td>
+						<td class="expandable">
+							<span class="expand-indicator"></span>
+						</td>
+						<td class="name sorting_1"><a href="">192.168.1.180</a>
+						</td>
+						<td class="hostname">192.168.1.180</td>
+						<td class="type">Other</td>
+						<td class="discoverable"></td>
+						<td class="discoveryStatus">
+							<span class="label label-success">
+								<span class="glyphicon glyphicon-ok"></span>
+							</span>
+						</td>
+						<td class="actions">
+							<div class="btn-group"><a class="btn btn-default btn-xs" href="">Initiators</a>
+							</div>
+						</td>
+					</tr>
+					<tr class="even">
+						<td class="selection">
+							<input type="checkbox" name="selected" value="urn:storageos:Host:82326cea-cc10-43a8-b700-ad0549e58366:vdc1" onchange="table.host.updateSelection(this)">
+						</td>
+						<td class="expandable">
+							<span class="expand-indicator"></span>
+						</td>
+						<td class="name sorting_1"><a href="">192.168.1.181</a>
+						</td>
+						<td class="hostname">192.168.1.181</td>
+						<td class="type">Other</td>
+						<td class="discoverable"></td>
+						<td class="discoveryStatus">
+							<span class="label label-success">
+								<span class="glyphicon glyphicon-ok"></span>
+							</span>
+						</td>
+						<td class="actions">
+							<div class="btn-group"><a class="btn btn-default btn-xs" href="">Initiators</a>
+							</div>
+						</td>
+					</tr>
+					<tr class="odd">
+						<td class="selection">
+							<input type="checkbox" name="selected" value="urn:storageos:Host:88acafb1-6bfa-46fa-9eaa-d7a32ac30c78:vdc1" onchange="table.host.updateSelection(this)">
+						</td>
+						<td class="expandable">
+							<span class="expand-indicator"></span>
+						</td>
+						<td class="name sorting_1"><a href="">192.168.1.182</a>
+						</td>
+						<td class="hostname">192.168.1.182</td>
+						<td class="type">Other</td>
+						<td class="discoverable"></td>
+						<td class="discoveryStatus">
+							<span class="label label-success">
+								<span class="glyphicon glyphicon-ok"></span>
+							</span>
+						</td>
+						<td class="actions">
+							<div class="btn-group"><a class="btn btn-default btn-xs" href="">Initiators</a>
+							</div>
+						</td>
+					</tr>
+					<tr class="even">
+						<td class="selection">
+							<input type="checkbox" name="selected" value="urn:storageos:Host:b0a79bb0-efbe-4536-b72d-9ee73543499c:vdc1" onchange="table.host.updateSelection(this)">
+						</td>
+						<td class="expandable">
+							<span class="expand-indicator"></span>
+						</td>
+						<td class="name sorting_1"><a href="">Hyper-V.vLab.local</a>
+						</td>
+						<td class="hostname">hyper-v.vlab.local</td>
+						<td class="type">Windows</td>
+						<td class="discoverable"></td>
+						<td class="discoveryStatus">
+							<span class="label label-success">
+								<span class="glyphicon glyphicon-ok"></span>
+							</span>
+						</td>
+						<td class="actions">
+							<div class="btn-group"><a class="btn btn-default btn-xs" href="">Initiators</a>
+							</div>
+						</td>
+					</tr>
+					<tr class="odd">
+						<td class="selection">
+							<input type="checkbox" name="selected" value="urn:storageos:Host:6e2d7696-f551-4bb8-89e8-a7d60e29b791:vdc1" onchange="table.host.updateSelection(this)">
+						</td>
+						<td class="expandable">
+							<span class="expand-indicator"></span>
+						</td>
+						<td class="name sorting_1"><a href="">iSCSI-Host</a>
+						</td>
+						<td class="hostname">lp01.vlab.local</td>
+						<td class="type">Windows</td>
+						<td class="discoverable">
+							<span class="glyphicon glyphicon-ok"></span>
+						</td>
+						<td class="discoveryStatus">
+							<span class="label label-success">
+								<span class="glyphicon glyphicon-ok"></span>
+							</span>
+						</td>
+						<td class="actions">
+							<div class="btn-group"><a class="btn btn-default btn-xs" href="">Initiators</a>
+							</div>
+						</td>
+					</tr>
+					<tr class="even">
+						<td class="selection">
+							<input type="checkbox" name="selected" value="urn:storageos:Host:388bef98-f42a-493e-9d9e-21c0030ff38d:vdc1" onchange="table.host.updateSelection(this)">
+						</td>
+						<td class="expandable">
+							<span class="expand-indicator"></span>
+						</td>
+						<td class="name sorting_1"><a href="">NFS-Host</a>
+						</td>
+						<td class="hostname">192.168.1.120</td>
+						<td class="type">Other</td>
+						<td class="discoverable"></td>
+						<td class="discoveryStatus">
+							<span class="label label-success">
+								<span class="glyphicon glyphicon-ok"></span>
+							</span>
+						</td>
+						<td class="actions">
+							<div class="btn-group"><a class="btn btn-default btn-xs" href="">Initiators</a>
+							</div>
+						</td>
+					</tr>
+					<tr class="odd">
+						<td class="selection">
+							<input type="checkbox" name="selected" value="urn:storageos:Host:278e8307-2f22-4392-aed1-3d4a53bf5980:vdc1" onchange="table.host.updateSelection(this)">
+						</td>
+						<td class="expandable">
+							<span class="expand-indicator"></span>
+						</td>
+						<td class="name sorting_1"><a href="">RainPole Datacenter/esx01.vlab.local</a>
+						</td>
+						<td class="hostname">esx01.vlab.local</td>
+						<td class="type">Esx</td>
+						<td class="discoverable">
+							<span class="glyphicon glyphicon-ok"></span>
+						</td>
+						<td class="discoveryStatus">
+							<span class="label label-success">
+								<span class="glyphicon glyphicon-ok"></span>
+							</span>
+						</td>
+						<td class="actions">
+							<div class="btn-group"><a class="btn btn-default btn-xs" href="">Initiators</a>
+							</div>
+						</td>
+					</tr>
+					<tr class="even">
+						<td class="selection">
+							<input type="checkbox" name="selected" value="urn:storageos:Host:b35661ea-b82e-4fcb-b4cf-a9deccc580d8:vdc1" onchange="table.host.updateSelection(this)">
+						</td>
+						<td class="expandable">
+							<span class="expand-indicator"></span>
+						</td>
+						<td class="name sorting_1"><a href="">RainPole Datacenter/esx02.vlab.local</a>
+						</td>
+						<td class="hostname">esx02.vlab.local</td>
+						<td class="type">Esx</td>
+						<td class="discoverable">
+							<span class="glyphicon glyphicon-ok"></span>
+						</td>
+						<td class="discoveryStatus">
+							<span class="label label-success">
+								<span class="glyphicon glyphicon-ok"></span>
+							</span>
+						</td>
+						<td class="actions">
+							<div class="btn-group"><a class="btn btn-default btn-xs" href="">Initiators</a>
+							</div>
+						</td>
+					</tr>
+					<tr class="odd">
+						<td class="selection">
+							<input type="checkbox" name="selected" value="urn:storageos:Host:e7285f1c-3528-4e49-b73e-a375914badd0:vdc1" onchange="table.host.updateSelection(this)">
+						</td>
+						<td class="expandable">
+							<span class="expand-indicator"></span>
+						</td>
+						<td class="name sorting_1"><a href="">WinHost1</a>
+						</td>
+						<td class="hostname">winhost1.vlab.local</td>
+						<td class="type">Windows</td>
+						<td class="discoverable">
+							<span class="glyphicon glyphicon-ok"></span>
+						</td>
+						<td class="discoveryStatus">
+							<span class="label label-success">
+								<span class="glyphicon glyphicon-ok"></span>
+							</span>
+						</td>
+						<td class="actions">
+							<div class="btn-group"><a class="btn btn-default btn-xs" href="">Initiators</a>
+							</div>
+						</td>
+					</tr>
+					<tr class="even">
+						<td class="selection">
+							<input type="checkbox" name="selected" value="urn:storageos:Host:26acef97-22d1-4146-a83a-a7929b42b8cd:vdc1" onchange="table.host.updateSelection(this)">
+						</td>
+						<td class="expandable">
+							<span class="expand-indicator"></span>
+						</td>
+						<td class="name sorting_1"><a href="">Winhost2</a>
+						</td>
+						<td class="hostname">winhost2.vlab.local</td>
+						<td class="type">Windows</td>
+						<td class="discoverable">
+							<span class="glyphicon glyphicon-ok"></span>
+						</td>
+						<td class="discoveryStatus">
+							<span class="label label-success">
+								<span class="glyphicon glyphicon-ok"></span>
+							</span>
+						</td>
+						<td class="actions">
+							<div class="btn-group"><a class="btn btn-default btn-xs" href="">Initiators</a>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="dataTables_footer">
+				<div class="dataTables_paginate paging_bootstrapFirstLast pagination">
+					<ul class="pagination pagination-sm">
+						<li class="prev disabled"><a href="">First</a>
+						</li>
+						<li class="prev disabled"><a href="">?</a>
+						</li>
+						<li class="active"><a href="">1</a>
+						</li>
+						<li class="next disabled"><a href="">?</a>
+						</li>
+						<li class="next disabled"><a href="">Last</a>
+						</li>
+					</ul>
+				</div>
+				<div id="DataTables_Table_0_processing" class="dataTables_processing" style="visibility: hidden;">
+					<span class="glyphicon glyphicon-refresh rotate "></span>Loading...</div>
+				<div class="dataTables_info" id="DataTables_Table_0_info">Showing 1 to 10 of 10 entries</div>
+				<div class="dataTables_processingError" style="display: none;"></div>
+			</div>
+		</div>
+		<div class="button-bar">
+			<button type="button" class="btn btn-success " name="button.add">
+				<span class="glyphicon glyphicon-plus "></span>&nbsp;Add</button>
+			<button type="button" class="btn btn-danger " name="button.delete" data-enabled="selected" disabled="">
+				<span class="glyphicon glyphicon-trash "></span>&nbsp;Delete</button>
+			<button type="button" class="btn btn-info " name="button.rediscover" data-enabled="selected" data-property="discoverable" data-value="true" data-form="rediscoverForm" disabled="">
+				<span class="glyphicon glyphicon-repeat "></span>&nbsp;Rediscover</button>
+			<button type="button" class="btn btn-info " name="button.detachStorage" data-enabled="selected" data-form="detachStorageForm" disabled="">
+				<span class="glyphicon glyphicon-hdd "></span>&nbsp;Detach Storage</button>
+		</div>
+	</div>
+</div>

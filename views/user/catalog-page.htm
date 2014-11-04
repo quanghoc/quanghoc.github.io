@@ -1,0 +1,1216 @@
+<div class="mainContent">
+    <div id="breadcrumbs">
+        <ul class="breadcrumb breadcrumb-navbar">
+            <li>
+                <a ui-sref="catalog" href="">Service Catalog</a>
+                <span class="divider"></span>
+            </li>
+            <li ng-show='currentState == "BlockStorageServices"' class="active">Block Storage Services</li>
+            <!-- <li ng-show='currentState == "BlockStorageServices"' class="active">Block Storage Services</li> -->
+            <li ng-show='currentState == "BlockProtectionServices"' class="active">Block Protection Services</li>
+            <li ng-show='currentState == "FileStorageServices"' class="active">File Storage Services</li>
+            <li ng-show='currentState == "FileProtectionServices"' class="active">File Protection Services</li>
+            <li ng-show='currentState == "BlockServicesLinux"' class="active">Block Services for Linux</li>
+            <li ng-show='currentState == "BlockServicesWindows"' class="active">Block Services for Windows</li>
+            <li ng-show='currentState == "BlockServicesVMware"' class="active">Block Services for VMware vCenter</li>
+            <li ng-show='currentState == "FileServicesVMware"' class="active">File Services for VMware vCenter</li>
+            <li ng-show='currentState == "DataServices"' class="active">Data Services</li>
+        </ul>
+    </div>
+    <div class="clear"></div>
+    <p class="alert alert-success" id="alerts_success" style="display:none">
+        <button class="close" data-dismiss="alert" type="button">×</button>
+        <span class="message"></span>
+    </p>
+    <p class="alert alert-danger" id="alerts_error" style="display:none">
+        <button class="close" data-dismiss="alert" type="button">×</button>
+        <span class="message"></span>
+    </p>
+    <p class="alert alert-warning" id="alerts_warning" style="display:none">
+        <button class="close" data-dismiss="alert" type="button">×</button>
+        <span class="message"></span>
+    </p>
+    <p class="alert alert-info" id="alerts_info" style="display:none">
+        <button class="close" data-dismiss="alert" type="button">×</button>
+        <span class="message"></span>
+    </p>
+    <div class="catalog" id="catalog">
+        <ul class="catalog-items" data-parent="" data-path="ServiceCatalog" style="display: none;">
+            <li class="catalog-item category-item" data-name="BlockStorageServices" data-title="Block Storage Services">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            <span class="glyphicon glyphicon-folder-open"></span>Block Storage Services
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_host.png">
+                        </div>
+                        <p class="catalog-description">
+                            Block storage services for fibre channel and iSCSI
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="catalog-item category-item" data-name="BlockProtectionServices" data-title="Block Protection Services">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            <span class="glyphicon glyphicon-folder-open"></span>Block Protection Services
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/Category_Block_Protection_Services.png">
+                        </div>
+                        <p class="catalog-description">
+                            Protection services for block storage
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="catalog-item category-item" data-name="FileStorageServices" data-title="File Storage Services">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            <span class="glyphicon glyphicon-folder-open"></span>File Storage Services
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_folder.png">
+                        </div>
+                        <p class="catalog-description">
+                            Network attached storage services for Windows and Unix systems
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="catalog-item category-item" data-name="FileProtectionServices" data-title="File Protection Services">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            <span class="glyphicon glyphicon-folder-open"></span>File Protection Services
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/Category_File_Protection_Services.png">
+                        </div>
+                        <p class="catalog-description">
+                            Protection services for network attached storage
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="catalog-item category-item" data-name="BlockServicesforLinux" data-title="Block Services for Linux">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            <span class="glyphicon glyphicon-folder-open"></span>Block Services for Linux
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_linux.png">
+                        </div>
+                        <p class="catalog-description">
+                            Block storage services for Linux hosts
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="catalog-item category-item" data-name="BlockServicesforWindows" data-title="Block Services for Windows">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            <span class="glyphicon glyphicon-folder-open"></span>Block Services for Windows
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_windowsServer.png">
+                        </div>
+                        <p class="catalog-description">
+                            Block storage services for Windows hosts
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="catalog-item category-item" data-name="BlockServicesforVMwarevCenter" data-title="Block Services for VMware vCenter">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            <span class="glyphicon glyphicon-folder-open"></span>Block Services for VMware vCenter
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_VMware.png">
+                        </div>
+                        <p class="catalog-description">
+                            Block storage services for VMware vCenter/ESX Environments
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="catalog-item category-item" data-name="FileServicesforVMwarevCenter" data-title="File Services for VMware vCenter">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            <span class="glyphicon glyphicon-folder-open"></span>File Services for VMware vCenter
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_storage_vmware_nfs.png">
+                        </div>
+                        <p class="catalog-description">
+                            VMware vCenter NFS Datastore Services
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="catalog-item category-item" data-name="DataServices" data-title="Data Services">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            <span class="glyphicon glyphicon-folder-open"></span>Data Services
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_data_services.png">
+                        </div>
+                        <p class="catalog-description">
+                            HDFS and Object based Storage Services
+                        </p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <ul ng-show='currentState == "BlockStorageServices"' class="catalog-items" data-parent="urn:storageos:CatalogCategory:7b26acb1-3e09-4ab1-a93f-dfb5d74d01bb:vdc1" data-path="ServiceCatalog/BlockStorageServices">
+            <!-- <ul ng-show='currentState == "BlockStorageServices"' class="catalog-items" data-parent="urn:storageos:CatalogCategory:7b26acb1-3e09-4ab1-a93f-dfb5d74d01bb:vdc1" data-path="ServiceCatalog/BlockStorageServices"> -->
+            <li ui-sref="CreateBlockVolumeforaHost" class="catalog-item service-item" data-name="CreateBlockVolumeforaHost" data-title="Create Block Volume for a Host">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Create Block Volume for a Host
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_array_host_add.png">
+                        </div>
+                        <p class="catalog-description">
+                            Create block volume and export it for a host
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li ui-sref="RemoveVolumeByHost" class="catalog-item service-item" data-name="RemoveVolumebyHost" data-title="Remove Volume by Host">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Remove Volume by Host
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_array_host_remove.png">
+                        </div>
+                        <p class="catalog-description">
+                            Removes an unmounted block volume assigned to a host and all of its exports. The volume will no longer be available from any host.
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li ui-sref="CreateBlockVolume" class="catalog-item service-item" data-name="CreateBlockVolume" data-title="Create Block Volume">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Create Block Volume
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_db_create.png">
+                        </div>
+                        <p class="catalog-description">
+                            Create a block volume
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li ui-sref="RemoveBlockVolumes" class="catalog-item service-item" data-name="RemoveBlockVolumes" data-title="Remove Block Volumes">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Remove Block Volumes
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_db_remove.png">
+                        </div>
+                        <p class="catalog-description">
+                            Removes block volumes and related exports.
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li ui-sref="ExpandBlockVolume" class="catalog-item service-item" data-name="ExpandBlockVolume" data-title="Expand Block Volume">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Expand Block Volume
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_db_expand.png">
+                        </div>
+                        <p class="catalog-description">
+                            Expand storage on a block volume
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li ui-sref="ExportVolumeToAHost" class="catalog-item service-item" data-name="ExportVolumetoaHost" data-title="Export Volume to a Host">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Export Volume to a Host
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_host_add.png">
+                        </div>
+                        <p class="catalog-description">
+                            Export a block volume to a host
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li ui-sref="ExportVplexVolume" class="catalog-item service-item" data-name="ExportVPLEXVolume" data-title="Export VPLEX Volume">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Export VPLEX Volume
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_host_add.png">
+                        </div>
+                        <p class="catalog-description">
+                            Export a VPLEX volume to a host or cluster
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li ui-sref="UnexportVolume" class="catalog-item service-item" data-name="UnexportVolume" data-title="Unexport Volume">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Unexport Volume
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_host_remove.png">
+                        </div>
+                        <p class="catalog-description">
+                            Remove a volume from an export. The volume will still be accessible using another export.
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li ui-sref="DiscoverUnmanagedVolumes" class="catalog-item service-item" data-name="DiscoverUnmanagedVolumes" data-title="Discover Unmanaged Volumes">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Discover Unmanaged Volumes
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/Service_Discover_Unmanaged_Volumes.png">
+                        </div>
+                        <p class="catalog-description">
+                            Discovers volumes on arrays that were not created by ViPR
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li ui-sref="IngestUnmanagedVolumes" class="catalog-item service-item" data-name="IngestUnmanagedVolumes" data-title="Ingest Unmanaged Volumes">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Ingest Unmanaged Volumes
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/Service_Ingest_Unmanaged_Volumes.png">
+                        </div>
+                        <p class="catalog-description">
+                            Import unmanaged volumes to bring them under management of ViPR
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li ui-sref="ChangeVolumeVirtualPool" class="catalog-item service-item" data-name="ChangeVolumeVirtualPool" data-title="Change Volume Virtual Pool">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Change Volume Virtual Pool
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_host_add.png">
+                        </div>
+                        <p class="catalog-description">
+                            Move a volume from one virtual pool to another
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li ui-sref="ChangeVirtualPool" class="catalog-item service-item" data-name="ChangeVirtualPool" data-title="Change Virtual Pool">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Change Virtual Pool
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_host_add.png">
+                        </div>
+                        <p class="catalog-description">
+                            Move a set of volumes from one virtual pool to another
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li ui-sref="ChangeVirtualArray" class="catalog-item service-item" data-name="ChangeVirtualArray" data-title="Change Virtual Array">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Change Virtual Array
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/Service_Change_Virtual_Array.png">
+                        </div>
+                        <p class="catalog-description">
+                            Move a VPLEX local volume to a different virtual array (virtual arrays must have connectivity via VPLEX)
+                        </p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <ul ng-show='currentState == "BlockProtectionServices"' class="catalog-items" data-parent="urn:storageos:CatalogCategory:7b26acb1-3e09-4ab1-a93f-dfb5d74d01bb:vdc1" data-path="ServiceCatalog/BlockProtectionServices">
+            <li ui-sref="FailoverBlockVolume" class="catalog-item service-item" data-name="Failoverblockvolume" data-title="Failover block volume">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Failover block volume
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/Service_Failover_Block_Volume.png">
+                        </div>
+                        <p class="catalog-description">
+                            Perform a Disaster Recovery Failover operation using RecoverPoint or VMAX SRDF
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li ui-sref="SwapContinuousCopies" class="catalog-item service-item" data-name="SwapContinuousCopies" data-title="Swap Continuous Copies">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Swap Continuous Copies
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/Remove_Continuous_copy.png">
+                        </div>
+                        <p class="catalog-description">
+                            Swap Failover Copies using RecoverPoint or VMAX SRDF
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li ui-sref="CreateBlockSnapshot" class="catalog-item service-item" data-name="CreateBlockSnapshot" data-title="Create Block Snapshot">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Create Block Snapshot
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/Service_Create_Block_Snapshot.png">
+                        </div>
+                        <p class="catalog-description">
+                            Create block snapshot for a volume
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li ui-sref="RestoreBlockSnapshot" class="catalog-item service-item" data-name="RestoreBlockSnapshot" data-title="Restore Block Snapshot">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Restore Block Snapshot
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/Service_Restore_Block_Snapshot.png">
+                        </div>
+                        <p class="catalog-description">
+                            Restore block snapshot to a volume
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li ui-sref="RemoveBlockSnapshot" class="catalog-item service-item" data-name="RemoveBlockSnapshot" data-title="Remove Block Snapshot">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Remove Block Snapshot
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/Service_Remove_Block_Snapshot.png">
+                        </div>
+                        <p class="catalog-description">
+                            Remove block snapshot
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li ui-sref="CreateFullCopy" class="catalog-item service-item" data-name="CreateFullCopy" data-title="Create Full Copy">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Create Full Copy
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/Service_Create_Full_Copy.png">
+                        </div>
+                        <p class="catalog-description">
+                            Create a full copy of a volume
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li ui-sref="RemoveFullCopy" class="catalog-item service-item" data-name="RemoveFullCopy" data-title="Remove Full Copy">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Remove Full Copy
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/Service_Remove_Full_Copy.png">
+                        </div>
+                        <p class="catalog-description">
+                            Remove a full copy of a volume
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li ui-sref="CreateSnapshotFullCopy" class="catalog-item service-item" data-name="CreateSnapshotFullCopy" data-title="Create Snapshot Full Copy">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Create Snapshot Full Copy
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/Service_Create_Snapshot_Full_Copy.png">
+                        </div>
+                        <p class="catalog-description">
+                            Create a full copy of a snapshot
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li ui-sref="CreateContinuousCopy" class="catalog-item service-item" data-name="CreateContinuousCopy" data-title="Create Continuous Copy">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Create Continuous Copy
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/Service_Create_Continuous_Copy.png">
+                        </div>
+                        <p class="catalog-description">
+                            Create a continuous copy of a volume
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li ui-sref="RemoveContinuousCopy" class="catalog-item service-item" data-name="RemoveContinuousCopy" data-title="Remove Continuous Copy">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Remove Continuous Copy
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/Remove_Continuous_copy.png">
+                        </div>
+                        <p class="catalog-description">
+                            Remove a continuous copy of a volume
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li ui-sref="ExportSnapshotToAHost" class="catalog-item service-item" data-name="ExportSnapshottoaHost" data-title="Export Snapshot to a Host">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Export Snapshot to a Host
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_host_add_snapshot.png">
+                        </div>
+                        <p class="catalog-description">
+                            Export a snapshot of a block volume to a host
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li ui-sref="UnexportSnapshot" class="catalog-item service-item" data-name="UnexportSnapshot" data-title="Unexport Snapshot">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Unexport Snapshot
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_host_remove_snapshot.png">
+                        </div>
+                        <p class="catalog-description">
+                            Remove a volume snapshot from an export. The volume will still be accessible using another export.
+                        </p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <ul ng-show='currentState == "FileStorageServices"' class="catalog-items" data-parent="urn:storageos:CatalogCategory:7b26acb1-3e09-4ab1-a93f-dfb5d74d01bb:vdc1" data-path="ServiceCatalog/FileStorageServices">
+            <li class="catalog-item service-item" ui-sref="CreateWindowsShare" data-name="CreateWindowsShare" data-title="Create Windows Share">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Create Windows Share
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_folder_CIFS_add.png">
+                        </div>
+                        <p class="catalog-description">
+                            Create new file system and CIFS share
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="catalog-item service-item" ui-sref="CreateUnixShare" data-name="CreateUnixShare" data-title="Create Unix Share">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Create Unix Share
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_folder_NFS_add.png">
+                        </div>
+                        <p class="catalog-description">
+                            Create new file system and NFS export
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="catalog-item service-item" ui-sref="ExpandFileSystem" data-name="ExpandFileSystem" data-title="Expand File System">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Expand File System
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_NASstorage_expand.png">
+                        </div>
+                        <p class="catalog-description">
+                            Expand a file system
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="catalog-item service-item" ui-sref="RemoveFileSystem" data-name="RemoveFileSystem" data-title="Remove File System">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Remove File System
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_NASstorage_remove.png">
+                        </div>
+                        <p class="catalog-description">
+                            Remove a file system
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="catalog-item service-item" ui-sref="DiscoverUnmanagedFileSystems" data-name="DiscoverUnmanagedFileSystems" data-title="Discover Unmanaged File Systems">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Discover Unmanaged File Systems
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/Service_Discover_Unmanaged_Filesystems.png">
+                        </div>
+                        <p class="catalog-description">
+                            Discovers file systems on arrays that were not created by ViPR
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="catalog-item service-item" ui-sref="IngestUnmanagedFileSystems" data-name="IngestUnmanagedFileSystems" data-title="Ingest Unmanaged File Systems">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Ingest Unmanaged File Systems
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/Service_Ingest_Unmanaged_Filesystems.png">
+                        </div>
+                        <p class="catalog-description">
+                            Import unmanaged file systems to bring them under management of ViPR
+                        </p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <ul ng-show='currentState == "FileProtectionServices"' class="catalog-items" data-path="ServiceCatalog/FileProtectionServices">
+            <li class="catalog-item service-item" ui-sref="CreateFileSnapshot" data-name="CreateFileSnapshot" data-title="Create File Snapshot">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Create File Snapshot
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/Service_Create_File_Snapshot.png">
+                        </div>
+                        <p class="catalog-description">
+                            Create file snapshot for a file system
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="catalog-item service-item" ui-sref="RestoreFileSnapshot" data-name="RestoreFileSnapshot" data-title="Restore File Snapshot">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Restore File Snapshot
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/Service_Restore_File_Snapshot.png">
+                        </div>
+                        <p class="catalog-description">
+                            Restore file snapshot to a file system
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="catalog-item service-item" ui-sref="RemoveFileSnapshot" data-name="RemoveFileSnapshot" data-title="Remove File Snapshot">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Remove File Snapshot
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/Service_Remove_File_Snapshot.png">
+                        </div>
+                        <p class="catalog-description">
+                            Remove file snapshot
+                        </p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <ul ng-show='currentState == "BlockServicesLinux"' class="catalog-items" data-path="ServiceCatalog/BlockServicesforLinux">
+            <li class="catalog-item service-item" ui-sref="CreateandMountBlockVolume" data-name="CreateandMountBlockVolume" data-title="Create and Mount Block Volume">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Create and Mount Block Volume
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_provision_linux_add.png">
+                        </div>
+                        <p class="catalog-description">
+                            Create, mount and format a block volume on a Linux host.
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="catalog-item service-item" ui-sref="UnmountandDeleteVolume" data-name="UnmountandDeleteVolume" data-title="Unmount and Delete Volume">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Unmount and Delete Volume
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_provision_linux_remove.png">
+                        </div>
+                        <p class="catalog-description">
+                            Unmount and delete block volume from a Linux host.
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="catalog-item service-item" ui-sref="MountExistingVolumeonLinux" data-name="MountExistingVolumeonLinux" data-title="Mount Existing Volume on Linux">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Mount Existing Volume on Linux
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_storage_linux_add.png">
+                        </div>
+                        <p class="catalog-description">
+                            Mount and format a previously created block volume on a Linux host.
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="catalog-item service-item" ui-sref="UnmountVolumeonLinux" data-name="UnmountVolumeonLinux" data-title="Unmount Volume on Linux">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Unmount Volume on Linux
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_storage_linux_remove.png">
+                        </div>
+                        <p class="catalog-description">
+                            Unmount a block volume from a Linux host leaving storage intact.
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="catalog-item service-item" ui-sref="ExpandLinuxMount" data-name="ExpandLinuxMount" data-title="Expand Linux Mount">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Expand Linux Mount
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_storage_linux_expand.png">
+                        </div>
+                        <p class="catalog-description">
+                            Expand a Linux host by expanding a mounted block volume.
+                        </p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <ul ng-show='currentState == "BlockServicesWindows"' class="catalog-items" data-parent="urn:storageos:CatalogCategory:7b26acb1-3e09-4ab1-a93f-dfb5d74d01bb:vdc1" data-path="ServiceCatalog/BlockServicesforWindows">
+            <li class="catalog-item service-item" data-name="CreateandMountVolumeonWindows" ui-sref="CreateandMountVolumeonWindows" data-title="Create and Mount Volume">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Create and Mount Volume
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_provision_windows_add.png">
+                        </div>
+                        <p class="catalog-description">
+                            Create, mount and format a block volume on a Windows host.
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="catalog-item service-item" data-name="UnmountandDeleteVolumeonWindows" ui-sref="UnmountandDeleteVolumeonWindows" data-title="Unmount and Delete Volume">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Unmount and Delete Volume
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_provision_windows_remove.png">
+                        </div>
+                        <p class="catalog-description">
+                            Unmount and delete block volume from a Windows host.
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="catalog-item service-item" ui-sref="ExpandVolumeonWindows" data-name="ExpandVolumeonWindows" data-title="Expand Volume on Windows">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Expand Volume on Windows
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_provision_windows_expand.png">
+                        </div>
+                        <p class="catalog-description">
+                            Expand a block volume mounted on a Windows host.
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="catalog-item service-item" ui-sref="MountVolumeonWindows" data-name="MountVolumeonWindows" data-title="Mount Volume on Windows">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Mount Volume on Windows
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_storage_windows_add.png">
+                        </div>
+                        <p class="catalog-description">
+                            Mount and format a previously created block volume on a Windows Host.
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="catalog-item service-item" ui-sref="UnmountVolumeonWindows" data-name="UnmountVolumeonWindows" data-title="Unmount Volume on Windows">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Unmount Volume on Windows
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_storage_windows_remove.png">
+                        </div>
+                        <p class="catalog-description">
+                            Unmount a block volume from a Windows host leaving storage intact.
+                        </p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <ul ng-show='currentState == "BlockServicesVMware"' class="catalog-items" data-parent="urn:storageos:CatalogCategory:7b26acb1-3e09-4ab1-a93f-dfb5d74d01bb:vdc1" data-path="ServiceCatalog/BlockServicesforVMwarevCenter">
+            <li class="catalog-item service-item" ui-sref="CreateVolumeandDatastore" data-name="CreateVolumeandDatastore" data-title="Create Volume and Datastore">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Create Volume and Datastore
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_provision_VMware_add.png">
+                        </div>
+                        <p class="catalog-description">
+                            Create block volume and VMware Datastore.
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="catalog-item service-item" ui-sref="DeleteDatastoreandVolume" data-name="DeleteDatastoreandVolume" data-title="Delete Datastore and Volume">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Delete Datastore and Volume
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_provision_VMware_remove.png">
+                        </div>
+                        <p class="catalog-description">
+                            Delete a VMware Datastore and block volume.
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="catalog-item service-item" ui-sref="ExtendDatastorewithNewVolume" data-name="ExtendDatastorewithNewVolume" data-title="Extend Datastore with New Volume">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Extend Datastore with New Volume
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_provision_VMware_expand.png">
+                        </div>
+                        <p class="catalog-description">
+                            Extend a VMware Datastore with a new block volume.
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="catalog-item service-item" ui-sref="CreateVolumeforVMware" data-name="CreateVolumeforVMware" data-title="Create Volume for VMware">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Create Volume for VMware
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_array_VMware_add.png">
+                        </div>
+                        <p class="catalog-description">
+                            Create a new block volume for VMware.
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="catalog-item service-item" ui-sref="RemoveVolumeforVMware" data-name="RemoveVolumeforVMware" data-title="Remove Volume for VMware">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Remove Volume for VMware
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_array_VMware_remove.png">
+                        </div>
+                        <p class="catalog-description">
+                            Remove block volume for VMware.
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="catalog-item service-item" ui-sref="CreateVMwareDatastore" data-name="CreateVMwareDatastore" data-title="Create VMware Datastore">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Create VMware Datastore
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_storage_VMware_add.png">
+                        </div>
+                        <p class="catalog-description">
+                            Create a VMware Datastore with an existing block volume.
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="catalog-item service-item" ui-sref="DeleteVMwareDatastore" data-name="DeleteVMwareDatastore" data-title="Delete VMware Datastore">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Delete VMware Datastore
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_storage_VMware_remove.png">
+                        </div>
+                        <p class="catalog-description">
+                            Delete a VMware Datastore leaving storage intact.
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="catalog-item service-item" ui-sref="ExtendDatastorewithExistingVolume" data-name="ExtendDatastorewithExistingVolume" data-title="Extend Datastore with Existing Volume">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Extend Datastore with Existing Volume
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_storage_VMware_expand.png">
+                        </div>
+                        <p class="catalog-description">
+                            Extend a VMware Datastore with an existing block volume.
+                        </p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <ul ng-show='currentState == "FileServicesVMware"' class="catalog-items" data-parent="urn:storageos:CatalogCategory:7b26acb1-3e09-4ab1-a93f-dfb5d74d01bb:vdc1" data-path="ServiceCatalog/FileServicesforVMwarevCenter">
+            <li ui-sref="CreateFilesystemaAndNfsDatastore" class="catalog-item service-item" data-name="CreateFileSystemandNFSDatastore" data-title="Create FileSystem and NFS Datastore">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Create FileSystem and NFS Datastore
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_provision_vmware_nfs_add.png">
+                        </div>
+                        <p class="catalog-description">
+                            Create VMware Datastore with newly provisioned FileSystem and NFS export
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li ui-sref="CreateVmwareNfsDatastore" class="catalog-item service-item" data-name="CreateVMwareNFSDatastore" data-title="Create VMware NFS Datastore">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Create VMware NFS Datastore
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_storage_VMware_add.png">
+                        </div>
+                        <p class="catalog-description">
+                            Create a VMware Datastore using existing NFS storage
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li ui-sref="DeleteNfsDatastoreAndFilesystem" class="catalog-item service-item" data-name="DeleteNFSDatastoreandFileSystem" data-title="Delete NFS Datastore and FileSystem">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Delete NFS Datastore and FileSystem
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_provision_vmware_nfs_remove.png">
+                        </div>
+                        <p class="catalog-description">
+                            Delete a VMware Datastore and associated file system and NFS export
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li ui-sref="DeleteVmwareNfsDatastore" class="catalog-item service-item" data-name="DeleteVMwareNFSDatastore" data-title="Delete VMware NFS Datastore">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Delete VMware NFS Datastore
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_storage_VMware_remove.png">
+                        </div>
+                        <p class="catalog-description">
+                            Delete a VMware NFS Datastore leaving the associated storage intact
+                        </p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <ul ng-show='currentState == "DataServices"' class="catalog-items" data-parent="urn:storageos:CatalogCategory:7b26acb1-3e09-4ab1-a93f-dfb5d74d01bb:vdc1" data-path="ServiceCatalog/DataServices">
+            <li ui-sref="CatalogCreateBucketForDataServices" class="catalog-item service-item" data-name="CreateBucketforDataServices" data-title="Create Bucket for Data Services">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Create Bucket for Data Services
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_create_bucket.png">
+                        </div>
+                        <p class="catalog-description">
+                            Creates a new bucket for Data Services
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li ui-sref="CatalogDeleteBucketOfDataServices" class="catalog-item service-item" data-name="DeleteBucketofDataServices" data-title="Delete Bucket of Data Services">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Delete Bucket of Data Services
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_delete_bucket.png">
+                        </div>
+                        <p class="catalog-description">
+                            Delete a bucket from Data Services
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li ui-sref="IngestFileSystems" class="catalog-item service-item" data-name="IngestFileSystems" data-title="Ingest File Systems">
+                <div class="panel panel-default">
+                    <div class="panel-heading catalog-title">
+                        <h3 class="panel-title">
+                            Ingest File Systems
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="catalog-image catalog-image-inner">
+                            <img class="" src="/img/serviceCatalog/icon_ingest_filesystems.png">
+                        </div>
+                        <p class="catalog-description">
+                            Ingest data from a file share into an existing bucket
+                        </p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

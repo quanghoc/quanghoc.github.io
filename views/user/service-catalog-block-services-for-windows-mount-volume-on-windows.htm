@@ -1,0 +1,155 @@
+<div class="mainContent" ng-controller="GenericOrderFormCtrl" ng-init="data.orderTypeId = 42">
+    <ul class="breadcrumb breadcrumb-navbar">
+        <li><a ui-sref="catalog">Service Catalog</a>
+            <span class="divider"></span>
+        </li>
+        <li><a ui-sref="BlockServicesWindows">Block Services for Windows</a>
+            <span class="divider"></span>
+        </li>
+        <li class="active">Mount Volume on Windows</li>
+    </ul>
+    <div class="container">
+        <div class="form-header">
+            <div class="image">
+                <img class="" src="/img/serviceCatalog/icon_storage_windows_add.png">
+            </div>
+            <div class="description">
+                <h2>Mount Volume on Windows</h2>
+                <p>Mount and format a previously created block volume on a Windows Host.</p>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="clear"></div>
+        <p id="alerts_success" class="alert alert-success" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_error" class="alert alert-danger" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_warning" class="alert alert-warning" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_info" class="alert alert-info" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <span class="message"></span>
+        </p>
+        <!-- asset error -->
+        <div id="assetError" class="alert alert-danger" style="display:none;">
+            <button type="button" class="close">×</button>
+            <div id="assetErrorMessage" style="white-space: pre-line;"></div>
+        </div>
+        <form id="serviceForm" class="form-horizontal" ng-submit="submit()">
+            <div id="blockStorageTypeControlGroup" class="form-group  required">
+                <label class="control-label col-sm-3" for="blockStorageType" set-model="data.details[0].name">Storage Type:</label>
+                <div class="col-sm-6 controls">
+                    <select id="blockStorageType" name="blockStorageType" class="form-control span6" chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true" allow-single-deselect="false" ng-model="data.details[0].value">
+                        <option value="Exclusive" selected="selected">Exclusive</option>
+                        <option value="Shared">Shared</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div id="hostControlGroup" class="form-group  required">
+                <label class="control-label col-sm-3" for="host" set-model="data.details[1].name">Windows Host:</label>
+                <div class="col-sm-6 controls">
+                    <select id="host" name="host" class="form-control span6" chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true" allow-single-deselect="false" ng-model="data.details[1].value">
+                        <option value="Hyper-V.vLab.local">Hyper-V.vLab.local</option>
+                        <option value="iSCSI-Host">iSCSI-Host</option>
+                        <option value="WinHost1">WinHost1</option>
+                        <option value="Winhost2 [cluster: ws_cluster]">Winhost2 [cluster: ws_cluster]</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div id="projectControlGroup" class="form-group  required">
+                <label class="control-label col-sm-3" for="project" set-model="data.details[2].name">Project:</label>
+                <div class="col-sm-6 controls">
+                    <select id="project" name="project" class="form-control span6" chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true" allow-single-deselect="false" ng-model="data.details[2].value">
+                        <option value="Engineering">Engineering</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="QA">QA</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div id="volumeControlGroup" class="form-group required">
+                <label class="control-label col-sm-3" for="volume" set-model="data.details[3].name">Volume:</label>
+                <div class="col-sm-6 controls">
+                    <select id="volume" name="volume" class="form-control span6" chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true" allow-single-deselect="false" ng-model="data.details[3].value">
+                        <option value="Volume #1">Volume #1</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div id="fileSystemTypeControlGroup" class="form-group  required">
+                <label class="control-label col-sm-3" for="fileSystemType" set-model="data.details[4].name">File System Type:</label>
+                <div class="col-sm-6 controls">
+                    <select id="fileSystemType" name="fileSystemType" class="form-control span6" chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true" allow-single-deselect="false" ng-model="data.details[4].value">
+                        <option value="ntfs" selected="selected">ntfs</option>
+                        <option value="fat32">fat32</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div id="doFormatControlGroup" class="form-group  ">
+                <label class="control-label col-sm-3" for="doFormat" set-model="data.details[5].name">Format Volume:</label>
+                <div class="col-sm-6 controls">
+                    <div class="checkbox">
+                        <input type="checkbox" class="span0" id="doFormat" name="doFormat" value="true" checked="checked" ng-model="data.details[5].value">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div id="mountPointControlGroup" class="form-group  ">
+                <label class="control-label col-sm-3" for="mountPoint" set-model="data.details[6].name">Mount Point:</label>
+                <div class="col-sm-6 controls">
+                    <input type="text" class="form-control span6" id="mountPoint" name="mountPoint" value="" autocomplete="off" maxlength="1024" ng-model="data.details[6].value">
+                    <span class="help-block">The mount point for the new disk or blank for the next available letter.</span>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div id="labelControlGroup" class="form-group  ">
+                <label class="control-label col-sm-3" for="label" set-model="data.details[7].name">Drive Label:</label>
+                <div class="col-sm-6 controls">
+                    <input type="text" class="form-control span6" id="label" name="label" value="" autocomplete="off" maxlength="128" ng-model="data.details[7].value">
+                    <span class="help-block">Enter the label for this drive (Will use the volume label if blank)</span>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="alert alert-warning">
+                <span class="label label-warning">
+                    <span class="glyphicon glyphicon-exclamation-sign "></span>
+                </span>
+                This service performs an operation that can result in data loss.
+            </div>
+            <div class="form-group button-bar">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <button type="submit" class="btn btn-primary btn-large " name="service.order">
+                        <span class="glyphicon glyphicon-shopping-cart "></span>&nbsp;Order</button>
+                    <button type="button" class="btn btn-default btn-large " name="button.cancel" ng-click="cancel()">
+                        <span class="glyphicon glyphicon-trash "></span>&nbsp;Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

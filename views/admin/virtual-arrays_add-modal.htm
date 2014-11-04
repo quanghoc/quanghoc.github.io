@@ -1,0 +1,29 @@
+<div class="modal-header">
+	<button class="close" data-dismiss="modal" type="button">×</button>
+
+	<h4 class="modal-title">Create Virtual Array</h4>
+
+	<p>Enter the name for the new Virtual Array. After the virtual array is created, connections can be made to the desired storage</p>
+</div>
+
+<form name="virtualArrayForm" ng-submit="virtualArrayForm.$valid && add()" class="form form-horizontal" novalidate>
+	<div class="modal-body">
+		<div class="form-group required" id="nameControlGroup" >
+			<label class="control-label col-sm-3" for="name">Name:</label>
+
+			<div class="col-sm-6 controls">
+				<input autocomplete="off" class="form-control span6" id="name" name="name" type="text" ng-model="virtualArray.name" required>
+			</div>
+
+			<div class="col-sm-3">
+				<span class="help-inline"></span>
+			</div>
+		</div>
+
+		<div class="clearfix"></div>
+	</div>
+
+	<div class="modal-footer ">
+		<button class="btn btn-primary" name="button.save" type="submit"><span class="glyphicon glyphicon-ok-sign"></span> Save</button> <button class="btn btn-default" data-dismiss="modal" ng-click="hideAddModal()" type="button"><span class="glyphicon glyphicon-trash"></span> Cancel</button>
+	</div>
+</form>

@@ -1,0 +1,278 @@
+<div class="mainContent" ng-controller="storageSystemsCtrl" ng-init="currentPage = 1; rpp = 10">
+	<ul class="breadcrumb">
+		<li>
+			<a ui-sref="storageSystems">Storage Systems</a> <span class="divider"></span>
+		</li>
+		<li class="active">Add Storage System
+		</li>
+	</ul>
+	<div class="container">
+		<div class="form-header">
+			<div class="image">
+				<img src="/img/assets/StorageArray.png">
+			</div>
+			<div class="description">
+				<h2>
+					Add Storage System
+				</h2>
+				<p>
+					Enter the information needed to discover to the storage system.
+				</p>
+			</div>
+			<div style="clear:both"></div>
+		</div>
+		<div class="clear"></div>
+		<p class="alert alert-success" id="alerts_success" style="display:none">
+			<button class="close" data-dismiss="alert" type="button">×</button> <span class="message"></span>
+		</p>
+		<p class="alert alert-danger" id="alerts_error" ng-show="submitted && !(storageArrayForm.$valid)">
+			<button class="close" data-dismiss="alert" type="button" ng-click="submitted=false">×</button>
+			<span class="message" ng-show="storageArrayForm.name.$invalid">Storage name is required</span>
+			<span class="message" ng-show="storageArrayForm.host.$invalid">Host is required</span>
+			<span class="message" ng-show="storageArrayForm.portnumber.$invalid">Port is required</span>
+			<span class="message" ng-show="storageArrayForm.user.$invalid">Username is required</span>
+			<span class="message" ng-show="storageArrayForm.password.$invalid">Password is required</span>
+			<span class="message" ng-show="storageArrayForm.passwordmatch.$invalid">Both password fields are required</span>
+			<span class="message" ng-show="storageArrayForm.passwordmatch.$error.unique">Password fields do not match</span>
+			<span class="message" ng-if="!([0,2,3,4,5,6,7,8].indexOf(storageArrayType) >= 0)"ng-show="storageArrayForm.smisProviderIpAddress.$invalid">Provider IP address is required</span>
+			<span class="message" ng-if="!([0,2,3,4,5,6,7,8].indexOf(storageArrayType) >= 0)" ng-show="storageArrayForm.smisProviderPortNumber.$invalid">Provider port is required</span>
+			<span class="message" ng-if="!([0,2,3,4,5,6,7,8].indexOf(storageArrayType) >= 0)"ng-show="storageArrayForm.smisProviderUserName.$invalid">Provider username is required</span>
+			<span class="message" ng-if="!([0,2,3,4,5,6,7,8].indexOf(storageArrayType) >= 0)" ng-show="storageArrayForm.providerpassword.$invalid">Provider password is required</span>
+			<span class="message" ng-if="!([0,2,3,4,5,6,7,8].indexOf(storageArrayType) >= 0)" ng-show="storageArrayForm.providerpasswordmatch.$invalid">Both provider password fields are required</span>
+		</p>
+		<p class="alert alert-warning" id="alerts_warning" style="display:none">
+			<button class="close" data-dismiss="alert" type="button">×</button> <span class="message"></span>
+		</p>
+		<p class="alert alert-info" id="alerts_info" style="display:none">
+			<button class="close" data-dismiss="alert" type="button">×</button> <span class="message"></span>
+		</p>
+		<form autocomplete="off" class="form form-horizontal" id="storageArrayForm" name="storageArrayForm" ng-submit="storageArrayForm.$valid && add()" novalidate>
+			<fieldset>
+				<div class="form-group required" id="storageArray_typeControlGroup">
+					<label class="control-label col-sm-3" for="storageArray_type">Type:</label>
+					<div class="col-sm-6 controls">
+ 						<select chosen="{inherit_select_classes:true}"
+							id="storageArray_type"
+							class="form-control span6 initialFocus"
+							no-results-text="'Could not find a match, please try again...'"
+							ng-model="storageArrayType"
+							name="storageArrayType"
+							data-port="sType.port as sType.port for sType in storageArrayTypes"
+							ng-options="sType.id as sType.name for sType in storageArrayTypes"
+							ng-change="storageArrayForm.port = $scope.storageArrayTypes[$scope.storageArrayType].port">
+							<option value=""></option>
+						</select>
+					</div>
+					<div class="col-sm-3">
+					</div>
+				</div>
+				<div class="form-group required" id="storageArray_nameControlGroup">
+					<label class="control-label col-sm-3" for="storageArray_name">Name:</label>
+					<div class="col-sm-6 controls">
+						<input autocomplete="off" class="form-control span6" id="storageArray_name" name="name" 
+							type="text" 
+							required
+							ng-model="storageSystem.name">
+					</div>
+					<div class="col-sm-3">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+				<div class="form-group required" id="storageArray_ipAddressControlGroup">
+					<label class="control-label col-sm-3" for="storageArray_ipAddress">IP Address:</label>
+					<div class="col-sm-6 controls">
+						<input autocomplete="off" class="form-control span3" id="storageArray_ipAddress" name="host" 
+							type="text"
+							required
+							ng-model="storageSystem.host">
+						<span class="help-block">Enter the IP address of the system.</span>
+					</div>
+					<div class="col-sm-3">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+				<div class="form-group" id="storageArray_useSSLControlGroup" ng-hide="[0,1,2,3,8].indexOf(storageArrayType) >= 0">
+					<label class="control-label col-sm-3" for="storageArray_useSSL">Use SSL:</label>
+					<div class="col-sm-6 controls">
+						<div class="checkbox">
+							<input checked="checked" class="span0" id="storageArray_useSSL" name="useSSL" type="checkbox" value="true">
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+				<div class="form-group required" id="storageArray_portNumberControlGroup">
+					<label class="control-label col-sm-3" for="storageArray_portNumber">Port:</label>
+					<div class="col-sm-6 controls">
+						<input autocomplete="off" class="form-control span3" id="storageArray_portNumber" name="portnumber" 
+							type="number"
+							required
+							min="1"
+							max="65535"
+							ng-value="storageArrayTypes[storageArrayType].port"
+							ng-model="storageArrayTypes[storageArrayType].port">
+					</div>
+					<div class="col-sm-3">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+				<div class="form-group required" id="storageArray_userNameControlGroup">
+					<label class="control-label col-sm-3" for="storageArray_userName">User:</label>
+					<div class="col-sm-6 controls">
+						<input autocomplete="off" class="form-control span6" id="storageArray_userName" name="user"
+							type="text"
+							required
+							ng-model="storageSystem.user">
+					</div>
+					<div class="col-sm-3">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+				<div class="form-group required" id="storageArray_userPasswordControlGroup">
+					<label class="control-label col-sm-3" for="storageArray_userPassword">Password:</label>
+					<div class="col-sm-6 controls">
+						<input autocomplete="off" class="form-control span6" id="storageArray_userPassword" name="password"
+							type="password"
+							required
+							ng-model="storageSystem.password">
+					</div>
+					<div class="col-sm-3">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+				<div class="form-group required" id="storageArray_confirmPasswordControlGroup">
+					<label class="control-label col-sm-3" for="storageArray_confirmPassword">Confirm Password:</label>
+					<div class="col-sm-6 controls">
+						<input autocomplete="off" class="form-control span6" id="storageArray_confirmPassword" name="passwordmatch"
+							type="password"
+							required
+							password-match="storageSystem.password"
+							ng-model="storageSystem.passwordmatch">
+					</div>
+					<div class="col-sm-3">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+			</fieldset>
+			<fieldset class="onboardSmisProvider" ng-if="!([0,2,3,4,5,6,7,8].indexOf(storageArrayType) >= 0)">
+				<legend>Onboard Storage Provider<small>ViPR requires access to the VNX File system's Onboard Storage Provider to receive events</small></legend>
+				<div class="form-group required" id="storageArray_smisProviderIpAddressControlGroup">
+					<label class="control-label col-sm-3" for="storageArray_smisProviderIpAddress">Storage Provider Host:</label>
+					<div class="col-sm-6 controls">
+						<input autocomplete="off" class="form-control span3" id="storageArray_smisProviderIpAddress" name="smisProviderIpAddress"
+							type="text"
+							required
+							ng-model="storageSystem.smisProviderIpAddress">
+						<span class="help-block">In most situations, the Storage Provider Host will match the Host used for discovery</span>
+					</div>
+					<div class="col-sm-3">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+				<div class="form-group" id="storageArray_smisProviderUseSSLControlGroup">
+					<label class="control-label col-sm-3" for="storageArray_smisProviderUseSSL">Storage Provider Use SSL:</label>
+					<div class="col-sm-6 controls">
+						<div class="checkbox">
+							<input checked="checked" class="span0" id="storageArray_smisProviderUseSSL" name="smisProviderUseSSL" type="checkbox" value="true">
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+				<div class="form-group required" id="storageArray_smisProviderPortNumberControlGroup">
+					<label class="control-label col-sm-3" for="storageArray_smisProviderPortNumber">Storage Provider Port:</label>
+					<div class="col-sm-6 controls">
+						<input autocomplete="off" class="form-control span3" id="storageArray_smisProviderPortNumber" name="smisProviderPortNumber"
+							type="number"
+							required
+							min="1"
+							max="65535"
+							ng-value="smisProvider[0].port"
+							ng-model="smisProvider[0].port">
+					</div>
+					<div class="col-sm-3">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+				<div class="form-group required" id="storageArray_smisProviderUserNameControlGroup">
+					<label class="control-label col-sm-3" for="storageArray_smisProviderUserName">Storage Provider User:</label>
+					<div class="col-sm-6 controls">
+						<input autocomplete="off" class="form-control span6" id="storageArray_smisProviderUserName" name="smisProviderUserName"
+							type="text"
+							required="{{[0,2,3,4,5,6,7,8].indexOf(storageArrayType) >= 0}}"
+							ng-model="storageSystems.smisProviderUserName">
+					</div>
+					<div class="col-sm-3">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+				<div class="form-group required" id="storageArray_smisProviderUserPasswordControlGroup">
+					<label class="control-label col-sm-3" for="storageArray_smisProviderUserPassword">Storage Provider Password:</label>
+					<div class="col-sm-6 controls">
+						<input autocomplete="off" class="form-control span6" id="storageArray_smisProviderUserPassword" name="providerpassword"
+							type="password"
+							required="{{[0,2,3,4,5,6,7,8].indexOf(storageArrayType) >= 0}}"
+							ng-model="storageSystems.providerpassword">
+					</div>
+					<div class="col-sm-3">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+				<div class="form-group required" id="storageArray_smisProviderConfirmPasswordControlGroup">
+					<label class="control-label col-sm-3" for="storageArray_smisProviderConfirmPassword">Storage Provider Confirm Password:</label>
+					<div class="col-sm-6 controls">
+						<input autocomplete="off" class="form-control span6" id="storageArray_smisProviderConfirmPassword" name="providerpasswordmatch"
+							type="password"
+							required="{{[0,2,3,4,5,6,7,8].indexOf(storageArrayType) >= 0}}"
+							ng-model="storageSystem.providerpasswordmatch">
+					</div>
+					<div class="col-sm-3">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+			</fieldset>
+			<fieldset id="settings" ng-if="!([0,1,2,3,4,5,6,7,8].indexOf(storageArrayType) >= 0)">
+				<legend>Settings</legend>
+				<div class="form-group" id="storageArray_unlimitResourceControlGroup">
+					<label class="control-label col-sm-3" for="storageArray_unlimitResource">Unlimited Resource Allocation:</label>
+					<div class="col-sm-6 controls">
+						<div class="checkbox">
+							<input class="span0" id="storageArray_unlimitResource" name="unlimitResource" type="checkbox" value="true"><input id="storageArray_unlimitResourceFalse" name="storageArray.unlimitResource" type="hidden" value="false">
+						</div>
+						<span class="help-block">If unchecked, please specify a limit below</span>
+					</div>
+					<div class="col-sm-3">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+				<div class="form-group required" id="storageArray_resourceLimitControlGroup">
+					<label class="control-label col-sm-3" for="storageArray_resourceLimit">Resource Limit:</label>
+					<div class="col-sm-6 controls">
+						<input autocomplete="off" class="form-control span1" id="storageArray_resourceLimit" name="resourceLimit" type="text" value=""> <span class="help-block">Specify the maximum number of resources ViPR should provision on this storage system (0 or greater)</span>
+					</div>
+					<div class="col-sm-3">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+				<!-- <input id="storageArray_referrerUrl" name="storageArray.referrerUrl" type="hidden" value="https://10.247.144.161/admin/storagesystems/list#"> -->
+			</fieldset>
+			<div class="form-group button-bar">
+				<div class="col-sm-offset-3 col-sm-9">
+					<!-- <button class="btn btn-primary btn-large" name="button.save" ng-click="add()"> -->
+					<button class="btn btn-primary btn-large" ng-click="submitted=true" type="submit">
+						<span class="glyphicon glyphicon-ok-sign"></span> 
+						Save
+					</button> 
+					<!-- <button class="btn btn-default btn-large" type="button" ui-sref="admin.storageSystems"> -->
+					<button class="btn btn-default btn-large" type="button" ui-sref="storageSystems">
+						<span class="glyphicon glyphicon-trash"></span> 
+						Cancel
+					</button> 
+					<span class="extraButtons"></span>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

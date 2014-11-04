@@ -1,0 +1,321 @@
+<div class="mainContent" ng-controller="GenericOrderResultCtrl">
+	<div>
+		<div id="orderDetails" class="container" style="margin-bottom: 2em;">
+			<div class="form-header">
+				<div class="image">
+					<img ng-src="/img/serviceCatalog/{{ orderType.iconURL }}">  
+				</div>
+				<div class="description">
+					<h2>{{ orderType.title }}</h2>
+					<p>{{ orderType.summary }}</p>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+			<div class="clear"></div>
+			<p id="alerts_success" class="alert alert-success" ng-show="!hideSuccess">
+				<button type="button" class="close" ng-click="hideSuccess = true">×</button>
+				<span class="message">Your order has been successfully received and is being processed. You may leave this page and return at any time through your Orders.</span>
+			</p>
+			<p id="alerts_error" class="alert alert-danger" style="display: none;">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<span class="message"></span>
+			</p>
+			<p id="alerts_warning" class="alert alert-warning" style="display: none;">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<span class="message"></span>
+			</p>
+			<p id="alerts_info" class="alert alert-info" style="display: none;">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<span class="message"></span>
+			</p>
+			<div id="lastUpdated" style="display:none">1408724036731</div>
+			<div class="pull-left span5">
+				<dl class="dl-horizontal nomargin">
+					<dt>Order Number:</dt>
+					<dd>{{ data.id }}</dd>
+					<dt>Date Submitted:</dt>
+					<dd><span class="localDateTime" style="">{{ data.date | dateFilter }}</span>&nbsp;</dd>
+					<dt>Submitted By:</dt>
+					<dd>root</dd>
+					<dt>Status:</dt>
+					<dd>
+						<span ng-show="!fulfilled">
+							<span class="glyphicon glyphicon-refresh rotate"></span>
+							Executing... 
+						</span>
+						<span ng-show="fulfilled">
+							<span class="glyphicon glyphicon-ok "></span>
+							Order Successfully Fulfilled
+						</span>
+					</dd>
+					<dd>
+					</dd>
+					<dt class="executionTime" style="">Execution Time:</dt>
+					<dd class="executionTime" style="">
+						<span ng-show="fulfilled">
+						{{ steps.executionSteps * 3 }} seconds
+						</span>
+					</dd>
+					<dt class="precheckTasks" style="">
+						Precheck Steps:
+					</dt>
+					<dd class="precheckTasks">
+						<progress-dots num="{{ steps.precheckSteps }}" sec="{{ steps.delay }}" />
+					</dd>
+					<dt class="executeTasks" style="">
+						Execution Steps:
+					</dt>
+					<dd class="executeTasks">
+						<progress-dots num="{{ steps.executionSteps }}" sec="{{ steps.delay }}"/>
+					</dd>
+					<dt class="rollbackTasks" style="display: none;">
+						Rollback Steps:
+					</dt>
+					<dd class="rollbackTasks" style="display: none;">
+						<div class="progressBar">
+							<span class="label label-success">0</span>
+						</div>
+					</dd>
+					<dt>&nbsp;</dt>
+					<dd>
+						<span id="currentStep"></span>
+					</dd>
+				</dl>
+			</div>
+			<div class="pull-left span6" style="overflow:hidden">
+				<dl class="dl-horizontal nomargin wide">
+					<dt ng-repeat-start="item in data.details">
+						{{ item.name }}
+					</dt>
+					<dd ng-repeat-end>
+						{{ item.value | readJSON }}
+					</dd>
+				</dl>
+			</div>
+			<div style="clear:both"></div>
+			<div id="orderMessage" style="display: none;">
+				<div class="alert alert-info"></div>
+			</div>
+			<div id="approval" style="display: none;">
+			</div>
+			<div id="affectedResources" style="">
+				<div class="section-header">
+					<h1>Affected Resources</h1>
+				</div>
+
+				<div class="content" ng-hide="internalEMC">
+					<p id="alerts_info" class="alert alert-info" ng-show="fulfilled">
+						<span class="message">
+							This is just a demo order request. You won't be able to see the full list of affected resources. Below Logs, Precheck Steps and Execution Steps are just sample information that ViPR may provide you. 
+						</span>
+					</p>
+				</div>
+
+				<div class="content resource blockVolume" ng-show="fulfilled && ([0,2,44].indexOf(orderType.id) >= 0)">
+					<div class="resourceIcon">
+						<div>
+							<img src="/img/assets/Volume.png">
+						</div>
+						<div class="label label-info">
+							Volume
+						</div>
+					</div>
+					<dl class="dl-horizontal">
+						<dt>Volume:</dt>
+						<dd>urn:storageos:Volume:5b5c590c-942a-41c1-946e-b71a88901cb7:vdc1</dd>
+						<dt>Name:</dt>
+						<dd>
+							{{ data.details[orderType.resources.name].value }}
+						</dd>
+						<dt>WWN:</dt>
+						<dd>60000970000195900701533587255500</dd>
+						<dt>Size:</dt>
+						<dd>{{ data.details[orderType.resources.size].value }} GB Provisioned / {{ data.details[orderType.resources.size].value }} GB Requested</dd>
+						<dt>Virtual Array:</dt>
+						<dd>{{ data.details[orderType.resources.virtualArray].value }}</dd>
+						<dt>Virtual Pool:</dt>
+						<dd>{{ data.details[orderType.resources.virtualPool].value }}</dd>
+					</dl>
+				</div>
+
+				<div class="content" ng-show="fulfilled && ([25,26,27,52].indexOf(orderType.id) >= 0)">
+					<div class="resource fileSystem">
+						<div class="resourceIcon">
+							<div><img src="/img/assets/Folder.png"></div>
+							<div class="label label-info">File System</div>
+						</div>
+						<dl class="dl-horizontal">
+							<dt>File System:</dt>
+							<dd>
+								urn:storageos:FileShare:56e4de9e-43ea-451e-bffa-42f82f0288b2:vdc1
+							</dd>
+							<dt>Name:</dt>
+							<dd>
+								<a href="">
+									{{ data.details[orderType.resources.name].value }}
+								</a>
+							</dd>
+							<dt>Capacity:</dt>
+							<dd>
+								{{ data.details[orderType.resources.size].value }} GB
+							</dd>
+							<dt>Mount Path:</dt>
+							<dd>
+								/{{ data.details[orderType.resources.name].value }}/vipr/Array_File_NFS/Provider_Tenant/{{ data.details[orderType.resources.project].value }}_Project
+							</dd>
+							<dt>Virtual Array:</dt>
+							<dd>
+								{{ data.details[orderType.resources.virtualArray].value }}
+							</dd>
+							<dt>Virtual Pool:</dt>
+							<dd>
+								{{ data.details[orderType.resources.virtualPool].value }}
+							</dd>
+						</dl>
+					</div>
+					<div class="resource nfsExport" ng-show="fulfilled && ([26,52].indexOf(orderType.id) >= 0)">
+						<div class="resourceIcon">
+							<div><img src="/img/serviceCatalog/icon_folder_NFS.png"></div>
+							<div class="label label-info">NFS Export</div>
+						</div>
+						<dl class="dl-horizontal">
+							<dt>Type:</dt>
+							<dd>NFS</dd>
+							<dt>Mount Point:</dt>
+							<dd>filearray.asd.demo:/{{ data.details[orderType.resources.name].value }}/vipr/Array_File_NFS/Provider_Tenant/{{ data.details[orderType.resources.project].value }}_Project</dd>
+							<dt>Root User:</dt>
+							<dd>root</dd>
+							<dt>Permission:</dt>
+							<dd>root</dd>
+							<dt>Hosts:</dt>
+							<dd>{{ data.details[orderType.resources.hosts].value }}</dd>
+						</dl>
+					</div>
+				</div>
+
+				<div class="content" ng-show="fulfilled && ([].indexOf(orderType.id) >= 0)">
+					<div class="resource exportGroup">
+						<div class="resourceIcon">
+							<div><img src="/img/assets/Export.png"></div>
+							<div class="label label-info">Block Export</div>
+						</div>
+						<dl class="dl-horizontal">
+							<dt>Block Export:</dt>
+							<dd>
+								urn:storageos:ExportGroup:6fa01221-446a-49cb-ac61-6a64513a9cb8:vdc1
+							</dd>
+							<dt>Name:</dt>
+							<dd>
+								<a href="">
+								winhost1.vlab.local-1407875653939
+								</a>
+							</dd>
+							<dt>Virtual Array:</dt>
+							<dd>
+								VirtualArray-1
+							</dd>
+						</dl>
+					</div>
+				</div>
+
+			</div>
+			<div id="Order_executionLogs" style="">
+				<div class="master-detail">
+					<div class="header" ng-class="{expanded: itemExpand[0]}" ng-click="itemExpand[0] = !itemExpand[0]">
+						<i class="indicator"></i>
+						Logs
+					</div>
+					<div class="content" ng-show="itemExpand[0]">
+						<table class="logs table table-condensed table-striped" style="">
+							<thead>
+								<tr>
+									<th class="dateColumn">Date</th>
+									<th class="levelColumn">Level</th>
+									<th class="messageColumn">Message</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="dateColumn"><span class="localDateTime" style="">{{ data.date }}</span></td>
+									<td class="levelColumn">INFO</td>
+									<td class="messageColumn">Example logs may include logging into vCenter, targeting host, exporting ID, etc...</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div id="Order_precheckTasks" style="">
+				<div class="master-detail">
+					<div class="header" ng-class="{expanded: itemExpand[1]}" ng-click="itemExpand[1] = !itemExpand[1]">
+						<i class="indicator"></i>
+						Precheck Steps
+					</div>
+					<div class="content" ng-show="itemExpand[1]">
+						<table class="taskLogs table table-striped table-condensed" style="">
+							<thead>
+								<tr>
+									<th class="messageColumn">Summary</th>
+									<th class="detailColumn">Detail</th>
+									<th class="elapsedColumn">Elapsed</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="messageColumn">Get/Find/Connect an Object</td>
+									<td class="detailColumn">Precheck steps are to get information from vCenter, Datacenter, ESX Host, Endpoints, etc...</td>
+									<td class="elapsedColumn">a second</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div id="Order_executeTasks" style="">
+				<div class="master-detail">
+					<div class="header" ng-class="{expanded: itemExpand[2]}" ng-click="itemExpand[2] = !itemExpand[2]">
+						<i class="indicator"></i>
+						Execution Steps
+					</div>
+					<div class="content" ng-show="itemExpand[2]">
+						<table class="taskLogs table table-striped table-condensed" style="">
+							<thead>
+								<tr>
+									<th class="messageColumn">Summary</th>
+									<th class="detailColumn">Detail</th>
+									<th class="elapsedColumn">Elapsed</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="messageColumn">Create/Export/Delete an Object</td>
+									<td class="detailColumn">Examples steps may include creating NFS export, getting File System, setting datastore tags on File System, etc...</td>
+									<td class="elapsedColumn">11 seconds</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div id="Order_rollbackTasks" style="display: none;">
+				<div class="master-detail">
+					<div class="header"><i class="indicator"></i>Rollback Steps</div>
+					<div class="content" style="display:none">
+						<table class="taskLogs table table-striped table-condensed" style="display: none;">
+							<thead>
+								<tr>
+									<th class="messageColumn">Summary</th>
+									<th class="detailColumn">Detail</th>
+									<th class="elapsedColumn">Elapsed</th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div style="padding-bottom: 1em;"></div>
+		</div>
+	</div>
+</div>

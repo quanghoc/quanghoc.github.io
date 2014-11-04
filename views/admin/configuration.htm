@@ -1,0 +1,535 @@
+<div class="mainContent">
+    <div class="container">
+        <form id="properties" class="form form-horizontal" autocomplete="off" novalidate>
+            <div class="form-header">
+                <div class="title">
+                    <h2>
+                        Configuration Properties</h2>
+                </div>
+                <div style="clear:both"></div>
+            </div>
+            <div class="clear"></div>
+            <p id="alerts_success" class="alert alert-success" style="display:none">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">�</button>
+                <span class="message"></span>
+            </p>
+            <p id="alerts_error" class="alert alert-danger" style="display:none">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">�</button>
+                <span class="message"></span>
+            </p>
+            <p id="alerts_warning" class="alert alert-warning" style="display:none">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">�</button>
+                <span class="message"></span>
+            </p>
+            <p id="alerts_info" class="alert alert-info" style="display:none">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">�</button>
+                <span class="message"></span>
+            </p>
+            <div ng-init="selected = 1" class="tabbable tabs-left">
+                <ul class="nav nav-tabs">
+                    <li ng-class="{active:selected===1}">
+                        <a ng-click="selected = 1" data-toggle="tab">Network</a>
+                    </li>
+                    <li ng-class="{active:selected===2}">
+                        <a ng-click="selected = 2" data-toggle="tab">Security</a>
+                    </li>
+                    <li ng-class="{active:selected===3}">
+                        <a ng-click="selected = 3" data-toggle="tab">Controller</a>
+                    </li>
+                    <li ng-class="{active:selected===4}">
+                        <a ng-click="selected = 4" data-toggle="tab">Discovery</a>
+                    </li>
+                    <li ng-class="{active:selected===5}">
+                        <a ng-click="selected = 5" data-toggle="tab">ConnectEMC</a>
+                    </li>
+                    <li ng-class="{active:selected===6}">
+                        <a ng-click="selected = 6" data-toggle="tab">Email</a>
+                    </li>
+                    <li ng-class="{active:selected===7}">
+                        <a ng-click="selected = 7" data-toggle="tab">Upgrade</a>
+                    </li>
+                    <li ng-class="{active:selected===8}">
+                        <a ng-click="selected = 8" data-toggle="tab">Other</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div ng-show="selected == 1" ng-class="{active:selected===1}" class="property-page tab-pane" id="network">
+                        <div id="network_nameserversControlGroup" class="form-group ">
+                            <label class="control-label col-sm-3" for="network_nameservers">DNS Servers:</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="network_nameservers" name="network_nameservers" value="192.168.1.10" maxlength="119" data-originalvalue="192.168.1.10" data-reboot="true" autocomplete="off">
+                                <p class="help-block clear">2-3 DNS servers (IP addresses separated by commas).
+                                    <span class="text-danger">Reboot Required</span>
+                                </p>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="help-inline clearfix"></span>
+                            </div>
+                        </div>
+                        <div id="network_ntpserversControlGroup" class="form-group ">
+                            <label class="control-label col-sm-3" for="network_ntpservers">NTP Servers:</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="network_ntpservers" name="network_ntpservers" value="192.168.1.10" maxlength="119" data-originalvalue="192.168.1.10" data-reboot="true" autocomplete="off">
+                                <p class="help-block clear">2-3 NTP servers (IP addresses separated by commas).
+                                    <span class="text-danger">Reboot Required</span>
+                                </p>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="help-inline clearfix"></span>
+                            </div>
+                        </div>
+                        <div id="system_datanode_ipaddrsControlGroup" class="form-group ">
+                            <label class="control-label col-sm-3" for="system_datanode_ipaddrs">Extra Node IP addresses:</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="system_datanode_ipaddrs" name="system_datanode_ipaddrs" value="192.168.1.80" maxlength="4096" data-originalvalue="192.168.1.80" data-reboot="true" autocomplete="off">
+                                <p class="help-block clear">List of IP addresses or subnets (e.g. 10.1.2.0/24) for data service or commodity nodes (comma separated).
+                                    <span class="text-danger">Reboot Required</span>
+                                </p>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="help-inline clearfix"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="selected == 2" ng-class="{active:selected===2}" class="property-page tab-pane" id="security">
+                        <div id="system_enable_firewallControlGroup" class="form-group ">
+                            <label class="control-label col-sm-3" for="system_enable_firewall">Enable Firewall:</label>
+                            <div class="col-sm-6">
+                                <select id="system_enable_firewall" name="system_enable_firewall" class="form-control input-sm" data-originalvalue="yes" data-reboot="true" chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true" allow-single-deselect="false">
+                                    <option value="yes" selected="selected">yes</option>
+                                    <option value="no">no</option>
+                                </select>
+                                <p class="help-block clear">Enable firewall on the cluster.
+                                    <span class="text-danger">Reboot Required</span>
+                                </p>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="help-inline clearfix"></span>
+                            </div>
+                        </div>
+                        <fieldset>
+                            <legend>SSH Keys</legend>
+                            <div id="system_root_authorizedkeys2ControlGroup" class="form-group ">
+                                <label class="control-label col-sm-3" for="system_root_authorizedkeys2">SSH Key (root):</label>
+                                <div class="col-sm-6">
+                                    <textarea id="system_root_authorizedkeys2" name="system_root_authorizedkeys2" class="form-control" rows="5" maxlength="8192" data-originalvalue="" data-reboot="false" autocomplete="off"></textarea>
+                                    <p class="help-block clear">Authorized public SSH keys for the local 'root' account.</p>
+                                </div>
+                                <div class="col-sm-3">
+                                    <span class="help-inline clearfix"></span>
+                                </div>
+                            </div>
+                            <div id="system_svcuser_authorizedkeys2ControlGroup" class="form-group ">
+                                <label class="control-label col-sm-3" for="system_svcuser_authorizedkeys2">SSH Key (svcuser):</label>
+                                <div class="col-sm-6">
+                                    <textarea id="system_svcuser_authorizedkeys2" name="system_svcuser_authorizedkeys2" class="form-control" rows="5" maxlength="8192" data-originalvalue="" data-reboot="false" autocomplete="off"></textarea>
+                                    <p class="help-block clear">Authorized public SSH keys for the local 'svcuser' account.</p>
+                                </div>
+                                <div class="col-sm-3">
+                                    <span class="help-inline clearfix"></span>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div ng-show="selected == 3" ng-class="{active:selected===3}" class="property-page tab-pane" id="controller">
+                        <div id="controller_enable_meteringControlGroup" class="form-group ">
+                            <label class="control-label col-sm-3" for="controller_enable_metering">Enable Metering:</label>
+                            <div class="col-sm-6">
+                                <select id="controller_enable_metering" name="controller_enable_metering" class="form-control" data-originalvalue="true" data-reboot="true" chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true" allow-single-deselect="false">
+                                    <option value="false">false</option>
+                                    <option value="true" selected="selected">true</option>
+                                </select>
+                                <p class="help-block clear">Indicates whether metering is enabled.
+                                    <span class="text-danger">Reboot Required</span>
+                                </p>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="help-inline clearfix"></span>
+                            </div>
+                        </div>
+                        <div id="controller_metering_intervalControlGroup" class="form-group ">
+                            <label class="control-label col-sm-3" for="controller_metering_interval">Metering Interval:</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="controller_metering_interval" name="controller_metering_interval" value="3600" maxlength="5" data-originalvalue="3600" data-reboot="true" autocomplete="off">
+                                <p class="help-block clear">Number of seconds between metering operations.
+                                    <span class="text-danger">Reboot Required</span>
+                                </p>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="help-inline clearfix"></span>
+                            </div>
+                        </div>
+                        <div id="controller_enable_monitoringControlGroup" class="form-group ">
+                            <label class="control-label col-sm-3" for="controller_enable_monitoring">Enable array monitoring:</label>
+                            <div class="col-sm-6">
+                                <select id="controller_enable_monitoring" name="controller_enable_monitoring" class="form-control" data-originalvalue="true" chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true" allow-single-deselect="false">
+                                    <option value="false">false</option>
+                                    <option value="true" selected="selected">true</option>
+                                </select>
+                                <p class="help-block clear">Indicates whether array monitoring is enabled.
+                                    <span class="text-danger">Reboot Required</span>
+                                </p>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="help-inline clearfix"></span>
+                            </div>
+                        </div>
+                        <div id="controller_max_pool_utilization_percentageControlGroup" class="form-group ">
+                            <label class="control-label col-sm-3" for="controller_max_pool_utilization_percentage">Pool Utilization:</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="controller_max_pool_utilization_percentage" name="controller_max_pool_utilization_percentage" value="75" maxlength="5" data-originalvalue="75" data-reboot="false" autocomplete="off">
+                                <p class="help-block clear">Maximum percentage of storage pool utilization for provisioning operations.</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="help-inline clearfix"></span>
+                            </div>
+                        </div>
+                        <div id="controller_max_thin_pool_subscription_percentageControlGroup" class="form-group ">
+                            <label class="control-label col-sm-3" for="controller_max_thin_pool_subscription_percentage">Thin Pool Subscription:</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="controller_max_thin_pool_subscription_percentage" name="controller_max_thin_pool_subscription_percentage" value="300" maxlength="5" data-originalvalue="300" data-reboot="false" autocomplete="off">
+                                <p class="help-block clear">Maximum percentage of thin storage pool subscription for provisioning operations.</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="help-inline clearfix"></span>
+                            </div>
+                        </div>
+                        <div id="controller_mds_communication_timeoutControlGroup" class="form-group ">
+                            <label class="control-label col-sm-3" for="controller_mds_communication_timeout">Cisco MDS Command Timeout:</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="controller_mds_communication_timeout" name="controller_mds_communication_timeout" value="300" maxlength="5" data-originalvalue="300" data-reboot="false" autocomplete="off">
+                                <p class="help-block clear">Timeout value for Cisco MDS command in seconds</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="help-inline clearfix"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="selected == 4" ng-class="{active:selected===4}" class="property-page tab-pane" id="discovery">
+                        <div id="controller_enable_autodiscoveryControlGroup" class="form-group ">
+                            <label class="control-label col-sm-3" for="controller_enable_autodiscovery">Enable Auto-Discovery:</label>
+                            <div class="col-sm-6">
+                                <select id="controller_enable_autodiscovery" name="controller_enable_autodiscovery" class="form-control" data-originalvalue="true" chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true" allow-single-deselect="false">
+                                    <option value="false">false</option>
+                                    <option value="true" selected="selected">true</option>
+                                </select>
+                                <p class="help-block clear">Indicates whether auto-discovery is enabled.
+                                    <span class="text-danger">Reboot Required</span>
+                                </p>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="help-inline clearfix"></span>
+                            </div>
+                        </div>
+                        <div id="controller_discovery_intervalControlGroup" class="form-group ">
+                            <label class="control-label col-sm-3" for="controller_discovery_interval">Storage Systems:</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="controller_discovery_interval" name="controller_discovery_interval" value="3600" maxlength="5" data-originalvalue="3600" data-reboot="true" autocomplete="off">
+                                <p class="help-block clear">Number of seconds between discovery operations of storage systems.
+                                    <span class="text-danger">Reboot Required</span>
+                                </p>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="help-inline clearfix"></span>
+                            </div>
+                        </div>
+                        <div id="controller_ns_discovery_intervalControlGroup" class="form-group ">
+                            <label class="control-label col-sm-3" for="controller_ns_discovery_interval">Network Systems:</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="controller_ns_discovery_interval" name="controller_ns_discovery_interval" value="3600" maxlength="5" data-originalvalue="3600" data-reboot="true" autocomplete="off">
+                                <p class="help-block clear">Number of seconds between discovery operations of switches (fabric managers).
+                                    <span class="text-danger">Reboot Required</span>
+                                </p>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="help-inline clearfix"></span>
+                            </div>
+                        </div>
+                        <div id="controller_cs_discovery_intervalControlGroup" class="form-group ">
+                            <label class="control-label col-sm-3" for="controller_cs_discovery_interval">Compute Systems:</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="controller_cs_discovery_interval" name="controller_cs_discovery_interval" value="86400" maxlength="5" data-originalvalue="86400" data-reboot="true" autocomplete="off">
+                                <p class="help-block clear">Number of seconds between discovery operations of Compute System (host/vcenters).
+                                    <span class="text-danger">Reboot Required</span>
+                                </p>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="help-inline clearfix"></span>
+                            </div>
+                        </div>
+                        <div id="controller_enable_autoscanControlGroup" class="form-group ">
+                            <label class="control-label col-sm-3" for="controller_enable_autoscan">Enable Auto-Scan:</label>
+                            <div class="col-sm-6">
+                                <select id="controller_enable_autoscan" name="controller_enable_autoscan" class="form-control" data-originalvalue="true" chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true" allow-single-deselect="false">
+                                    <option value="false">false</option>
+                                    <option value="true" selected="selected">true</option>
+                                </select>
+                                <p class="help-block clear">Indicates whether auto-scan of SMI-S providers is enabled.
+                                    <span class="text-danger">Reboot Required</span>
+                                </p>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="help-inline clearfix"></span>
+                            </div>
+                        </div>
+                        <div id="controller_scan_intervalControlGroup" class="form-group ">
+                            <label class="control-label col-sm-3" for="controller_scan_interval">Scan Interval:</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="controller_scan_interval" name="controller_scan_interval" value="600" maxlength="5" data-originalvalue="600" data-reboot="true" autocomplete="off">
+                                <p class="help-block clear">Number of seconds between scan operations of SMI-S providers.
+                                    <span class="text-danger">Reboot Required</span>
+                                </p>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="help-inline clearfix"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="selected == 5" ng-class="{active:selected===5}" class="property-page tab-pane" id="connectemc">
+                        <div id="system_connectemc_encryptControlGroup" class="form-group ">
+                            <label class="control-label col-sm-3" for="system_connectemc_encrypt">Encryption:</label>
+                            <div class="col-sm-6">
+                                <select id="system_connectemc_encrypt" name="system_connectemc_encrypt" class="form-control" data-originalvalue="yes" chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true" allow-single-deselect="false">
+                                    <option value="yes" selected="selected">yes</option>
+                                    <option value="no">no</option>
+                                </select>
+                                <p class="help-block clear">Encrypt ConnectEMC Service data using RSA BSAFE.
+                                    <span class="text-danger">Reboot Required</span>
+                                </p>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="help-inline clearfix"></span>
+                            </div>
+                        </div>
+                        <div id="system_connectemc_transportControlGroup" class="form-group ">
+                            <label class="control-label col-sm-3" for="system_connectemc_transport">Transport:</label>
+                            <div class="col-sm-6">
+                                <select id="system_connectemc_transport" name="system_connectemc_transport" class="form-control" data-originalvalue="FTPS" chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true" allow-single-deselect="false">
+                                    <option value="FTPS" selected="selected">FTPS</option>
+                                    <option value="SMTP">SMTP</option>
+                                    <option value="None">None</option>
+                                </select>
+                                <p class="help-block clear">List of acceptable transport options for ConnectEMC.
+                                    <span class="text-danger">Reboot Required</span>
+                                </p>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="help-inline clearfix"></span>
+                            </div>
+                        </div>
+                        <fieldset>
+                            <legend>FTPS</legend>
+                            <div id="system_connectemc_ftps_hostnameControlGroup" class="form-group ">
+                                <label class="control-label col-sm-3" for="system_connectemc_ftps_hostname">Hostname:</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="system_connectemc_ftps_hostname" name="system_connectemc_ftps_hostname" value="corpusfep3.emc.com" maxlength="65534" data-originalvalue="corpusfep3.emc.com" data-reboot="true" autocomplete="off">
+                                    <p class="help-block clear">ConnectEMC FTPS Hostname
+                                        <span class="text-danger">Reboot Required</span>
+                                    </p>
+                                </div>
+                                <div class="col-sm-3">
+                                    <span class="help-inline clearfix"></span>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>SMTP</legend>
+                            <div id="system_connectemc_smtp_toControlGroup" class="form-group ">
+                                <label class="control-label col-sm-3" for="system_connectemc_smtp_to">Notification Email:</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="system_connectemc_smtp_to" name="system_connectemc_smtp_to" value="administrator@vlab.local" maxlength="255" data-originalvalue="administrator@vlab.local" data-reboot="true" autocomplete="off">
+                                    <p class="help-block clear">Optional email address (user@domain) for the ConnectEMC Service notifications.
+                                        <span class="text-danger">Reboot Required</span>
+                                    </p>
+                                </div>
+                                <div class="col-sm-3">
+                                    <span class="help-inline clearfix"></span>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div ng-show="selected == 6" ng-class="{active:selected===6}" class="property-page tab-pane" id="email">
+                        <div id="system_connectemc_smtp_serverControlGroup" class="form-group ">
+                            <label class="control-label col-sm-3" for="system_connectemc_smtp_server">SMTP Server:</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="system_connectemc_smtp_server" name="system_connectemc_smtp_server" value="" maxlength="65534" data-originalvalue="" data-reboot="true" autocomplete="off">
+                                <p class="help-block clear">SMTP server or relay for sending email (For ConnectEMC and Approvals).
+                                    <span class="text-danger">Reboot Required</span>
+                                </p>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="help-inline clearfix"></span>
+                            </div>
+                        </div>
+                        <div id="system_connectemc_smtp_portControlGroup" class="form-group ">
+                            <label class="control-label col-sm-3" for="system_connectemc_smtp_port">SMTP Port:</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="system_connectemc_smtp_port" name="system_connectemc_smtp_port" value="0" maxlength="5" data-originalvalue="0" data-reboot="true" autocomplete="off">
+                                <p class="help-block clear">SMTP server port. If set to 0, the default SMTP port is used (25, or 465 if TLS/SSL is enabled).
+                                    <span class="text-danger">Reboot Required</span>
+                                </p>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="help-inline clearfix"></span>
+                            </div>
+                        </div>
+                        <div id="system_connectemc_smtp_enabletlsControlGroup" class="form-group ">
+                            <label class="control-label col-sm-3" for="system_connectemc_smtp_enabletls">Encryption:</label>
+                            <div class="col-sm-6">
+                                <select id="system_connectemc_smtp_enabletls" name="system_connectemc_smtp_enabletls" class="form-control" data-originalvalue="no" chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true" allow-single-deselect="false">
+                                    <option value="yes">yes</option>
+                                    <option value="no" selected="selected">no</option>
+                                </select>
+
+                                <p class="help-block clear">Use TLS/SSL for the SMTP server connections.
+                                    <span class="text-danger">Reboot Required</span>
+                                </p>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="help-inline clearfix"></span>
+                            </div>
+                        </div>
+                        <div id="system_connectemc_smtp_authtypeControlGroup" class="form-group ">
+                            <label class="control-label col-sm-3" for="system_connectemc_smtp_authtype">Authentication:</label>
+                            <div class="col-sm-6">
+                                <select id="system_connectemc_smtp_authtype" name="system_connectemc_smtp_authtype" class="form-control" chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true" allow-single-deselect="false">
+                                    <option value="cram-md5">cram-md5</option>
+                                    <option value="login">login</option>
+                                    <option value="None" selected="selected">None</option>
+                                    <option value="plain">plain</option>
+                                </select>
+                                <p class="help-block clear">Authentication type for connecting to the SMTP server.
+                                    <span class="text-danger">Reboot Required</span>
+                                </p>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="help-inline clearfix"></span>
+                            </div>
+                        </div>
+                        <div id="system_connectemc_smtp_usernameControlGroup" class="form-group ">
+                            <label class="control-label col-sm-3" for="system_connectemc_smtp_username">Username:</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="system_connectemc_smtp_username" name="system_connectemc_smtp_username" value="" maxlength="255" data-originalvalue="" data-reboot="true" autocomplete="off">
+                                <p class="help-block clear">Username for authenticating with the SMTP server.
+                                    <span class="text-danger">Reboot Required</span>
+                                </p>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="help-inline clearfix"></span>
+                            </div>
+                        </div>
+                        <div id="system_connectemc_smtp_passwordControlGroup" class="form-group ">
+                            <label class="control-label col-sm-3" for="system_connectemc_smtp_password">Password:</label>
+                            <div class="col-sm-6">
+                                <input type="password" class="form-control" id="system_connectemc_smtp_password" name="system_connectemc_smtp_password" value="" maxlength="255" data-originalvalue="" data-reboot="true" autocomplete="off">
+                                <p class="help-block clear">Password for authenticating with the SMTP server.
+                                    <span class="text-danger">Reboot Required</span>
+                                </p>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="help-inline clearfix"></span>
+                            </div>
+                        </div>
+                        <div id="system_connectemc_smtp_fromControlGroup" class="form-group ">
+                            <label class="control-label col-sm-3" for="system_connectemc_smtp_from">From Address:</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="system_connectemc_smtp_from" name="system_connectemc_smtp_from" value="" maxlength="255" data-originalvalue="" data-reboot="true" autocomplete="off">
+                                <p class="help-block clear">From email address for sending email messages (user@domain).
+                                    <span class="text-danger">Reboot Required</span>
+                                </p>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="help-inline clearfix"></span>
+                            </div>
+                        </div>
+                        <div id="ValidationControlGroup" class="form-group">
+                            <div class="col-sm-3">
+                                &nbsp;
+                            </div>
+                            <div class="col-sm-6">
+                                <button id="validateButton" type="button" class="btn btn-info disabled" disabled="">
+                                    <span class="glyphicon glyphicon-envelope "></span>&nbsp;Test Email Settings
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="selected == 7" ng-class="{active:selected===7}" class="property-page tab-pane" id="upgrade">
+                        <div id="system_update_repoControlGroup" class="form-group ">
+                            <label class="control-label col-sm-3" for="system_update_repo">Repository URL:</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="system_update_repo" name="system_update_repo" value="https://colu.emc.com/soap/rpc" maxlength="512" data-originalvalue="https://colu.emc.com/soap/rpc" data-reboot="false" autocomplete="off">
+                                <p class="help-block clear">URL of the EMC upgrade repository.</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="help-inline clearfix"></span>
+                            </div>
+                        </div>
+                        <div id="system_update_proxyControlGroup" class="form-group ">
+                            <label class="control-label col-sm-3" for="system_update_proxy">Proxy:</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="system_update_proxy" name="system_update_proxy" value="" maxlength="512" data-originalvalue="" data-reboot="false" autocomplete="off">
+                                <p class="help-block clear">HTTP/HTTPS proxy required to access the EMC upgrade repository. Leave empty if no proxy is required.</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="help-inline clearfix"></span>
+                            </div>
+                        </div>
+                        <div id="system_update_usernameControlGroup" class="form-group ">
+                            <label class="control-label col-sm-3" for="system_update_username">Username:</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="system_update_username" name="system_update_username" value="" maxlength="512" data-originalvalue="" data-reboot="false" autocomplete="off">
+                                <p class="help-block clear">Username to access the EMC upgrade repository.</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="help-inline clearfix"></span>
+                            </div>
+                        </div>
+                        <div id="system_update_passwordControlGroup" class="form-group ">
+                            <label class="control-label col-sm-3" for="system_update_password">Password:</label>
+                            <div class="col-sm-6">
+                                <input type="password" class="form-control" id="system_update_password" name="system_update_password" value="" maxlength="512" data-originalvalue="" data-reboot="false" autocomplete="off">
+                                <p class="help-block clear">Password to access the EMC upgrade repository.</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="help-inline clearfix"></span>
+                            </div>
+                        </div>
+                        <div id="system_update_check_frequency_hoursControlGroup" class="form-group ">
+                            <label class="control-label col-sm-3" for="system_update_check_frequency_hours">Check Frequency:</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="system_update_check_frequency_hours" name="system_update_check_frequency_hours" value="24" maxlength="5" data-originalvalue="24" data-reboot="false" autocomplete="off">
+                                <p class="help-block clear">Number of hours between checks for new upgrade versions</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="help-inline clearfix"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="selected == 8" ng-class="{active:selected===8}" class="property-page tab-pane" id="other">
+                        <div id="vasa_base_urlControlGroup" class="form-group ">
+                            <label class="control-label col-sm-3" for="vasa_base_url">VASA Base URL:</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="vasa_base_url" name="vasa_base_url" value="" maxlength="65534" data-originalvalue="" data-reboot="true" autocomplete="off">
+                                <p class="help-block clear">ViPR instance URL that the VASA storage provider can utilize. By default the VASA provider utilizes the local ViPR node.
+                                    <span class="text-danger">Reboot Required</span>
+                                </p>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="help-inline clearfix"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group button-bar">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <button type="submit" class="btn btn-primary" name="button.save" disabled="">
+                        <span class="glyphicon glyphicon-ok-sign"></span>&nbsp;Save</button>
+                    <span id="propertiesModifiedMessage" style="display: none;">
+                        <span id="modifiedCount" class="badge">0</span>&nbsp;properties have been modified.</span>
+                    <span id="rebootRequiredMessage" class="text-danger" style="display: none;">ViPR Nodes will be rebooted automatically after save.</span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

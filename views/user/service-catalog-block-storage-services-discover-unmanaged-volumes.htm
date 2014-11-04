@@ -1,0 +1,145 @@
+<div class="mainContent" ng-controller="GenericOrderFormCtrl" ng-init="data.orderTypeId = 8">
+    <ul class="breadcrumb breadcrumb-navbar">
+        <li><a href="" ui-sref="catalog">Service Catalog</a>
+            <span class="divider"></span>
+        </li>
+        <li><a href="" ui-sref="BlockStorageServices">Block Storage Services</a>
+            <span class="divider"></span>
+        </li>
+        <li class="active">Discover Unmanaged Volumes</li>
+    </ul>
+    <div class="container">
+        <div class="form-header">
+            <div class="image">
+                <img class="" src="/img/serviceCatalog/Service_Discover_Unmanaged_Volumes.png">
+            </div>
+            <div class="description">
+                <h2>Discover Unmanaged Volumes</h2>
+                <p>Discovers volumes on arrays that were not created by ViPR</p>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="clear"></div>
+        <p id="alerts_success" class="alert alert-success" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_error" class="alert alert-danger" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_warning" class="alert alert-warning" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_info" class="alert alert-info" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <span class="message"></span>
+        </p>
+        <!-- asset error -->
+        <div id="assetError" class="alert alert-danger" style="display:none;">
+            <button type="button" class="close">×</button>
+            <div id="assetErrorMessage" style="white-space: pre-line;"></div>
+        </div>
+        <form id="serviceForm" ng-submit="submit()" class="form-horizontal">
+            <div id="storageSystemsControlGroup" class="form-group  required">
+                <label class="control-label col-sm-3" for="storageSystems" set-model="data.details[0].name">Storage Systems:</label>
+                <div class="col-sm-6 controls">
+                    <div class="selectMany span6 ">
+                        <div class="selectManySearch row col-gap-sm">
+                            <div class="col-sm-8">
+                                <input id="storageSystemsSearch" type="text" class="form-control input-sm" autocomplete="off" ng-model="data.details[0].value">
+                            </div>
+                            <span class="btn-group selectManyButtons col-sm-4">
+                                <button id="storageSystemsCheck" type="button" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-check "></span>&nbsp;All</button>
+                                <button id="storageSystemsUncheck" type="button" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-remove-circle "></span>&nbsp;None</button>
+                            </span>
+                        </div>
+                        <div id="storageSystems" name="storageSystems" class="selectManyContent">
+                            <div class="checkbox">
+                                <label for="CLARIION+APM12310359509">
+                                    <input id="CLARIION+APM12310359509" name="storageSystems" type="checkbox" value="CLARIION+APM12310359509">CLARIION+APM12310359509
+                                </label>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="checkbox">
+                                <label for="CLARIION+APM12346547795">
+                                    <input id="CLARIION+APM12346547795" name="storageSystems" type="checkbox" value="CLARIION+APM12346547795">CLARIION+APM12346547795
+                                </label>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="checkbox">
+                                <label for="CLARIION+APM12380127239">
+                                    <input id="CLARIION+APM12380127239" name="storageSystems" type="checkbox" value="CLARIION+APM12380127239">CLARIION+APM12380127239
+                                </label>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="checkbox">
+                                <label for="CLARIION+APM12381623880">
+                                    <input id="CLARIION+APM12381623880" name="storageSystems" type="checkbox" value="CLARIION+APM12381623880">CLARIION+APM12381623880
+                                </label>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="checkbox">
+                                <label for="CLARIION+APM12391522735">
+                                    <input id="CLARIION+APM12391522735" name="storageSystems" type="checkbox" value="CLARIION+APM12391522735">CLARIION+APM12391522735
+                                </label>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="checkbox">
+                                <label for="SYMMETRIX+999000414197">
+                                    <input id="SYMMETRIX+999000414197" name="storageSystems" type="checkbox" value="SYMMETRIX+999000414197">SYMMETRIX+999000414197
+                                </label>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="checkbox">
+                                <label for="SYMMETRIX+999024668923">
+                                    <input id="SYMMETRIX+999024668923" name="storageSystems" type="checkbox" value="SYMMETRIX+999024668923">SYMMETRIX+999024668923
+                                </label>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="checkbox">
+                                <label for="SYMMETRIX+999316031302">
+                                    <input id="SYMMETRIX+999316031302" name="storageSystems" type="checkbox" value="SYMMETRIX+999316031302">SYMMETRIX+999316031302
+                                </label>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="checkbox">
+                                <label for="SYMMETRIX+999334388821">
+                                    <input id="SYMMETRIX+999334388821" name="storageSystems" type="checkbox" value="SYMMETRIX+999334388821">SYMMETRIX+999334388821
+                                </label>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="checkbox">
+                                <label for="SYMMETRIX+999595867618">
+                                    <input id="SYMMETRIX+999595867618" name="storageSystems" type="checkbox" value="SYMMETRIX+999595867618">SYMMETRIX+999595867618
+                                </label>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="checkbox">
+                                <label for="VPLEX+FNM00130900300:FNM00130900301">
+                                    <input id="VPLEX+FNM00130900300:FNM00130900301" name="storageSystems" type="checkbox" value="VPLEX+FNM00130900300:FNM00130900301">VPLEX+FNM00130900300:FNM00130900301
+                                </label>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group button-bar">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <button type="submit" class="btn btn-primary btn-large " name="service.order">
+                        <span class="glyphicon glyphicon-shopping-cart "></span>&nbsp;Order</button>
+                    <button type="button" class="btn btn-default btn-large " name="button.cancel" ng-click="cancel()">
+                        <span class="glyphicon glyphicon-trash "></span>&nbsp;Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

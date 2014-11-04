@@ -1,0 +1,72 @@
+﻿<div class="mainContent">
+    <form action="" method="" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" id="selectTenantForm" class="form form-inline">
+        <input type="hidden" name="authenticityToken" value="b1ad100e76ccea28cfba2fdd3a1c82f47da1f052">
+        <input type="hidden" name="url" value="/approvalconfiguration/edit">
+        <div class="well well-sm">
+            <span class="tenant-select">
+                <label for="tenantId">Tenant:</label>
+                <select id="tenantId" name="tenantId" class="form-control input-sm" chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true" allow-single-deselect="false">
+                    <option value="urn:storageos:TenantOrg:992a41c6-597f-4b0f-8d66-206c11665c13:global" selected="selected">Provider Tenant</option>
+                    <option value="urn:storageos:TenantOrg:bc6d46d4-58e6-4dd4-817b-32b805f8c14f:global">RainPole Tenant</option>
+                </select>
+            </span>
+        </div>
+    </form>
+    <div class="container">
+        <div class="form-header">
+            <div class="image" style="display:none">
+            </div>
+            <div class="title">
+                <h2>
+                    Approval Settings</h2>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div class="clear"></div>
+        <p id="alerts_success" class="alert alert-success" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">�</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_error" class="alert alert-danger" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">�</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_warning" class="alert alert-warning" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">�</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_info" class="alert alert-info" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">�</button>
+            <span class="message"></span>
+        </p>
+        <form action="" method="" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" class="form form-horizontal" autocomplete="off">
+            <input type="hidden" name="authenticityToken" value="b1ad100e76ccea28cfba2fdd3a1c82f47da1f052">
+            <div id="approvalConfig_approverEmailControlGroup" class="form-group  ">
+                <label class="control-label col-sm-3" for="approvalConfig_approverEmail">Approver Email:</label>
+                <div class="col-sm-6 controls">
+                    <input type="text" class="form-control span6 initialFocus" id="approvalConfig_approverEmail" name="approvalConfig.approverEmail" value="" autocomplete="off">
+                    <span class="help-block">The email addresses for approvers (comma separated)</span>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div id="approvalConfig_approvalUrlControlGroup" class="form-group  ">
+                <label class="control-label col-sm-3" for="approvalConfig_approvalUrl">Approval Service URL:</label>
+                <div class="col-sm-6 controls">
+                    <input type="text" class="form-control span6" id="approvalConfig_approvalUrl" name="approvalConfig.approvalUrl" value="" autocomplete="off">
+                    <span class="help-block">URL to an external service to receive approval notifications</span>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group button-bar">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <button type="submit" class="btn btn-primary btn-large" disabled="">
+                        <span class="glyphicon glyphicon-ok-sign "></span>&nbsp;Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

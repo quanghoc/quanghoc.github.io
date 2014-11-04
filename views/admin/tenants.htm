@@ -1,0 +1,125 @@
+<div class="mainContent">
+    <div class="clear"></div>
+    <p id="alerts_success" class="alert alert-success" style="display:none">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+            ×
+        </button>
+        <span class="message"></span>
+    </p>
+    <p id="alerts_error" class="alert alert-danger" style="display:none">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+            ×
+        </button>
+        <span class="message"></span>
+    </p>
+    <p id="alerts_warning" class="alert alert-warning" style="display:none">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+            ×
+        </button>
+        <span class="message"></span>
+    </p>
+    <p id="alerts_info" class="alert alert-info" style="display:none">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+            ×
+        </button>
+        <span class="message"></span>
+    </p>
+    <div class="section-header pull-left ">
+        <h1 class="">Tenants</h1>
+    </div>
+    <div id="tenants" class="dataTableContainer">
+        <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline" role="grid">
+            <div class="dataTables_filter" id="DataTables_Table_0_filter">
+                <label>
+                    <input type="text" aria-controls="DataTables_Table_0" class="form-control input-sm search-query" placeholder="Search...">
+                </label>
+            </div>
+            <table class="table table-hover table-condensed table-styled dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
+                <thead>
+                    <tr role="row">
+                        <th class="selection sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="">
+                            <div class="th-wrapper">
+                                <input type="checkbox" name="selectAll">
+                            </div>
+                        </th>
+                        <th class="name sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">
+                            <div class="th-wrapper">
+                                Name
+                            </div>
+                        </th>
+                        <th class="description sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Description: activate to sort column ascending">
+                            <div class="th-wrapper">
+                                Description
+                            </div>
+                        </th>
+                        <th class="mappedDomains sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Mapped Domains: activate to sort column ascending">
+                            <div class="th-wrapper">
+                                Mapped Domains
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody role="alert" aria-live="polite" aria-relevant="all">
+                    <tr class="odd">
+                        <td class="selection">
+                            <input type="checkbox" name="selected" value="urn:storageos:TenantOrg:3f219871-6aec-414a-bf0b-f8a163a9709e:global" onchange="table.tenants.updateSelection(this)">
+                        </td>
+                        <td class="name sorting_1"><a href="">Provider Tenant</a>
+                        </td>
+                        <td class="description">Root Provider Tenant</td>
+                        <td class="mappedDomains">secteam.com</td>
+                    </tr>
+                    <tr class="even">
+                        <td class="selection">
+                            <input type="checkbox" name="selected" value="urn:storageos:TenantOrg:63c86892-88c9-4536-ad6e-5edd53381e3d:global" onchange="table.tenants.updateSelection(this)">
+                        </td>
+                        <td class="name sorting_1"><a href="">RainPole Tenant</a>
+                        </td>
+                        <td class="description">Tenant 1</td>
+                        <td class="mappedDomains">secteam.com</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="dataTables_footer">
+                <div class="dataTables_paginate paging_bootstrapFirstLast pagination">
+                    <ul class="pagination pagination-sm">
+                        <li class="prev disabled">
+                            <a href="">First</a>
+                        </li>
+                        <li class="prev disabled">
+                            <a href="">←</a>
+                        </li>
+                        <li class="active">
+                            <a href="">1</a>
+                        </li>
+                        <li class="next disabled">
+                            <a href="">→</a>
+                        </li>
+                        <li class="next disabled">
+                            <a href="">Last</a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="DataTables_Table_0_processing" class="dataTables_processing" style="visibility: hidden;">
+                    <span class="glyphicon glyphicon-refresh rotate "></span>Loading...
+                </div>
+                <div class="dataTables_info" id="DataTables_Table_0_info">
+                    Showing 1 to 2 of 2 entries
+                </div>
+                <div class="dataTables_processingError" style="display: none;"></div>
+            </div>
+        </div>
+        <div class="button-bar">
+            <button type="button" class="btn btn-success " name="button.add">
+                <span class="glyphicon glyphicon-plus "></span>&nbsp;Add
+            </button>
+            <button type="button" class="btn btn-danger " name="button.delete" data-enabled="selected" data-form="deleteForm" disabled="">
+                <span class="glyphicon glyphicon-trash "></span>&nbsp;Delete
+            </button>
+        </div>
+        <form action="" method="" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" id="deleteForm" class="hide">
+            <input type="hidden" name="authenticityToken" value="49141522d311863382cf10c84aad57d20cbac571">
+            <input type="hidden" name="ids">
+        </form>
+    </div>
+</div>

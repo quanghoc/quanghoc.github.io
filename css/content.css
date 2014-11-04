@@ -1,0 +1,239 @@
+.dataTable .lastDiscoveredDate {
+  width: 125px;
+}
+.dataTable .discoveryStatus {
+    text-align: center;
+    width: 75px;
+}
+.dataTable .certificateValid {
+    text-align: center;
+    width: 75px;
+}
+.dataTable .registrationStatus {
+  text-align: center;
+  width: 75px;
+}
+.dataTable .actions {
+  width: 1%;
+  white-space: nowrap;
+  text-align: center;
+}
+.dataTable .actions .btn-group {
+  display: inline-flex;
+}
+.dataTable .operationalStatus {
+  text-align: center;
+  width: 50px;
+}
+.dataTable .discovered {
+  text-align: center;
+  width: 80px;
+}
+.dataTable .discoverable {
+  text-align: center;
+  width: 90px;
+}
+.dataTable .autoSanZoning {
+  width: 1%;
+  white-space: nowrap;
+  text-align: center;
+}
+/** Orders data table styling. */
+#orders .table .number {
+  width: 75px;
+  text-align: center;
+}
+#orders .table .status {
+  width: 60px;
+  text-align: center;
+  white-space: nowrap;
+}
+#orders .table .service {
+}
+#orders .table .summary {
+}
+#orders .table .submittedBy {
+  width: 150px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;  
+}
+#orders .table .createdDate {
+  width: 200px;
+  text-align: center;
+  white-space: nowrap;
+}
+#orders .table .createdRelativeDate {
+  width: 150px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+
+/** Approvals Table Styling. */
+#approvalsTable .orderNumber {
+  width: 75px;
+  text-align: center;
+}
+#approvalsTable .serviceTitle {
+}
+#approvalsTable .orderUserName {
+  width: 200px;
+  white-space: nowrap;
+  overflow: hidden;  
+}
+#approvalsTable .status {
+  width: 75px;
+  text-align: center;
+  white-space: nowrap;
+}
+#approvalsTable .createdDate {
+  width: 200px;
+  text-align: center;
+  white-space: nowrap;
+}
+#approvalsTable .approvedBy {
+  width: 200px;
+  white-space: nowrap;
+  overflow: hidden;  
+}
+
+
+/** Notification Bar */
+#notifications .badge.unread {
+  background-color: #f89406;
+}
+#notifications .badge.read {
+  background-color: #3a87ad; 
+}
+#notifications .header {
+  text-align: center;
+  font-weight: bold;
+}
+#notifications .footer {
+  font-size: 0.8em;
+  text-align: center;
+}
+#notifications .footer a {
+  font-weight: bold;
+}
+#notifications .message {
+  color: #bbb;
+  font-size: 0.8em;
+  text-align: center;
+}
+#notifications .notification {
+  font-size: 0.8em;
+}
+#notifications .notification.error a {
+  color: #b94a48 !important;
+}
+#notifications .notification.unread a {
+  background-color: #eee;
+  font-weight: bold;
+}
+#notifications .notification a img {
+  max-width: 30px
+}
+
+
+/** Order page */
+#orderMessage .alert-danger {
+  white-space: pre-wrap;
+  overflow: auto;
+}
+#orderDetails .master-detail {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  padding-top: 0.5em;
+}
+#orderDetails .master-detail .content {
+  margin-left: 2em;
+}
+#orderDetails .master-detail .table caption {
+  display:none;
+}
+
+#orderDetails .logs .dateColumn {
+  text-align: center;
+  white-space: nowrap;
+  width: 170px;
+}
+#orderDetails .logs .levelColumn {
+  width: 50px;
+  text-align: center;
+}
+#orderDetails .logs .messageColumn {}
+#orderDetails .logs .stackTraceColumn {
+  white-space: pre-wrap;
+  overflow: auto;
+  padding-left: 2em;
+  width: 900px;
+}
+#orderDetails .taskLogs .messageColumn {
+  width: 200px;
+}
+#orderDetails .taskLogs .detailColumn {
+}
+#orderDetails .taskLogs .elapsedColumn {
+  width: 80px;
+  text-align: center;
+}
+#orderDetails .taskLogs .stackTraceColumn {
+  white-space: pre-wrap;
+  overflow: auto;
+  padding-left: 2em;
+  width: 900px;
+}
+#orderDetails .logs .error,
+#orderDetails .taskLogs .error {
+  color: #b94a48
+}
+
+/** Scheduled orders */
+#scheduledOrders .number {
+  width: 75px;
+  text-align: center;
+}
+#scheduledOrders .status {
+  width: 60px;
+  text-align: center;
+  white-space: nowrap;
+}
+#scheduledOrders .service {}
+#scheduledOrders .summary {}
+#scheduledOrders .submittedBy {
+  width: 150px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;  
+}
+#scheduledOrders .createdDate {
+  width: 200px;
+  text-align: center;
+  white-space: nowrap;
+}
+#scheduledOrders .executionWindow {}
+
+.dataTable .freeCapacity {
+  width: 1%;
+  text-align: right;
+  white-space: nowrap;
+}
+.dataTable .subscribedCapacity {
+  width: 1%;
+  text-align: right;
+  white-space: nowrap;
+}
+.dataTable .totalCapacity {
+  width: 1%;
+  text-align: right;
+  white-space: nowrap;
+}
+#storagePools .volumeTypes, #availableStoragePools .volumeTypes {
+  width: 80px;
+}
+
+#smisProvider .dataTable .manageUrl {
+  width: 75px;
+}

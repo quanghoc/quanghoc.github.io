@@ -1,0 +1,57 @@
+﻿<div class="mainContent">
+    <div class="container">
+        <div class="page-header">
+            <h1>Data Services Nodes</h1>
+        </div>
+        <div class="clear"></div>
+        <p id="alerts_success" class="alert alert-success" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">�</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_error" class="alert alert-danger" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">�</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_warning" class="alert alert-warning" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">�</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_info" class="alert alert-info" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">�</button>
+            <span class="message"></span>
+        </p>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <p>The following steps will guide you through the process to deploy the ViPR Data Services virtual machines within your environment. Please note that you need to complete the steps below before you create your first Data Store.</p>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <h4 class="list-group-item-heading">Configure</h4>
+                        <p class="list-group-item-text">
+                            Under <a href="">Configuration Properties</a>, update the
+                            <span style="font-weight:bold;">Extra Node IP addresses</span>property to include the IP addresses or subnets of the data services nodes you are adding. This will require a reboot of the ViPR appliance. This will allow the data services nodes to connect to the ViPR appliance.
+                        </p>
+                    </li>
+                    <li class="list-group-item">
+                        <h4 class="list-group-item-heading">Download</h4>
+                        <p class="list-group-item-text">Download the Data Services Configuration File. Ensure the configuration file name is
+                            <span style="font-weight:bold;">config.iso</span>. Copy the
+                            <span style="font-weight:bold;">config.iso</span>file to the same directory where the Data Service deployment files were extracted (OVF/VMDK).</p>
+                        <br>
+                        <a href="" class="btn btn-primary">Download Configuration File</a> 
+                    </li>
+                    <li class="list-group-item">
+                        <h4 class="list-group-item-heading">Deploy</h4>
+                        <p class="list-group-item-text">
+                            Deploy the dataservice.ovf file with the vSphere Client using the OVF Template Wizard.
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

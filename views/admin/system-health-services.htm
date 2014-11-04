@@ -1,0 +1,499 @@
+<div class="" id="contentArea" ng-controller="HealthCtrl">
+	<div class="mainContent">
+		<breadcrumb-container class="ng-isolate-scope">
+			<ul class="breadcrumb">
+                <li>
+                    <a ui-sref="SystemHealth">System Health</a>
+                    <span class="divider"></span>
+                </li>
+                <li class="active">
+                    Services
+                </li>
+			</ul>
+		</breadcrumb-container>
+		<div class="page-header">
+			<h3 class="ng-binding">Services for {{serviceName}}</h3>
+		</div>
+		<div class="clear"></div>
+		<p style="display:none" class="alert alert-success" id="alerts_success">
+			<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+			<span class="message"></span>
+		</p>
+		<p style="display:none" class="alert alert-danger" id="alerts_error">
+			<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+			<span class="message"></span>
+		</p>
+		<p style="display:none" class="alert alert-warning" id="alerts_warning">
+			<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+			<span class="message"></span>
+		</p>
+		<p style="display:none" class="alert alert-info" id="alerts_info">
+			<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+			<span class="message"></span>
+		</p>
+		<div class="row">
+			<div style="height:40px;" class="col-sm-6">
+				<!-- ngRepeat: (status, count) in statusCount -->
+				<span class="statusContainer ng-scope">
+					<span class="statusCount ng-binding">13</span>
+					<status status="Good" type="node" class="ng-isolate-scope">
+						<span ng-class="status.class" class="ng-binding text-success">
+								<span class="glyphicon glyphicon-ok">
+									<content></content>
+								</span>
+							Good
+						</span>
+					</status>
+				</span>
+				<!-- end ngRepeat: (status, count) in statusCount -->
+			</div>
+			<div style="height:40px;text-align: right;" class="col-sm-6">
+				<span class="statusContainer">
+					<span class="text-muted statusTitle ng-binding">Total Services</span> 
+					<span class="statusCount status ng-binding">13</span>
+					<span class="text-muted statusTitle ng-binding">Node Status</span>
+					<status status="Good" type="node" class="ng-isolate-scope">
+						<span ng-class="status.class" class="ng-binding text-success">
+							<span class="glyphicon glyphicon-ok">
+                                <content></content>
+                            </span>
+							Good
+						</span>
+					</status>
+				</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="dataTableContainer" id="nodeServices" v-track="" v-require-controller="">
+					<div role="grid" class="dataTables_wrapper form-inline" id="DataTables_Table_0_wrapper">
+						<table class="table table-hover table-condensed table-styled dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
+							<thead>
+								<tr role="row">
+									<th class="name sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Service Name: activate to sort column ascending">
+										<div class="th-wrapper">Service Name</div>
+									</th>
+									<th class="status sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending">
+										<div class="th-wrapper">Status</div>
+									</th>
+									<th class="threads sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Active Threads: activate to sort column ascending">
+										<div class="th-wrapper">Active Threads</div>
+									</th>
+									<th class="uptime sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Total Uptime: activate to sort column ascending">
+										<div class="th-wrapper">Total Uptime</div>
+									</th>
+									<th class="memory sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Virtual Memory: activate to sort column ascending">
+										<div class="th-wrapper">Virtual Memory</div>
+									</th>
+									<th class="files sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="File Descriptor">
+										<div class="th-wrapper">File Descriptor</div>
+									</th>
+									<th class="pid sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="PID">
+										<div class="th-wrapper">PID</div>
+									</th>
+									<th class="actions sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="Actions">
+										<div class="th-wrapper">Actions</div>
+									</th>
+								</tr>
+							</thead>
+							<tbody role="alert" aria-live="polite" aria-relevant="all">
+								<tr class="odd ng-scope">
+									<td class="name">authsvc</td>
+									<td class="status">
+										<status status="Good" type="node" class="ng-isolate-scope">
+											<span ng-class="status.class" class="ng-binding text-success">
+												<span class="glyphicon glyphicon-ok">
+                                                    <content></content>
+                                                </span>
+												Good
+											</span>
+										</status>
+									</td>
+									<td class="threads">42</td>
+									<td class="uptime">8 Days</td>
+									<td class="memory">654.07MB</td>
+									<td class="files">174</td>
+									<td class="pid">6213</td>
+									<td class="actions">
+										<actions>
+											<div class="btn-group">
+												<button data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle ng-binding" type="button">Actions<span class="caret"></span></button>
+												<ul role="menu" class="dropdown-menu dropdown-menu-right">
+													<li><a href="/system/logs?nodeId=vipr5&amp;serviceName=authsvc&amp;startTime=1412203581868" class="ng-binding">View Logs</a></li>
+													<li><a onclick="if (!confirm('Are you sure you want to restart this service?'')){return false;}" href="/system/serviceRestart?nodeId=vipr5&amp;serviceName=authsvc" class="ng-binding">Restart</a></li>
+												</ul>
+											</div>
+										</actions>
+									</td>
+								</tr>
+								<tr class="even ng-scope">
+									<td class="name">apisvc</td>
+									<td class="status">
+										<status status="Good" type="node" class="ng-isolate-scope">
+											<span ng-class="status.class" class="ng-binding text-success">
+												<span class="glyphicon glyphicon-ok">
+                                                    <content></content>
+                                                </span>
+												Good
+											</span>
+										</status>
+									</td>
+									<td class="threads">62</td>
+									<td class="uptime">8 Days</td>
+									<td class="memory">1.01GB</td>
+									<td class="files">231</td>
+									<td class="pid">6220</td>
+									<td class="actions">
+										<actions>
+											<div class="btn-group">
+												<button data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle ng-binding" type="button">Actions<span class="caret"></span></button>
+												<ul role="menu" class="dropdown-menu dropdown-menu-right">
+													<li><a href="/system/logs?nodeId=vipr5&amp;serviceName=apisvc&amp;startTime=1412203581875" class="ng-binding">View Logs</a></li>
+													<li><a onclick="if (!confirm('Are you sure you want to restart this service?'')){return false;}" href="/system/serviceRestart?nodeId=vipr5&amp;serviceName=apisvc" class="ng-binding">Restart</a></li>
+												</ul>
+											</div>
+										</actions>
+									</td>
+								</tr>
+								<tr class="odd ng-scope">
+									<td class="name">controllersvc</td>
+									<td class="status">
+										<status status="Good" type="node" class="ng-isolate-scope">
+											<span ng-class="status.class" class="ng-binding text-success">
+												<span class="glyphicon glyphicon-ok">
+                                                    <content></content>
+                                                </span>
+												Good
+											</span>
+										</status>
+									</td>
+									<td class="threads">429</td>
+									<td class="uptime">8 Days</td>
+									<td class="memory">1.91GB</td>
+									<td class="files">254</td>
+									<td class="pid">6235</td>
+									<td class="actions">
+										<actions>
+											<div class="btn-group">
+												<button data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle ng-binding" type="button">Actions<span class="caret"></span></button>
+												<ul role="menu" class="dropdown-menu dropdown-menu-right">
+													<li><a href="/system/logs?nodeId=vipr5&amp;serviceName=controllersvc&amp;startTime=1412203581882" class="ng-binding">View Logs</a></li>
+													<li><a onclick="if (!confirm('Are you sure you want to restart this service?'')){return false;}" href="/system/serviceRestart?nodeId=vipr5&amp;serviceName=controllersvc" class="ng-binding">Restart</a></li>
+												</ul>
+											</div>
+										</actions>
+									</td>
+								</tr>
+								<tr class="even ng-scope">
+									<td class="name">geodbsvc</td>
+									<td class="status">
+										<status status="Good" type="node" class="ng-isolate-scope">
+											<span ng-class="status.class" class="ng-binding text-success">
+												<span class="glyphicon glyphicon-ok">
+                                                    <content></content>
+                                                </span>
+												Good
+											</span>
+										</status>
+									</td>
+									<td class="threads">204</td>
+									<td class="uptime">8 Days</td>
+									<td class="memory">2.65GB</td>
+									<td class="files">320</td>
+									<td class="pid">6210</td>
+									<td class="actions">
+										<actions>
+											<div class="btn-group">
+												<button data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle ng-binding" type="button">Actions<span class="caret"></span></button>
+												<ul role="menu" class="dropdown-menu dropdown-menu-right">
+													<li><a href="/system/logs?nodeId=vipr5&amp;serviceName=geodbsvc&amp;startTime=1412203581889" class="ng-binding">View Logs</a></li>
+													<li><a onclick="if (!confirm('Are you sure you want to restart this service?'')){return false;}" href="/system/serviceRestart?nodeId=vipr5&amp;serviceName=geodbsvc" class="ng-binding">Restart</a></li>
+												</ul>
+											</div>
+										</actions>
+									</td>
+								</tr>
+								<tr class="odd ng-scope">
+									<td class="name">coordinatorsvc</td>
+									<td class="status">
+										<status status="Good" type="node" class="ng-isolate-scope">
+											<span ng-class="status.class" class="ng-binding text-success">
+												<span class="glyphicon glyphicon-ok">
+                                                    <content></content>
+                                                </span>
+												Good
+											</span>
+										</status>
+									</td>
+									<td class="threads">46</td>
+									<td class="uptime">8 Days</td>
+									<td class="memory">1.36GB</td>
+									<td class="files">130</td>
+									<td class="pid">6205</td>
+									<td class="actions">
+										<actions>
+											<div class="btn-group">
+												<button data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle ng-binding" type="button">Actions<span class="caret"></span></button>
+												<ul role="menu" class="dropdown-menu dropdown-menu-right">
+													<li><a href="/system/logs?nodeId=vipr5&amp;serviceName=coordinatorsvc&amp;startTime=1412203581895" class="ng-binding">View Logs</a></li>
+													<li><a onclick="if (!confirm('Are you sure you want to restart this service?'')){return false;}" href="/system/serviceRestart?nodeId=vipr5&amp;serviceName=coordinatorsvc" class="ng-binding">Restart</a></li>
+												</ul>
+											</div>
+										</actions>
+									</td>
+								</tr>
+								<tr class="even ng-scope">
+									<td class="name">objcontrolsvc</td>
+									<td class="status">
+										<status status="Good" type="node" class="ng-isolate-scope">
+											<span ng-class="status.class" class="ng-binding text-success">
+												<span class="glyphicon glyphicon-ok">
+                                                    <content></content>
+                                                </span>
+												Good
+											</span>
+										</status>
+									</td>
+									<td class="threads">41</td>
+									<td class="uptime">8 Days</td>
+									<td class="memory">768.06MB</td>
+									<td class="files">220</td>
+									<td class="pid">6253</td>
+									<td class="actions">
+										<actions>
+											<div class="btn-group">
+												<button data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle ng-binding" type="button">Actions<span class="caret"></span></button>
+												<ul role="menu" class="dropdown-menu dropdown-menu-right">
+													<li><a href="/system/logs?nodeId=vipr5&amp;serviceName=objcontrolsvc&amp;startTime=1412203581903" class="ng-binding">View Logs</a></li>
+													<li><a onclick="if (!confirm('Are you sure you want to restart this service?'')){return false;}" href="/system/serviceRestart?nodeId=vipr5&amp;serviceName=objcontrolsvc" class="ng-binding">Restart</a></li>
+												</ul>
+											</div>
+										</actions>
+									</td>
+								</tr>
+								<tr class="odd ng-scope">
+									<td class="name">syssvc</td>
+									<td class="status">
+										<status status="Good" type="node" class="ng-isolate-scope">
+											<span ng-class="status.class" class="ng-binding text-success">
+												<span class="glyphicon glyphicon-ok">
+                                                    <content></content>
+                                                </span>
+												Good
+											</span>
+										</status>
+									</td>
+									<td class="threads">305</td>
+									<td class="uptime">8 Days</td>
+									<td class="memory">973.30MB</td>
+									<td class="files">219</td>
+									<td class="pid">6261</td>
+									<td class="actions">
+										<actions>
+											<div class="btn-group">
+												<button data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle ng-binding" type="button">Actions<span class="caret"></span></button>
+												<ul role="menu" class="dropdown-menu dropdown-menu-right">
+													<li><a href="/system/logs?nodeId=vipr5&amp;serviceName=syssvc&amp;startTime=1412203581912" class="ng-binding">View Logs</a></li>
+													<li><a onclick="if (!confirm('Are you sure you want to restart this service?'')){return false;}" href="/system/serviceRestart?nodeId=vipr5&amp;serviceName=syssvc" class="ng-binding">Restart</a></li>
+												</ul>
+											</div>
+										</actions>
+									</td>
+								</tr>
+								<tr class="even ng-scope">
+									<td class="name">dbsvc</td>
+									<td class="status">
+										<status status="Good" type="node" class="ng-isolate-scope">
+											<span ng-class="status.class" class="ng-binding text-success">
+												<span class="glyphicon glyphicon-ok">
+                                                    <content></content>
+                                                </span>
+												Good
+											</span>
+										</status>
+									</td>
+									<td class="threads">303</td>
+									<td class="uptime">8 Days</td>
+									<td class="memory">5.11GB</td>
+									<td class="files">451</td>
+									<td class="pid">6207</td>
+									<td class="actions">
+										<actions>
+											<div class="btn-group">
+												<button data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle ng-binding" type="button">Actions<span class="caret"></span></button>
+												<ul role="menu" class="dropdown-menu dropdown-menu-right">
+													<li><a href="/system/logs?nodeId=vipr5&amp;serviceName=dbsvc&amp;startTime=1412203581921" class="ng-binding">View Logs</a></li>
+													<li><a onclick="if (!confirm('Are you sure you want to restart this service?'')){return false;}" href="/system/serviceRestart?nodeId=vipr5&amp;serviceName=dbsvc" class="ng-binding">Restart</a></li>
+												</ul>
+											</div>
+										</actions>
+									</td>
+								</tr>
+								<tr class="odd ng-scope">
+									<td class="name">fabricctrlsvc</td>
+									<td class="status">
+										<status status="Good" type="node" class="ng-isolate-scope">
+											<span ng-class="status.class" class="ng-binding text-success">
+												<span class="glyphicon glyphicon-ok">
+                                                    <content></content>
+                                                </span>
+												Good
+											</span>
+										</status>
+									</td>
+									<td class="threads">37</td>
+									<td class="uptime">8 Days</td>
+									<td class="memory">639.80MB</td>
+									<td class="files">203</td>
+									<td class="pid">6288</td>
+									<td class="actions">
+										<actions>
+											<div class="btn-group">
+												<button data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle ng-binding" type="button">Actions<span class="caret"></span></button>
+												<ul role="menu" class="dropdown-menu dropdown-menu-right">
+													<li><a href="/system/logs?nodeId=vipr5&amp;serviceName=fabricctrlsvc&amp;startTime=1412203581930" class="ng-binding">View Logs</a></li>
+													<li><a onclick="if (!confirm('Are you sure you want to restart this service?'')){return false;}" href="/system/serviceRestart?nodeId=vipr5&amp;serviceName=fabricctrlsvc" class="ng-binding">Restart</a></li>
+												</ul>
+											</div>
+										</actions>
+									</td>
+								</tr>
+								<tr class="even ng-scope">
+									<td class="name">sasvc</td>
+									<td class="status">
+										<status status="Good" type="node" class="ng-isolate-scope">
+											<span ng-class="status.class" class="ng-binding text-success">
+												<span class="glyphicon glyphicon-ok">
+                                                    <content></content>
+                                                </span>
+												Good
+											</span>
+										</status>
+									</td>
+									<td class="threads">61</td>
+									<td class="uptime">8 Days</td>
+									<td class="memory">1.58GB</td>
+									<td class="files">232</td>
+									<td class="pid">6286</td>
+									<td class="actions">
+										<actions>
+											<div class="btn-group">
+												<button data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle ng-binding" type="button">Actions<span class="caret"></span></button>
+												<ul role="menu" class="dropdown-menu dropdown-menu-right">
+													<li><a href="/system/logs?nodeId=vipr5&amp;serviceName=sasvc&amp;startTime=1412203581939" class="ng-binding">View Logs</a></li>
+													<li><a onclick="if (!confirm('Are you sure you want to restart this service?'')){return false;}" href="/system/serviceRestart?nodeId=vipr5&amp;serviceName=sasvc" class="ng-binding">Restart</a></li>
+												</ul>
+											</div>
+										</actions>
+									</td>
+								</tr>
+								<tr class="odd ng-scope">
+									<td class="name">geosvc</td>
+									<td class="status">
+										<status status="Good" type="node" class="ng-isolate-scope">
+											<span ng-class="status.class" class="ng-binding text-success">
+												<span class="glyphicon glyphicon-ok">
+                                                    <content></content>
+                                                </span>
+												Good
+											</span>
+										</status>
+									</td>
+									<td class="threads">39</td>
+									<td class="uptime">8 Days</td>
+									<td class="memory">633.31MB</td>
+									<td class="files">214</td>
+									<td class="pid">6226</td>
+									<td class="actions">
+										<actions>
+											<div class="btn-group">
+												<button data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle ng-binding" type="button">Actions<span class="caret"></span></button>
+												<ul role="menu" class="dropdown-menu dropdown-menu-right">
+													<li><a href="/system/logs?nodeId=vipr5&amp;serviceName=geosvc&amp;startTime=1412203581947" class="ng-binding">View Logs</a></li>
+													<li><a onclick="if (!confirm('Are you sure you want to restart this service?'')){return false;}" href="/system/serviceRestart?nodeId=vipr5&amp;serviceName=geosvc" class="ng-binding">Restart</a></li>
+												</ul>
+											</div>
+										</actions>
+									</td>
+								</tr>
+								<tr class="even ng-scope">
+									<td class="name">vasasvc</td>
+									<td class="status">
+										<status status="Good" type="node" class="ng-isolate-scope">
+											<span ng-class="status.class" class="ng-binding text-success">
+												<span class="glyphicon glyphicon-ok">
+                                                    <content></content>
+                                                </span>
+												Good
+											</span>
+										</status>
+									</td>
+									<td class="threads">28</td>
+									<td class="uptime">8 Days</td>
+									<td class="memory">582.92MB</td>
+									<td class="files">113</td>
+									<td class="pid">6275</td>
+									<td class="actions">
+										<actions>
+											<div class="btn-group">
+												<button data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle ng-binding" type="button">Actions<span class="caret"></span></button>
+												<ul role="menu" class="dropdown-menu dropdown-menu-right">
+													<li><a href="/system/logs?nodeId=vipr5&amp;serviceName=vasasvc&amp;startTime=1412203581954" class="ng-binding">View Logs</a></li>
+													<li><a onclick="if (!confirm('Are you sure you want to restart this service?'')){return false;}" href="/system/serviceRestart?nodeId=vipr5&amp;serviceName=vasasvc" class="ng-binding">Restart</a></li>
+												</ul>
+											</div>
+										</actions>
+									</td>
+								</tr>
+								<tr class="odd ng-scope">
+									<td class="name">portalsvc</td>
+									<td class="status">
+										<status status="Good" type="node" class="ng-isolate-scope">
+											<span ng-class="status.class" class="ng-binding text-success">
+												<span class="glyphicon glyphicon-ok">
+                                                    <content></content>
+                                                </span>
+												Good
+											</span>
+										</status>
+									</td>
+									<td class="threads">191</td>
+									<td class="uptime">8 Days</td>
+									<td class="memory">1.53GB</td>
+									<td class="files">354</td>
+									<td class="pid">6291</td>
+									<td class="actions">
+										<actions>
+											<div class="btn-group">
+												<button data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle ng-binding" type="button">Actions<span class="caret"></span></button>
+												<ul role="menu" class="dropdown-menu dropdown-menu-right">
+													<li><a href="/system/logs?nodeId=vipr5&amp;serviceName=portalsvc&amp;startTime=1412203581960" class="ng-binding">View Logs</a></li>
+													<li><a onclick="if (!confirm('Are you sure you want to restart this service?'')){return false;}" href="/system/serviceRestart?nodeId=vipr5&amp;serviceName=portalsvc" class="ng-binding">Restart</a></li>
+												</ul>
+											</div>
+										</actions>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="dataTables_footer">
+							<div class="dataTables_paginate paging_bootstrapFirstLast pagination">
+								<ul class="pagination pagination-sm">
+									<li class="prev disabled"><a href="#">First</a></li>
+									<li class="prev disabled"><a href="#">←</a></li>
+									<li class="next"><a href="#">→</a></li>
+									<li class="next"><a href="#">Last</a></li>
+								</ul>
+							</div>
+							<div id="DataTables_Table_0_processing" class="dataTables_processing" style="visibility: hidden;"> <span class="glyphicon glyphicon-refresh rotate "></span>Loading...</div>
+							<div class="dataTables_info" id="DataTables_Table_0_info">Showing 1 to 13 of 13 entries</div>
+							<div class="dataTables_selectedItems"></div>
+							<div class="dataTables_processingError" style="display: none;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="menuCloser"></div>
+</div>

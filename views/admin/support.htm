@@ -1,0 +1,364 @@
+﻿<div class="mainContent">
+	<div class="container">
+		<div class="clear"></div>
+		<p id="alerts_success" class="alert alert-success" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+			<span class="message"></span>
+		</p>
+		<p id="alerts_error" class="alert alert-danger" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+			<span class="message"></span>
+		</p>
+		<p id="alerts_warning" class="alert alert-warning" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+			<span class="message"></span>
+		</p>
+		<p id="alerts_info" class="alert alert-info" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+			<span class="message"></span>
+		</p>
+		<div class="form-header">
+			<div class="image" style="display:none">
+			</div>
+			<div class="description">
+				<h2>
+					Submit Support Request</h2>
+				<p>Submit a support request to ConnectEMC.</p>
+			</div>
+			<div style="clear:both"></div>
+		</div>
+		<form accept-charset="utf-8" enctype="application/x-www-form-urlencoded" id="supportRequestForm" class="form form-horizontal" autocomplete="off">
+			<input type="hidden" name="authenticityToken" value="b1ad100e76ccea28cfba2fdd3a1c82f47da1f052">
+			<fieldset>
+				<div id="supportRequest_emailControlGroup" class="form-group  required">
+					<label class="control-label col-sm-3" for="supportRequest_email">Contact E-mail:</label>
+					<div class="col-sm-6 controls">
+						<input type="text" class="form-control span6" id="supportRequest_email" name="supportRequest.email" value="" autocomplete="off">
+						<span class="help-block">Please supply an e-mail address where you can be contacted.</span>
+					</div>
+					<div class="col-sm-3">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+				<div class="form-group ">
+					<div class="col-xs-10 col-xs-offset-1">
+						<textarea class="form-control col-md-6" id="supportRequest_comment" name="supportRequest.comment" rows="15" autocomplete="off">Problem Headline [Enter a brief headline for the problem you are running into, clearly Identifying whether this is file or block provisioning, data services (object on file), security, install, upgrade, serviceability or ease-of-use related problem.] Problem Description and Impact [Describe the issue and the impact in detail.] Conditions [Document the conditions which causes the problem including the steps that can be followed in order to reproduce the issue.]</textarea>
+					</div>
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend>Logs
+					<small>Select relevant date and time range for the logs when the issue occurred using the options below and submit. Logs sent will be limited to 16MB compressed. Please select an accurate and precise time interval.</small>
+				</legend>
+				<input type="hidden" name="supportRequest.start" value="1409839864731">
+				<div id="supportRequest_startControlGroup" class="form-group  ">
+					<label class="control-label col-sm-3" for="supportRequest_start">Start Time:</label>
+					<div class="col-sm-6 controls">
+					  
+						<div id="supportRequest_startContainer">
+							<div class="bfh-datepicker pull-left control-group" id="supportRequest_startDateContainer" data-format="y-m-d" data-date="yyyy-MM-dd1409839864731" style="margin-bottom: 0px;">
+								<div class="input-group input-group-sm bfh-datepicker-toggle" data-toggle="bfh-datepicker" style="margin-bottom: 0px;width: 125px;">
+									<span class="input-group-addon">
+										<span class="glyphicon glyphicon-calendar "></span>
+									</span>
+									<input type="text" class="form-control input-sm" id="supportRequest_startDate" name="supportRequest.startDate" onkeyup="if (supportRequest_start) supportRequest_start.onKeyUp(event)" onchange="if (supportRequest_start) supportRequest_start.onKeyUp(event)">
+								</div>
+								<div class="bfh-datepicker-calendar">
+									<table class="calendar table table-bordered">
+										<thead>
+											<tr class="months-header">
+												<th class="month" colspan="4">
+													<a class="previous" href="">
+														<span class="glyphicon glyphicon-chevron-left "></span>
+													</a>
+													<span>September</span>
+													<a class="next" href="">
+														<span class="glyphicon glyphicon-chevron-right "></span>
+													</a>
+												</th>
+												<th class="year" colspan="3">
+													<a class="previous" href="">
+														<span class="glyphicon glyphicon-chevron-left "></span>
+													</a>
+													<span>2014</span>
+													<a class="next" href="">
+														<span class="glyphicon glyphicon-chevron-right "></span>
+													</a>
+												</th>
+											</tr>
+											<tr class="days-header">
+												<th>SUN</th>
+												<th>MON</th>
+												<th>TUE</th>
+												<th>WED</th>
+												<th>THU</th>
+												<th>FRI</th>
+												<th>SAT</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td class="off">29</td>
+												<td data-day="1">1</td>
+												<td data-day="2">2</td>
+												<td data-day="3">3</td>
+												<td data-day="4" class="today">4</td>
+												<td data-day="5">5</td>
+												<td data-day="6">6</td>
+											</tr>
+											<tr>
+												<td data-day="7">7</td>
+												<td data-day="8">8</td>
+												<td data-day="9">9</td>
+												<td data-day="10">10</td>
+												<td data-day="11">11</td>
+												<td data-day="12">12</td>
+												<td data-day="13">13</td>
+											</tr>
+											<tr>
+												<td data-day="14">14</td>
+												<td data-day="15">15</td>
+												<td data-day="16">16</td>
+												<td data-day="17">17</td>
+												<td data-day="18">18</td>
+												<td data-day="19">19</td>
+												<td data-day="20">20</td>
+											</tr>
+											<tr>
+												<td data-day="21">21</td>
+												<td data-day="22">22</td>
+												<td data-day="23">23</td>
+												<td data-day="24">24</td>
+												<td data-day="25">25</td>
+												<td data-day="26">26</td>
+												<td data-day="27">27</td>
+											</tr>
+											<tr>
+												<td data-day="28">28</td>
+												<td data-day="29">29</td>
+												<td data-day="30">30</td>
+												<td class="off">1</td>
+												<td class="off">2</td>
+												<td class="off">3</td>
+												<td class="off">4</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="bfh-timepicker pull-left control-group" style="margin-left:5px;margin-bottom: 0px;" id="supportRequest_startTimeContainer" data-time="hh:mm1409839864731">
+								<div class="input-group input-group-sm bfh-timepicker-toggle" data-toggle="bfh-timepicker" style="width:100px;">
+									<span class="input-group-addon">
+										<span class="glyphicon glyphicon-time "></span>
+									</span>
+									<input type="text" class="form-control input-sm" style="width: 75px;" id="supportRequest_startTime" name="supportRequest.startTime" onkeyup="if (supportRequest_start) supportRequest_start.onKeyUp(event)" onchange="if (supportRequest_start) supportRequest_start.onKeyUp(event)">
+								</div>
+								<div class="bfh-timepicker-popover">
+									<table class="table">
+										<tbody>
+											<tr>
+												<td class="hour">
+													<a class="next" href="">
+														<span class="glyphicon glyphicon-chevron-up "></span>
+													</a>
+													<br>
+													<input type="text" class="form-control" readonly="">
+													<br>
+													<a class="previous" href="">
+														<span class="glyphicon glyphicon-chevron-down "></span>
+													</a>
+												</td>
+												<td class="separator">:</td>
+												<td class="minute">
+													<a class="next" href="">
+														<span class="glyphicon glyphicon-chevron-up "></span>
+													</a>
+													<br>
+													<input type="text" class="form-control" readonly="">
+													<br>
+													<a class="previous" href="">
+														<span class="glyphicon glyphicon-chevron-down "></span>
+													</a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div id="supportRequest_startCurrentTime" style="display: none;">
+							<div style="line-height: 30px" class="pull-left">
+								<span class="label label-info">Current Time</span>
+								<small><a id="supportRequest_startSpecifyTime" style="cursor: pointer;">Enter Specific Time</a>
+								</small>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+				<input type="hidden" name="supportRequest.end" value="1409840764731">
+				<div id="supportRequest_endControlGroup" class="form-group  ">
+					<label class="control-label col-sm-3" for="supportRequest_end">End Time:</label>
+					<div class="col-sm-6 controls">
+					   
+						<div id="supportRequest_endContainer" style="display: none;">
+							<div class="bfh-datepicker pull-left control-group" id="supportRequest_endDateContainer" data-format="y-m-d" data-date="yyyy-MM-dd1409840764731" style="margin-bottom: 0px;">
+								<div class="input-group input-group-sm bfh-datepicker-toggle" data-toggle="bfh-datepicker" style="margin-bottom: 0px;width: 125px;">
+									<span class="input-group-addon">
+										<span class="glyphicon glyphicon-calendar "></span>
+									</span>
+									<input type="text" class="form-control input-sm" id="supportRequest_endDate" name="supportRequest.endDate" onkeyup="if (supportRequest_end) supportRequest_end.onKeyUp(event)" onchange="if (supportRequest_end) supportRequest_end.onKeyUp(event)">
+								</div>
+								<div class="bfh-datepicker-calendar">
+									<table class="calendar table table-bordered">
+										<thead>
+											<tr class="months-header">
+												<th class="month" colspan="4">
+													<a class="previous" href="">
+														<span class="glyphicon glyphicon-chevron-left "></span>
+													</a>
+													<span>September</span>
+													<a class="next" href="">
+														<span class="glyphicon glyphicon-chevron-right "></span>
+													</a>
+												</th>
+												<th class="year" colspan="3">
+													<a class="previous" href="">
+														<span class="glyphicon glyphicon-chevron-left "></span>
+													</a>
+													<span>2014</span>
+													<a class="next" href="">
+														<span class="glyphicon glyphicon-chevron-right "></span>
+													</a>
+												</th>
+											</tr>
+											<tr class="days-header">
+												<th>SUN</th>
+												<th>MON</th>
+												<th>TUE</th>
+												<th>WED</th>
+												<th>THU</th>
+												<th>FRI</th>
+												<th>SAT</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td class="off">29</td>
+												<td data-day="1">1</td>
+												<td data-day="2">2</td>
+												<td data-day="3">3</td>
+												<td data-day="4" class="today">4</td>
+												<td data-day="5">5</td>
+												<td data-day="6">6</td>
+											</tr>
+											<tr>
+												<td data-day="7">7</td>
+												<td data-day="8">8</td>
+												<td data-day="9">9</td>
+												<td data-day="10">10</td>
+												<td data-day="11">11</td>
+												<td data-day="12">12</td>
+												<td data-day="13">13</td>
+											</tr>
+											<tr>
+												<td data-day="14">14</td>
+												<td data-day="15">15</td>
+												<td data-day="16">16</td>
+												<td data-day="17">17</td>
+												<td data-day="18">18</td>
+												<td data-day="19">19</td>
+												<td data-day="20">20</td>
+											</tr>
+											<tr>
+												<td data-day="21">21</td>
+												<td data-day="22">22</td>
+												<td data-day="23">23</td>
+												<td data-day="24">24</td>
+												<td data-day="25">25</td>
+												<td data-day="26">26</td>
+												<td data-day="27">27</td>
+											</tr>
+											<tr>
+												<td data-day="28">28</td>
+												<td data-day="29">29</td>
+												<td data-day="30">30</td>
+												<td class="off">1</td>
+												<td class="off">2</td>
+												<td class="off">3</td>
+												<td class="off">4</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="bfh-timepicker pull-left control-group" style="margin-left:5px;margin-bottom: 0px;" id="supportRequest_endTimeContainer" data-time="hh:mm1409840764731">
+								<div class="input-group input-group-sm bfh-timepicker-toggle" data-toggle="bfh-timepicker" style="width:100px;">
+									<span class="input-group-addon">
+										<span class="glyphicon glyphicon-time "></span>
+									</span>
+									<input type="text" class="form-control input-sm" style="width: 75px;" id="supportRequest_endTime" name="supportRequest.endTime" onkeyup="if (supportRequest_end) supportRequest_end.onKeyUp(event)" onchange="if (supportRequest_end) supportRequest_end.onKeyUp(event)">
+								</div>
+								<div class="bfh-timepicker-popover">
+									<table class="table">
+										<tbody>
+											<tr>
+												<td class="hour">
+													<a class="next" href="">
+														<span class="glyphicon glyphicon-chevron-up "></span>
+													</a>
+													<br>
+													<input type="text" class="form-control" readonly="">
+													<br>
+													<a class="previous" href="">
+														<span class="glyphicon glyphicon-chevron-down "></span>
+													</a>
+												</td>
+												<td class="separator">:</td>
+												<td class="minute">
+													<a class="next" href="">
+														<span class="glyphicon glyphicon-chevron-up "></span>
+													</a>
+													<br>
+													<input type="text" class="form-control" readonly="">
+													<br>
+													<a class="previous" href="">
+														<span class="glyphicon glyphicon-chevron-down "></span>
+													</a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div style="line-height: 30px;margin-left:5px;" class="pull-left">
+								<small><a id="supportRequest_endUseCurrentTime" style="cursor: pointer;">Use Current Time</a>
+								</small>
+							</div>
+						</div>
+						<div id="supportRequest_endCurrentTime">
+							<div style="line-height: 30px" class="pull-left">
+								<span class="label label-info">Current Time</span>
+								<small><a id="supportRequest_endSpecifyTime" style="cursor: pointer;">Enter Specific Time</a>
+								</small>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+				<input type="hidden" name="supportRequest.endIsCurrentTime" value="true">
+			</fieldset>
+			<div class="form-group button-bar">
+				<div class="col-sm-offset-3 col-sm-9">
+					<button type="submit" class="btn btn-primary" disabled="">
+						<span class="glyphicon glyphicon-upload "></span>Send</button>
+				</div>
+			</div>
+			</for
+m>
+</div>
+  </div>

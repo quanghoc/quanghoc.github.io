@@ -1,0 +1,117 @@
+<div class="mainContent">
+
+	<div class="container">
+
+		<div class="form-header">
+			<div class="image" style="display:none"></div>
+
+			<div class="description">
+				<h2> Data Services Settings </h2>
+				<p></p>
+			</div>
+			<div style="clear:both"></div>
+		</div>
+		<div class="clear"></div>
+		<p id="alerts_success" class="alert alert-success" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+				×
+			</button>
+			<span class="message"></span>
+		</p>
+		<p id="alerts_error" class="alert alert-danger" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+				×
+			</button>
+			<span class="message"></span>
+		</p>
+		<p id="alerts_warning" class="alert alert-warning" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+				×
+			</button>
+			<span class="message"></span>
+		</p>
+		<p id="alerts_info" class="alert alert-info" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+				×
+			</button>
+			<span class="message"></span>
+		</p>
+
+		<form action="" method="post" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" id="objectTenantConfigForm" class="form form-horizontal" autocomplete="off">
+			<input type="hidden" name="authenticityToken" value="3ce2076449de4d06c8d804b8f83b2a5fe9047d6c">
+
+			<div id="objectTenantConfigForm_namespaceControlGroup" class="form-group  required">
+				<label class="control-label col-sm-3" for="objectTenantConfigForm_namespace">Tenant Namespace:</label>
+				<div class="col-sm-6 controls">
+					<input type="text" class="form-control span6 initialFocus" id="objectTenantConfigForm_namespace" name="objectTenantConfigForm.namespace" value="ns" autocomplete="off" maxlength="1024">
+					<span class="help-block">Default unique identifier for this tenant when addressing buckets</span>
+				</div>
+				<div class="col-sm-3">
+					<span class="help-inline"></span>
+				</div>
+			</div>
+			<div id="objectTenantConfigForm_defaultObjectVirtualPoolControlGroup" class="form-group  required">
+				<label class="control-label col-sm-3" for="objectTenantConfigForm_defaultObjectVirtualPool">Default Virtual Pool:</label>
+				<div class="col-sm-6 controls">
+					
+					<select id="objectTenantConfigForm_defaultObjectVirtualPool" name="objectTenantConfigForm.defaultObjectVirtualPool" class="form-control span6" style="display: none;">
+						<option value=""> None</option>
+
+						<option value="urn:storageos:ReplicationGroupInfo:3d365d0c-7df0-445b-8ddb-b9ac1384a0b7:global" selected="selected">GlobalObjPool</option>
+						<option value="urn:storageos:ReplicationGroupInfo:6b092f2a-3903-46c0-9765-02dbb84396ab:global">GlobalObjPool2</option>
+
+					</select>
+					<div class="chosen-container chosen-container-single chosen-container-single-nosearch form-control span6" style="" title="" id="objectTenantConfigForm_defaultObjectVirtualPool_chosen">
+						<a class="chosen-single" tabindex="-1"><span>GlobalObjPool</span>
+						<div>
+							<b></b>
+						</div></a>
+						<div class="chosen-drop">
+							<div class="chosen-search">
+								<input type="text" autocomplete="off" readonly="">
+							</div><ul class="chosen-results"></ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<span class="help-inline"></span>
+				</div>
+			</div>
+			<div id="objectTenantConfigForm_defaultProjectControlGroup" class="form-group  ">
+				<label class="control-label col-sm-3" for="objectTenantConfigForm_defaultProject">Default Project:</label>
+				<div class="col-sm-6 controls">
+					
+					<select id="objectTenantConfigForm_defaultProject" name="objectTenantConfigForm.defaultProject" class="form-control span6" style="display: none;">
+						<option value=""> None</option>
+
+						<option value="urn:storageos:Project:2d127516-0125-473b-9555-8ba7331857b4:global" selected="selected">GobalProject</option>
+
+					</select>
+					<div class="chosen-container chosen-container-single chosen-container-single-nosearch form-control span6" style="" title="" id="objectTenantConfigForm_defaultProject_chosen">
+						<a class="chosen-single" tabindex="-1"><span>GobalProject</span>
+						<div>
+							<b></b>
+						</div></a>
+						<div class="chosen-drop">
+							<div class="chosen-search">
+								<input type="text" autocomplete="off" readonly="">
+							</div><ul class="chosen-results"></ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<span class="help-inline"></span>
+				</div>
+			</div>
+			<div class="form-group button-bar">
+				<div class="col-sm-offset-3 col-sm-9">
+					<button type="submit" class="btn btn-primary btn-large " name="button.save">
+						<span class="glyphicon glyphicon-ok-sign "></span> Save
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<!-- /container -->
+
+</div>

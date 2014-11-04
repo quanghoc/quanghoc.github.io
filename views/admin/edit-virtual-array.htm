@@ -1,0 +1,422 @@
+<div class="mainContent" ng-controller="editVirtualArrayCtrl">
+	<ul class="breadcrumb">
+		<li>
+			<a ui-sref="virtualArrays">Virtual Arrays</a> 
+			<span class="divider"></span>
+		</li>
+		<li class="active">
+			Edit Virtual Array 
+		</li>
+	</ul>
+	<div class="container">
+		<div class="form-header">
+			<div class="image">
+				<img src="/img/assets/VirtualArray.png">  
+			</div>
+			<div class="description">
+				<h2>
+					Edit Virtual Array      
+				</h2>
+				<p>Enter the information needed to change the Virtual Array.</p>
+			</div>
+			<div style="clear:both"></div>
+		</div>
+		<div class="clear"></div>
+		<p id="alerts_success" class="alert alert-success" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<span class="message"></span>
+		</p>
+		<p id="alerts_error" class="alert alert-danger" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<span class="message"></span>
+		</p>
+		<p id="alerts_warning" class="alert alert-warning" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<span class="message"></span>
+		</p>
+		<p id="alerts_info" class="alert alert-info">
+			<span class="message">
+				This demo only provides a static list of networks, associated storage systems and associated storage pools. You cannot change them here. Only the real product would allow you to make any association.
+			</span>
+		</p>
+		<form method="post" 
+			accept-charset="utf-8" enctype="application/x-www-form-urlencoded" 
+			class="form form-horizontal" autocomplete="off"
+			ng-submit="update()">
+			<input type="hidden" name="authenticityToken" value="6fb5358d6577f8a595c0d5fb883e5c19d0e9bc9f">
+			<input type="hidden" name="virtualArray.id" value="urn:storageos:VirtualArray:7f2e7e60-fc22-4a51-9adc-739bd1458dd2:vdc1">
+			<div id="virtualArray_nameControlGroup" class="form-group  required">
+				<label class="control-label col-sm-3" for="virtualArray_name">Name:</label>
+				<div class="col-sm-6 controls">
+					<input type="text" class="form-control initialFocus" id="virtualArray_name" name="virtualArray.name" ng-model="virtualArray.name" autocomplete="off">      
+				</div>
+				<div class="col-sm-3">
+					<span class="help-inline"></span>
+				</div>
+			</div>
+			<div id="virtualArray_autoSanZoningControlGroup" class="form-group  ">
+				<label class="control-label col-sm-3" for="virtualArray_autoSanZoning">SAN Zoning:</label>
+				<div class="col-sm-6 controls">
+					<select id="virtualArray_autoSanZoning" name="virtualArray.autoSanZoning" class="form-control span3" style="display: none;">
+						<option value="false">Manual</option>
+						<option value="true" selected="selected">Automatic</option>
+					</select>
+					<div class="chosen-container chosen-container-single chosen-container-single-nosearch form-control span3" style="" title="" id="virtualArray_autoSanZoning_chosen">
+						<a class="chosen-single" tabindex="-1">
+							<span>Automatic</span>
+							<div><b></b></div>
+						</a>
+						<div class="chosen-drop">
+							<div class="chosen-search"><input type="text" autocomplete="off" readonly=""></div>
+							<ul class="chosen-results"></ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<span class="help-inline"></span>
+				</div>
+			</div>
+			<fieldset>
+				<legend>Tenant Access<small>Controls which tenants have access to the virtual array (default all)</small></legend>
+				<div id="virtualArray_enableTenantsControlGroup" class="form-group  ">
+					<label class="control-label col-sm-3" for="virtualArray_enableTenants">Grant Access to Tenants:</label>
+					<div class="col-sm-6 controls">
+						<div class="checkbox">
+							<input type="checkbox" class="span0" id="virtualArray_enableTenants" name="virtualArray.enableTenants" ng-model="virtualArray.accessTenants">
+
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+				<div class="virtualArray_enableTenants" data-show="true">
+					<div id="virtualArray_tenantsControlGroup" class="form-group  " style="display: none;">
+						<label class="control-label col-sm-3" for="virtualArray_tenants">Tenants:</label>
+						<div class="col-sm-6 controls">
+							<div class="selectMany span6 ">
+								<div class="selectManySearch row col-gap-sm" style="display: none;">
+									<div class="col-sm-8">
+										<input id="virtualArray_tenantsSearch" type="text" class="form-control input-sm" autocomplete="off">
+									</div>
+									<span class="btn-group selectManyButtons col-sm-4">
+									<button id="virtualArray_tenantsCheck" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-check "></span> All</button>
+									<button id="virtualArray_tenantsUncheck" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-remove-circle "></span> None</button>
+									</span>
+								</div>
+								<div id="virtualArray_tenants" name="virtualArray.tenants" class="selectManyContent">
+									<div class="checkbox">
+										<label for="virtualArray_tenantsurn_storageos_TenantOrg_a0c4695d_d9c9_4e64_909e_2aa09937c87c_global">
+										<input id="virtualArray_tenantsurn_storageos_TenantOrg_a0c4695d_d9c9_4e64_909e_2aa09937c87c_global" name="virtualArray.tenants" type="checkbox" value="urn:storageos:TenantOrg:a0c4695d-d9c9-4e64-909e-2aa09937c87c:global">
+										Provider Tenant
+										</label>
+									</div>
+									<div class="clearfix"></div>
+									<div class="checkbox">
+										<label for="virtualArray_tenantsurn_storageos_TenantOrg_f14fbfba_9e1b_4b8f_ac89_ec00d796abc9_global">
+										<input id="virtualArray_tenantsurn_storageos_TenantOrg_f14fbfba_9e1b_4b8f_ac89_ec00d796abc9_global" name="virtualArray.tenants" type="checkbox" value="urn:storageos:TenantOrg:f14fbfba-9e1b-4b8f-ac89-ec00d796abc9:global">
+										Tenant1
+										</label>
+									</div>
+									<div class="clearfix"></div>
+									<div class="checkbox">
+										<label for="virtualArray_tenantsurn_storageos_TenantOrg_d13f77e9_b322_4198_ba9f_18599f27ce70_global">
+										<input id="virtualArray_tenantsurn_storageos_TenantOrg_d13f77e9_b322_4198_ba9f_18599f27ce70_global" name="virtualArray.tenants" type="checkbox" value="urn:storageos:TenantOrg:d13f77e9-b322-4198-ba9f-18599f27ce70:global">
+										Tenant2
+										</label>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<span class="help-inline"></span>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+			<div class="form-group button-bar">
+				<div class="col-sm-offset-3 col-sm-9">
+					<button type="submit" class="btn btn-primary btn-large " name="button.save">
+						<span class="glyphicon glyphicon-ok-sign "></span>  Save  
+					</button>  
+					<button type="button" class="btn btn-default btn-large " name="button.cancel" ng-click="cancel()">
+						<span class="glyphicon glyphicon-trash "></span>  Cancel  
+					</button>  
+					<span class="extraButtons">
+					</span>
+				</div>
+			</div>
+		</form>
+		<div class="row">
+			<div class="col-sm-5">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">Block and File Storage</h3>
+					</div>
+					<div class="panel-body">A Virtual Array aggregates the management of storage capacity (pools) and connectivity (ports). Storage Pools and Ports can be directly assigned to the Virtual Array, or implicitly assigned via Network connectivity.</div>
+					<div class="list-group">
+						<a class="list-group-item" href="">Networks <span class="badge">2</span></a>
+						<a class="list-group-item" href="">Storage Ports <span class="badge">80</span></a>
+						<a class="list-group-item" href="">Storage Pools <span class="badge">20</span></a>
+					</div>
+					<div class="panel-footer">
+						<button type="button" class="btn btn-default btn-sm ">
+						<span class="glyphicon glyphicon-plus "></span>  Add Storage System  </button>        
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-7">
+				<div class="panel-group">
+					<div class="panel panel-default panel-collapse" tooltip="This demo only gives you a list of static arrays">
+						<div class="panel-heading in" data-toggle="collapse" data-target="#VirtualArrays_StorageSystems_list_title">
+							<h4 class="panel-title">
+								<span class="glyphicon glyphicon-chevron-right indicator indicator-collapsed"></span>
+								<span class="glyphicon glyphicon-chevron-down indicator indicator-expanded"></span>
+								Associated Storage Systems
+								<span id="arraysCountBadge" class="badge">10</span>    
+							</h4>
+						</div>
+						<div id="VirtualArrays_StorageSystems_list_title" class="panel-collapse collapse in" style="height: auto;">
+							<div class="panel-body">List of Storage Systems associated with the Virtual Array through Networks, Storage Ports or Storage Pools</div>
+							<div id="storageArray" class="dataTableContainer">
+								<div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline" role="grid">
+									<div class="dataTables_filter" id="DataTables_Table_0_filter"><label><input type="text" aria-controls="DataTables_Table_0" class="form-control input-sm search-query" placeholder="Search..."></label></div>
+									<table class="table table-hover table-condensed table-styled dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
+										<thead>
+											<tr role="row">
+												<th class="name sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">
+													<div class="th-wrapper">Name</div>
+												</th>
+												<th class="type sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Type: activate to sort column ascending">
+													<div class="th-wrapper">Type</div>
+												</th>
+												<th class="discoveryStatus sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending">
+													<div class="th-wrapper">Status</div>
+												</th>
+											</tr>
+										</thead>
+										<tbody role="alert" aria-live="polite" aria-relevant="all">
+											<tr class="odd">
+												<td class="name sorting_1">CLARIION+APM12310359509</td>
+												<td class="type">EMC VNX Block</td>
+												<td class="discoveryStatus"><span class="label label-success"><span class="glyphicon glyphicon-ok"></span></span></td>
+											</tr>
+											<tr class="even">
+												<td class="name sorting_1">CLARIION+APM12346547795</td>
+												<td class="type">EMC VNX Block</td>
+												<td class="discoveryStatus"><span class="label label-success"><span class="glyphicon glyphicon-ok"></span></span></td>
+											</tr>
+											<tr class="odd">
+												<td class="name sorting_1">Isilon Simulator 192.168.1.52</td>
+												<td class="type">EMC Isilon</td>
+												<td class="discoveryStatus"><span class="label label-success"><span class="glyphicon glyphicon-ok"></span></span></td>
+											</tr>
+											<tr class="even">
+												<td class="name sorting_1">192.168.63.50</td>
+												<td class="type">EMC XtremIO</td>
+												<td class="discoveryStatus"><span class="label label-success"><span class="glyphicon glyphicon-ok"></span></span></td>
+											</tr>
+											<tr class="odd">
+												<td class="name sorting_1">SCALEIO+186b25384a332+Domain1</td>
+												<td class="type">Block Storage Powered by ScaleIO</td>
+												<td class="discoveryStatus"><span class="label label-success"><span class="glyphicon glyphicon-ok"></span></span></td>
+											</tr>
+										</tbody>
+									</table>
+									<div class="dataTables_footer">
+										<div class="dataTables_paginate paging_bootstrapFirstLast pagination">
+											<ul class="pagination pagination-sm">
+												<li class="prev disabled"><a href="">First</a></li>
+												<li class="prev disabled"><a href="">←</a></li>
+												<li class="active"><a href="">1</a></li>
+												<li><a href="">2</a></li>
+												<li class="next"><a href="">→</a></li>
+												<li class="next"><a href="">Last</a></li>
+											</ul>
+										</div>
+										<div id="DataTables_Table_0_processing" class="dataTables_processing" style="visibility: hidden;"><span class="glyphicon glyphicon-refresh rotate "></span>Loading...</div>
+										<div class="dataTables_info" id="DataTables_Table_0_info">Showing 1 to 5 of 10 entries</div>
+										<div class="dataTables_processingError" style="display: none;"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default panel-collapse">
+						<div class="panel-heading in" data-toggle="collapse" data-target="#VirtualArrays_VirtualPools_list_title">
+							<h4 class="panel-title">
+								<span class="glyphicon glyphicon-chevron-right indicator indicator-collapsed"></span>
+								<span class="glyphicon glyphicon-chevron-down indicator indicator-expanded"></span>
+								Associated Virtual Pools
+								<span id="vpoolsCountBadge" class="badge">0</span>    
+							</h4>
+						</div>
+						<div id="VirtualArrays_VirtualPools_list_title" class="panel-collapse collapse in" style="height: auto;">
+							<div class="panel-body">List of Virtual Pools associated with the Virtual Array. This is configured on the individual Virtual Pools</div>
+							<div id="virtualPools" class="dataTableContainer">
+								<div id="DataTables_Table_1_wrapper" class="dataTables_wrapper form-inline" role="grid">
+									<div class="dataTables_filter" id="DataTables_Table_1_filter"><label><input type="text" aria-controls="DataTables_Table_1" class="form-control input-sm search-query" placeholder="Search..."></label></div>
+									<table class="table table-hover table-condensed table-styled dataTable" id="DataTables_Table_1" aria-describedby="DataTables_Table_1_info">
+										<thead>
+											<tr role="row">
+												<th class="name sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">
+													<div class="th-wrapper">Name</div>
+												</th>
+												<th class="numPools sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Pools: activate to sort column ascending">
+													<div class="th-wrapper">Pools</div>
+												</th>
+												<th class="numResources sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Resources: activate to sort column ascending">
+													<div class="th-wrapper">Resources</div>
+												</th>
+											</tr>
+										</thead>
+<!-- 										<tbody role="alert" aria-live="polite" aria-relevant="all">
+											<tr>
+												<td class="name sorting_1">Base_Block_Pool</td>
+												<td class="numPools">1</td>
+												<td class="numResources">0</td>
+											</tr>
+										</tbody> -->
+									</table>
+									<div class="dataTables_footer">
+										<div class="dataTables_paginate paging_bootstrapFirstLast pagination">
+											<ul class="pagination pagination-sm">
+												<li class="prev disabled"><a href="">First</a></li>
+												<li class="prev disabled"><a href="">←</a></li>
+												<li class="active"><a href="">1</a></li>
+												<li class="next disabled"><a href="">→</a></li>
+												<li class="next disabled"><a href="">Last</a></li>
+											</ul>
+										</div>
+										<div id="DataTables_Table_1_processing" class="dataTables_processing" style="visibility: hidden;"><span class="glyphicon glyphicon-refresh rotate "></span>Loading...</div>
+										<div class="dataTables_info" id="DataTables_Table_1_info">Showing 0 to 0 of 0 entries</div>
+										<div class="dataTables_processingError" style="display: none;"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="addStorageSystem" class="modal fade">
+		<div class="modal-dialog widest">
+			<div class="modal-content">
+				<div class="modal-body ">
+					<div class="section-header pull-left ">
+						<h1 class="">Add Storage System</h1>
+					</div>
+					<div id="storageSystems" class="dataTableContainer">
+						<div id="DataTables_Table_2_wrapper" class="dataTables_wrapper form-inline" role="grid">
+							<div class="dataTables_filter" id="DataTables_Table_2_filter"><label><input type="text" aria-controls="DataTables_Table_2" class="form-control input-sm search-query" placeholder="Search..."></label></div>
+							<table class="table table-hover table-condensed table-styled dataTable" id="DataTables_Table_2" aria-describedby="DataTables_Table_2_info">
+								<thead>
+									<tr role="row">
+										<th class="selection sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="">
+											<div class="th-wrapper"><input type="checkbox" name="selectAll"></div>
+										</th>
+										<th class="name sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">
+											<div class="th-wrapper">Name</div>
+										</th>
+										<th class="type sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" aria-label="Type: activate to sort column ascending">
+											<div class="th-wrapper">Type</div>
+										</th>
+										<th class="discoveryStatus sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending">
+											<div class="th-wrapper">Status</div>
+										</th>
+									</tr>
+								</thead>
+								<tbody role="alert" aria-live="polite" aria-relevant="all">
+									<tr class="odd">
+										<td class="selection"><input type="checkbox" name="selected" value="urn:storageos:StorageSystem:4ed93dc8-076c-43a9-b8ea-323dc4784d9a:vdc1" onchange="table.storageSystems.updateSelection(this)"></td>
+										<td class="name sorting_1">CLARIION+APM12310359509</td>
+										<td class="type">EMC VNX Block</td>
+										<td class="discoveryStatus"><span class="label label-success"><span class="glyphicon glyphicon-ok"></span></span></td>
+									</tr>
+									<tr class="even">
+										<td class="selection"><input type="checkbox" name="selected" value="urn:storageos:StorageSystem:06393ee0-4cbc-45a8-9fa7-3286bbed6747:vdc1" onchange="table.storageSystems.updateSelection(this)"></td>
+										<td class="name sorting_1">CLARIION+APM12346547795</td>
+										<td class="type">EMC VNX Block</td>
+										<td class="discoveryStatus"><span class="label label-success"><span class="glyphicon glyphicon-ok"></span></span></td>
+									</tr>
+									<tr class="odd">
+										<td class="selection"><input type="checkbox" name="selected" value="urn:storageos:StorageSystem:4294ffba-db2d-46ff-966a-aa86ac9a5df4:vdc1" onchange="table.storageSystems.updateSelection(this)"></td>
+										<td class="name sorting_1">CLARIION+APM12380127239</td>
+										<td class="type">EMC VNX Block</td>
+										<td class="discoveryStatus"><span class="label label-success"><span class="glyphicon glyphicon-ok"></span></span></td>
+									</tr>
+									<tr class="even">
+										<td class="selection"><input type="checkbox" name="selected" value="urn:storageos:StorageSystem:8bd66915-93cd-4d92-89f4-a6c6811e09a2:vdc1" onchange="table.storageSystems.updateSelection(this)"></td>
+										<td class="name sorting_1">CLARIION+APM12381623880</td>
+										<td class="type">EMC VNX Block</td>
+										<td class="discoveryStatus"><span class="label label-success"><span class="glyphicon glyphicon-ok"></span></span></td>
+									</tr>
+									<tr class="odd">
+										<td class="selection"><input type="checkbox" name="selected" value="urn:storageos:StorageSystem:3bbbcb7b-7068-4f92-8007-f1551d816de3:vdc1" onchange="table.storageSystems.updateSelection(this)"></td>
+										<td class="name sorting_1">CLARIION+APM12391522735</td>
+										<td class="type">EMC VNX Block</td>
+										<td class="discoveryStatus"><span class="label label-success"><span class="glyphicon glyphicon-ok"></span></span></td>
+									</tr>
+									<tr class="even">
+										<td class="selection"><input type="checkbox" name="selected" value="urn:storageos:StorageSystem:f888487c-29a2-4363-ab3b-7d948bbe6044:vdc1" onchange="table.storageSystems.updateSelection(this)"></td>
+										<td class="name sorting_1">Isilon Simulator 192.168.1.52</td>
+										<td class="type">EMC Isilon</td>
+										<td class="discoveryStatus"><span class="label label-success"><span class="glyphicon glyphicon-ok"></span></span></td>
+									</tr>
+									<tr class="odd">
+										<td class="selection"><input type="checkbox" name="selected" value="urn:storageos:StorageSystem:fee6de3e-e972-438b-9e0d-6a5e55bf44c6:vdc1" onchange="table.storageSystems.updateSelection(this)"></td>
+										<td class="name sorting_1">NetAppp Simulator 192.16.8.53</td>
+										<td class="type">NetApp</td>
+										<td class="discoveryStatus"><span class="label label-success"><span class="glyphicon glyphicon-ok"></span></span></td>
+									</tr>
+									<tr class="even">
+										<td class="selection"><input type="checkbox" name="selected" value="urn:storageos:StorageSystem:e33e513a-ff5c-4a68-944e-f218a9e1c6dc:vdc1" onchange="table.storageSystems.updateSelection(this)"></td>
+										<td class="name sorting_1">SYMMETRIX+999000414197</td>
+										<td class="type">EMC VMAX</td>
+										<td class="discoveryStatus"><span class="label label-success"><span class="glyphicon glyphicon-ok"></span></span></td>
+									</tr>
+									<tr class="odd">
+										<td class="selection"><input type="checkbox" name="selected" value="urn:storageos:StorageSystem:6187b45a-8042-4270-a19b-eceb1aca8dcb:vdc1" onchange="table.storageSystems.updateSelection(this)"></td>
+										<td class="name sorting_1">SYMMETRIX+999024668923</td>
+										<td class="type">EMC VMAX</td>
+										<td class="discoveryStatus"><span class="label label-success"><span class="glyphicon glyphicon-ok"></span></span></td>
+									</tr>
+									<tr class="even">
+										<td class="selection"><input type="checkbox" name="selected" value="urn:storageos:StorageSystem:ee13a2ba-fb62-4fb0-9177-9d877a45a766:vdc1" onchange="table.storageSystems.updateSelection(this)"></td>
+										<td class="name sorting_1">SYMMETRIX+999316031302</td>
+										<td class="type">EMC VMAX</td>
+										<td class="discoveryStatus"><span class="label label-success"><span class="glyphicon glyphicon-ok"></span></span></td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="dataTables_footer">
+								<div class="dataTables_paginate paging_bootstrapFirstLast pagination">
+									<ul class="pagination pagination-sm">
+										<li class="prev disabled"><a href="">First</a></li>
+										<li class="prev disabled"><a href="">←</a></li>
+										<li class="active"><a href="">1</a></li>
+										<li><a href="">2</a></li>
+										<li class="next"><a href="">→</a></li>
+										<li class="next"><a href="">Last</a></li>
+									</ul>
+								</div>
+								<div id="DataTables_Table_2_processing" class="dataTables_processing" style="visibility: hidden;"><span class="glyphicon glyphicon-refresh rotate "></span>Loading...</div>
+								<div class="dataTables_info" id="DataTables_Table_2_info">Showing 1 to 10 of 12 entries</div>
+								<div class="dataTables_processingError" style="display: none;"></div>
+							</div>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="modal-footer ">
+					<button type="button" class="btn btn-primary " name="button.add" data-enabled="selected" data-table="storageSystems" data-form="addForm" disabled="">
+					<span class="glyphicon glyphicon-plus "></span>  Add  </button>    <button type="button" class="btn btn-default " name="button.cancel" data-dismiss="modal">
+					<span class="glyphicon glyphicon-remove "></span>  Cancel  </button>  
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

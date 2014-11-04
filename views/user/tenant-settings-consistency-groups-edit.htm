@@ -1,0 +1,65 @@
+<div class="mainContent" ng-controller="EditConsistencyGroupsCtrl">
+	<ul class="breadcrumb">
+		<li>
+			<a ui-sref="userConsistency">Consistency Groups</a>
+			<span class="divider"></span>
+		</li>
+		<li class="active">
+			Edit Consistency Group
+		</li>
+	</ul>
+	<div class="container">
+		<div class="form-header">
+			<div class="image">
+				<!--<img src="/img/assets/StorageArray.png">-->
+			</div>
+			<div class="description">
+				<h2>
+					Edit Consistency Group
+				</h2>
+				<p>Edit the name of the Consistency Group.</p>
+			</div>
+			<div style="clear:both"></div>
+		</div>
+		<div class="clear"></div>
+		<p id="alerts_success" class="alert alert-success" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<span class="message"></span>
+		</p>
+		<p id="alerts_error" class="alert alert-danger" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<span class="message"></span>
+		</p>
+		<p id="alerts_warning" class="alert alert-warning" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<span class="message"></span>
+		</p>
+		<p id="alerts_info" class="alert alert-info" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<span class="message"></span>
+		</p>
+		<form id="consistencyGroupArrayForm" class="form form-horizontal" ng-submit="submit()">
+			<fieldset>
+				<div id="consistencyGroupArray_nameControlGroup" class="form-group  required" required="required">
+					<label class="control-label col-sm-3" for="consistencyGroupArray_name">Name:</label>
+					<div class="col-sm-6 controls">
+						<input type="text" class="form-control span6" id="consistencyGroupArray_name" name="consistencyGroupArray.name" ng-model="consistencyGroup.name" autocomplete="off">
+					</div>
+					<div class="col-sm-3">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+			</fieldset>
+			<div class="form-group button-bar">
+				<div class="col-sm-offset-3 col-sm-9">
+					<button type="submit" class="btn btn-primary btn-large " name="button.save">
+						<span class="glyphicon glyphicon-ok-sign "></span>  Save  
+					</button>  
+					<button type="button" class="btn btn-default btn-large " name="button.cancel" ui-sref="userConsistency">
+						<span class="glyphicon glyphicon-trash "></span>  Cancel  
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

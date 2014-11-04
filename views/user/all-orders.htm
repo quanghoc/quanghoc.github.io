@@ -1,0 +1,109 @@
+<div class="mainContent" ng-controller="MyOrdersCtrl">
+
+    <form action="" method="" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" id="selectTenantForm" class="form form-inline">
+        <input type="hidden" name="authenticityToken" value="16d5a641e9658742aff61b4d63c5b8f2299e33ae">
+        <input type="hidden" name="url" value="/reports/recentorders">
+        <div class="well well-sm">
+            <span class="tenant-select">
+                <label for="tenantId">Tenant:</label>
+                
+                <select id="tenantId" name="tenantId" class="form-control input-sm" chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true" allow-single-deselect="false">
+                    <option value="urn:storageos:TenantOrg:32cfe166-e3bc-4e7d-bf59-7abc1884aac0:global" selected="selected">Provider Tenant</option>
+                    <option value="urn:storageos:TenantOrg:98e02901-0a68-4ba5-bd1e-5de27999e942:global">Tenant1</option>
+                    <option value="urn:storageos:TenantOrg:d0869a14-3143-49a7-89af-adf554b20166:global">Tenant2</option>
+                </select>
+                
+            </span>
+        </div>
+    </form>
+    <div class="clear"></div>
+    <p id="alerts_success" class="alert alert-success" style="display:none">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <span class="message"></span>
+    </p>
+    <p id="alerts_error" class="alert alert-danger" style="display:none">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <span class="message"></span>
+    </p>
+    <p id="alerts_warning" class="alert alert-warning" style="display:none">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <span class="message"></span>
+    </p>
+    <p id="alerts_info" class="alert alert-info" style="display:none">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <span class="message"></span>
+    </p>
+    <div class="section-header pull-left ">
+        <h1 class="">All Orders</h1>
+    </div>
+    <div id="orders" class="dataTableContainer">
+        <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline" role="grid">
+            <div class="dataTables_filter" id="DataTables_Table_0_filter">
+                <label>
+                    <input type="text" aria-controls="DataTables_Table_0" class="form-control input-sm search-query" placeholder="Search..." ng-model="query">
+                </label>
+            </div>
+            <table class="table table-hover table-condensed table-styled dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
+                <thead>
+                    <tr role="row">
+                        <th class="number sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Number: activate to sort column ascending">
+                            <div class="th-wrapper">Number</div>
+                        </th>
+                        <th class="status sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending">
+                            <div class="th-wrapper">Status</div>
+                        </th>
+                        <th class="service sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Service: activate to sort column ascending">
+                            <div class="th-wrapper">Service</div>
+                        </th>
+                        <th class="summary sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Summary: activate to sort column ascending">
+                            <div class="th-wrapper">Summary</div>
+                        </th>
+                        <th class="submittedBy sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Submitted By: activate to sort column ascending">
+                            <div class="th-wrapper">Submitted By</div>
+                        </th>
+                        <th class="createdDate sorting_desc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="descending" aria-label="Date Submitted: activate to sort column ascending">
+                            <div class="th-wrapper">Date Submitted</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody role="alert" aria-live="polite" aria-relevant="all">
+                    <tr class="odd" ng-repeat="item in orders | filter:query | orderBy:sortField:reverse | slice:(currentPage-1)*rpp:(currentPage*rpp)">
+                        <td class="number">{{ item.id }}</td>
+                        <td class="status">
+                            <span class="glyphicon glyphicon-ok" ng-show="orderType(item.orderTypeId).status>0"></span>
+                            <span class="glyphicon glyphicon-remove" ng-show="orderType(item.orderTypeId).status<0"></span>
+                        </td>
+                        <td class="service">
+                            <a ui-sref="GenericOrderCompleted({orderId: {{ item.id }} })">
+                                {{ orderType(item.orderTypeId).title }}
+                            </a>
+                        </td>
+                        <td class="summary">{{ orderType(item.orderTypeId).summary }}</td>
+                        <td class="submittedBy">vipradmin@asd.cse</td>
+                        <td class="createdDate sorting_1">{{ item.date | dateFilter }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="dataTables_footer">
+                <div class="dataTables_paginate paging_bootstrapFirstLast pagination">
+                    <ul class="pagination pagination-sm">
+                        <li class="prev disabled"><a href="">First</a>
+                        </li>
+                        <li class="prev disabled"><a href="">←</a>
+                        </li>
+                        <li class="active"><a href="">1</a>
+                        </li>
+                        <li class="next disabled"><a href="">→</a>
+                        </li>
+                        <li class="next disabled"><a href="">Last</a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="DataTables_Table_0_processing" class="dataTables_processing" style="visibility: hidden;">
+                    <span class="glyphicon glyphicon-refresh rotate "></span>Loading...</div>
+                <div class="dataTables_info" id="DataTables_Table_0_info">Showing 1 to 4 of 4 entries</div>
+                <div class="dataTables_processingError" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+</div>

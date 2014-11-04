@@ -1,0 +1,1297 @@
+<div class="mainContent" ng-controller="EditBlockVirtualPoolsCtrl">
+	<ul class="breadcrumb">
+		<li>
+			<a ui-sref="blockVirtualPools">Block Virtual Pools</a> 
+			<span class="divider"></span>
+		</li>
+		<li class="active">
+			Edit Block Virtual Pool 
+		</li>
+	</ul>
+	<div id="virtualPool" class="container">
+		<div class="form-header">
+			<div class="image">
+				<img src="/img/assets/VirtualPool.png">  
+			</div>
+			<div class="description">
+				<h2>
+					Edit Block Virtual Pool      
+				</h2>
+				<p>Enter the information needed to edit/create a Block Virtual Pool.</p>
+			</div>
+			<div style="clear:both"></div>
+		</div>
+		<div class="clear"></div>
+		<p id="alerts_success" class="alert alert-success" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<span class="message"></span>
+		</p>
+		<p id="alerts_error" class="alert alert-danger" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<span class="message"></span>
+		</p>
+		<p id="alerts_warning" class="alert alert-warning" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<span class="message"></span>
+		</p>
+		<p id="alerts_info" class="alert alert-info">
+			<span class="message">
+				This demo has disabled the ability to select your own virtual arrays.
+			</span>
+		</p>
+		<form ng-submit="add()" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" class="form form-horizontal" autocomplete="off">
+			<div id="vpool_nameControlGroup" class="form-group  required">
+				<label class="control-label col-sm-3" for="vpool_name">Name:</label>
+				<div class="col-sm-6 controls">
+					<input class="form-control initialFocus" id="vpool_name" name="vpool.name" ng-model="blockVirtualPool.name" autocomplete="off" type="text" required="required">
+				</div>
+				<div class="col-sm-3">
+					<span class="help-inline"></span>
+				</div>
+			</div>
+			<div id="vpool_descriptionControlGroup" class="form-group  required">
+				<label class="control-label col-sm-3" for="vpool_description">Description:</label>
+				<div class="col-sm-6 controls">
+					<input class="form-control span6" id="vpool_description" name="vpool.description" ng-model="blockVirtualPool.desc" autocomplete="off" type="text" required="required">      
+				</div>
+				<div class="col-sm-3">
+					<span class="help-inline"></span>
+				</div>
+			</div>
+			<div class="storagePoolCriteria">
+				<div id="vpool_virtualArraysControlGroup" class="form-group  required" tooltip="This demo has disabled custom selection of virtual arrays. All virtual arrays below are defined with block storage systems">
+					<label class="control-label col-sm-3" for="vpool_virtualArrays">Virtual Arrays:</label>
+					<div class="col-sm-6 controls">
+						<div class="selectMany span6 ">
+							<div style="display: none;" class="selectManySearch row col-gap-sm">
+								<div class="col-sm-8">
+									<input id="vpool_virtualArraysSearch" class="form-control input-sm" autocomplete="off" type="text">
+								</div>
+								<span class="btn-group selectManyButtons col-sm-4">
+								<button id="vpool_virtualArraysCheck" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-check "></span> All</button>
+								<button id="vpool_virtualArraysUncheck" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-remove-circle "></span> None</button>
+								</span>
+							</div>
+							<div id="vpool_virtualArrays" name="vpool.virtualArrays" class="selectManyContent">
+								<div class="checkbox" ng-repeat="item in blockVirtualArrays">
+									<label>
+										<input type="checkbox" checked disabled="">
+									 {{ item.name }}
+									</label>
+								</div>
+							</div>
+						</div>
+						<span class="help-block">A Virtual Pool must be associated with one or more Virtual Arrays before the options for other available criteria can be determined.</span>  
+					</div>
+					<div class="col-sm-3">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+			</div>
+			<div id="vpool_enableQuotaControlGroup" class="form-group  ">
+				<label class="control-label col-sm-3" for="vpool_enableQuota">Enable Quota:</label>
+				<div class="col-sm-6 controls">
+					<div class="checkbox">
+						<input class="span0" id="vpool_enableQuota" name="vpool.enableQuota" type="checkbox" ng-model="enableQuota">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<span class="help-inline"></span>
+				</div>
+			</div>
+			<div ng-show="enableQuota">
+				<div id="vpool_quotaControlGroup" class="form-group  ">
+					<label class="control-label col-sm-3" for="vpool_quota">Quota:</label>
+					<div class="col-sm-3 controls">
+						<div class="input-group">
+							<input class="form-control span6" id="vpool_quota" name="vpool.quota" value="" autocomplete="off" type="text">        
+							<span class="input-group-addon">GB</span>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+			</div>
+			<div class="panel-group">
+				<div class="storagePoolCriteria">
+					<div class="panel panel-default panel-collapse overflow-ok">
+						<div class="panel-heading" ng-click="opened[0] = !opened[0]" data-toggle="collapse" data-target="#vpool_group_hardware">
+							<h4 class="panel-title">
+								<span class="glyphicon glyphicon-chevron-right indicator" ng-show="!opened[0]"></span>
+								<span class="glyphicon glyphicon-chevron-down indicator" ng-show="opened[0]"></span>
+								<span class="glyphicon glyphicon-align-justify "></span>      Hardware
+							</h4>
+						</div>
+						<div id="vpool_group_hardware" class="panel-collapse" ng-class="{collapse: !opened[0]}">
+							<div class="panel-body">
+								<div id="vpool_provisioningTypeControlGroup" class="form-group  required">
+									<label class="control-label col-sm-3" for="vpool_provisioningType">Provisioning Type:</label>
+									<div class="col-sm-6 controls">
+				 						<select chosen='{inherit_select_classes:true, width: "100%"}'
+											id="vpool_provisioningType"
+											class="form-control span6"
+											disable-search="true"
+											ng-model="blockVirtualPool.provisioningType"
+											name="vpool.provisioningType">
+											<option value=""></option>
+											<option value="Thick">Thick</option>
+											<option value="Thin" selected="selected">Thin</option>
+										</select>
+									</div>
+									<div class="col-sm-3">
+										<span class="help-inline"></span>
+									</div>
+								</div>
+								<div id="vpool_protocolsControlGroup" class="form-group  required">
+									<label class="control-label col-sm-3" for="vpool_protocols">Protocols:</label>
+									<div class="col-sm-6 controls">
+										<div class="selectMany span6 ">
+											<div id="vpool_protocols" name="vpool.protocols" class="selectManyContent">
+												<div class="checkbox">
+													<input id="vpool_protocolsFC" name="vpool.protocols" checked="checked" value="FC" type="checkbox">
+													FC
+													</label>
+												</div>
+												<div class="clearfix"></div>
+												<div class="checkbox">
+													<input id="vpool_protocolsiSCSI" name="vpool.protocols" value="iSCSI" type="checkbox">
+													iSCSI
+													</label>
+												</div>
+												<div class="clearfix"></div>
+												<div class="checkbox">
+													<input id="vpool_protocolsScaleIO" name="vpool.protocols" value="ScaleIO" type="checkbox">
+													ScaleIO
+													</label>
+												</div>
+												<div class="clearfix"></div>
+											</div>
+										</div>
+										<span class="help-block">Matching storage pools will be limited to those that can support all selected protocols</span>  
+									</div>
+									<div class="col-sm-3">
+										<span class="help-inline"></span>
+									</div>
+								</div>
+								<div id="vpool_driveTypeControlGroup" class="form-group  ">
+									<label class="control-label col-sm-3" for="vpool_driveType">Drive Type:</label>
+									<div class="col-sm-6 controls">
+				 						<select chosen="{inherit_select_classes:true}"
+											id="vpool_driveType"
+											class="form-control span6"
+											disable-search="true" 
+											name="vpool.driveType">
+											<option value=""></option>
+											<option value="NONE">None</option>
+											<option value="FC">Fibre Channel</option>
+											<option value="SAS">Serial Attached SCSI</option>
+											<option value="NL_SAS">Near Line Serial Attached SCSI</option>
+											<option value="SATA">Serial ATA</option>
+											<option value="SSD">Solid State Drive</option>
+										</select>
+									</div>
+									<div class="col-sm-3">
+										<span class="help-inline"></span>
+									</div>
+								</div>
+								<div id="vpool_systemTypeControlGroup" class="form-group  ">
+									<label class="control-label col-sm-3" for="vpool_systemType">System Type:</label>
+									<div class="col-sm-6 controls">
+				 						<select chosen='{inherit_select_classes:true, width: "100%"}'
+											id="vpool_systemType"
+											class="form-control span6"
+											ng-model="blockVirtualPool.systemType"
+											name="vpool.systemType">
+											<option></option>
+											<option value="NONE">None</option>
+											<option value="vmax">EMC VMAX</option>
+											<option value="vnxblock">EMC VNX Block</option>
+											<option value="hds">Hitachi</option>
+											<option value="openstack">Third-party block</option>
+											<option value="scaleio">Block Storage Powered by ScaleIO</option>
+											<option value="xtremio">EMC XtremIO</option>
+										</select>
+									</div>
+									<div class="col-sm-3">
+										<span class="help-inline"></span>
+									</div>
+								</div>
+								<div data-source="vpool_systemType" ng-hide='["NONE","scaleio","xtremio"].indexOf(blockVirtualPool.systemType) > -1'>
+									<div id="vpool_raidLevelsControlGroup" class="form-group  ">
+										<label class="control-label col-sm-3" for="vpool_raidLevels">RAID Level(s):</label>
+										<div class="col-sm-6 controls">
+											<div class="selectMany span6 ">
+												<div style="display: none;" class="selectManySearch row col-gap-sm">
+													<div class="col-sm-8">
+														<input id="vpool_raidLevelsSearch" class="form-control input-sm" autocomplete="off" type="text">
+													</div>
+													<span class="btn-group selectManyButtons col-sm-4">
+													<button id="vpool_raidLevelsCheck" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-check "></span> All</button>
+													<button id="vpool_raidLevelsUncheck" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-remove-circle "></span> None</button>
+													</span>
+												</div>
+												<div id="vpool_raidLevels" name="vpool.raidLevels" class="selectManyContent">
+													<div class="checkbox">
+														<input id="vpool_raidLevelsRAID0" name="vpool.raidLevels" value="RAID0" type="checkbox">
+														RAID0
+														</label>
+													</div>
+													<div class="clearfix"></div>
+													<div class="checkbox">
+														<input id="vpool_raidLevelsRAID1" name="vpool.raidLevels" value="RAID1" type="checkbox">
+														RAID1
+														</label>
+													</div>
+													<div class="clearfix"></div>
+													<div class="checkbox">
+														<input id="vpool_raidLevelsRAID2" name="vpool.raidLevels" value="RAID2" type="checkbox">
+														RAID2
+														</label>
+													</div>
+													<div class="clearfix"></div>
+													<div class="checkbox">
+														<input id="vpool_raidLevelsRAID3" name="vpool.raidLevels" value="RAID3" type="checkbox">
+														RAID3
+														</label>
+													</div>
+													<div class="clearfix"></div>
+													<div class="checkbox">
+														<input id="vpool_raidLevelsRAID4" name="vpool.raidLevels" value="RAID4" type="checkbox">
+														RAID4
+														</label>
+													</div>
+													<div class="clearfix"></div>
+													<div class="checkbox">
+														<input id="vpool_raidLevelsRAID5" name="vpool.raidLevels" value="RAID5" type="checkbox">
+														RAID5
+														</label>
+													</div>
+													<div class="clearfix"></div>
+													<div class="checkbox">
+														<input id="vpool_raidLevelsRAID6" name="vpool.raidLevels" value="RAID6" type="checkbox">
+														RAID6
+														</label>
+													</div>
+													<div class="clearfix"></div>
+													<div class="checkbox">
+														<input id="vpool_raidLevelsRAID10" name="vpool.raidLevels" value="RAID10" type="checkbox">
+														RAID10
+														</label>
+													</div>
+													<div class="clearfix"></div>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-3">
+											<span class="help-inline"></span>
+										</div>
+									</div>
+								</div>
+								<div data-source="vpool_provisioningType" ng-show='["Thin"].indexOf(blockVirtualPool.provisioningType) > -1'>
+									<div data-source="vpool_systemType" ng-show='["NONE","vmax"].indexOf(blockVirtualPool.systemType) > -1'>
+										<div id="vpool_thinPreAllocationPercentControlGroup" class="form-group  ">
+											<label class="control-label col-sm-3" for="vpool_thinPreAllocationPercent">Thin Volume Preallocation:</label>
+											<div class="col-sm-6 controls">
+												<div class="input-group">
+													<input class="form-control span6" id="vpool_thinPreAllocationPercent" name="vpool.thinPreAllocationPercent" value="" autocomplete="off" type="text">            <span class="input-group-addon">%</span>
+												</div>
+											</div>
+											<div class="col-sm-3">
+												<span class="help-inline"></span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div data-source="vpool_systemType" ng-show='["vmax"].indexOf(blockVirtualPool.systemType) > -1'>
+									<div id="vpool_uniqueAutoTierPolicyNamesControlGroup" class="form-group  ">
+										<label class="control-label col-sm-3" for="vpool_uniqueAutoTierPolicyNames">Unique Auto-tiering Policy Names:</label>
+										<div class="col-sm-6 controls">
+											<div class="checkbox">
+												<input class="span0" id="vpool_uniqueAutoTierPolicyNames" name="vpool.uniqueAutoTierPolicyNames" value="true" type="checkbox"><input id="vpool_uniqueAutoTierPolicyNamesFalse" name="vpool.uniqueAutoTierPolicyNames" value="false" type="hidden">
+											</div>
+											<span class="help-block">Check to show unique policy names in Auto-tiering Policy.</span>  
+										</div>
+										<div class="col-sm-3">
+											<span class="help-inline"></span>
+										</div>
+									</div>
+								</div>
+								<div data-source="vpool_systemType" ng-show='["vmax","vnxblock"].indexOf(blockVirtualPool.systemType) > -1'>
+									<div id="vpool_autoTierPolicyControlGroup" class="form-group  ">
+										<label class="control-label col-sm-3" for="vpool_autoTierPolicy">Auto-tiering Policy:</label>
+										<div class="col-sm-6 controls">
+					 						<select chosen='{inherit_select_classes:true, width: "100%"}'
+												id="vpool_autoTierPolicy"
+												disable-search="true"
+												class="form-control span6"
+												name="vpool.autoTierPolicy">
+												<option value=""></option>
+												<option value="SYMMETRIX+000195701351+FASTPOLICY+KFB-351-FastPolicy-1">SYMMETRIX+000195701351+FASTPOLICY+KFB-351-FastPolicy-1</option>
+												<option value="SYMMETRIX+000195701351+FASTPOLICY+Thin_FC_SATA">SYMMETRIX+000195701351+FASTPOLICY+Thin_FC_SATA</option>
+												<option value="SYMMETRIX+000195701351+FASTPOLICY+vmax_FAST_Ura">SYMMETRIX+000195701351+FASTPOLICY+vmax_FAST_Ura</option>
+												<option value="SYMMETRIX+000198700412+FASTPOLICY+KFB-412-Fast-2">SYMMETRIX+000198700412+FASTPOLICY+KFB-412-Fast-2</option>
+											</select>
+										</div>
+										<div class="col-sm-3">
+											<span class="help-inline"></span>
+										</div>
+									</div>
+								</div>
+								<div id="vpool_multiVolumeConsistencyControlGroup" class="form-group  ">
+									<label class="control-label col-sm-3" for="vpool_multiVolumeConsistency">Multi-Volume Consistency:</label>
+									<div class="col-sm-6 controls">
+										<div class="checkbox">
+											<input class="span0" id="vpool_multiVolumeConsistency" name="vpool.multiVolumeConsistency" value="true" type="checkbox"><input id="vpool_multiVolumeConsistencyFalse" name="vpool.multiVolumeConsistency" value="false" type="hidden">
+										</div>
+										<span class="help-block">If selected, resources provisioned from this pool will support the use of consistency groups</span>  
+									</div>
+									<div class="col-sm-3">
+										<span class="help-inline"></span>
+									</div>
+								</div>
+								<div id="vpool_expandableControlGroup" class="form-group  ">
+									<label class="control-label col-sm-3" for="vpool_expandable">Expandable:</label>
+									<div class="col-sm-6 controls">
+										<div class="checkbox">
+											<input class="span0" id="vpool_expandable" name="vpool.expandable" value="true" checked="checked" type="checkbox">
+										</div>
+										<span class="help-block">If selected, resources provisioned from this pool will support expansion.</span>  
+									</div>
+									<div class="col-sm-3">
+										<span class="help-inline"></span>
+									</div>
+								</div>
+								<div data-source="vpool_systemType" ng-show='["vmax","vnxblock"].indexOf(blockVirtualPool.systemType) > -1'>
+									<div data-source="vpool_expandable" data-show="true">
+										<div id="vpool_fastExpansionControlGroup" class="form-group  ">
+											<label class="control-label col-sm-3" for="vpool_fastExpansion">Fast Expansion:</label>
+											<div class="col-sm-6 controls">
+												<div class="checkbox">
+													<input class="span0" id="vpool_fastExpansion" name="vpool.fastExpansion" value="true" type="checkbox"><input id="vpool_fastExpansionFalse" name="vpool.fastExpansion" value="false" type="hidden">
+												</div>
+												<span class="help-block">If selected, expansion will be performed more quickly but potentially decreases performance.</span>  
+											</div>
+											<div class="col-sm-3">
+												<span class="help-inline"></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div data-source="vpool_systemType" ng-hide='["scaleio"].indexOf(blockVirtualPool.systemType) > -1'>
+						<div class="panel panel-default panel-collapse overflow-ok">
+							<div class="panel-heading " ng-click="opened[1] = !opened[1]" data-toggle="collapse" data-target="#vpool_group_sanPaths">
+								<h4 class="panel-title">
+									<span class="glyphicon glyphicon-chevron-right indicator" ng-show="!opened[1]"></span>
+									<span class="glyphicon glyphicon-chevron-down indicator" ng-show="opened[1]"></span>
+									<span class="glyphicon glyphicon-random "></span>      SAN Multi Path
+								</h4>
+							</div>
+							<div id="vpool_group_sanPaths" class="panel-collapse collapse" ng-class="{collapse: !opened[1]}">
+								<div class="panel-body">
+									<div id="vpool_minPathsControlGroup" class="form-group  required">
+										<label class="control-label col-sm-3" for="vpool_minPaths">Minimum Paths:</label>
+										<div class="col-sm-6 controls">
+					 						<select chosen='{inherit_select_classes:true, width: "100%"}'
+					 							disable-search="true"
+												id="vpool_minPaths"
+												class="form-control span6"
+												name="vpool.minPaths">												
+												<option value=""></option>
+												<option value="1" selected="selected">1</option>
+												<option value="2">2</option>
+												<option value="4">4</option>
+												<option value="8">8</option>
+											</select>
+											<span class="help-block">Minimum number of total paths from the host to storage array</span>  
+										</div>
+										<div class="col-sm-3">
+											<span class="help-inline"></span>
+										</div>
+									</div>
+									<div id="vpool_maxPathsControlGroup" class="form-group  required">
+										<label class="control-label col-sm-3" for="vpool_maxPaths">Maximum Paths:</label>
+										<div class="col-sm-6 controls">
+					 						<select chosen='{inherit_select_classes:true, width: "100%"}'
+					 							disable-search="true"
+												id="vpool_maxPaths"
+												class="form-control span6"
+												name="vpool.maxPaths">												
+												<option value=""></option>
+												<option value="1">1</option>
+												<option value="2" selected="selected">2</option>
+												<option value="4">4</option>
+												<option value="8">8</option>
+											</select>
+											<span class="help-block">Maximum number of total paths from host to storage array</span>  
+										</div>
+										<div class="col-sm-3">
+											<span class="help-inline"></span>
+										</div>
+									</div>
+									<div id="vpool_initiatorPathsControlGroup" class="form-group  required">
+										<label class="control-label col-sm-3" for="vpool_initiatorPaths">Paths Per Initiator:</label>
+										<div class="col-sm-6 controls">
+					 						<select chosen='{inherit_select_classes:true, width: "100%"}'
+					 							disable-search="true"
+												id="vpool_initiatorPaths"
+												class="form-control span6"
+												name="vpool.initiatorPaths">
+												<option value=""></option>
+												<option value="1" selected="selected">1</option>
+												<option value="2">2</option>
+												<option value="4">4</option>
+												<option value="8">8</option>
+											</select>											
+											<span class="help-block">Number of paths per host initiator</span>  
+										</div>
+										<div class="col-sm-3">
+											<span class="help-inline"></span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div data-source="vpool_systemType" ng-hide='["scaleio"].indexOf(blockVirtualPool.systemType) > -1'>
+						<div class="panel panel-default panel-collapse overflow-ok">
+							<div class="panel-heading" ng-click="opened[2] = !opened[2]" data-toggle="collapse" data-target="#vpool_group_highAvailability">
+								<h4 class="panel-title">
+									<span class="glyphicon glyphicon-chevron-right indicator" ng-show="!opened[2]"></span>
+									<span class="glyphicon glyphicon-chevron-down indicator" ng-show="opened[2]"></span>
+									<span class="glyphicon glyphicon-globe "></span>      High Availability
+								</h4>
+							</div>
+							<div id="vpool_group_highAvailability" class="panel-collapse collapse" ng-class="{collapse: !opened[2]}">
+								<div class="panel-body">
+									<div id="vpool_highAvailabilityControlGroup" class="form-group  ">
+										<label class="control-label col-sm-3" for="vpool_highAvailability">High Availability:</label>
+										<div class="col-sm-6 controls">
+					 						<select chosen='{inherit_select_classes:true, width: "100%"}'
+					 							disable-search="true"
+												id="vpool_highAvailability"
+												class="form-control span6"
+												name="vpool.highAvailability">
+												<option value=""></option>
+												<option value="NONE">None</option>
+												<option value="vplex_local">VPLEX Local</option>
+												<option value="vplex_distributed">VPLEX Distributed</option>
+											</select>
+										</div>
+										<div class="col-sm-3">
+											<span class="help-inline"></span>
+										</div>
+									</div>
+									<div style="display: none;" data-source="vpool_highAvailability" data-show="vplex_distributed">
+										<div id="vpool_haVirtualArrayControlGroup" class="form-group  required">
+											<label class="control-label col-sm-3" for="vpool_haVirtualArray">High Availability Virtual Array:</label>
+											<div class="col-sm-6 controls">
+						 						<select chosen='{inherit_select_classes:true, width: "100%"}'
+						 							disable-search="true"
+													id="vpool_haVirtualArray"
+													class="form-control span6"
+													name="vpool.haVirtualArray">
+													<option value=""></option>
+													<option value="NONE">None</option>
+												</select>
+												<span class="help-block">Select Virtual Array as destination for distributed volume.</span>  
+											</div>
+											<div class="col-sm-3">
+												<span class="help-inline"></span>
+											</div>
+										</div>
+										<div id="vpool_haVirtualPoolControlGroup" class="form-group  ">
+											<label class="control-label col-sm-3" for="vpool_haVirtualPool">High Availability Virtual Pool:</label>
+											<div class="col-sm-6 controls">
+						 						<select chosen='{inherit_select_classes:true, width: "100%"}'
+						 							disable-search="true"
+													id="vpool_haVirtualPool"
+													class="form-control span6"
+													name="vpool.haVirtualPool">
+													<option value=""></option>
+													<option value="NONE">None</option>
+												</select>
+												<span class="help-block">Optionally select a different Virtual Pool to use when creating distributed volume.</span>  
+											</div>
+											<div class="col-sm-3">
+												<span class="help-inline"></span>
+											</div>
+										</div>
+										<div id="vpool_haUseAsRpSourceControlGroup" class="form-group  ">
+											<label class="control-label col-sm-3" for="vpool_haUseAsRpSource">RecoverPoint Source:</label>
+											<div class="col-sm-6 controls">
+												<div class="checkbox">
+													<input class="span0" id="vpool_haUseAsRpSource" name="vpool.haUseAsRpSource" value="true" type="checkbox"><input id="vpool_haUseAsRpSourceFalse" name="vpool.haUseAsRpSource" value="false" type="hidden">
+												</div>
+												<span class="help-block">Use the high availability virtual array as the source when using RecoverPoint</span>  
+											</div>
+											<div class="col-sm-3">
+												<span class="help-inline"></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default panel-collapse overflow-ok">
+						<div class="panel-heading" ng-click="opened[3] = !opened[3]" data-toggle="collapse" data-target="#vpool_group_protection">
+							<h4 class="panel-title">
+								<span class="glyphicon glyphicon-chevron-right indicator" ng-show="!opened[3]"></span>
+								<span class="glyphicon glyphicon-chevron-down indicator" ng-show="opened[3]"></span>
+								<span class="vipricon vipricon-protectionv8 "></span>      Data Protection
+							</h4>
+						</div>
+						<div id="vpool_group_protection" class="panel-collapse collapse" ng-class="{collapse: !opened[3]}">
+							<div class="panel-body">
+								<div id="vpool_maxSnapshotsControlGroup" class="form-group  ">
+									<label class="control-label col-sm-3" for="vpool_maxSnapshots">Maximum Snapshots:</label>
+									<div class="col-sm-6 controls">
+										<input class="form-control span6" id="vpool_maxSnapshots" name="vpool.maxSnapshots" value="" autocomplete="off" type="text">    <span class="help-block">Maximum number of local snapshots allowed for resources from this Virtual Pool</span>  
+									</div>
+									<div class="col-sm-3">
+										<span class="help-inline"></span>
+									</div>
+								</div>
+								<div data-source="vpool_systemType" data-hide="scaleio">
+									<div id="vpool_maxContinuousCopiesControlGroup" class="form-group  ">
+										<label class="control-label col-sm-3" for="vpool_maxContinuousCopies">Maximum Continuous Copies:</label>
+										<div class="col-sm-6 controls">
+											<input class="form-control span6" id="vpool_maxContinuousCopies" name="vpool.maxContinuousCopies" value="" autocomplete="off" type="text">    <span class="help-block">Maximum number of native continuous copies allowed for resources from this Virtual Pool</span>  
+										</div>
+										<div class="col-sm-3">
+											<span class="help-inline"></span>
+										</div>
+									</div>
+									<div id="vpool_continuousCopyVirtualPoolControlGroup" class="form-group  ">
+										<label class="control-label col-sm-3" for="vpool_continuousCopyVirtualPool">Continuous Copies Virtual Pool:</label>
+										<div class="col-sm-6 controls">
+					 						<select chosen='{inherit_select_classes:true, width: "100%"}'
+					 							disable-search="true"
+												id="vpool_continuousCopyVirtualPool"
+												class="form-control span6"
+												name="vpool.continuousCopyVirtualPool">											
+												<option value=""></option>
+												<option value="">None</option>
+											</select>
+											<span class="help-block">Optionally select a different Virtual Pool to use for native continuous copies (applicable only if maximum copies &gt; 0)</span>  
+										</div>
+										<div class="col-sm-3">
+											<span class="help-inline"></span>
+										</div>
+									</div>
+									<div id="vpool_remoteProtectionControlGroup" class="form-group  ">
+										<label class="control-label col-sm-3" for="vpool_remoteProtection">Protection System:</label>
+										<div class="col-sm-6 controls">
+					 						<select chosen='{inherit_select_classes:true, width: "100%"}'
+					 							disable-search="true"
+												id="vpool_remoteProtection"
+												class="form-control span6"
+												ng-model="blockVirtualPool.remoteProtection"
+												name="vpool.remoteProtection">
+												<option value=""></option>
+												<option value="NONE">None</option>
+												<option value="rp">EMC RecoverPoint</option>
+												<option value="srdf">VMAX SRDF</option>
+											</select>
+											<span class="help-block">Specifies storage that is protected by the selected data protection type.</span>  
+										</div>
+										<div class="col-sm-3">
+											<span class="help-inline"></span>
+										</div>
+									</div>
+								</div>
+								<div ng-show='blockVirtualPool.remoteProtection == "rp"'>
+									<div id="vpool_rpRemoteCopyModeControlGroup" class="form-group  ">
+										<label class="control-label col-sm-3" for="vpool_rpRemoteCopyMode">Replication Mode:</label>
+										<div class="col-sm-6 controls">
+					 						<select chosen='{inherit_select_classes:true, width: "100%"}'
+					 							disable-search="true"
+												id="vpool_rpRemoteCopyMode"
+												class="form-control span6"
+												ng-model="blockVirtualPool.rpRemoteCopyMode"
+												name="vpool.rpRemoteCopyMode">											
+												<option value=""></option>
+												<option value="ASYNCHRONOUS">Asynchronous</option>
+												<option value="SYNCHRONOUS">Synchronous</option>
+											</select>
+										</div>
+										<div class="col-sm-3">
+											<span class="help-inline"></span>
+										</div>
+									</div>
+									<div ng-show='blockVirtualPool.rpRemoteCopyMode == "ASYNCHRONOUS"'>
+										<div id="vpool_rpRpoValueControlGroup" class="form-group  ">
+											<label class="control-label col-sm-3" for="vpool_rpRpoValue">RPO:</label>
+											<div class="col-sm-6 controls">
+												<div class="row col-gap-sm">
+													<div class="col-md-6">
+														<input class="form-control span6" id="vpool_rpRpoValue" name="vpool.rpRpoValue" value="25" autocomplete="off" style="vertical-align: top;" type="text">
+													</div>
+													<div class="col-md-6">
+								 						<select chosen='{inherit_select_classes:true, width: "100%"}'
+								 							disable-search="true"
+															id="vpool_rpRpoType"
+															class="form-control span6"
+															ng-model="blockVirtualPool.rpRpoType"
+															name="vpool.rpRpoType">	
+															<option value=""></option>
+															<option value="SECONDS" selected>Seconds</option>
+															<option value="MINUTES">Minutes</option>
+															<option value="HOURS">Hours</option>
+															<option value="WRITES">Number of writes</option>
+															<option value="BYTES">Bytes</option>
+															<option value="KB">Kilobytes</option>
+															<option value="MB">Megabytes</option>
+															<option value="GB">Gigabytes</option>
+															<option value="TB">Terabytes</option>
+														</select>
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-3">
+												<span class="help-inline"></span>
+											</div>
+										</div>
+									</div>
+									<div id="vpool_rpJournalSizeControlGroup" class="form-group  required">
+										<label class="control-label col-sm-3" for="vpool_rpJournalSize">RecoverPoint Source Journal Size:</label>
+										<div class="col-sm-6 controls">
+											<div class="row col-gap-sm">
+												<div class="col-md-6">
+													<input class="form-control span6" id="vpool_rpJournalSize" name="vpool.rpJournalSize" value="min" autocomplete="off" style="vertical-align: top;" type="text">
+												</div>
+												<div class="col-md-6">
+							 						<select chosen='{inherit_select_classes:true, width: "100%"}'
+							 							disable-search="true"
+														id="vpool_rpJournalSizeUnit"
+														class="form-control span6"
+														ng-model="blockVirtualPool.rpJournalSizeUnit"
+														name="vpool.rpJournalSizeUnit">
+														<option value=""></option>
+														<option value="Bytes">Bytes</option>
+														<option value="MB">MB</option>
+														<option value="GB" selected="selected">GB</option>
+														<option value="TB">TB</option>
+														<option value="x">Multiplier</option>
+													</select>
+												</div>
+											</div>
+											<span class="help-block">Valid value is "Min", "min", or a number &gt;= 10GB</span>  
+										</div>
+										<div class="col-sm-3">
+											<span class="help-inline"></span>
+										</div>
+									</div>
+									<div id="vpool_rpCopiesControlGroup" class="form-group  required">
+										<label class="control-label col-sm-3" for="vpool_rpCopies">RecoverPoint Copies:</label>
+										<div class="col-sm-6 controls">
+											<table class="table table-hover rpCopy">
+												<thead>
+													<tr>
+														<th class="virtualArray">Virtual Array</th>
+														<th class="virtualPool">Virtual Pool</th>
+														<th class="journalSize">Journal Size</th>
+														<th class="actions"></th>
+													</tr>
+												</thead>
+												<tbody>
+												</tbody>
+												<tfoot>
+													<tr class="add">
+														<td class="virtualArray"></td>
+														<td class="virtualPool">
+															<a href="" ng-click="showRpCopyDialogModal()"><i>Add Copy</i></a>
+														</td>
+														<td class="journalSize"></td>
+														<td class="actions"></td>
+													</tr>
+												</tfoot>
+											</table>
+											<span class="help-block">Configure target Virtual Arrays and optional target Virtual Pools for RecoverPoint copies</span>  
+										</div>
+										<div class="col-sm-3">
+											<span class="help-inline"></span>
+										</div>
+									</div>
+								</div>
+								<div ng-show='blockVirtualPool.remoteProtection == "srdf"'>
+									<div id="vpool_srdfCopyModeControlGroup" class="form-group  ">
+										<label class="control-label col-sm-3" for="vpool_srdfCopyMode">SRDF Copy Mode:</label>
+										<div class="col-sm-6 controls">
+					 						<select chosen='{inherit_select_classes:true, width: "100%"}'
+					 							disable-search="true"
+												id="vpool_srdfCopyMode"
+												class="form-control span6"
+												ng-model="blockVirtualPool.srdfCopyMode"
+												name="vpool.rpJournalSizeUnit">
+												<option value=""></option>
+												<option value="ASYNCHRONOUS">Asynchronous</option>
+												<option value="SYNCHRONOUS">Synchronous</option>
+											</select>
+										</div>
+										<div class="col-sm-3">
+											<span class="help-inline"></span>
+										</div>
+									</div>
+									<div id="vpool_srdfCopiesControlGroup" class="form-group  required">
+										<label class="control-label col-sm-3" for="vpool_srdfCopies">SRDF Copies:</label>
+										<div class="col-sm-6 controls">
+											<input name="vpool.srdfCopiesJson" id="vpool_srdfCopiesJson" value="[]" type="hidden">
+											<table id="srdfCopies" class="table table-hover srdfCopy">
+												<thead>
+													<tr>
+														<th class="virtualArray">Virtual Array</th>
+														<th class="virtualPool">Virtual Pool</th>
+														<th class="actions"></th>
+													</tr>
+												</thead>
+												<tfoot>
+													<tr>
+														<th>&nbsp;</th>
+														<th class="virtualPool"><a href="">Add Copy</a></th>
+														<th></th>
+													</tr>
+												</tfoot>
+												<tbody>
+												</tbody>
+											</table>
+											<span class="help-block">Configure target Virtual Arrays and optional target Virtual Pools for SRDF copies.</span>  
+										</div>
+										<div class="col-sm-3">
+											<span class="help-inline"></span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-default panel-collapse">
+					<div class="panel-heading" ng-click="opened[4] = !opened[4]" data-toggle="collapse" data-target="#vpool_group_accessControl">
+						<h4 class="panel-title">
+							<span class="glyphicon glyphicon-chevron-right indicator" ng-show="!opened[4]"></span>
+							<span class="glyphicon glyphicon-chevron-down indicator" ng-show="opened[4]"></span>
+							<span class="glyphicon glyphicon-user "></span>      Access Control
+						</h4>
+					</div>
+					<div id="vpool_group_accessControl" class="panel-collapse collapse" ng-class="{collapse: !opened[4]}">
+						<div class="panel-body">
+							<div id="vpool_enableTenantsControlGroup" class="form-group  ">
+								<label class="control-label col-sm-3" for="vpool_enableTenants">Grant Access to Tenants:</label>
+								<div class="col-sm-6 controls">
+									<div class="checkbox">
+										<input class="span0" id="vpool_enableTenants" name="vpool.enableTenants" value="true" type="checkbox"><input id="vpool_enableTenantsFalse" name="vpool.enableTenants" value="false" type="hidden">
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<span class="help-inline"></span>
+								</div>
+							</div>
+							<div style="display: none;" data-source="vpool_enableTenants" data-show="true">
+								<div id="vpool_tenantsControlGroup" class="form-group  ">
+									<label class="control-label col-sm-3" for="vpool_tenants">Tenants:</label>
+									<div class="col-sm-6 controls">
+										<div class="selectMany span6 ">
+											<div style="display: none;" class="selectManySearch row col-gap-sm">
+												<div class="col-sm-8">
+													<input id="vpool_tenantsSearch" class="form-control input-sm" autocomplete="off" type="text">
+												</div>
+												<span class="btn-group selectManyButtons col-sm-4">
+												<button id="vpool_tenantsCheck" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-check "></span> All</button>
+												<button id="vpool_tenantsUncheck" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-remove-circle "></span> None</button>
+												</span>
+											</div>
+											<div id="vpool_tenants" name="vpool.tenants" class="selectManyContent">
+												<div class="checkbox">
+													<label for="vpool_tenantsurn_storageos_TenantOrg_992a41c6_597f_4b0f_8d66_206c11665c13_global">
+													<input id="vpool_tenantsurn_storageos_TenantOrg_992a41c6_597f_4b0f_8d66_206c11665c13_global" name="vpool.tenants" value="urn:storageos:TenantOrg:992a41c6-597f-4b0f-8d66-206c11665c13:global" type="checkbox">
+													Provider Tenant
+													</label>
+												</div>
+												<div class="clearfix"></div>
+												<div class="checkbox">
+													<label for="vpool_tenantsurn_storageos_TenantOrg_bc6d46d4_58e6_4dd4_817b_32b805f8c14f_global">
+													<input id="vpool_tenantsurn_storageos_TenantOrg_bc6d46d4_58e6_4dd4_817b_32b805f8c14f_global" name="vpool.tenants" value="urn:storageos:TenantOrg:bc6d46d4-58e6-4dd4-817b-32b805f8c14f:global" type="checkbox">
+													RainPole Tenant
+													</label>
+												</div>
+												<div class="clearfix"></div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3">
+										<span class="help-inline"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-default panel-collapse">
+					<div class="panel-heading" ng-click="opened[5] = !opened[5]" data-toggle="collapse" data-target="#vpool_group_storagePools">
+						<h4 class="panel-title">
+							<span class="glyphicon glyphicon-chevron-right indicator" ng-show="!opened[5]"></span>
+							<span class="glyphicon glyphicon-chevron-down indicator" ng-show="opened[5]"></span>
+							<span class="glyphicon glyphicon-tasks "></span>      Storage Pools
+							<span id="matchingPools" class="badge">10</span>
+						</h4>
+					</div>
+					<div id="vpool_group_storagePools" class="panel-collapse collapse" ng-class="{collapse: !opened[5]}">
+						<div class="panel-body">
+							<div id="vpool_poolAssignmentControlGroup" class="form-group  ">
+								<label class="control-label col-sm-3" for="vpool_poolAssignment">Pool Assignment:</label>
+								<div class="col-sm-6 controls">
+									<select style="display: none;" id="vpool_poolAssignment" name="vpool.poolAssignment" class="form-control span3">
+										<option value="automatic">Automatic</option>
+										<option value="manual">Manual</option>
+									</select>
+									<div id="vpool_poolAssignment_chosen" title="" style="" class="chosen-container chosen-container-single chosen-container-single-nosearch form-control span3">
+										<a class="chosen-single" tabindex="-1">
+											<span>Automatic</span>
+											<div><b></b></div>
+										</a>
+										<div class="chosen-drop">
+											<div class="chosen-search"><input readonly="" autocomplete="off" type="text"></div>
+											<ul class="chosen-results"></ul>
+										</div>
+									</div>
+									<span class="help-block">Choosing manual pool assignment allows selection of a subset of the storage pools matching the criteria  </span>  
+								</div>
+								<div class="col-sm-3">
+									<span class="help-inline"></span>
+								</div>
+							</div>
+							<div class="storagePools" data-ids="">
+								<div id="storagePools" class="dataTableContainer">
+									<div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline" role="grid">
+										<div class="dataTables_filter" id="DataTables_Table_0_filter">
+											<label>
+											<input type="text" aria-controls="DataTables_Table_0" class="form-control input-sm search-query" placeholder="Search...">
+											</label>
+										</div>
+										<table class="table table-hover table-condensed table-styled dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
+											<thead>
+												<tr role="row">
+													<th class="name sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">
+														<div class="th-wrapper">
+															Name
+														</div>
+													</th>
+													<th class="storageSystem sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Storage System: activate to sort column ascending">
+														<div class="th-wrapper">
+															Storage System
+														</div>
+													</th>
+													<th class="volumeTypes sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Provisioning: activate to sort column ascending">
+														<div class="th-wrapper">
+															Provisioning
+														</div>
+													</th>
+													<th class="driveTypes sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Drive Types: activate to sort column ascending">
+														<div class="th-wrapper">
+															Drive Types
+														</div>
+													</th>
+													<th class="freeCapacity sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Free: activate to sort column ascending">
+														<div class="th-wrapper">
+															Free
+														</div>
+													</th>
+													<th class="subscribedCapacity sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Subscribed: activate to sort column ascending">
+														<div class="th-wrapper">
+															Subscribed
+														</div>
+													</th>
+													<th class="totalCapacity sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Total: activate to sort column ascending">
+														<div class="th-wrapper">
+															Total
+														</div>
+													</th>
+												</tr>
+											</thead>
+											<tbody role="alert" aria-live="polite" aria-relevant="all">
+												<tr class="odd">
+													<td class="name sorting_1">TP0000</td>
+													<td class="storageSystem">SYMMETRIX+999334388821</td>
+													<td class="volumeTypes">Thin</td>
+													<td class="driveTypes">SATA</td>
+													<td class="freeCapacity">204797 GB</td>
+													<td class="subscribedCapacity">3 GB</td>
+													<td class="totalCapacity">204800 GB</td>
+												</tr>
+												<tr class="even">
+													<td class="name sorting_1">TP0000</td>
+													<td class="storageSystem">CLARIION+APM12391522735</td>
+													<td class="volumeTypes">Thin, Thick</td>
+													<td class="driveTypes">SAS, NL_SAS, SSD</td>
+													<td class="freeCapacity">204800 GB</td>
+													<td class="subscribedCapacity">1 GB</td>
+													<td class="totalCapacity">204800 GB</td>
+												</tr>
+												<tr class="odd">
+													<td class="name sorting_1">TP0000</td>
+													<td class="storageSystem">CLARIION+APM12381623880</td>
+													<td class="volumeTypes">Thin, Thick</td>
+													<td class="driveTypes">NL_SAS</td>
+													<td class="freeCapacity">204800 GB</td>
+													<td class="subscribedCapacity">1 GB</td>
+													<td class="totalCapacity">204800 GB</td>
+												</tr>
+												<tr class="even">
+													<td class="name sorting_1">TP0000</td>
+													<td class="storageSystem">SYMMETRIX+999316031302</td>
+													<td class="volumeTypes">Thin</td>
+													<td class="driveTypes">SSD</td>
+													<td class="freeCapacity">204800 GB</td>
+													<td class="subscribedCapacity">1 GB</td>
+													<td class="totalCapacity">204800 GB</td>
+												</tr>
+												<tr class="odd">
+													<td class="name sorting_1">TP0000</td>
+													<td class="storageSystem">SYMMETRIX+999024668923</td>
+													<td class="volumeTypes">Thin</td>
+													<td class="driveTypes">SAS</td>
+													<td class="freeCapacity">204800 GB</td>
+													<td class="subscribedCapacity">1 GB</td>
+													<td class="totalCapacity">204800 GB</td>
+												</tr>
+												<tr class="even">
+													<td class="name sorting_1">TP0000</td>
+													<td class="storageSystem">CLARIION+APM12310359509</td>
+													<td class="volumeTypes">Thin, Thick</td>
+													<td class="driveTypes">SAS, NL_SAS, SSD</td>
+													<td class="freeCapacity">204800 GB</td>
+													<td class="subscribedCapacity">1 GB</td>
+													<td class="totalCapacity">204800 GB</td>
+												</tr>
+												<tr class="odd">
+													<td class="name sorting_1">TP0000</td>
+													<td class="storageSystem">SYMMETRIX+999595867618</td>
+													<td class="volumeTypes">Thin</td>
+													<td class="driveTypes">SSD</td>
+													<td class="freeCapacity">204783 GB</td>
+													<td class="subscribedCapacity">17 GB</td>
+													<td class="totalCapacity">204800 GB</td>
+												</tr>
+												<tr class="even">
+													<td class="name sorting_1">TP0000</td>
+													<td class="storageSystem">CLARIION+APM12380127239</td>
+													<td class="volumeTypes">Thin, Thick</td>
+													<td class="driveTypes">SAS, NL_SAS, SSD</td>
+													<td class="freeCapacity">204800 GB</td>
+													<td class="subscribedCapacity">1 GB</td>
+													<td class="totalCapacity">204800 GB</td>
+												</tr>
+												<tr class="odd">
+													<td class="name sorting_1">TP0000</td>
+													<td class="storageSystem">SYMMETRIX+999000414197</td>
+													<td class="volumeTypes">Thin</td>
+													<td class="driveTypes">SATA</td>
+													<td class="freeCapacity">204800 GB</td>
+													<td class="subscribedCapacity">1 GB</td>
+													<td class="totalCapacity">204800 GB</td>
+												</tr>
+												<tr class="even">
+													<td class="name sorting_1">TP0000</td>
+													<td class="storageSystem">CLARIION+APM12346547795</td>
+													<td class="volumeTypes">Thin, Thick</td>
+													<td class="driveTypes">SAS, NL_SAS, SSD</td>
+													<td class="freeCapacity">204800 GB</td>
+													<td class="subscribedCapacity">1 GB</td>
+													<td class="totalCapacity">204800 GB</td>
+												</tr>
+											</tbody>
+										</table>
+										<div class="dataTables_footer">
+											<div id="DataTables_Table_0_processing" class="dataTables_processing" style="visibility: hidden;">
+												<span class="glyphicon glyphicon-refresh rotate "></span>Loading...
+											</div>
+											<div class="dataTables_info" id="DataTables_Table_0_info">
+												Showing 1 to 10 of 10 entries
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br />
+			<div class="form-group button-bar">
+				<div class="col-sm-offset-3 col-sm-9">
+					<button type="submit" class="btn btn-primary btn-large" name="button.save">
+					<span class="glyphicon glyphicon-ok-sign "></span>  Save  
+					</button>  
+					<button ng-click="cancel()" type="button" class="btn btn-default btn-large " name="button.cancel">
+					<span class="glyphicon glyphicon-trash "></span>  Cancel  
+					</button>  
+					<span class="extraButtons"></span>
+				</div>
+			</div>
+		</form>
+
+		<script type="text/ng-template" id="rpCopyDialog">
+			<div class="modal-header ">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h4 class="modal-title">RecoverPoint Copy</h4>
+			</div>
+			<form id="rpCopyForm" class="form form-horizontal">
+				<div class="modal-body ">
+					<div id="rpCopy_virtualArrayControlGroup" class="form-group  required">
+						<label class="control-label col-sm-3" for="rpCopy_virtualArray">Virtual Array:</label>
+						<div class="col-sm-6 controls">
+							<select style="display: none;" id="rpCopy_virtualArray" name="rpCopy.virtualArray" class="form-control span6" data-depends="vpool_virtualArrays,vpool_remoteProtection" data-update="/admin/blockvirtualpools/listrecoverpointvirtualarraysjson">
+								<option value=""> None</option>
+							</select>
+							<div id="rpCopy_virtualArray_chosen" title="" style="" class="chosen-container chosen-container-single chosen-container-single-nosearch form-control span6">
+								<a class="chosen-single" tabindex="-1">
+									<span>None</span>
+									<div><b></b></div>
+								</a>
+								<div class="chosen-drop">
+									<div class="chosen-search"><input readonly="" autocomplete="off" type="text"></div>
+									<ul class="chosen-results"></ul>
+								</div>
+							</div>
+							<span class="help-block">Select the target Virtual Array for this RecoverPoint copy.</span>  
+						</div>
+						<div class="col-sm-3">
+							<span class="help-inline"></span>
+						</div>
+					</div>
+					<div id="rpCopy_virtualPoolControlGroup" class="form-group  ">
+						<label class="control-label col-sm-3" for="rpCopy_virtualPool">Virtual Pool:</label>
+						<div class="col-sm-6 controls">
+							<select style="display: none;" id="rpCopy_virtualPool" name="rpCopy.virtualPool" class="form-control span6" data-depends="rpCopy_virtualArray" data-update="/admin/blockvirtualpools/listrecoverpointvirtualpoolsjson">
+								<option value=""> None</option>
+							</select>
+							<div id="rpCopy_virtualPool_chosen" title="" style="" class="chosen-container chosen-container-single chosen-container-single-nosearch form-control span6">
+								<a class="chosen-single" tabindex="-1">
+									<span>None</span>
+									<div><b></b></div>
+								</a>
+								<div class="chosen-drop">
+									<div class="chosen-search"><input readonly="" autocomplete="off" type="text"></div>
+									<ul class="chosen-results"></ul>
+								</div>
+							</div>
+							<span class="help-block">Optionally select a target Virtual Pool for this RecoverPoint copy (defaults to same Virtual Pool as the source volume)</span>  
+						</div>
+						<div class="col-sm-3">
+							<span class="help-inline"></span>
+						</div>
+					</div>
+					<div id="rpCopy_journalSizeControlGroup" class="form-group  ">
+						<label class="control-label col-sm-3" for="rpCopy_journalSize">Journal Size:</label>
+						<div class="col-sm-6 controls">
+							<div class="row col-gap-sm">
+								<div class="col-md-6"><input class="form-control span6" id="rpCopy_journalSize" name="rpCopy.journalSize" value="" autocomplete="off" style="vertical-align: top;" type="text"></div>
+								<div class="col-md-6">
+									<select style="display: none;" id="rpCopy_journalSizeUnit" name="rpCopy.journalSizeUnit" class="form-control span6">
+										<option value="Bytes">Bytes</option>
+										<option value="MB">MB</option>
+										<option value="GB">GB</option>
+										<option value="TB">TB</option>
+										<option value="x">Multiplier</option>
+									</select>
+									<div id="rpCopy_journalSizeUnit_chosen" title="" style="" class="chosen-container chosen-container-single form-control span6">
+										<a class="chosen-single" tabindex="-1">
+											<span>Bytes</span>
+											<div><b></b></div>
+										</a>
+										<div class="chosen-drop">
+											<div class="chosen-search"><input autocomplete="off" type="text"></div>
+											<ul class="chosen-results"></ul>
+										</div>
+									</div>
+								</div>
+							</div>
+							<span class="help-block">Valid value is "Min", "min", or a number &gt;= 10GB</span>  
+						</div>
+						<div class="col-sm-3">
+							<span class="help-inline"></span>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="modal-footer ">
+					<button class="btn btn-primary">
+					<span class="glyphicon glyphicon-ok-sign "></span> Done
+					</button>
+					<button class="btn btn-default" data-dismiss="modal">
+					<span class="glyphicon glyphicon-trash "></span> Cancel
+					</button>
+				</div>
+			</form>
+		</script>
+
+		<!--div id="rpCopyDialog" class="modal fade">
+			<div class="modal-dialog ">
+				<div class="modal-content">
+					<div class="modal-header ">
+						<button type="button" class="close" data-dismiss="modal">×</button>
+						<h4 class="modal-title">RecoverPoint Copy</h4>
+					</div>
+					<form id="rpCopyForm" class="form form-horizontal" onsubmit="return false;">
+						<div class="modal-body ">
+							<div id="rpCopy_virtualArrayControlGroup" class="form-group  required">
+								<label class="control-label col-sm-3" for="rpCopy_virtualArray">Virtual Array:</label>
+								<div class="col-sm-6 controls">
+									<select style="display: none;" id="rpCopy_virtualArray" name="rpCopy.virtualArray" class="form-control span6" data-depends="vpool_virtualArrays,vpool_remoteProtection" data-update="/admin/blockvirtualpools/listrecoverpointvirtualarraysjson">
+										<option value=""> None</option>
+									</select>
+									<div id="rpCopy_virtualArray_chosen" title="" style="" class="chosen-container chosen-container-single chosen-container-single-nosearch form-control span6">
+										<a class="chosen-single" tabindex="-1">
+											<span>None</span>
+											<div><b></b></div>
+										</a>
+										<div class="chosen-drop">
+											<div class="chosen-search"><input readonly="" autocomplete="off" type="text"></div>
+											<ul class="chosen-results"></ul>
+										</div>
+									</div>
+									<span class="help-block">Select the target Virtual Array for this RecoverPoint copy.</span>  
+								</div>
+								<div class="col-sm-3">
+									<span class="help-inline"></span>
+								</div>
+							</div>
+							<div id="rpCopy_virtualPoolControlGroup" class="form-group  ">
+								<label class="control-label col-sm-3" for="rpCopy_virtualPool">Virtual Pool:</label>
+								<div class="col-sm-6 controls">
+									<select style="display: none;" id="rpCopy_virtualPool" name="rpCopy.virtualPool" class="form-control span6" data-depends="rpCopy_virtualArray" data-update="/admin/blockvirtualpools/listrecoverpointvirtualpoolsjson">
+										<option value=""> None</option>
+									</select>
+									<div id="rpCopy_virtualPool_chosen" title="" style="" class="chosen-container chosen-container-single chosen-container-single-nosearch form-control span6">
+										<a class="chosen-single" tabindex="-1">
+											<span>None</span>
+											<div><b></b></div>
+										</a>
+										<div class="chosen-drop">
+											<div class="chosen-search"><input readonly="" autocomplete="off" type="text"></div>
+											<ul class="chosen-results"></ul>
+										</div>
+									</div>
+									<span class="help-block">Optionally select a target Virtual Pool for this RecoverPoint copy (defaults to same Virtual Pool as the source volume)</span>  
+								</div>
+								<div class="col-sm-3">
+									<span class="help-inline"></span>
+								</div>
+							</div>
+							<div id="rpCopy_journalSizeControlGroup" class="form-group  ">
+								<label class="control-label col-sm-3" for="rpCopy_journalSize">Journal Size:</label>
+								<div class="col-sm-6 controls">
+									<div class="row col-gap-sm">
+										<div class="col-md-6"><input class="form-control span6" id="rpCopy_journalSize" name="rpCopy.journalSize" value="" autocomplete="off" style="vertical-align: top;" type="text"></div>
+										<div class="col-md-6">
+											<select style="display: none;" id="rpCopy_journalSizeUnit" name="rpCopy.journalSizeUnit" class="form-control span6">
+												<option value="Bytes">Bytes</option>
+												<option value="MB">MB</option>
+												<option value="GB">GB</option>
+												<option value="TB">TB</option>
+												<option value="x">Multiplier</option>
+											</select>
+											<div id="rpCopy_journalSizeUnit_chosen" title="" style="" class="chosen-container chosen-container-single form-control span6">
+												<a class="chosen-single" tabindex="-1">
+													<span>Bytes</span>
+													<div><b></b></div>
+												</a>
+												<div class="chosen-drop">
+													<div class="chosen-search"><input autocomplete="off" type="text"></div>
+													<ul class="chosen-results"></ul>
+												</div>
+											</div>
+										</div>
+									</div>
+									<span class="help-block">Valid value is "Min", "min", or a number &gt;= 10GB</span>  
+								</div>
+								<div class="col-sm-3">
+									<span class="help-inline"></span>
+								</div>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="modal-footer ">
+							<button class="btn btn-primary">
+							<span class="glyphicon glyphicon-ok-sign "></span> Done
+							</button>
+							<button class="btn btn-default" data-dismiss="modal">
+							<span class="glyphicon glyphicon-trash "></span> Cancel
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div-->
+		<div id="srdfCopyDialog" class="modal fade">
+			<div class="modal-dialog ">
+				<div class="modal-content">
+					<div class="modal-header ">
+						<button type="button" class="close" data-dismiss="modal">×</button>
+						<h4 class="modal-title">SRDF Copy</h4>
+					</div>
+					<form id="srdfCopyForm" class="form form-horizontal" onsubmit="return false;">
+						<div class="modal-body ">
+							<div id="srdfCopy_virtualArrayControlGroup" class="form-group  required">
+								<label class="control-label col-sm-3" for="srdfCopy_virtualArray">Virtual Array:</label>
+								<div class="col-sm-6 controls">
+									<select style="display: none;" id="srdfCopy_virtualArray" name="srdfCopy.virtualArray" class="form-control span4">
+									</select>
+									<div id="srdfCopy_virtualArray_chosen" title="" style="" class="chosen-container chosen-container-single chosen-container-single-nosearch form-control span4">
+										<a class="chosen-single chosen-default" tabindex="-1">
+											<span>Select an Option</span>
+											<div><b></b></div>
+										</a>
+										<div class="chosen-drop">
+											<div class="chosen-search"><input readonly="" autocomplete="off" type="text"></div>
+											<ul class="chosen-results"></ul>
+										</div>
+									</div>
+									<span class="help-block">Select the target Virtual Array for this SRDF copy.</span>  
+								</div>
+								<div class="col-sm-3">
+									<span class="help-inline"></span>
+								</div>
+							</div>
+							<div id="srdfCopy_virtualPoolControlGroup" class="form-group  ">
+								<label class="control-label col-sm-3" for="srdfCopy_virtualPool">Virtual Pool:</label>
+								<div class="col-sm-6 controls">
+									<select style="display: none;" id="srdfCopy_virtualPool" name="srdfCopy.virtualPool" class="form-control span4">
+									</select>
+									<div id="srdfCopy_virtualPool_chosen" title="" style="" class="chosen-container chosen-container-single chosen-container-single-nosearch form-control span4">
+										<a class="chosen-single chosen-default" tabindex="-1">
+											<span>Select an Option</span>
+											<div><b></b></div>
+										</a>
+										<div class="chosen-drop">
+											<div class="chosen-search"><input readonly="" autocomplete="off" type="text"></div>
+											<ul class="chosen-results"></ul>
+										</div>
+									</div>
+									<span class="help-block">Optionally select a target Virtual Pool for this SRDF copy (defaults to same Virtual Pool as the source volume)</span>  
+								</div>
+								<div class="col-sm-3">
+									<span class="help-inline"></span>
+								</div>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="modal-footer ">
+							<button class="btn btn-primary">
+							<span class="glyphicon glyphicon-ok-sign "></span> Done
+							</button>
+							<button class="btn btn-default" data-dismiss="modal">
+							<span class="glyphicon glyphicon-trash "></span> Cancel
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,153 @@
+﻿<div class="mainContent">
+    <div class="container">
+        <div class="clear"></div>
+        <p id="alerts_success" class="alert alert-success" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">�</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_error" class="alert alert-danger" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">�</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_warning" class="alert alert-warning" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">�</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_info" class="alert alert-info" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">�</button>
+            <span class="message"></span>
+        </p>
+        <div class="form-header">
+            <div class="image" style="display:none">
+            </div>
+            <div class="title">
+                <h2>
+                    Settings</h2>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div class="alert alert-info">
+            <span class="glyphicon glyphicon-info-sign "></span>Certificates will be used to communicate with authentication providers, and within the ViPR environment.
+        </div>
+        <form action="/admin/certificates/savesettings" method="post" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" id="saveSettings" class="form form-horizontal">
+            <input type="hidden" name="authenticityToken" value="b1ad100e76ccea28cfba2fdd3a1c82f47da1f052">
+            <div id="certificateSettings_acceptAllCertificatesControlGroup" class="form-group  ">
+                <label class="control-label col-sm-3" for="certificateSettings_acceptAllCertificates">Accept All Certificates:</label>
+                <div class="col-sm-6 controls">
+                    
+                    <select id="certificateSettings_acceptAllCertificates" name="certificateSettings.acceptAllCertificates" class="form-control span6" style="display: none;">
+                        <option value="true" selected="selected">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                    <div class="chosen-container chosen-container-single chosen-container-single-nosearch form-control span6" style="" title="" id="certificateSettings_acceptAllCertificates_chosen">
+                        <a class="chosen-single" tabindex="-1">
+                            <span>Yes</span>
+                            <div><b></b>
+                            </div>
+                        </a>
+                        <div class="chosen-drop">
+                            <div class="chosen-search">
+                                <input type="text" autocomplete="off" readonly="">
+                            </div>
+                            <ul class="chosen-results"></ul>
+                        </div>
+                    </div>
+                    <span class="help-block">If set to 'Yes', no certificate verification will be performed within the ViPR environment.</span>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group button-bar">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <button type="submit" class="btn btn-primary" disabled="disabled">
+                        <span class="glyphicon glyphicon-ok-sign "></span>Save</button>
+                    <span class="rebootRequiredMessage text-danger" style="display: none;">ViPR Nodes will be rebooted automatically after save.</span>
+                </div>
+            </div>
+        </form>
+        <div class="form-header">
+            <div class="image" style="display:none">
+            </div>
+            <div class="title">
+                <h2>
+                    Trusted Certificates</h2>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div id="changes">
+            <div id="certificates" class="dataTableContainer">
+                <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                    <div class="dataTables_filter" id="DataTables_Table_0_filter">
+                        <label>
+                            <input type="text" aria-controls="DataTables_Table_0" class="form-control input-sm search-query" placeholder="Search...">
+                        </label>
+                    </div>
+                    <table class="table table-hover table-condensed table-styled dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
+                        <thead>
+                            <tr role="row">
+                                <th class="selection sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="">
+                                    <div class="th-wrapper">
+                                        <input type="checkbox" name="selectAll">
+                                    </div>
+                                </th>
+                                <th class="expandable sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="">
+                                    <div class="th-wrapper"></div>
+                                </th>
+                                <th class="commonName sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="Common Name">
+                                    <div class="th-wrapper">Common Name</div>
+                                </th>
+                                <th class="organization sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="Organization">
+                                    <div class="th-wrapper">Organization</div>
+                                </th>
+                                <th class="issuedBy sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="Issued By">
+                                    <div class="th-wrapper">Issued By</div>
+                                </th>
+                                <th class="notBefore sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="From">
+                                    <div class="th-wrapper">From</div>
+                                </th>
+                                <th class="notAfter sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="Until">
+                                    <div class="th-wrapper">Until</div>
+                                </th>
+                                <th class="certificateValid sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="Valid">
+                                    <div class="th-wrapper">Valid</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody role="alert" aria-live="polite" aria-relevant="all">
+                            <tr class="odd">
+                                <td valign="top" colspan="8" class="dataTables_empty">No results</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="dataTables_footer">
+                        <div class="dataTables_paginate paging_bootstrapFirstLast pagination">
+                            <ul class="pagination pagination-sm">
+                                <li class="prev disabled"><a href="">First</a>
+                                </li>
+                                <li class="prev disabled"><a href="">←</a>
+                                </li>
+                                <li class="next disabled"><a href="">→</a>
+                                </li>
+                                <li class="next disabled"><a href="">Last</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="DataTables_Table_0_processing" class="dataTables_processing" style="visibility: hidden;">
+                            <span class="glyphicon glyphicon-refresh rotate "></span>Loading...</div>
+                        <div class="dataTables_info" id="DataTables_Table_0_info">Showing 0 to 0 of 0 entries</div>
+                        <div class="dataTables_processingError" style="display: none;"></div>
+                    </div>
+                </div>
+                <div class="button-bar">
+                    <button type="button" class="btn btn-success " name="button.add">
+                        <span class="glyphicon glyphicon-plus "></span>&nbsp;Add</button>
+                    <button type="button" class="btn btn-danger " name="button.delete" data-enabled="selected" data-form="deleteForm" disabled="">
+                        <span class="glyphicon glyphicon-trash "></span>&nbsp;Delete</button>&nbsp;
+                    <span class="rebootRequiredMessage text-danger" style="display: none;">ViPR Nodes will be rebooted automatically after delete.</span>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>

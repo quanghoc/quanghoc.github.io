@@ -1,0 +1,200 @@
+<div class="mainContent">
+    <ul class="breadcrumb">
+        <li>
+            <a href="/admin/hosts/list">Hosts</a> 
+            <span class="divider"></span>
+        </li>
+        <li class="active">
+            Add Host
+        </li>
+    </ul>
+    <div class="container">
+        <div class="form-header">
+            <div class="image">
+                <img src="/public/img/assets/Host.png">
+            </div>
+            <div class="description">
+                <h2>
+                    Add Host</h2>
+                <p>Enter the information needed to connect to a host.</p>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div class="clear"></div>
+        <p id="alerts_success" class="alert alert-success" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">?</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_error" class="alert alert-danger" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">?</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_warning" class="alert alert-warning" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">?</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_info" class="alert alert-info" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">?</button>
+            <span class="message"></span>
+        </p>
+        <form action="/admin/hosts/save" method="post" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" id="hostForm" class="form-horizontal" autocomplete="off">
+            <input type="hidden" name="authenticityToken" value="b1ad100e76ccea28cfba2fdd3a1c82f47da1f052">
+            <input type="hidden" name="host.tenantId" value="urn:storageos:TenantOrg:992a41c6-597f-4b0f-8d66-206c11665c13:global">
+            <div data-help-trigger="#host_type" data-help-text="" data-help-text-other="This type is used for all other operating system types. This type cannot be discovered automatically.">
+                <div id="host_typeControlGroup" class="form-group  required">
+                    <label class="control-label col-sm-3" for="host_type">Operating System:</label>
+                    <div class="col-sm-6 controls">
+                        <select id="host_type" name="host.type" class="form-control span6 initialFocus" style="display: none;">
+                            <option value="Windows">Windows</option>
+                            <option value="Linux">Linux</option>
+                            <option value="HPUX">HPUX</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <div class="chosen-container chosen-container-single chosen-container-single-nosearch form-control span6 initialFocus" style="" title="" id="host_type_chosen">
+                            <a class="chosen-single" tabindex="-1">
+                                <span>Windows</span>
+                                <div><b></b>
+                                </div>
+                            </a>
+                            <div class="chosen-drop">
+                                <div class="chosen-search">
+                                    <input type="text" autocomplete="off" readonly="">
+                                </div>
+                                <ul class="chosen-results"></ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+            </div>
+            <div id="host_nameControlGroup" class="form-group  required">
+                <label class="control-label col-sm-3" for="host_name">Name:</label>
+                <div class="col-sm-6 controls">
+                    <input type="text" class="form-control span6 " id="host_name" name="host.name" value="" autocomplete="off">
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div data-help-trigger="#host_type" data-help-text="Enter the fully qualified domain name or IP address of the host." data-help-text-windows="When using domain credentials, this must be the hostname (not IP address) and resolvable through DNS">
+                <div id="host_hostnameControlGroup" class="form-group  required">
+                    <label class="control-label col-sm-3" for="host_hostname">Host:</label>
+                    <div class="col-sm-6 controls">
+                        <input type="text" class="form-control span6" id="host_hostname" name="host.hostname" value="" autocomplete="off">
+                        <span class="help-block">When using domain credentials, this must be the hostname (not IP address) and resolvable through DNS</span>
+                    </div>
+                    <div class="col-sm-3">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="osType Windows">
+                <div id="host_useHttpsControlGroup" class="form-group  ">
+                    <label class="control-label col-sm-3" for="host_useHttps">Protocol:</label>
+                    <div class="col-sm-6 controls">
+                        <select id="host_useHttps" name="host.useHttps" class="form-control span2" style="display: none;">
+                            <option value="false">http</option>
+                            <option value="true" selected="selected">https</option>
+                        </select>
+                        <div class="chosen-container chosen-container-single chosen-container-single-nosearch form-control span2" style="" title="" id="host_useHttps_chosen">
+                            <a class="chosen-single" tabindex="-1">
+                                <span>https</span>
+                                <div><b></b>
+                                </div>
+                            </a>
+                            <div class="chosen-drop">
+                                <div class="chosen-search">
+                                    <input type="text" autocomplete="off" readonly="">
+                                </div>
+                                <ul class="chosen-results"></ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="osType Linux hide">
+                <div id="host_port_linuxControlGroup" class="form-group  required">
+                    <label class="control-label col-sm-3" for="host_port_linux">Port:</label>
+                    <div class="col-sm-6 controls">
+                        <input type="text" class="form-control span2 disabled" id="host_port_linux" name="host.port" value="22" autocomplete="off" disabled="">
+                        <span class="help-block">SSH Connection Port. Default: 22</span>
+                    </div>
+                    <div class="col-sm-3">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="osType Windows">
+                <div id="host_port_windowsControlGroup" class="form-group  required">
+                    <label class="control-label col-sm-3" for="host_port_windows">Port:</label>
+                    <div class="col-sm-6 controls">
+                        <input type="text" class="form-control span2" id="host_port_windows" name="host.port" value="5986" autocomplete="off">
+                        <span class="help-block">Windows Remote Management Port (WinRM). Default: 5985 (http) or 5986 (https)</span>
+                    </div>
+                    <div class="col-sm-3">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="osType Windows Linux">
+                <div id="host_discoverableControlGroup" class="form-group  required">
+                    <label class="control-label col-sm-3" for="host_discoverable">Discoverable:</label>
+                    <div class="col-sm-6 controls">
+                        <div class="checkbox">
+                            <input type="checkbox" class="span0" id="host_discoverable" name="host.discoverable" value="true" checked="checked">
+                        </div>
+                        <span class="help-block">Automatically discover information from the host about IP Interfaces and Initiators</span>
+                    </div>
+                    <div class="col-sm-3">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+                <div id="host_usernameControlGroup" class="form-group  required">
+                    <label class="control-label col-sm-3" for="host_username">Username:</label>
+                    <div class="col-sm-6 controls">
+                        <input type="text" class="form-control span6" id="host_username" name="host.username" value="" autocomplete="off">
+                    </div>
+                    <div class="col-sm-3">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+                <div id="host_passwordControlGroup" class="form-group  required">
+                    <label class="control-label col-sm-3" for="host_password">Password:</label>
+                    <div class="col-sm-6 controls">
+                        <input type="password" class="form-control span6" id="host_password" name="host.password" value="" autocomplete="off">
+                    </div>
+                    <div class="col-sm-3">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+                <div id="host_passwordConfirmControlGroup" class="form-group  required">
+                    <label class="control-label col-sm-3" for="host_passwordConfirm">Confirm Password:</label>
+                    <div class="col-sm-6 controls">
+                        <input type="password" class="form-control span6" id="host_passwordConfirm" name="host.passwordConfirm" value="" autocomplete="off">
+                    </div>
+                    <div class="col-sm-3">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group button-bar">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <button type="submit" class="btn btn-primary btn-large " name="button.save">
+                        <span class="glyphicon glyphicon-ok-sign "></span>Save</button>
+                    <button type="button" class="btn btn-default btn-large " name="button.cancel">
+                        <span class="glyphicon glyphicon-trash "></span>Cancel</button>
+                    <span class="extraButtons">
+                        <label id="validateConnectionLabel" class="checkbox inline" style="margin-left: 10px;">
+                            <input name="validateConnection" type="checkbox" value="true" checked="checked">Validate Connection on Save
+                        </label>
+                    </span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

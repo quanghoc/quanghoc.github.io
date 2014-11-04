@@ -1,0 +1,188 @@
+<div class="mainContent">
+<ul class="breadcrumb">  <li>
+    <a ui-sref="VirtualCASClusters">CAS Clusters</a>
+    <span class="divider"></span></li>  <li>
+    <a ui-sref="EditCASProfile">cas1</a>
+    <span class="divider"></span></li>  <li>
+    <a ui-sref="EditCASPool">CAS Pools</a>
+    <span class="divider"></span></li>  <li class="active">
+    Edit CAS Pool
+</li></ul>
+<div class="container">
+<div class="form-header">
+    <div class="image">
+        <img src="/img/assets/Host.png">  </div>
+
+    <div class="description">
+        <h2>
+            Edit CAS Pool      </h2>
+        <p>Edit an existing CAS pool</p>    </div>
+    <div style="clear:both"></div>
+</div>
+<div class="clear"></div>
+<p id="alerts_success" class="alert alert-success" style="display:none">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <span class="message"></span>
+</p>
+<p id="alerts_error" class="alert alert-danger" style="display:none">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <span class="message"></span>
+</p>
+<p id="alerts_warning" class="alert alert-warning" style="display:none">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <span class="message"></span>
+</p>
+<p id="alerts_info" class="alert alert-info" style="display:none">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <span class="message"></span>
+</p>
+
+<form action="/caspools/save" method="post" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" class="form form-horizontal" autocomplete="off"><input type="hidden" name="authenticityToken" value="3ce2076449de4d06c8d804b8f83b2a5fe9047d6c">
+<input type="hidden" name="casPool.id" value="pool1">            <input type="hidden" name="casPool.clusterId" value="ns">
+
+<div id="casPool_clusterNameControlGroup" class="form-group  ">
+    <label class="control-label col-sm-3" for="casPool_clusterName">CAS Cluster:</label>
+    <div class="col-sm-6 controls">
+        <p class="form-control-static ">cas1</p>
+        <input type="hidden" id="casPool_clusterName" name="casPool.clusterName" value="cas1">        </div>
+    <div class="col-sm-3">
+        <span class="help-inline"></span>
+    </div>
+</div>
+<div id="casPool_nameControlGroup" class="form-group  ">
+    <label class="control-label col-sm-3" for="casPool_name">Name:</label>
+    <div class="col-sm-6 controls">
+        <p class="form-control-static ">pool1</p>
+        <input type="hidden" id="casPool_name" name="casPool.name" value="pool1">        </div>
+    <div class="col-sm-3">
+        <span class="help-inline"></span>
+    </div>
+</div>
+<div id="casPool_maskControlGroup" class="form-group  required">
+    <label class="control-label col-sm-3" for="casPool_mask">Pool Mask:</label>
+    <div class="col-sm-6 controls">
+
+        <div class="selectMany span6 ">
+            <div class="selectManySearch row col-gap-sm" style="display: none;">
+                <div class="col-sm-8">
+                    <input id="casPool_maskSearch" type="text" class="form-control input-sm" autocomplete="off">
+                </div>
+    <span class="btn-group selectManyButtons col-sm-4">
+      <button id="casPool_maskCheck" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-check "></span> All</button>
+      <button id="casPool_maskUncheck" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-remove-circle "></span> None</button>
+    </span>
+            </div>
+            <div id="casPool_mask" name="casPool.mask" class="selectManyContent">
+                <div class="checkbox">
+                    <label for="casPool_maskread">
+                        <input id="casPool_maskread" name="casPool.mask" type="checkbox" checked="checked" value="read">
+                        read
+
+                    </label>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="checkbox">
+                    <label for="casPool_maskwrite">
+                        <input id="casPool_maskwrite" name="casPool.mask" type="checkbox" checked="checked" value="write">
+                        write
+
+                    </label>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="checkbox">
+                    <label for="casPool_maskdelete">
+                        <input id="casPool_maskdelete" name="casPool.mask" type="checkbox" checked="checked" value="delete">
+                        delete
+
+                    </label>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="checkbox">
+                    <label for="casPool_maskprivileged_delete">
+                        <input id="casPool_maskprivileged_delete" name="casPool.mask" type="checkbox" checked="checked" value="privileged-delete">
+                        privileged-delete
+
+                    </label>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="checkbox">
+                    <label for="casPool_maskexist">
+                        <input id="casPool_maskexist" name="casPool.mask" type="checkbox" checked="checked" value="exist">
+                        exist
+
+                    </label>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="checkbox">
+                    <label for="casPool_maskclip_enumeration">
+                        <input id="casPool_maskclip_enumeration" name="casPool.mask" type="checkbox" checked="checked" value="clip-enumeration">
+                        clip-enumeration
+
+                    </label>
+                </div>
+                <div class="clearfix"></div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <span class="help-inline"></span>
+    </div>
+</div>
+<div id="casPool_retentionEnabledControlGroup" class="form-group  ">
+    <label class="control-label col-sm-3" for="casPool_retentionEnabled">Enable Pool Retention:</label>
+    <div class="col-sm-6 controls">
+        <div class="checkbox">
+            <input type="checkbox" class="span0" id="casPool_retentionEnabled" name="casPool.retentionEnabled" value="true"><input type="hidden" id="casPool_retentionEnabledFalse" name="casPool.retentionEnabled" value="false">
+        </div>  </div>
+    <div class="col-sm-3">
+        <span class="help-inline"></span>
+    </div>
+</div>    <div data-source="#casPool_retentionEnabled" data-show="true" style="display: none;">
+    <div class="alert alert-warning">
+        <span class="glyphicon glyphicon-warning-sign "></span> Do not enable CAS pool retention if retention is set on the application or if the application default retention is set to 0 (no retention period).  Improper CAS pool retention settings can cause file loss and/or application errors.
+    </div>
+    <div id="casPool_retentionPeriodControlGroup" class="form-group  required">
+        <label class="control-label col-sm-3" for="casPool_retentionPeriod">Retention Period:</label>
+        <div class="col-sm-6 controls">
+            <div class="row col-gap-sm">
+                <div class="col-sm-3"><input type="text" class="form-control span6" id="casPool_retentionPeriod" name="casPool.retentionPeriod" value="" autocomplete="off"></div>
+                <div class="col-sm-9">
+                    <select id="casPool_retentionPeriodUnits" name="casPool.retentionPeriodUnits" class="form-control span6" style="display: none;">
+
+                        <option value="seconds">seconds</option>
+                        <option value="minutes">minutes</option>
+                        <option value="hours">hours</option>
+                        <option value="days">days</option>
+                        <option value="weeks">weeks</option>
+                        <option value="months">months</option>
+                        <option value="years">years</option>
+
+                    </select><div class="chosen-container chosen-container-single form-control span6" style="" title="" id="casPool_retentionPeriodUnits_chosen"><a class="chosen-single" tabindex="-1"><span>seconds</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off"></div><ul class="chosen-results"></ul></div></div></div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <span class="help-inline"></span>
+        </div>
+    </div>    </div>
+<div class="form-group button-bar">
+    <div class="col-sm-offset-3 col-sm-9">
+        <button type="submit" class="btn btn-primary btn-large " name="button.save" disabled>
+            <span class="glyphicon glyphicon-ok-sign "></span>  Save
+        </button>
+        <a type="button" class="btn btn-default btn-large " name="button.cancel" ui-sref="VirtualCASClusters">
+            <span class="glyphicon glyphicon-trash "></span>  Cancel
+        </a>
+        <span class="extraButtons">
+      </span>
+    </div>
+</div>
+</form>
+</div>
+
+</div>

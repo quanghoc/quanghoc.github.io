@@ -1,0 +1,119 @@
+<div class="mainContent" ng-controller="EditVDCCtrl">
+
+	<ul class="breadcrumb">
+		<li>
+			<a href="/admin/vdcs/list">Virtual Data Centers</a>
+			<span class="divider"></span>
+		</li>
+		<li class="active">
+			Edit Virtual Data Center
+		</li>
+	</ul>
+	<div class="container">
+		<div class="form-header">
+			<div class="image">
+				<img src="/img/assets/VDC.png">
+			</div>
+
+			<div class="description">
+				<h2> Edit Virtual Data Center </h2>
+				<p>
+					Enter the information needed to connect to a virtual data center.
+				</p>
+			</div>
+			<div style="clear:both"></div>
+		</div>
+		<div class="clear"></div>
+		<p id="alerts_success" class="alert alert-success" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+				×
+			</button>
+			<span class="message"></span>
+		</p>
+		<p id="alerts_error" class="alert alert-danger" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+				×
+			</button>
+			<span class="message"></span>
+		</p>
+		<p id="alerts_warning" class="alert alert-warning" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+				×
+			</button>
+			<span class="message"></span>
+		</p>
+		<p id="alerts_info" class="alert alert-info" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+				×
+			</button>
+			<span class="message"></span>
+		</p>
+
+		<form action="" method="post" accept-charset="utf-8" enctype="multipart/form-data" id="vdcForm" class="form form-horizontal" autocomplete="off">
+			<fieldset>
+
+				<div id="vdc_nameControlGroup" class="form-group  required">
+					<label class="control-label col-sm-3" for="vdc_name">Name:</label>
+					<div class="col-sm-6 controls">
+						<input type="text" class="form-control span6 initialFocus" id="vdc_name" name="vdc.name" autocomplete="off" ng-model="vdc.name">
+					</div>
+					<div class="col-sm-3">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+				<div id="vdc_descriptionControlGroup" class="form-group  required">
+					<label class="control-label col-sm-3" for="vdc_description">Description:</label>
+					<div class="col-sm-6 controls">
+						<textarea class="form-control col-md-6" id="vdc_description" name="vdc.description" rows="3" autocomplete="off" ng-model="vdc.description"></textarea>
+					</div>
+					<div class="col-sm-3">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+				<div class="panel-group">
+					<div class="panel panel-default panel-collapse">
+						<div class="panel-heading in" data-toggle="collapse" data-target="#vdc_dataservices">
+							<h4 class="panel-title"><span class="glyphicon glyphicon-chevron-right indicator indicator-collapsed"></span><span class="glyphicon glyphicon-chevron-down indicator indicator-expanded"></span><span class="vipricon vipricon-vdc "></span> Data Services </h4>
+						</div>
+						<div id="vdc_dataservices" class="panel-collapse collapse in" style="height: auto;">
+							<div class="panel-body">
+								<div id="vdc_geoCmdEndpointControlGroup" class="form-group  ">
+									<label class="control-label col-sm-3" for="vdc_geoCmdEndpoint">Inter-VDC Command Endpoint(s):</label>
+									<div class="col-sm-6 controls">
+										<input type="text" class="form-control span6" id="vdc_geoCmdEndpoint" name="vdc.geoCmdEndpoint" value="10.12.19.125,10.12.19.126,10.12.19.127,10.12.19.128" autocomplete="off">
+										<span class="help-block">example: 10.1.1.1, 10.1.1.2, 10.1.1.3</span>
+									</div>
+									<div class="col-sm-3">
+										<span class="help-inline"></span>
+									</div>
+								</div>
+								<div id="vdc_geoDataEndpointControlGroup" class="form-group  ">
+									<label class="control-label col-sm-3" for="vdc_geoDataEndpoint">Inter-VDC Data Endpoint(s):</label>
+									<div class="col-sm-6 controls">
+										<input type="text" class="form-control span6" id="vdc_geoDataEndpoint" name="vdc.geoDataEndpoint" value="10.12.19.125,10.12.19.126,10.12.19.127,10.12.19.128" autocomplete="off">
+										<span class="help-block">example: 10.1.1.1, 10.1.1.2, 10.1.1.3</span>
+									</div>
+									<div class="col-sm-3">
+										<span class="help-inline"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+
+			<div class="form-group button-bar">
+				<div class="col-sm-offset-3 col-sm-9">
+					<button type="submit" class="btn btn-primary btn-large " name="button.save" disabled="disabled">
+						<span class="glyphicon glyphicon-ok-sign "></span> Save
+					</button>
+					<button type="button" class="btn btn-default btn-large " name="button.cancel" ng-click="cancel()">
+						<span class="glyphicon glyphicon-trash "></span> Cancel
+					</button>
+					<span class="extraButtons"> </span>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

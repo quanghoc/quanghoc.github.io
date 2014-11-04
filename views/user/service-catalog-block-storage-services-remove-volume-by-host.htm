@@ -1,0 +1,143 @@
+<div class="mainContent" ng-controller="GenericOrderFormCtrl" ng-init="data.orderTypeId = 1">
+	<ul class="breadcrumb breadcrumb-navbar">
+		<li><a href="" ui-sref="catalog">Service Catalog</a>
+			<span class="divider"></span>
+		</li>
+		<li><a href="" ui-sref="BlockStorageServices">Block Storage Services</a>
+			<span class="divider"></span>
+		</li>
+		<li class="active">Remove Volume by Host</li>
+	</ul>
+	
+	<div class="container" ng-controller="BlockCtrl">
+		<div class="form-header">
+			<div class="image">
+				<img class="" src="/img/serviceCatalog/icon_array_host_remove.png">
+			</div>
+			<div class="description">
+				<h2>Remove Volume by Host</h2>
+				<p>Removes an unmounted block volume assigned to a host and all of its exports. The volume will no longer be available from any host.</p>
+			</div>
+			<div style="clear:both"></div>
+		</div>
+
+		<div class="clear"></div>
+
+		<div class="clear"></div>
+		<p id="alerts_success" class="alert alert-success" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<span class="message"></span>
+		</p>
+		<p id="alerts_error" class="alert alert-danger" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<span class="message"></span>
+		</p>
+		<p id="alerts_warning" class="alert alert-warning" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<span class="message"></span>
+		</p>
+		<p id="alerts_info" class="alert alert-info" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<span class="message"></span>
+		</p>
+
+
+		<!-- asset error -->
+		<div id="assetError" class="alert alert-danger" style="display:none;">
+			<button type="button" class="close">×</button>
+			<div id="assetErrorMessage" style="white-space: pre-line;"></div>
+		</div>
+
+		<form id="serviceForm" class="form-horizontal" ng-submit="submit()">
+			<div id="hostControlGroup" class="form-group  required">
+				<label class="control-label col-sm-3" set-model="data.details[0].name">Host:</label>
+				<div class="col-sm-6 controls">
+					<select id="host" name="host" 
+						chosen="{inherit_select_classes:true}"
+						disable-search="true"
+						class="form-control span6"
+						ng-options="host.name as host.name for host in hosts"
+						ng-model="data.details[0].value">
+						<option value=""></option>
+					</select>
+				</div>
+				<div class="col-sm-3">
+					<span class="help-inline"></span>
+					<span class="loading hide">
+						<span class="glyphicon glyphicon-refresh rotate "></span>
+					</span>
+				</div>
+			</div>
+
+			<div id="volumesControlGroup" class="form-group  required">
+				<label class="control-label col-sm-3" for="volumes" set-model="data.details[1].name">Volumes:</label>
+				<div class="col-sm-6 controls">
+					<div class="selectMany span6 ">
+						<div class="selectManySearch row col-gap-sm" style="display: none;">
+							<div class="col-sm-8">
+								<input id="volumesSearch" type="text" class="form-control input-sm" autocomplete="off">
+							</div>
+							<span class="btn-group selectManyButtons col-sm-4">
+								<button id="volumesCheck" type="button" class="btn btn-default btn-sm" >
+									<span class="glyphicon glyphicon-check "></span>All</button>
+								<button id="volumesUncheck" type="button" class="btn btn-default btn-sm">
+									<span class="glyphicon glyphicon-remove-circle "></span>None</button>
+							</span>
+						</div>
+						<div id="volumes" name="volumes" class="selectManyContent">
+							<div class="checkbox" ng-repeat='item in getVolumes({"host": data.details[0].value})'>
+								<label>
+									<input name="volumes" type="checkbox" value="{{ item.id }}" ng-model="data.details[1].value[item.name]">{{ item.name }} [{{ item.size }} GB]
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<span class="help-inline"></span>
+					<span class="loading hide">
+						<span class="glyphicon glyphicon-refresh rotate "></span>
+					</span>
+				</div>
+			</div>
+
+			<div id="deletionTypeControlGroup" class="form-group  required">
+				<label class="control-label col-sm-3" set-model="data.details[2].name">Deletion Type:</label>
+				<div class="col-sm-6 controls">
+					<select id="deletionType" name="deletionType" 
+						chosen="{inherit_select_classes:true}"
+						disable-search="true"
+						class="form-control span6" 
+						ng-model="data.details[2].value">
+						<option value="Full" selected="selected">Full</option>
+						<option value="Inventory Only">Inventory Only</option>
+					</select>
+				</div>
+				<div class="col-sm-3">
+					<span class="help-inline"></span>
+					<span class="loading hide">
+						<span class="glyphicon glyphicon-refresh rotate "></span>
+					</span>
+				</div>
+			</div>
+
+			<div class="alert alert-warning">
+				<span class="label label-warning">
+					<span class="glyphicon glyphicon-exclamation-sign "></span>
+				</span>
+				This service performs an operation that can result in data loss.
+			</div>
+
+			<div class="form-group button-bar">
+				<div class="col-sm-offset-3 col-sm-9">
+					<button type="submit" class="btn btn-primary btn-large " name="service.order">
+						<span class="glyphicon glyphicon-shopping-cart "></span> Order</button>
+					<button type="button" class="btn btn-default btn-large " name="button.cancel" ng-click="cancel()">
+						<span class="glyphicon glyphicon-trash "></span> Cancel</button>
+				</div>
+			</div>
+		</form>
+
+	</div>
+
+</div>

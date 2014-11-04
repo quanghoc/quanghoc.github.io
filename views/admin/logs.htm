@@ -1,0 +1,844 @@
+<div class="mainContent">
+	<div class="">
+		<div class="page-header">
+			<h3>System Logs <small>All times are displayed in <span style="font-weight: bold;">local time</span>.</small></h3>
+		</div>
+		<div class="well well-sm" style="display: table;">
+			<div style="display: table-cell;vertical-align: top;">
+				<div id="filterText">
+					Showing logs
+					from the
+					<strong>authsvc</strong>, <strong>georeplayer</strong>, <strong>rm</strong>, <strong>apisvc</strong>, <strong>ssm</strong>, <strong>controllersvc</strong>, <strong>objcontrolsvc</strong>, <strong>syssvc</strong>, <strong>blobsvc</strong>, <strong>sasvc</strong>, <strong>geosvc</strong>, <strong>System Events</strong>, <strong>georeceiver</strong>, <strong>casheadsvc</strong>, <strong>geodbsvc</strong>, <strong>coordinatorsvc</strong>, <strong>fabricctrlsvc</strong>, <strong>dbsvc</strong>, <strong>cm</strong>, <strong>hdfssvc</strong>, <strong>vasasvc</strong>,                       and <strong>portalsvc</strong>
+					service(s),
+					with a <strong>ERROR</strong> level and above,
+					starting 
+					<strong>
+						2014-09-03 14:50
+					</strong>
+					.
+				</div>
+			</div>
+			<div style="display:table-cell;text-align: right;width: 360px; vertical-align: top;">
+				<button id="filterButton" type="button" class="btn btn-sm btn-primary">
+				<span class="glyphicon glyphicon-filter "></span> Filter
+				</button>
+				<button id="downloadButton" type="button" class="btn btn-sm btn-default">
+				<span class="glyphicon glyphicon-download "></span> Download
+				</button>
+				<div class="btn-group" data-toggle="buttons">
+					<label id="autoRefreshButton" class="btn btn-sm btn-default"> <span class="glyphicon glyphicon-repeat "></span>
+					<input type="radio" name="autoRefreshOptions">
+					Auto Refresh </label>
+					<label id="autoRefreshOffButton" class="btn btn-sm btn-default active">
+					<input type="radio" name="autoRefreshOptions">
+					Off </label>
+				</div>
+			</div>
+		</div>
+		<div id="systemLogs" class="dataTableContainer">
+			<div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline" role="grid">
+				<table class="table table-hover table-condensed table-styled dataTable editableRows" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
+					<thead>
+						<tr role="row">
+							<th class="expandable sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="">
+								<div class="th-wrapper"></div>
+							</th>
+							<th class="time sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Time: activate to sort column ascending">
+								<div class="th-wrapper">
+									Time
+								</div>
+							</th>
+							<th class="severity sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Level: activate to sort column ascending">
+								<div class="th-wrapper">
+									Level
+								</div>
+							</th>
+							<th class="message sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="Message">
+								<div class="th-wrapper">
+									Message
+								</div>
+							</th>
+							<th class="service sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Service: activate to sort column ascending">
+								<div class="th-wrapper">
+									Service
+								</div>
+							</th>
+						</tr>
+					</thead>
+					<tbody role="alert" aria-live="polite" aria-relevant="all">
+						<tr class="odd">
+							<td class="expandable"><span class="expand-indicator"></span></td>
+							<td class="time">2014-09-03 15:04:00.881</td>
+							<td class="severity">
+								<div class="text-center label label-danger">
+									ERROR
+								</div>
+							</td>
+							<td class="message">
+								<div class="log-message">
+									No CIMOM connection found for ip 192.168.55.224
+								</div>
+							</td>
+							<td class="service">controllersvc</td>
+						</tr>
+						<tr class="even">
+							<td class="expandable"><span class="expand-indicator"></span></td>
+							<td class="time">2014-09-03 15:04:00.880</td>
+							<td class="severity">
+								<div class="text-center label label-danger">
+									ERROR
+								</div>
+							</td>
+							<td class="message">
+								<div class="log-message">
+									No CIMOM Connection found for ipaddress due to
+									com.emc.storageos.cimadapter.connections.ConnectionManagerException: Error getting client certificate chain
+									at com.emc.storageos.cimadapter.connections.cim.CimListener.getClientCertificate(CimListener.java:481)
+									at com.emc.storageos.cimadapter.connections.ConnectionManager.addConnection(ConnectionManager.java:130)
+									at com.emc.storageos.volumecontroller.impl.smis.CIMConnectionFactory.getConnection(CIMConnectionFactory.java:136)
+									at com.emc.storageos.volumecontroller.impl.smis.CIMConnectionFactory.refreshVnXFileConnections(CIMConnectionFactory.java:201)
+									at com.emc.storageos.volumecontroller.impl.monitoring.VNXFileMonitoringImpl.handleVNXFileSubscription(VNXFileMonitoringImpl.java:157)
+									at com.emc.storageos.volumecontroller.impl.monitoring.VNXFileMonitoringImpl.scheduledMonitoring(VNXFileMonitoringImpl.java:101)
+									at com.emc.storageos.volumecontroller.impl.monitoring.MonitoringJobConsumer$1.run(MonitoringJobConsumer.java:96)
+									at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+									at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:304)
+									at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:178)
+									at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+									at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+									at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+									at java.lang.Thread.run(Thread.java:745)
+								</div>
+							</td>
+							<td class="service">controllersvc</td>
+						</tr>
+						<tr class="odd">
+							<td class="expandable"><span class="expand-indicator"></span></td>
+							<td class="time">2014-09-03 15:01:55.386</td>
+							<td class="severity">
+								<div class="text-center label label-danger">
+									ERROR
+								</div>
+							</td>
+							<td class="message">
+								<div class="log-message">
+									No CIMOM Connection found for ipaddress due to
+									com.emc.storageos.cimadapter.connections.ConnectionManagerException: Error getting client certificate chain
+									at com.emc.storageos.cimadapter.connections.cim.CimListener.getClientCertificate(CimListener.java:481)
+									at com.emc.storageos.cimadapter.connections.ConnectionManager.addConnection(ConnectionManager.java:130)
+									at com.emc.storageos.volumecontroller.impl.smis.CIMConnectionFactory.getConnection(CIMConnectionFactory.java:136)
+									at com.emc.storageos.volumecontroller.impl.smis.CIMConnectionFactory.refreshVnXFileConnections(CIMConnectionFactory.java:201)
+									at com.emc.storageos.volumecontroller.impl.monitoring.VNXFileMonitoringImpl.handleVNXFileSubscription(VNXFileMonitoringImpl.java:157)
+									at com.emc.storageos.volumecontroller.impl.monitoring.VNXFileMonitoringImpl.scheduledMonitoring(VNXFileMonitoringImpl.java:101)
+									at com.emc.storageos.volumecontroller.impl.monitoring.MonitoringJobConsumer$1.run(MonitoringJobConsumer.java:96)
+									at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+									at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:304)
+									at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:178)
+									at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+									at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+									at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+									at java.lang.Thread.run(Thread.java:745)
+								</div>
+							</td>
+							<td class="service">controllersvc</td>
+						</tr>
+						<tr class="even">
+							<td class="expandable"><span class="expand-indicator"></span></td>
+							<td class="time">2014-09-03 15:01:55.386</td>
+							<td class="severity">
+								<div class="text-center label label-danger">
+									ERROR
+								</div>
+							</td>
+							<td class="message">
+								<div class="log-message">
+									No CIMOM connection found for ip 192.168.55.224
+								</div>
+							</td>
+							<td class="service">controllersvc</td>
+						</tr>
+						<tr class="odd">
+							<td class="expandable"><span class="expand-indicator"></span></td>
+							<td class="time">2014-09-03 15:01:07.624</td>
+							<td class="severity">
+								<div class="text-center label label-danger">
+									ERROR
+								</div>
+							</td>
+							<td class="message">
+								<div class="log-message">
+									No CIMOM connection found for ip 192.168.55.224
+								</div>
+							</td>
+							<td class="service">controllersvc</td>
+						</tr>
+						<tr class="even">
+							<td class="expandable"><span class="expand-indicator"></span></td>
+							<td class="time">2014-09-03 15:01:07.623</td>
+							<td class="severity">
+								<div class="text-center label label-danger">
+									ERROR
+								</div>
+							</td>
+							<td class="message">
+								<div class="log-message">
+									No CIMOM Connection found for ipaddress due to
+									com.emc.storageos.cimadapter.connections.ConnectionManagerException: Error getting client certificate chain
+									at com.emc.storageos.cimadapter.connections.cim.CimListener.getClientCertificate(CimListener.java:481)
+									at com.emc.storageos.cimadapter.connections.ConnectionManager.addConnection(ConnectionManager.java:130)
+									at com.emc.storageos.volumecontroller.impl.smis.CIMConnectionFactory.getConnection(CIMConnectionFactory.java:136)
+									at com.emc.storageos.volumecontroller.impl.smis.CIMConnectionFactory.refreshVnXFileConnections(CIMConnectionFactory.java:201)
+									at com.emc.storageos.volumecontroller.impl.monitoring.VNXFileMonitoringImpl.handleVNXFileSubscription(VNXFileMonitoringImpl.java:157)
+									at com.emc.storageos.volumecontroller.impl.monitoring.VNXFileMonitoringImpl.scheduledMonitoring(VNXFileMonitoringImpl.java:101)
+									at com.emc.storageos.volumecontroller.impl.monitoring.MonitoringJobConsumer$1.run(MonitoringJobConsumer.java:96)
+									at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+									at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:304)
+									at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:178)
+									at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+									at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+									at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+									at java.lang.Thread.run(Thread.java:745)
+								</div>
+							</td>
+							<td class="service">controllersvc</td>
+						</tr>
+						<tr class="odd">
+							<td class="expandable"><span class="expand-indicator"></span></td>
+							<td class="time">2014-09-03 14:59:00.932</td>
+							<td class="severity">
+								<div class="text-center label label-danger">
+									ERROR
+								</div>
+							</td>
+							<td class="message">
+								<div class="log-message">
+									Invalid connection found for ipAddress: 192.168.55.224
+								</div>
+							</td>
+							<td class="service">controllersvc</td>
+						</tr>
+						<tr class="even">
+							<td class="expandable"><span class="expand-indicator"></span></td>
+							<td class="time">2014-09-03 14:58:41.754</td>
+							<td class="severity">
+								<div class="text-center label label-danger">
+									ERROR
+								</div>
+							</td>
+							<td class="message">
+								<div class="log-message">
+									Scan failed for urn:storageos:StorageProvider:e8dfd749-7400-404c-bea8-743a6c869283:vdc1---&gt;
+									com.emc.storageos.plugins.metering.vplex.VPlexCollectionException: Scan failed for VPLEX management server:192.168.96.208 because Failed to connect to VPLEX https://192.168.96.208:443/. Please verify the IP address and port provided..
+									at com.emc.storageos.volumecontroller.impl.plugins.VPlexCommunicationInterface.scan(VPlexCommunicationInterface.java:166)
+									at com.emc.storageos.volumecontroller.impl.plugins.discovery.smis.DataCollectionJobInvoker.invoke(DataCollectionJobInvoker.java:137)
+									at com.emc.storageos.volumecontroller.impl.plugins.discovery.smis.DataCollectionJobInvoker.process(DataCollectionJobInvoker.java:93)
+									at com.emc.storageos.volumecontroller.impl.plugins.discovery.smis.DataCollectionJobConsumer.performScan(DataCollectionJobConsumer.java:351)
+									at com.emc.storageos.volumecontroller.impl.plugins.discovery.smis.DataCollectionJobConsumer.triggerScanning(DataCollectionJobConsumer.java:288)
+									at com.emc.storageos.volumecontroller.impl.plugins.discovery.smis.DataCollectionJobConsumer.consumeItem(DataCollectionJobConsumer.java:88)
+									at com.emc.storageos.volumecontroller.impl.plugins.discovery.smis.DataCollectionJobConsumer.consumeItem(DataCollectionJobConsumer.java:57)
+									at com.emc.storageos.coordinator.client.service.impl.DistributedQueueConsumer$1.run(DistributedQueueConsumer.java:83)
+									at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+									at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+									at java.lang.Thread.run(Thread.java:745)
+								</div>
+							</td>
+							<td class="service">controllersvc</td>
+						</tr>
+						<tr class="odd">
+							<td class="expandable"><span class="expand-indicator"></span></td>
+							<td class="time">2014-09-03 14:56:55.429</td>
+							<td class="severity">
+								<div class="text-center label label-danger">
+									ERROR
+								</div>
+							</td>
+							<td class="message">
+								<div class="log-message">
+									Invalid connection found for ipAddress: 192.168.55.224
+								</div>
+							</td>
+							<td class="service">controllersvc</td>
+						</tr>
+						<tr class="even">
+							<td class="expandable"><span class="expand-indicator"></span></td>
+							<td class="time">2014-09-03 14:56:06.889</td>
+							<td class="severity">
+								<div class="text-center label label-danger">
+									ERROR
+								</div>
+							</td>
+							<td class="message">
+								<div class="log-message">
+									Invalid connection found for ipAddress: 192.168.55.224
+								</div>
+							</td>
+							<td class="service">controllersvc</td>
+						</tr>
+						<tr class="odd">
+							<td class="expandable"><span class="expand-indicator"></span></td>
+							<td class="time">2014-09-03 14:54:01.625</td>
+							<td class="severity">
+								<div class="text-center label label-danger">
+									ERROR
+								</div>
+							</td>
+							<td class="message">
+								<div class="log-message">
+									Invalid connection found for ipAddress: 192.168.55.224
+								</div>
+							</td>
+							<td class="service">controllersvc</td>
+						</tr>
+						<tr class="even">
+							<td class="expandable"><span class="expand-indicator"></span></td>
+							<td class="time">2014-09-03 14:51:56.167</td>
+							<td class="severity">
+								<div class="text-center label label-danger">
+									ERROR
+								</div>
+							</td>
+							<td class="message">
+								<div class="log-message">
+									No CIMOM Connection found for ipaddress due to
+									com.emc.storageos.cimadapter.connections.ConnectionManagerException: Error getting client certificate chain
+									at com.emc.storageos.cimadapter.connections.cim.CimListener.getClientCertificate(CimListener.java:481)
+									at com.emc.storageos.cimadapter.connections.ConnectionManager.addConnection(ConnectionManager.java:130)
+									at com.emc.storageos.volumecontroller.impl.smis.CIMConnectionFactory.getConnection(CIMConnectionFactory.java:136)
+									at com.emc.storageos.volumecontroller.impl.smis.CIMConnectionFactory.refreshVnXFileConnections(CIMConnectionFactory.java:201)
+									at com.emc.storageos.volumecontroller.impl.monitoring.VNXFileMonitoringImpl.handleVNXFileSubscription(VNXFileMonitoringImpl.java:157)
+									at com.emc.storageos.volumecontroller.impl.monitoring.VNXFileMonitoringImpl.scheduledMonitoring(VNXFileMonitoringImpl.java:101)
+									at com.emc.storageos.volumecontroller.impl.monitoring.MonitoringJobConsumer$1.run(MonitoringJobConsumer.java:96)
+									at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+									at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:304)
+									at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:178)
+									at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+									at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+									at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+									at java.lang.Thread.run(Thread.java:745)
+								</div>
+							</td>
+							<td class="service">controllersvc</td>
+						</tr>
+						<tr class="odd">
+							<td class="expandable"><span class="expand-indicator"></span></td>
+							<td class="time">2014-09-03 14:51:56.167</td>
+							<td class="severity">
+								<div class="text-center label label-danger">
+									ERROR
+								</div>
+							</td>
+							<td class="message">
+								<div class="log-message">
+									No CIMOM connection found for ip 192.168.55.224
+								</div>
+							</td>
+							<td class="service">controllersvc</td>
+						</tr>
+						<tr class="even">
+							<td class="expandable"><span class="expand-indicator"></span></td>
+							<td class="time">2014-09-03 14:51:06.909</td>
+							<td class="severity">
+								<div class="text-center label label-danger">
+									ERROR
+								</div>
+							</td>
+							<td class="message">
+								<div class="log-message">
+									No CIMOM connection found for ip 192.168.55.224
+								</div>
+							</td>
+							<td class="service">controllersvc</td>
+						</tr>
+						<tr class="odd">
+							<td class="expandable"><span class="expand-indicator"></span></td>
+							<td class="time">2014-09-03 14:51:06.908</td>
+							<td class="severity">
+								<div class="text-center label label-danger">
+									ERROR
+								</div>
+							</td>
+							<td class="message">
+								<div class="log-message">
+									No CIMOM Connection found for ipaddress due to
+									com.emc.storageos.cimadapter.connections.ConnectionManagerException: Error getting client certificate chain
+									at com.emc.storageos.cimadapter.connections.cim.CimListener.getClientCertificate(CimListener.java:481)
+									at com.emc.storageos.cimadapter.connections.ConnectionManager.addConnection(ConnectionManager.java:130)
+									at com.emc.storageos.volumecontroller.impl.smis.CIMConnectionFactory.getConnection(CIMConnectionFactory.java:136)
+									at com.emc.storageos.volumecontroller.impl.smis.CIMConnectionFactory.refreshVnXFileConnections(CIMConnectionFactory.java:201)
+									at com.emc.storageos.volumecontroller.impl.monitoring.VNXFileMonitoringImpl.handleVNXFileSubscription(VNXFileMonitoringImpl.java:157)
+									at com.emc.storageos.volumecontroller.impl.monitoring.VNXFileMonitoringImpl.scheduledMonitoring(VNXFileMonitoringImpl.java:101)
+									at com.emc.storageos.volumecontroller.impl.monitoring.MonitoringJobConsumer$1.run(MonitoringJobConsumer.java:96)
+									at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+									at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:304)
+									at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:178)
+									at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+									at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+									at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+									at java.lang.Thread.run(Thread.java:745)
+								</div>
+							</td>
+							<td class="service">controllersvc</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="dataTables_footer">
+					<div class="dataTables_paginate paging_bootstrapFirstLast pagination">
+						<ul class="pagination pagination-sm">
+							<li class="prev disabled">
+								<a href="">First</a>
+							</li>
+							<li class="prev disabled">
+								<a href="">←</a>
+							</li>
+							<li class="active">
+								<a href="">1</a>
+							</li>
+							<li class="next disabled">
+								<a href="">→</a>
+							</li>
+							<li class="next disabled">
+								<a href="">Last</a>
+							</li>
+						</ul>
+					</div>
+					<div id="DataTables_Table_0_processing" class="dataTables_processing" style="visibility: hidden;">
+						<span class="glyphicon glyphicon-refresh rotate "></span>Loading...
+					</div>
+					<div class="dataTables_info" id="DataTables_Table_0_info">
+						Showing 1 to 15 of 15 entries
+					</div>
+					<div class="dataTables_processingError" style="display: none;"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /container -->
+	<div id="filterEditor" class="modal fade">
+		<div class="modal-dialog ">
+			<div class="modal-content">
+				<div class="modal-header ">
+					<button type="button" class="close" data-dismiss="modal">
+					×
+					</button>
+					<h4 class="modal-title">System Logs Filter</h4>
+				</div>
+				<div class="modal-body ">
+					<form class="form-horizontal" id="log-view-options" role="form">
+						<div class="form-group">
+							<label class="control-label col-xs-2">Node:</label>
+							<div class="col-xs-10">
+								<select id="node-combobox" class="form-control">
+									<option value="" selected="selected">All Nodes</option>
+									<optgroup label="Control Nodes">
+										<option value="vipr3">vipr3:192.168.103.164</option>
+										<option value="vipr2">vipr2:192.168.103.163</option>
+										<option value="vipr1">vipr1:192.168.103.162</option>
+									</optgroup>
+									<optgroup label="Data Service Nodes">
+										<option value="dataservice-10-247-102-115">dataservice-10-247-102-115</option>
+									</optgroup>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-2">Service:</label>
+							<div class="col-xs-10">
+								<div class="selectMany max-height-5 ">
+									<div class="selectManySearch row col-gap-sm">
+										<div class="col-sm-8">
+											<input id="serviceComboBoxSearch" type="text" class="form-control input-sm" autocomplete="off">
+										</div>
+										<span class="btn-group selectManyButtons col-sm-4">
+										<button id="serviceComboBoxCheck" type="button" class="btn btn-default btn-sm">
+										<span class="glyphicon glyphicon-check "></span> All
+										</button>
+										<button id="serviceComboBoxUncheck" type="button" class="btn btn-default btn-sm">
+										<span class="glyphicon glyphicon-remove-circle "></span> None
+										</button> </span>
+									</div>
+									<div id="serviceComboBox" name="serviceComboBox" class="selectManyContent">
+										<div class="checkbox">
+											<label>
+											<input name="service" type="checkbox" checked="checked" value="apisvc">
+											apisvc</label>
+										</div>
+										<div class="checkbox">
+											<label>
+											<input name="service" type="checkbox" checked="checked" value="authsvc">
+											authsvc</label>
+										</div>
+										<div class="checkbox">
+											<label>
+											<input name="service" type="checkbox" checked="checked" value="blobsvc">
+											blobsvc</label>
+										</div>
+										<div class="checkbox">
+											<label>
+											<input name="service" type="checkbox" checked="checked" value="casheadsvc">
+											casheadsvc</label>
+										</div>
+										<div class="checkbox">
+											<label>
+											<input name="service" type="checkbox" checked="checked" value="cm">
+											cm</label>
+										</div>
+										<div class="checkbox">
+											<label>
+											<input name="service" type="checkbox" checked="checked" value="controllersvc">
+											controllersvc</label>
+										</div>
+										<div class="checkbox">
+											<label>
+											<input name="service" type="checkbox" checked="checked" value="coordinatorsvc">
+											coordinatorsvc</label>
+										</div>
+										<div class="checkbox">
+											<label>
+											<input name="service" type="checkbox" checked="checked" value="dbsvc">
+											dbsvc</label>
+										</div>
+										<div class="checkbox">
+											<label>
+											<input name="service" type="checkbox" checked="checked" value="fabricctrlsvc">
+											fabricctrlsvc</label>
+										</div>
+										<div class="checkbox">
+											<label>
+											<input name="service" type="checkbox" checked="checked" value="geodbsvc">
+											geodbsvc</label>
+										</div>
+										<div class="checkbox">
+											<label>
+											<input name="service" type="checkbox" checked="checked" value="georeceiver">
+											georeceiver</label>
+										</div>
+										<div class="checkbox">
+											<label>
+											<input name="service" type="checkbox" checked="checked" value="georeplayer">
+											georeplayer</label>
+										</div>
+										<div class="checkbox">
+											<label>
+											<input name="service" type="checkbox" checked="checked" value="geosvc">
+											geosvc</label>
+										</div>
+										<div class="checkbox">
+											<label>
+											<input name="service" type="checkbox" checked="checked" value="hdfssvc">
+											hdfssvc</label>
+										</div>
+										<div class="checkbox">
+											<label>
+											<input name="service" type="checkbox" value="messages">
+											messages</label>
+										</div>
+										<div class="checkbox">
+											<label>
+											<input name="service" type="checkbox" value="nginx_access">
+											nginx_access</label>
+										</div>
+										<div class="checkbox">
+											<label>
+											<input name="service" type="checkbox" value="nginx_error">
+											nginx_error</label>
+										</div>
+										<div class="checkbox">
+											<label>
+											<input name="service" type="checkbox" checked="checked" value="objcontrolsvc">
+											objcontrolsvc</label>
+										</div>
+										<div class="checkbox">
+											<label>
+											<input name="service" type="checkbox" checked="checked" value="portalsvc">
+											portalsvc</label>
+										</div>
+										<div class="checkbox">
+											<label>
+											<input name="service" type="checkbox" checked="checked" value="rm">
+											rm</label>
+										</div>
+										<div class="checkbox">
+											<label>
+											<input name="service" type="checkbox" checked="checked" value="sasvc">
+											sasvc</label>
+										</div>
+										<div class="checkbox">
+											<label>
+											<input name="service" type="checkbox" checked="checked" value="ssm">
+											ssm</label>
+										</div>
+										<div class="checkbox">
+											<label>
+											<input name="service" type="checkbox" checked="checked" value="syssvc">
+											syssvc</label>
+										</div>
+										<div class="checkbox">
+											<label>
+											<input name="service" type="checkbox" checked="checked" value="systemevents">
+											System Events</label>
+										</div>
+										<div class="checkbox">
+											<label>
+											<input name="service" type="checkbox" checked="checked" value="vasasvc">
+											vasasvc</label>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-2">Level:</label>
+							<div class="col-xs-10">
+								<select id="log-severity-combobox" class="form-control">
+									<option value="4" selected="selected">ERROR</option>
+									<option value="5">WARN</option>
+									<option value="7">INFO</option>
+									<option value="8">DEBUG</option>
+								</select>
+								<span class="help-block clear">Return all logs with the selected level and above.</span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-2">From:</label>
+							<div class="col-xs-10">
+								<div id="fromContainer">
+									<div class="bfh-datepicker pull-left control-group" id="fromDateContainer" data-format="y-m-d" data-date="2014-09-03" style="margin-bottom: 0px;">
+										<div class="input-group input-group-sm bfh-datepicker-toggle" data-toggle="bfh-datepicker" style="margin-bottom: 0px;width: 125px;">
+											<span class="input-group-addon"><span class="glyphicon glyphicon-calendar "></span></span>
+											<input type="text" class="form-control input-sm" id="fromDate" name="fromDate" onkeyup="if (from) from.onKeyUp(event)" onchange="if (from) from.onKeyUp(event)">
+										</div>
+										<div class="bfh-datepicker-calendar">
+											<table class="calendar table table-bordered">
+												<thead>
+													<tr class="months-header">
+														<th class="month" colspan="4"><a class="previous" href=""><span class="glyphicon glyphicon-chevron-left "></span></a><span>September</span><a class="next" href=""><span class="glyphicon glyphicon-chevron-right "></span></a></th>
+														<th class="year" colspan="3"><a class="previous" href=""><span class="glyphicon glyphicon-chevron-left "></span></a><span>2014</span><a class="next" href=""><span class="glyphicon glyphicon-chevron-right "></span></a></th>
+													</tr>
+													<tr class="days-header">
+														<th>SUN</th>
+														<th>MON</th>
+														<th>TUE</th>
+														<th>WED</th>
+														<th>THU</th>
+														<th>FRI</th>
+														<th>SAT</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td class="off">29</td>
+														<td data-day="1">1</td>
+														<td data-day="2">2</td>
+														<td data-day="3" class="today">3</td>
+														<td data-day="4">4</td>
+														<td data-day="5">5</td>
+														<td data-day="6">6</td>
+													</tr>
+													<tr>
+														<td data-day="7">7</td>
+														<td data-day="8">8</td>
+														<td data-day="9">9</td>
+														<td data-day="10">10</td>
+														<td data-day="11">11</td>
+														<td data-day="12">12</td>
+														<td data-day="13">13</td>
+													</tr>
+													<tr>
+														<td data-day="14">14</td>
+														<td data-day="15">15</td>
+														<td data-day="16">16</td>
+														<td data-day="17">17</td>
+														<td data-day="18">18</td>
+														<td data-day="19">19</td>
+														<td data-day="20">20</td>
+													</tr>
+													<tr>
+														<td data-day="21">21</td>
+														<td data-day="22">22</td>
+														<td data-day="23">23</td>
+														<td data-day="24">24</td>
+														<td data-day="25">25</td>
+														<td data-day="26">26</td>
+														<td data-day="27">27</td>
+													</tr>
+													<tr>
+														<td data-day="28">28</td>
+														<td data-day="29">29</td>
+														<td data-day="30">30</td>
+														<td class="off">1</td>
+														<td class="off">2</td>
+														<td class="off">3</td>
+														<td class="off">4</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+									<div class="bfh-timepicker pull-left control-group" style="margin-left:5px;margin-bottom: 0px;" id="fromTimeContainer" data-time="06:50">
+										<div class="input-group input-group-sm bfh-timepicker-toggle" data-toggle="bfh-timepicker" style="width:100px;">
+											<span class="input-group-addon"><span class="glyphicon glyphicon-time "></span></span>
+											<input type="text" class="form-control input-sm" style="width: 75px;" id="fromTime" name="fromTime" onkeyup="if (from) from.onKeyUp(event)" onchange="if (from) from.onKeyUp(event)">
+										</div>
+										<div class="bfh-timepicker-popover">
+											<table class="table">
+												<tbody>
+													<tr>
+														<td class="hour"><a class="next" href=""><span class="glyphicon glyphicon-chevron-up "></span></a>
+															<br>
+															<input type="text" class="form-control" readonly="">
+															<br>
+															<a class="previous" href=""><span class="glyphicon glyphicon-chevron-down "></span></a>
+														</td>
+														<td class="separator">:</td>
+														<td class="minute"><a class="next" href=""><span class="glyphicon glyphicon-chevron-up "></span></a>
+															<br>
+															<input type="text" class="form-control" readonly="">
+															<br>
+															<a class="previous" href=""><span class="glyphicon glyphicon-chevron-down "></span></a>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+								<div id="fromCurrentTime" style="display: none;">
+									<div style="line-height: 30px" class="pull-left">
+										<span class="label label-info">Current Time</span>
+										<small><a id="fromSpecifyTime" style="cursor: pointer;">Enter Specific Time</a></small>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-2">To:</label>
+							<div class="col-xs-10">
+								<div id="toContainer" style="display: none;">
+									<div class="bfh-datepicker pull-left control-group" id="toDateContainer" data-format="y-m-d" data-date="2014-09-03" style="margin-bottom: 0px;">
+										<div class="input-group input-group-sm bfh-datepicker-toggle" data-toggle="bfh-datepicker" style="margin-bottom: 0px;width: 125px;">
+											<span class="input-group-addon"><span class="glyphicon glyphicon-calendar "></span></span>
+											<input type="text" class="form-control input-sm" id="toDate" name="toDate" onkeyup="if (to) to.onKeyUp(event)" onchange="if (to) to.onKeyUp(event)">
+										</div>
+										<div class="bfh-datepicker-calendar">
+											<table class="calendar table table-bordered">
+												<thead>
+													<tr class="months-header">
+														<th class="month" colspan="4"><a class="previous" href=""><span class="glyphicon glyphicon-chevron-left "></span></a><span>September</span><a class="next" href=""><span class="glyphicon glyphicon-chevron-right "></span></a></th>
+														<th class="year" colspan="3"><a class="previous" href=""><span class="glyphicon glyphicon-chevron-left "></span></a><span>2014</span><a class="next" href=""><span class="glyphicon glyphicon-chevron-right "></span></a></th>
+													</tr>
+													<tr class="days-header">
+														<th>SUN</th>
+														<th>MON</th>
+														<th>TUE</th>
+														<th>WED</th>
+														<th>THU</th>
+														<th>FRI</th>
+														<th>SAT</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td class="off">29</td>
+														<td data-day="1">1</td>
+														<td data-day="2">2</td>
+														<td data-day="3" class="today">3</td>
+														<td data-day="4">4</td>
+														<td data-day="5">5</td>
+														<td data-day="6">6</td>
+													</tr>
+													<tr>
+														<td data-day="7">7</td>
+														<td data-day="8">8</td>
+														<td data-day="9">9</td>
+														<td data-day="10">10</td>
+														<td data-day="11">11</td>
+														<td data-day="12">12</td>
+														<td data-day="13">13</td>
+													</tr>
+													<tr>
+														<td data-day="14">14</td>
+														<td data-day="15">15</td>
+														<td data-day="16">16</td>
+														<td data-day="17">17</td>
+														<td data-day="18">18</td>
+														<td data-day="19">19</td>
+														<td data-day="20">20</td>
+													</tr>
+													<tr>
+														<td data-day="21">21</td>
+														<td data-day="22">22</td>
+														<td data-day="23">23</td>
+														<td data-day="24">24</td>
+														<td data-day="25">25</td>
+														<td data-day="26">26</td>
+														<td data-day="27">27</td>
+													</tr>
+													<tr>
+														<td data-day="28">28</td>
+														<td data-day="29">29</td>
+														<td data-day="30">30</td>
+														<td class="off">1</td>
+														<td class="off">2</td>
+														<td class="off">3</td>
+														<td class="off">4</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+									<div class="bfh-timepicker pull-left control-group" style="margin-left:5px;margin-bottom: 0px;" id="toTimeContainer" data-time="07:05">
+										<div class="input-group input-group-sm bfh-timepicker-toggle" data-toggle="bfh-timepicker" style="width:100px;">
+											<span class="input-group-addon"><span class="glyphicon glyphicon-time "></span></span>
+											<input type="text" class="form-control input-sm" style="width: 75px;" id="toTime" name="toTime" onkeyup="if (to) to.onKeyUp(event)" onchange="if (to) to.onKeyUp(event)">
+										</div>
+										<div class="bfh-timepicker-popover">
+											<table class="table">
+												<tbody>
+													<tr>
+														<td class="hour"><a class="next" href=""><span class="glyphicon glyphicon-chevron-up "></span></a>
+															<br>
+															<input type="text" class="form-control" readonly="">
+															<br>
+															<a class="previous" href=""><span class="glyphicon glyphicon-chevron-down "></span></a>
+														</td>
+														<td class="separator">:</td>
+														<td class="minute"><a class="next" href=""><span class="glyphicon glyphicon-chevron-up "></span></a>
+															<br>
+															<input type="text" class="form-control" readonly="">
+															<br>
+															<a class="previous" href=""><span class="glyphicon glyphicon-chevron-down "></span></a>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+									<div style="line-height: 30px;margin-left:5px;" class="pull-left">
+										<small><a id="toUseCurrentTime" style="cursor: pointer;">Use Current Time</a></small>
+									</div>
+								</div>
+								<div id="toCurrentTime">
+									<div style="line-height: 30px" class="pull-left">
+										<span class="label label-info">Current Time</span>
+										<small><a id="toSpecifyTime" style="cursor: pointer;">Enter Specific Time</a></small>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-2">Message:</label>
+							<div class="col-xs-10">
+								<input id="search-message" type="text" value="" class="form-control">
+								<span class="help-block clear">Return logs that only contain the text in the message (case-insensitive).</span>
+							</div>
+						</div>
+					</form>
+					<div class="clearfix"></div>
+				</div>
+				<div class="modal-footer ">
+					<a href="" class="btn btn-primary" id="filterSave"><span class="glyphicon glyphicon-filter "></span> Update</a>
+					<a href="" class="btn btn-default" id="filterCancel"><span class="glyphicon glyphicon-remove "></span> Close</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

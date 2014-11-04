@@ -1,0 +1,101 @@
+<div class="mainContent" ng-controller="GenericOrderFormCtrl" ng-init="data.orderTypeId = 37">
+    <ul class="breadcrumb breadcrumb-navbar">
+        <li><a ui-sref="catalog">Service Catalog</a>
+            <span class="divider"></span>
+        </li>
+        <li><a ui-sref="BlockServicesLinux">Block Services for Linux</a>
+            <span class="divider"></span>
+        </li>
+        <li class="active">Unmount Volume on Linux</li>
+    </ul>
+    <div class="container">
+        <div class="form-header">
+            <div class="image">
+                <img class="" src="/img/serviceCatalog/icon_storage_linux_remove.png">
+            </div>
+            <div class="description">
+                <h2>Unmount Volume on Linux</h2>
+                <p>Unmount a block volume from a Linux host leaving storage intact.</p>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="clear"></div>
+        <p id="alerts_success" class="alert alert-success" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_error" class="alert alert-danger" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_warning" class="alert alert-warning" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_info" class="alert alert-info" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <span class="message"></span>
+        </p>
+        <div class="alert alert-warning" style="display:none">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            This service is missing required data. This could be caused by:
+            <br>
+            <br>
+            <ul>
+                <li>No Options available for field: Linux Host</li>
+                <li>Required assets (Host, Switches, Storage Arrays) are not defined or you do not have permission.</li>
+                <li>The system is busy discoverying assets (Host, Switches, Storage Arrays).</li>
+                <li>Unable to connect to a ViPR backend server.</li>
+            </ul>
+        </div>
+        <!-- asset error -->
+        <div id="assetError" class="alert alert-danger" style="display:none;">
+            <button type="button" class="close">×</button>
+            <div id="assetErrorMessage" style="white-space: pre-line;"></div>
+        </div>
+        <form id="serviceForm" class="form-horizontal" ng-submit="submit()">
+            <div id="hostControlGroup" class="form-group  required">
+                <label class="control-label col-sm-3" for="host" set-model="data.details[0].name">Linux Host:</label>
+                <div class="col-sm-6 controls">
+                    <select id="host" name="host" class="form-control span6" disabled="" chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true" allow-single-deselect="false" ng-model="data.details[0].value">
+                        <option value=""></option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div id="volumesControlGroup" class="form-group  required">
+                <label class="control-label col-sm-3" for="volumes" set-model="data.details[1].name">Volumes:</label>
+                <div class="col-sm-6 controls">
+                    <div class="selectMany span6 ">
+                        <div class="selectManySearch row col-gap-sm" style="display: none;">
+                            <div class="col-sm-8">
+                                <input id="volumesSearch" type="text" class="form-control input-sm" autocomplete="off" ng-model="data.details[1].value">
+                            </div>
+                            <span class="btn-group selectManyButtons col-sm-4">
+                                <button id="volumesCheck" type="button" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-check "></span>All</button>
+                                <button id="volumesUncheck" type="button" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-remove-circle "></span>None</button>
+                            </span>
+                        </div>
+                        <div id="volumes" name="volumes" class="selectManyContent"></div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group button-bar">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <button type="submit" class="btn btn-primary btn-large " name="service.order">
+                        <span class="glyphicon glyphicon-shopping-cart "></span>&nbsp;Order</button>
+                    <button type="button" class="btn btn-default btn-large " name="button.cancel">
+                        <span class="glyphicon glyphicon-trash " ng-click="cancel()"></span>&nbsp;Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

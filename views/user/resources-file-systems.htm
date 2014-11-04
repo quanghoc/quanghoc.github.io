@@ -1,0 +1,95 @@
+﻿<div class="mainContent" ng-controller="VolumesCtrl">
+	<div class="well well-sm form-inline">
+		<span class="project-select">
+			<label for="project">Project:</label>
+			<select id="project" name="project" class="form-control input-sm" chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true" allow-single-deselect="false">
+				<option value="Marketing" selected="selected">Marketing</option>
+				<option value="Engineering">Engineering</option>
+				<option value="QA">QA</option>
+			</select>
+		</span>
+	</div>
+	<div class="clear"></div>
+	<p id="alerts_success" class="alert alert-success" style="display:none">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+		<span class="message"></span>
+	</p>
+	<p id="alerts_error" class="alert alert-danger" style="display:none">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+		<span class="message"></span>
+	</p>
+	<p id="alerts_warning" class="alert alert-warning" style="display:none">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+		<span class="message"></span>
+	</p>
+	<p id="alerts_info" class="alert alert-info" style="display:none">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+		<span class="message"></span>
+	</p>
+	<div class="section-header pull-left ">
+		<h1 class="">File Systems</h1>
+	</div>
+	<div id="fileSystems" class="dataTableContainer">
+		<div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline" role="grid">
+			<div class="dataTables_filter" id="DataTables_Table_0_filter">
+				<label>
+					<input type="text" aria-controls="DataTables_Table_0" class="form-control input-sm search-query" placeholder="Search...">
+				</label>
+			</div>
+			<table class="table table-hover table-condensed table-styled dataTable editableRows" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
+				<thead>
+					<tr role="row">
+						<th class="selection sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="">
+							<div class="th-wrapper">
+								<input type="checkbox" name="selectAll">
+							</div>
+						</th>
+						<th class="name sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="File System Name: activate to sort column descending">
+							<div class="th-wrapper">File System Name</div>
+						</th>
+						<th class="capacity sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Size: activate to sort column ascending">
+							<div class="th-wrapper">Size</div>
+						</th>
+						<th class="varray sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Virtual Array: activate to sort column ascending">
+							<div class="th-wrapper">Virtual Array</div>
+						</th>
+						<th class="vpool sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Virtual Pool: activate to sort column ascending">
+							<div class="th-wrapper">Virtual Pool</div>
+						</th>
+						<th class="protocols sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Protocols: activate to sort column ascending">
+							<div class="th-wrapper">Protocols</div>
+						</th>
+					</tr>
+				</thead>
+				<tbody role="alert" aria-live="polite" aria-relevant="all">
+                    <tr class="odd" ng-repeat="item in fileSystems | orderBy:sortField:reverse | slice:(currentPage-1)*rpp:(currentPage*rpp)">
+                        <td class="selection">
+                            <input type="checkbox" name="selected" value="urn:storageos:Volume:9ec1f5f5-be35-45f6-a09b-68f60486e02e:vdc1" onchange="table.volumes.updateSelection(this)">
+                        </td>
+                        <td class="name sorting_1">{{item.name}}</td>
+                        <td class="capacity">{{item.size}}</td>
+                        <td class="varray">{{item.virtualArray}}</td>
+                        <td class="capacity">{{item.virtualPool}}</td>
+                        <td class="varray">{{item.protocols || "CIFS"}}</td>
+                    </tr>
+				</tbody>
+			</table>
+			<div class="dataTables_footer">
+                <div class="dataTables_paginate paging_bootstrapFirstLast pagination">
+                    <pagination total-items="fileSystems.length" ng-model="currentPage"></pagination>
+                </div>
+                <div id="DataTables_Table_0_processing" class="dataTables_processing" style="visibility: hidden;">
+                    <span class="glyphicon glyphicon-refresh rotate "></span>Loading...
+                </div>
+                <div class="dataTables_info" id="DataTables_Table_0_info">
+                    Showing {{ (currentPage-1)*rpp+1 }} to {{ currentPage*rpp > fileSystems.length ? fileSystems.length : currentPage*rpp }} of {{ fileSystems.length }} entries
+                </div>
+                <div class="dataTables_processingError" style="display: none;"></div>
+			</div>
+		</div>
+		<div class="button-bar">
+			<button type="button" class="btn btn-danger " name="button.delete" data-enabled="selected" data-form="deleteForm" disabled="">
+				<span class="glyphicon glyphicon-trash "></span>&nbsp;Delete</button>
+		</div>
+	</div>
+</div>

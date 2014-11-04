@@ -1,0 +1,116 @@
+<div class="mainContent" ng-controller="EditStorageSystemCtrl">
+	<ul class="breadcrumb">
+		<li>
+			<a ui-sref="storageSystems">Storage Systems</a> 
+			<span class="divider"></span>
+		</li>
+		<li class="active">
+			Edit Storage System 
+		</li>
+	</ul>
+	<div class="container">
+		<div class="form-header">
+			<div class="image">
+				<img src="/img/assets/StorageArray.png">  
+			</div>
+			<div class="description">
+				<h2>
+					Edit Storage System      
+				</h2>
+				<p>Enter the information needed to discover to the storage system.</p>
+			</div>
+			<div style="clear:both"></div>
+		</div>
+		<div class="clear"></div>
+		<p id="alerts_success" class="alert alert-success" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<span class="message"></span>
+		</p>
+		<p id="alerts_error" class="alert alert-danger" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<span class="message"></span>
+		</p>
+		<p id="alerts_warning" class="alert alert-warning" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<span class="message"></span>
+		</p>
+		<p id="alerts_info" class="alert alert-info" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<span class="message"></span>
+		</p>
+		<form id="storageArrayForm" class="form form-horizontal" ng-submit="submit()">
+			<fieldset>
+				<div id="storageArray_typeControlGroup" class="form-group  required">
+					<label class="control-label col-sm-3" for="storageArray_type">Type:</label>
+					<div class="col-sm-6 controls">
+						<div class="chosen-container chosen-container-single chosen-disabled form-control span6 initialFocus" style="" title="" id="storageArray_type_chosen">
+							<a class="chosen-single" tabindex="-1">
+								<span>{{ storageSystem.type }}</span>
+								<div><b></b></div>
+							</a>
+							<div class="chosen-drop">
+								<div class="chosen-search"><input type="text" autocomplete="off" disabled=""></div>
+								<ul class="chosen-results"></ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+				<div id="storageArray_nameControlGroup" class="form-group  required" required="required">
+					<label class="control-label col-sm-3" for="storageArray_name">Name:</label>
+					<div class="col-sm-6 controls">
+						<input type="text" class="form-control span6" id="storageArray_name" name="storageArray.name" ng-model="storageSystem.name" autocomplete="off">      
+					</div>
+					<div class="col-sm-3">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+			</fieldset>
+			<fieldset id="settings">
+				<legend>Settings</legend>
+				<div id="storageArray_unlimitResourceControlGroup" class="form-group  ">
+					<label class="control-label col-sm-3" for="storageArray_unlimitResource">Unlimited Resource Allocation:</label>
+					<div class="col-sm-6 controls">
+						<div class="checkbox">
+							<input type="checkbox" class="span0" id="storageArray_unlimitResource" name="storageArray.unlimitResource" value="true" checked="checked">
+						</div>
+						<span class="help-block">If unchecked, please specify a limit below</span>  
+					</div>
+					<div class="col-sm-3">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+				<div id="storageArray_resourceLimitControlGroup" class="form-group  required" style="display: none;">
+					<label class="control-label col-sm-3" for="storageArray_resourceLimit">Volume Limit:</label>
+					<div class="col-sm-6 controls">
+						<input type="text" class="form-control span1" id="storageArray_resourceLimit" name="storageArray.resourceLimit" value="-1" autocomplete="off">    
+						<span class="help-block">Specify the maximum number of volumes ViPR should provision on this storage system (0 or greater)</span>  
+					</div>
+					<div class="col-sm-3">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+			</fieldset>
+			<div class="form-group button-bar">
+				<div class="col-sm-offset-3 col-sm-9">
+					<button type="submit" class="btn btn-primary btn-large " name="button.save">
+						<span class="glyphicon glyphicon-ok-sign "></span>  Save  
+					</button>  
+					<button type="button" class="btn btn-default btn-large " name="button.cancel" ui-sref="storageSystems">
+						<span class="glyphicon glyphicon-trash "></span>  Cancel  
+					</button>  
+					<span class="extraButtons">
+						<button class="btn btn-default btn-large" name="editPools" ui-sref="storageSystems_pools({storageSystemId: {{ storageSystem.id }} })">
+							<span class="glyphicon glyphicon-edit "></span> Edit Pools
+						</button>
+						<button class="btn btn-default btn-large" name="editPorts" ui-sref="storageSystems_ports({storageSystemId: {{ storageSystem.id }} })">
+							<span class="glyphicon glyphicon-edit "></span> Edit Ports
+						</button>
+					</span>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

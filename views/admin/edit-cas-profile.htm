@@ -1,0 +1,204 @@
+<div class="mainContent">
+<ul class="breadcrumb">  <li>
+    <a ui-sref="VirtualCASClusters">CAS Clusters</a>
+    <span class="divider"></span></li>  <li>
+    <a ui-sref="EditCASProfile">cas1</a>
+    <span class="divider"></span></li>  <li>
+    <a ui-sref="EditCASProfile">CAS Profiles</a>
+    <span class="divider"></span></li>  <li class="active">
+    Edit CAS Profile
+</li></ul>
+<div class="container">
+<div class="form-header">
+    <div class="image">
+        <img src="/img/assets/Host.png">  </div>
+
+    <div class="description">
+        <h2>
+            Edit CAS Profile      </h2>
+        <p>Edit an existing CAS profile</p>    </div>
+    <div style="clear:both"></div>
+</div>
+<div class="clear"></div>
+<p id="alerts_success" class="alert alert-success" style="display:none">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <span class="message"></span>
+</p>
+<p id="alerts_error" class="alert alert-danger" style="display:none">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <span class="message"></span>
+</p>
+<p id="alerts_warning" class="alert alert-warning" style="display:none">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <span class="message"></span>
+</p>
+<p id="alerts_info" class="alert alert-info" style="display:none">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <span class="message"></span>
+</p>
+
+<form action="/casprofiles/save" method="post" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" class="form form-horizontal" autocomplete="off"><input type="hidden" name="authenticityToken" value="3ce2076449de4d06c8d804b8f83b2a5fe9047d6c">
+<input type="hidden" name="casProfile.id" value="profile1">            <input type="hidden" name="casProfile.clusterId" value="ns">
+
+<div id="casProfile_clusterNameControlGroup" class="form-group  ">
+    <label class="control-label col-sm-3" for="casProfile_clusterName">CAS Cluster:</label>
+    <div class="col-sm-6 controls">
+        <p class="form-control-static ">cas1</p>
+        <input type="hidden" id="casProfile_clusterName" name="casProfile.clusterName" value="cas1">        </div>
+    <div class="col-sm-3">
+        <span class="help-inline"></span>
+    </div>
+</div>
+<div id="casProfile_nameControlGroup" class="form-group  ">
+    <label class="control-label col-sm-3" for="casProfile_name">Name:</label>
+    <div class="col-sm-6 controls">
+        <p class="form-control-static ">profile1</p>
+        <input type="hidden" id="casProfile_name" name="casProfile.name" value="profile1">        </div>
+    <div class="col-sm-3">
+        <span class="help-inline"></span>
+    </div>
+</div>
+<div id="casProfile_peaControlGroup" class="form-group  ">
+    <label class="control-label col-sm-3" for="casProfile_pea">PEA:</label>
+    <div class="col-sm-6 controls">
+        <a class="btn btn-info" href="/" prevent-default disabled>Download</a>
+    </div>
+    <div class="col-sm-3">
+        <span class="help-inline"></span>
+    </div>
+</div>
+<div id="casProfile_secretKeyControlGroup" class="form-group  ">
+    <label class="control-label col-sm-3" for="casProfile_secretKey">Secret Key:</label>
+    <div class="col-sm-6 controls">
+        <input type="password" class="form-control span6" id="casProfile_secretKey" name="casProfile.secretKey" value="" autocomplete="off">      </div>
+    <div class="col-sm-3">
+        <span class="help-inline"></span>
+    </div>
+</div>
+<div id="casProfile_homePoolControlGroup" class="form-group  required">
+    <label class="control-label col-sm-3" for="casProfile_homePool">Home Pool:</label>
+    <div class="col-sm-6 controls">
+
+        <select id="casProfile_homePool" name="casProfile.homePool" class="form-control span6" style="display: none;">
+
+            <option value="pool1" selected="selected">pool1</option>
+
+        </select><div class="chosen-container chosen-container-single chosen-container-single-nosearch form-control span6" style="" title="" id="casProfile_homePool_chosen"><a class="chosen-single" tabindex="-1"><span>pool1</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off" readonly=""></div><ul class="chosen-results"></ul></div></div>      </div>
+    <div class="col-sm-3">
+        <span class="help-inline"></span>
+    </div>
+</div>
+<div id="casProfile_enabledControlGroup" class="form-group  ">
+    <label class="control-label col-sm-3" for="casProfile_enabled">Enabled:</label>
+    <div class="col-sm-6 controls">
+        <div class="checkbox">
+            <input type="checkbox" class="span0" id="casProfile_enabled" name="casProfile.enabled" value="true" checked="checked">
+        </div>  </div>
+    <div class="col-sm-3">
+        <span class="help-inline"></span>
+    </div>
+</div>
+<div id="casProfile_capabilitiesControlGroup" class="form-group  required">
+    <label class="control-label col-sm-3" for="casProfile_capabilities">Capabilities:</label>
+    <div class="col-sm-6 controls">
+
+        <div class="selectMany span6 ">
+            <div class="selectManySearch row col-gap-sm" style="display: none;">
+                <div class="col-sm-8">
+                    <input id="casProfile_capabilitiesSearch" type="text" class="form-control input-sm" autocomplete="off">
+                </div>
+    <span class="btn-group selectManyButtons col-sm-4">
+      <button id="casProfile_capabilitiesCheck" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-check "></span> All</button>
+      <button id="casProfile_capabilitiesUncheck" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-remove-circle "></span> None</button>
+    </span>
+            </div>
+            <div id="casProfile_capabilities" name="casProfile.capabilities" class="selectManyContent">
+                <div class="checkbox">
+                    <label for="casProfile_capabilitiesread">
+                        <input id="casProfile_capabilitiesread" name="casProfile.capabilities" type="checkbox" checked="checked" value="read">
+                        read
+
+                    </label>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="checkbox">
+                    <label for="casProfile_capabilitieswrite">
+                        <input id="casProfile_capabilitieswrite" name="casProfile.capabilities" type="checkbox" checked="checked" value="write">
+                        write
+
+                    </label>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="checkbox">
+                    <label for="casProfile_capabilitiesdelete">
+                        <input id="casProfile_capabilitiesdelete" name="casProfile.capabilities" type="checkbox" checked="checked" value="delete">
+                        delete
+
+                    </label>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="checkbox">
+                    <label for="casProfile_capabilitiesprivileged_delete">
+                        <input id="casProfile_capabilitiesprivileged_delete" name="casProfile.capabilities" type="checkbox" checked="checked" value="privileged-delete">
+                        privileged-delete
+
+                    </label>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="checkbox">
+                    <label for="casProfile_capabilitiesexist">
+                        <input id="casProfile_capabilitiesexist" name="casProfile.capabilities" type="checkbox" checked="checked" value="exist">
+                        exist
+
+                    </label>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="checkbox">
+                    <label for="casProfile_capabilitiesclip_enumeration">
+                        <input id="casProfile_capabilitiesclip_enumeration" name="casProfile.capabilities" type="checkbox" checked="checked" value="clip-enumeration">
+                        clip-enumeration
+
+                    </label>
+                </div>
+                <div class="clearfix"></div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <span class="help-inline"></span>
+    </div>
+</div>
+<div id="casProfile_metadataControlGroup" class="form-group  ">
+    <label class="control-label col-sm-3" for="casProfile_metadata">Profile Meta Data:</label>
+    <div class="col-sm-6 controls">
+        <div class="footer">
+            <div class="form-control-static">
+                <button type="button" class="btn btn-success btn-sm " id="addEntry" disabled>
+                    <span class="glyphicon glyphicon-plus "></span>  Add  </button>    </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <span class="help-inline"></span>
+    </div>
+</div>
+<div class="form-group button-bar">
+    <div class="col-sm-offset-3 col-sm-9">
+        <button type="submit" class="btn btn-primary btn-large " name="button.save" disabled>
+            <span class="glyphicon glyphicon-ok-sign "></span>  Save
+        </button>
+        <a type="button" class="btn btn-default btn-large " name="button.cancel" ui-sref="VirtualCASClusters">
+            <span class="glyphicon glyphicon-trash "></span>  Cancel
+        </a>
+        <span class="extraButtons">
+      </span>
+    </div>
+</div>
+</form>
+</div>
+</div>

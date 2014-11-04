@@ -1,0 +1,153 @@
+<div class="mainContent">
+    <ul class="breadcrumb">
+        <li>
+            <a href="/admin/storageproviders/list">Storage Providers</a> 
+            <span class="divider"></span>
+        </li>
+        <li class="active">
+            Add Storage Provider
+        </li>
+    </ul>
+    <div class="container">
+        <div class="form-header">
+            <div class="image">
+                <img src="/public/img/assets/StorageArray.png">
+            </div>
+            <div class="description">
+                <h2>
+                    Add Storage Provider</h2>
+                <p>Enter the information needed to connect to a Storage Provider</p>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div class="clear"></div>
+        <p id="alerts_success" class="alert alert-success" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">?</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_error" class="alert alert-danger" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">?</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_warning" class="alert alert-warning" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">?</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_info" class="alert alert-info" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">?</button>
+            <span class="message"></span>
+        </p>
+        <form action="/admin/storageproviders/save" method="post" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" id="smisProviderForm" class="form form-horizontal" autocomplete="off">
+            <input type="hidden" name="authenticityToken" value="b1ad100e76ccea28cfba2fdd3a1c82f47da1f052">
+            <input type="hidden" name="referrer" value="">
+            <fieldset>
+                <div id="smisProvider_nameControlGroup" class="form-group  required">
+                    <label class="control-label col-sm-3" for="smisProvider_name">Name:</label>
+                    <div class="col-sm-6 controls">
+                        <input type="text" class="form-control span6 initialFocus" id="smisProvider_name" name="smisProvider.name" value="" autocomplete="off">
+                    </div>
+                    <div class="col-sm-3">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+                <div id="smisProvider_interfaceTypeControlGroup" class="form-group  required">
+                    <label class="control-label col-sm-3" for="smisProvider_interfaceType">Type:</label>
+                    <div class="col-sm-6 controls">
+                        
+                        <select id="smisProvider_interfaceType" name="smisProvider.interfaceType" class="form-control span6" style="display: none;">
+                            <option value="smis" selected="selected">SMI-S</option>
+                            <option value="hicommand">Hitachi HiCommand</option>
+                            <option value="vplex">VPLEX</option>
+                            <option value="cinder">Third-party block</option>
+                            <option value="scaleio">Block Storage Powered by ScaleIO</option>
+                        </select>
+                        <div class="chosen-container chosen-container-single form-control span6" style="" title="" id="smisProvider_interfaceType_chosen">
+                            <a class="chosen-single" tabindex="-1">
+                                <span>SMI-S</span>
+                                <div><b></b>
+                                </div>
+                            </a>
+                            <div class="chosen-drop">
+                                <div class="chosen-search">
+                                    <input type="text" autocomplete="off">
+                                </div>
+                                <ul class="chosen-results"></ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+                <div id="smisProvider_ipAddressControlGroup" class="form-group  required">
+                    <label class="control-label col-sm-3" for="smisProvider_ipAddress">Host:</label>
+                    <div class="col-sm-6 controls">
+                        <input type="text" class="form-control span3" id="smisProvider_ipAddress" name="smisProvider.ipAddress" value="" autocomplete="off">
+                        <span class="help-block">Enter the fully qualified domain name or IP address of the host.</span>
+                    </div>
+                    <div class="col-sm-3">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+                <div id="smisProvider_useSSLControlGroup" class="form-group  ">
+                    <label class="control-label col-sm-3" for="smisProvider_useSSL">Use SSL:</label>
+                    <div class="col-sm-6 controls">
+                        <div class="checkbox">
+                            <input type="checkbox" class="span0" id="smisProvider_useSSL" name="smisProvider.useSSL" value="true" checked="checked">
+                        </div>
+                      
+                    </div>
+                    <div class="col-sm-3">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+                <div id="smisProvider_portNumberControlGroup" class="form-group  required">
+                    <label class="control-label col-sm-3" for="smisProvider_portNumber">Port:</label>
+                    <div class="col-sm-6 controls">
+                        <input type="text" class="form-control span3" id="smisProvider_portNumber" name="smisProvider.portNumber" value="5989" autocomplete="off">
+                    </div>
+                    <div class="col-sm-3">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+                <div id="smisProvider_userNameControlGroup" class="form-group  required">
+                    <label class="control-label col-sm-3" for="smisProvider_userName">User:</label>
+                    <div class="col-sm-6 controls">
+                        <input type="text" class="form-control span6" id="smisProvider_userName" name="smisProvider.userName" value="" autocomplete="off">
+                    </div>
+                    <div class="col-sm-3">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+                <div id="smisProvider_passwordControlGroup" class="form-group  required">
+                    <label class="control-label col-sm-3" for="smisProvider_password">Password:</label>
+                    <div class="col-sm-6 controls">
+                        <input type="password" class="form-control span6" id="smisProvider_password" name="smisProvider.password" value="" autocomplete="off">
+                    </div>
+                    <div class="col-sm-3">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+                <div id="smisProvider_confirmPasswordControlGroup" class="form-group  required">
+                    <label class="control-label col-sm-3" for="smisProvider_confirmPassword">Confirm Password:</label>
+                    <div class="col-sm-6 controls">
+                        <input type="password" class="form-control span6" id="smisProvider_confirmPassword" name="smisProvider.confirmPassword" value="" autocomplete="off">
+                    </div>
+                    <div class="col-sm-3">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="form-group button-bar">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <button type="submit" class="btn btn-primary btn-large " name="button.save">
+                        <span class="glyphicon glyphicon-ok-sign "></span>Save</button>
+                    <button type="button" class="btn btn-default btn-large " name="button.cancel">
+                        <span class="glyphicon glyphicon-trash "></span>Cancel</button>
+                    <span class="extraButtons">
+                    </span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

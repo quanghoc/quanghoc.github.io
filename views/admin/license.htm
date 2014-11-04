@@ -1,0 +1,149 @@
+<div class="mainContent" ng-controller="licensesCtrl" ng-init="currentPage = 1; rpp = 10">
+    <div class="clear"></div>
+    <p id="alerts_success" class="alert alert-success" ng-show="$root.alert.success">
+        <button type="button" class="close" ng-click="$root.alert = {}">×</button>
+        <span class="message">
+            {{ $root.alert.message }}
+        </span>
+    </p>
+    <p id="alerts_error" class="alert alert-danger" style="display:none">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">�</button>
+        <span class="message"></span>
+    </p>
+    <p id="alerts_warning" class="alert alert-warning" style="display:none">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">�</button>
+        <span class="message"></span>
+    </p>
+    <p id="alerts_info" class="alert alert-info" style="display:none">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">�</button>
+        <span class="message"></span>
+    </p>
+    <div class="section-header pull-left ">
+        <h1 class="">Licenses</h1>
+    </div>
+    <div id="licenseFeature" class="dataTableContainer">
+        <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline" role="grid">
+            <div class="dataTables_filter" id="DataTables_Table_0_filter">
+                <label>
+                    <input type="text" aria-controls="DataTables_Table_0" class="form-control input-sm search-query" placeholder="Search..." ng-model="query">
+                </label>
+            </div>
+            <table class="table table-hover table-condensed table-styled dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
+                <thead>
+                    <tr role="row">
+                        <th class="expandable sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="">
+                            <div class="th-wrapper"></div>
+                        </th>
+                        <th ng-click="colSort('name')" ng-class="{sorting_asc: sortField=='name' && reverse==true, sorting_desc: sortField=='name' && reverse==false, sorting: sortField!='name'}" class="name sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="Feature">
+                            <div class="th-wrapper">Feature</div>
+                        </th>
+                        <th ng-click="colSort('status')" ng-class="{sorting_asc: sortField=='status' && reverse==true, sorting_desc: sortField=='status' && reverse==false, sorting: sortField!='status'}" class="status sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="Status">
+                            <div class="th-wrapper">Status</div>
+                        </th>
+                        <th ng-click="colSort('serial')" ng-class="{sorting_asc: sortField=='serial' && reverse==true, sorting_desc: sortField=='serial' && reverse==false, sorting: sortField!='serial'}" class="serial sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="Serial Number">
+                            <div class="th-wrapper">Serial Number</div>
+                        </th>
+                        <th ng-click="colSort('expiry')" ng-class="{sorting_asc: sortField=='expiry' && reverse==true, sorting_desc: sortField=='expiry' && reverse==false, sorting: sortField!='expiry'}" class="expiry sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="Expiry">
+                            <div class="th-wrapper">Expiry</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody role="alert" aria-live="polite" aria-relevant="all">
+                    <tr class="odd" ng-repeat-start="item in licenses | filter:query | orderBy:sortField:reverse | slice:(currentPage-1)*rpp:(currentPage*rpp)">
+                        <td class="expandable" ng-click="itemExpand[$index] = !itemExpand[$index]" ng-class="{expanded: itemExpand[$index]}">
+                            <span class="expand-indicator"></span>
+                        </td>
+                        <td class="name">{{ item.name }}</td>
+                        <td class="status">
+                            <span ng-if="item.status == 0" class="text-success">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </span>
+                            <span ng-if="item.status == 0">Licensed</span>
+                            <span class="text-warning" ng-if="item.status == 1">
+                                <span class="glyphicon glyphicon-warning-sign"></span>
+                            </span>
+                            <span ng-if="item.status == 1">Over Capacity</span>
+                        </td>
+                        <td class="serial">{{ item.serial }}</td>
+                        <td class="expiry">{{ item.expiry }}</td>
+                    </tr>
+                    <tr class="odd" ng-show="itemExpand[$index]" ng-repeat-end>
+                        <td class="expandedRow" colspan="5">
+                            <dl class="dl-horizontal col-sm-8">
+                                <dt>Notice</dt>
+                                <dd>{{ item.notice }}</dd>
+                                <dt ng-if="item.showCapacity">Capacity</dt>
+                                <dd ng-if="item.showCapacity">
+                                    <div style="width:100%">
+                                        <div class="progress" style="margin-bottom:0px;">
+                                            <div class="progress-bar" ng-class="item.capacity >= 90 ? 'progress-bar-danger' : 'progress-bar-success'" ng-style="{ 'width' : item.capacity+'%' }">
+                                            </div>
+                                        </div>
+                                        <small>{{ item.usage }}</small>
+                                    </div>
+
+                                </dd>
+                            </dl>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="dataTables_footer">
+                <div class="dataTables_paginate paging_bootstrapFirstLast pagination">
+                    <ul class="pagination pagination-sm">
+                        <li class="prev disabled"><a href="">First</a>
+                        </li>
+                        <li class="prev disabled"><a href="">←</a>
+                        </li>
+                        <li class="active"><a href="">1</a>
+                        </li>
+                        <li class="next disabled"><a href="">→</a>
+                        </li>
+                        <li class="next disabled"><a href="">Last</a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="DataTables_Table_0_processing" class="dataTables_processing" style="visibility: hidden;">
+                    <span class="glyphicon glyphicon-refresh rotate "></span>Loading...</div>
+                <div class="dataTables_info" id="DataTables_Table_0_info">Showing 1 to 5 of 5 entries</div>
+                <div class="dataTables_processingError" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+    <div class="form-header">
+        <div class="image" style="display:none">
+        </div>
+        <div class="description">
+            <h2>
+                Upload a New License File</h2>
+            <p>Browse and upload a new text license file. This will overwrite any existing license file.</p>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+    <form action="" method="" accept-charset="utf-8" enctype="multipart/form-data" id="licenseForm" class="form form-horizontal" autocomplete="off">
+        <input type="hidden" name="authenticityToken" value="b1ad100e76ccea28cfba2fdd3a1c82f47da1f052">
+        <div id="newLicenseFileControlGroup" class="form-group  ">
+            <label class="control-label col-sm-3" for="newLicenseFile">License File:</label>
+            <div class="col-sm-6 controls">
+                <div class="input-group file-input ">
+                    <input type="text" class="form-control" readonly="">
+                    <span class="input-group-btn">
+                        <span class="btn btn-default btn-file">
+                            Browse...
+                            <input type="file" id="newLicenseFile" name="newLicenseFile">
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <span class="help-inline"></span>
+            </div>
+        </div>
+        <div class="form-group button-bar">
+            <div class="col-sm-offset-3 col-sm-9">
+                <button type="submit" class="btn btn-default">
+                    <span class="glyphicon glyphicon-upload "></span>Upload License File</button>
+            </div>
+        </div>
+    </form>
+</div>

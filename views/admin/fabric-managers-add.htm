@@ -1,0 +1,147 @@
+<div class="mainContent">
+    <ul class="breadcrumb">
+        <li>
+            <a href="/admin/sanswitches/list">Fabric Managers</a> 
+            <span class="divider"></span>
+        </li>
+        <li class="active">
+            Add Fabric Manager
+        </li>
+    </ul>
+    <div class="container">
+        <div class="form-header">
+            <div class="image">
+                <img src="/public/img/assets/Switch.png">
+            </div>
+            <div class="description">
+                <h2>
+                    Add Fabric Manager</h2>
+                <p>Enter the information needed to connect to a Fabric Manager.</p>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div class="clear"></div>
+        <p id="alerts_success" class="alert alert-success" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">?</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_error" class="alert alert-danger" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">?</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_warning" class="alert alert-warning" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">?</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_info" class="alert alert-info" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">?</button>
+            <span class="message"></span>
+        </p>
+        <form action="/admin/sanswitches/save" method="post" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" id="sanSwitchForm" class="form form-horizontal" autocomplete="off">
+            <input type="hidden" name="authenticityToken" value="b1ad100e76ccea28cfba2fdd3a1c82f47da1f052">
+            <fieldset>
+                <div id="sanSwitch_deviceTypeControlGroup" class="form-group  required">
+                    <label class="control-label col-sm-3" for="sanSwitch_deviceType">Type:</label>
+                    <div class="col-sm-6 controls">
+                        <select id="sanSwitch_deviceType" name="sanSwitch.deviceType" class="form-control span6 initialFocus" style="display: none;">
+                            <option value="mds">Cisco MDS</option>
+                            <option value="brocade">Brocade</option>
+                        </select>
+                        <div class="chosen-container chosen-container-single chosen-container-single-nosearch form-control span6 initialFocus" style="" title="" id="sanSwitch_deviceType_chosen">
+                            <a class="chosen-single" tabindex="-1">
+                                <span>Cisco MDS</span>
+                                <div><b></b>
+                                </div>
+                            </a>
+                            <div class="chosen-drop">
+                                <div class="chosen-search">
+                                    <input type="text" autocomplete="off" readonly="">
+                                </div>
+                                <ul class="chosen-results"></ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+                <div id="sanSwitch_nameControlGroup" class="form-group  required">
+                    <label class="control-label col-sm-3" for="sanSwitch_name">Name:</label>
+                    <div class="col-sm-6 controls">
+                        <input type="text" class="form-control span6" id="sanSwitch_name" name="sanSwitch.name" value="" autocomplete="off">
+                    </div>
+                    <div class="col-sm-3">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+                <div id="sanSwitch_ipAddressControlGroup" class="form-group  required">
+                    <label class="control-label col-sm-3" for="sanSwitch_ipAddress">Host:</label>
+                    <div class="col-sm-6 controls">
+                        <input type="text" class="form-control span3" id="sanSwitch_ipAddress" name="sanSwitch.ipAddress" value="" autocomplete="off">
+                        <span class="help-block">Enter the fully qualified domain name or IP address of the host.</span>
+                    </div>
+                    <div class="col-sm-3">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+                <div id="sanSwitch_useSSLControlGroup" class="form-group  " style="display: none;">
+                    <label class="control-label col-sm-3" for="sanSwitch_useSSL">Use SSL:</label>
+                    <div class="col-sm-6 controls">
+                        <div class="checkbox">
+                            <input type="checkbox" class="span0" id="sanSwitch_useSSL" name="sanSwitch.useSSL" value="true" checked="checked">
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+                <div id="sanSwitch_portNumberControlGroup" class="form-group  required">
+                    <label class="control-label col-sm-3" for="sanSwitch_portNumber">Port:</label>
+                    <div class="col-sm-6 controls">
+                        <input type="text" class="form-control span3" id="sanSwitch_portNumber" name="sanSwitch.portNumber" value="" autocomplete="off">
+                    </div>
+                    <div class="col-sm-3">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+                <div id="sanSwitch_userNameControlGroup" class="form-group  required">
+                    <label class="control-label col-sm-3" for="sanSwitch_userName">User:</label>
+                    <div class="col-sm-6 controls">
+                        <input type="text" class="form-control span6" id="sanSwitch_userName" name="sanSwitch.userName" value="" autocomplete="off">
+                    </div>
+                    <div class="col-sm-3">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+                <div id="sanSwitch_userPasswordControlGroup" class="form-group  required">
+                    <label class="control-label col-sm-3" for="sanSwitch_userPassword">Password:</label>
+                    <div class="col-sm-6 controls">
+                        <input type="password" class="form-control span6" id="sanSwitch_userPassword" name="sanSwitch.userPassword" value="" autocomplete="off">
+                    </div>
+                    <div class="col-sm-3">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+                <div id="sanSwitch_confirmPasswordControlGroup" class="form-group  required">
+                    <label class="control-label col-sm-3" for="sanSwitch_confirmPassword">Confirm Password:</label>
+                    <div class="col-sm-6 controls">
+                        <input type="password" class="form-control span6" id="sanSwitch_confirmPassword" name="sanSwitch.confirmPassword" value="" autocomplete="off">
+                    </div>
+                    <div class="col-sm-3">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="form-group button-bar">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <button type="submit" class="btn btn-primary btn-large " name="button.save">
+                        <span class="glyphicon glyphicon-ok-sign "></span>Save</button>
+                    <button type="button" class="btn btn-default btn-large " name="button.cancel">
+                        <span class="glyphicon glyphicon-trash "></span>Cancel</button>
+                    <span class="extraButtons">
+                    </span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

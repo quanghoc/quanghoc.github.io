@@ -1,0 +1,94 @@
+<div class="mainContent" ng-controller="GenericOrderFormCtrl" ng-init="data.orderTypeId = 13">
+    <ul class="breadcrumb breadcrumb-navbar">
+        <li><a href="" ui-sref="catalog">Service Catalog</a>
+            <span class="divider"></span>
+        </li>
+        <li><a href="" ui-sref="BlockProtectionServices">Block Protection Services</a>
+            <span class="divider"></span>
+        </li>
+        <li class="active">Failover block volume</li>
+    </ul>
+    <div class="container">
+        <div class="form-header">
+            <div class="image">
+                <img class="" src="/img/serviceCatalog/Service_Failover_Block_Volume.png">
+            </div>
+            <div class="description">
+                <h2>Failover block volume</h2>
+                <p>Perform a Disaster Recovery Failover operation using RecoverPoint or VMAX SRDF</p>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="clear"></div>
+        <p id="alerts_success" class="alert alert-success" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_error" class="alert alert-danger" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_warning" class="alert alert-warning" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_info" class="alert alert-info" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <span class="message"></span>
+        </p>
+        <!-- asset error -->
+        <div id="assetError" class="alert alert-danger" style="display:none;">
+            <button type="button" class="close">×</button>
+            <div id="assetErrorMessage" style="white-space: pre-line;"></div>
+        </div>
+        <form id="serviceForm" class="form-horizontal" ng-submit="submit()">
+            <div id="projectControlGroup" class="form-group  required">
+                <label class="control-label col-sm-3" for="project" set-model="data.details[0].name">Project:</label>
+                <div class="col-sm-6 controls">
+                    <select id="project" name="project" class="form-control span6" chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true" allow-single-deselect="false" ng-model="data.details[0].value">
+                        <option value="Engineering">Engineering</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="QA">QA</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div id="volumesControlGroup" class="form-group  required">
+                <label class="control-label col-sm-3" for="volumes" set-model="data.details[1].name">Volume:</label>
+                <div class="col-sm-6 controls">
+                    <select id="volumes" name="volumes" class="form-control span6" disabled="" chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true" allow-single-deselect="false" ng-model="data.details[1].value"></select>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div id="failoverTargetControlGroup" class="form-group  required">
+                <label class="control-label col-sm-3" for="failoverTarget" set-model="data.details[2].name">Failover Target:</label>
+                <div class="col-sm-6 controls">
+                    <select id="failoverTarget" name="failoverTarget" class="form-control span6" disabled="" chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true" allow-single-deselect="false" ng-model="data.details[2].value"></select>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="alert alert-warning">
+                <span class="label label-warning">
+                    <span class="glyphicon glyphicon-exclamation-sign "></span>
+                </span>
+                This service performs an operation that can result in data loss.
+            </div>
+            <div class="form-group button-bar">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <button type="submit" class="btn btn-primary btn-large " name="service.order">
+                        <span class="glyphicon glyphicon-shopping-cart "></span>&nbsp;Order</button>
+                    <button type="button" class="btn btn-default btn-large " name="button.cancel" ng-click="cancel()">
+                        <span class="glyphicon glyphicon-trash "></span>&nbsp; Cancel
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,161 @@
+<div class="mainContent" ng-controller="EditObjectVirtualPoolCtrl">
+
+	<ul class="breadcrumb">
+		<li>
+			<a ui-sref="ObjectVirtualPools">Object Virtual Pools</a>
+			<span class="divider"></span>
+		</li>
+		<li class="active">
+			Edit Object Virtual Pool
+		</li>
+	</ul>
+	<div class="container">
+
+		<div class="form-header">
+			<div class="image">
+				<img src="/img/assets/VirtualPool.png">
+			</div>
+
+			<div class="description">
+				<h2> Edit Object Virtual Pool </h2>
+				<p>
+					Edit an existing object virtual pool.
+				</p>
+			</div>
+			<div style="clear:both"></div>
+		</div>
+		<div class="clear"></div>
+		<p id="alerts_success" class="alert alert-success" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+				×
+			</button>
+			<span class="message"></span>
+		</p>
+		<p id="alerts_error" class="alert alert-danger" ng-show="error">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true" ng-click="error=false">
+				×
+			</button>
+			<span class="message">
+				{{ error }}
+			</span>
+		</p>
+		<p id="alerts_warning" class="alert alert-warning" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+				×
+			</button>
+			<span class="message"></span>
+		</p>
+		<p id="alerts_info" class="alert alert-info">
+			<span class="message">
+				This demo only allows to select one commodity virtual array for each virtual data center.
+			</span>
+		</p>
+
+		<form method="post" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" id="objectVirtualPool" class="form form-horizontal" autocomplete="off">
+			<fieldset>
+				<div id="objectVirtualPool_nameControlGroup" class="form-group  required">
+					<label class="control-label col-sm-3" for="objectVirtualPool_name">Name:</label>
+					<div class="col-sm-6 controls">
+						<input type="text" class="form-control initialFocus" id="objectVirtualPool_name" name="objectVirtualPool.name" autocomplete="off" maxlength="128" ng-model="objectVirtualPool.name">
+					</div>
+					<div class="col-sm-3">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+				<div id="objectVirtualPool_descriptionControlGroup" class="form-group  ">
+					<label class="control-label col-sm-3" for="objectVirtualPool_description">Description:</label>
+					<div class="col-sm-6 controls">
+						<textarea class="form-control col-md-6" id="objectVirtualPool_description" name="objectVirtualPool.description" rows="3" autocomplete="off" maxlength="1024" ng-model="objectVirtualPool.description"/>
+					</div>
+					<div class="col-sm-3">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+			</fieldset>
+
+			<fieldset>
+				<legend>
+					Virtual Arrays<small>Define the Virtual Array(s) where data should be stored/replicated when saving data to the Object Virtual Pool. </small>
+				</legend>
+
+				<table id="zoneMappingTable" class="table">
+					<thead>
+						<tr>
+							<th style="width: 40%;">Virtual Data Center</th>
+							<th style="width: 40%;">Virtual Array</th>
+							<th style="text-align: center; width: 10%;">&nbsp;</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in objectVirtualPool.virtualArrays">
+							<td>
+								<div>
+									<select class="form-control" ng-model="item.vdc" ng-options="vdc.id as vdc.name for vdc in vdcList"/>
+								</div>
+							</td>
+							<td>
+								<div>
+									<select class="form-control" ng-model="item.virtualArray" ng-options="virtualArray.id as virtualArray.name for virtualArray in vdcList[item.vdc-1].virtualArrays"/>
+								</div>
+							</td>
+							<td>
+								<button class="btn btn-sm btn-danger" type="button" ng-click="objectVirtualPool.virtualArrays.splice($index, 1)" ng-disabled="objectVirtualPool.virtualArrays.length == 1">
+									Remove
+								</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<button class="btn btn-sm btn-success" type="button" ng-click="insert()" ng-show="objectVirtualPool.virtualArrays.length < vdcList.length">
+					Add Virtual Array
+				</button>
+			</fieldset>
+
+			<div class="form-group button-bar">
+				<div class="col-sm-offset-3 col-sm-9">
+					<button type="button" class="btn btn-primary btn-large " name="button.save" ng-click="save()">
+						<span class="glyphicon glyphicon-ok-sign "></span> Save
+					</button>
+					<button type="button" class="btn btn-default btn-large " name="button.cancel" ng-click="cancel()">
+						<span class="glyphicon glyphicon-trash "></span> Cancel
+					</button>
+					<span id="failoverMessage" class="text-danger" style="display: none;">Saving will cause a VDC-Virtual Array fail over. </span>
+
+				</div>
+			</div>
+
+		</form>
+
+		<div id="confirmDialog" class="modal fade">
+			<div class="modal-dialog ">
+				<div class="modal-content">
+					<div class="modal-header ">
+						<button type="button" class="close" data-dismiss="modal">
+							×
+						</button>
+						<h4 class="modal-title">Confirm Fail Over for VDC-Virtual Array(s)</h4>
+					</div>
+					<div class="modal-body ">
+						<div class="alert alert-warning" style="margin-bottom: 0px;">
+							<span class="glyphicon glyphicon-warning-sign "></span> The following action will fail over for the removed VDC-Virtual Array(s). All data on these Virtual Arrays will be unavailable.
+							<br>
+							<br>
+							Further, please route your applications and traffic to other VDC-Virtual Arrays available in your Virtual Pool.
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="modal-footer ">
+						<button type="button" class="btn btn-success " ng-click="save()">
+							<span class="glyphicon glyphicon-ok-sign "></span> Confirm Fail Over
+						</button>
+						<button type="button" class="btn btn-default " ng-click="cancel()" data-dismiss="modal">
+							<span class="glyphicon glyphicon-primary "></span> Cancel
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</div>

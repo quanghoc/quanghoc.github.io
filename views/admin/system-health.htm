@@ -1,0 +1,533 @@
+<div class="" id="contentArea">
+	<div class="mainContent">
+		<div class="page-header">
+			<h3 class="ng-binding">System Health</h3>
+		</div>
+		<div class="clear"></div>
+		<p style="display:none" class="alert alert-success" id="alerts_success">
+			<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+			<span class="message"></span>
+		</p>
+		<p style="display:none" class="alert alert-danger" id="alerts_error">
+			<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+			<span class="message"></span>
+		</p>
+		<p style="display:none" class="alert alert-warning" id="alerts_warning">
+			<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+			<span class="message"></span>
+		</p>
+		<p style="display:none" class="alert alert-info" id="alerts_info">
+			<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+			<span class="message"></span>
+		</p>
+		<div class="row">
+			<div class="col-xs-4 subtitle">
+				<span class="statusContainer ng-scope">
+					<span class="statusCount ng-binding">3</span>
+					<status status="Good" type="node" class="ng-isolate-scope">
+						<span ng-class="status.class" class="ng-binding text-success">
+							<span class="glyphicon glyphicon-ok">
+                                <content></content>
+                            </span>
+							Good
+						</span>
+					</status>
+				</span>
+			</div>
+			<div class="col-xs-8 subtitle subtitle-right">
+				<span class="statusContainer">
+					<span class="text-muted statusTitle ng-binding">Total Nodes</span> 
+					<span class="statusCount status ng-binding">3</span>
+					<span class="text-muted statusTitle ng-binding">Controller Status</span> 
+					<status status="STABLE" type="cluster" class="ng-isolate-scope">
+						<span ng-class="status.class" class="ng-binding label label-success">
+							<span class="glyphicon glyphicon-ok">
+                                <content></content>
+                            </span>
+							Stable
+						</span>
+					</status>
+				</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="dataTableContainer" id="systemNodes" v-track="" v-require-controller="">
+					<div role="grid" class="dataTables_wrapper form-inline" id="DataTables_Table_0_wrapper">
+						<div class="dataTables_filter" id="DataTables_Table_0_filter"><label><input type="text" aria-controls="DataTables_Table_0" class="form-control input-sm search-query" placeholder="Search..."></label></div>
+						<table class="table table-hover table-condensed table-styled dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
+							<thead>
+								<tr role="row">
+									<th class="expandable sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="">
+										<div class="th-wrapper"></div>
+									</th>
+									<th class="name sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">
+										<div class="th-wrapper">Name</div>
+									</th>
+									<th class="ip sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="IP Address: activate to sort column ascending">
+										<div class="th-wrapper">IP Address</div>
+									</th>
+									<th class="status sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending">
+										<div class="th-wrapper">Status</div>
+									</th>
+									<th class="type sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Type: activate to sort column ascending">
+										<div class="th-wrapper">Type</div>
+									</th>
+									<th class="actions sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="Actions">
+										<div class="th-wrapper">Actions</div>
+									</th>
+								</tr>
+							</thead>
+							<tbody role="alert" aria-live="polite" aria-relevant="all">
+								<tr class="odd ng-scope openRow">
+                                    <td class="expandable" ng-click="itemExpand[0] = !itemExpand[0]" ng-class="{expanded: itemExpand[0]}">
+                                        <span class="expand-indicator"></span>
+                                    </td>
+									<td class="name sorting_1">
+										<url>
+											<a href="/system/health/vipr1" class="ng-binding" prevent-default>vipr1</a>
+										</url>
+									</td>
+									<td class="ip">192.168.103.19</td>
+									<td class="status">
+										<status status="Good" type="node" class="ng-isolate-scope">
+											<span ng-class="status.class" class="ng-binding text-success">
+												<span class="glyphicon glyphicon-ok">
+                                                    <content></content>
+                                                </span>
+												Good
+											</span>
+										</status>
+									</td>
+									<td class="type">Controller</td>
+									<td class="actions">
+										<actions>
+											<div class="btn-group" dropdown>
+												<a ui-sref="SystemHealthServices({name: 'vipr1'})" role="button" class="btn btn-default btn-xs ng-binding">Services</a>
+												<button class="btn btn-default btn-xs dropdown-toggle" type="button">Actions<span class="caret"></span></button>
+												<ul role="menu" class="dropdown-menu dropdown-menu-right">
+													<li><a href="/system/logs?nodeId=vipr1&amp;service=apisvc&amp;service=authsvc&amp;service=controllersvc&amp;service=coordinatorsvc&amp;service=dbsvc&amp;service=fabricctrlsvc&amp;service=geodbsvc&amp;service=geosvc&amp;service=messages&amp;service=nginx_access&amp;service=nginx_error&amp;service=objcontrolsvc&amp;service=portalsvc&amp;service=sasvc&amp;service=syssvc&amp;service=systemevents&amp;service=vasasvc&amp;startTime=1412203417764" class="ng-binding" prevent-default>View Logs</a></li>
+													<li><a )="" onclick="if (!confirm('Are you sure you want to reboot?')){return false;}" href="/systemhealth/nodereboot?nodeId=vipr1" class="ng-binding" prevent-default>Reboot</a></li>
+												</ul>
+											</div>
+										</actions>
+									</td>
+								</tr>
+								<tr class="odd ng-scope openedRow" ng-show="itemExpand[0]">
+									<td class="expandedRow" colspan="6">
+										<div ng-controller="HealthCtrl" class="ng-scope">
+                                            <span ng-init="healthDetails = {'dataCapacity':{'used':1868263424,'total':501601566720},'memoryCapacity':{'used':10672115712,'total':16862932992},'serviceCount':13,'statusCount':{'Good':13},'rootCapacity':{'used':1684533248,'total':10031050752},'cpuLoad':{'loadAvgTasksPastMinute':0.31,'loadAvgTasksPastFiveMinutes':0.36,'loadAvgTasksPastFifteenMinutes':0.34}};nodeId = 'vipr2';init && init()"></span>  <!-- ngIf: healthDetails -->
+											<div ng-if="healthDetails" class="ng-scope">
+												<div class="col-md-2 col-sm-3 col-xs-6">
+                                                    <div class="knobContainer">
+                                                        <span class="knobTitle">Services</span>
+                                                        <knob knob-data="13" knob-max="13" knob-options="{'width':100,'height':100,'displayInput':false,'angleArc':250,'angleOffset':234,'readOnly':true,'fgColor':'rgb(92, 184, 92)' }"></knob>
+                                                        <span class="knobSubtext">13 of 13</span>
+                                                        <span class="knobInner">13</span>
+                                                    </div>
+												</div>
+												<div class="col-md-2 col-sm-3 col-xs-6">
+                                                    <div class="knobContainer">
+                                                        <span class="knobTitle">Memory</span>
+                                                        <knob knob-data="62" knob-max="100" knob-options="{'width':100,'height':100,'displayInput':false,'angleArc':250,'angleOffset':234,'readOnly':true,'fgColor':'rgb(92, 184, 92)' }"></knob>
+                                                        <span class="knobSubtext">9.66GB of 15.70GB</span>
+                                                        <span class="knobInner">62%</span>
+                                                    </div>
+												</div>
+												<div class="col-md-2 col-sm-3 col-xs-6">
+                                                    <div class="knobContainer">
+                                                        <span class="knobTitle">Root Storage</span>
+                                                        <knob knob-data="16" knob-max="100" knob-options="{'width':100,'height':100,'displayInput':false,'angleArc':250,'angleOffset':234,'readOnly':true,'fgColor':'rgb(92, 184, 92)' }"></knob>
+                                                        <span class="knobSubtext">1.52GB of 9.34GB</span>
+                                                        <span class="knobInner">16%</span>
+                                                    </div>
+												</div>
+                                                <div class="col-md-2 col-sm-3 col-xs-6">
+                                                    <div class="knobContainer">
+                                                        <span class="knobTitle">Data Storage</span>
+                                                        <knob knob-data="0" knob-max="100" knob-options="{'width':100,'height':100,'displayInput':false,'angleArc':250,'angleOffset':234,'readOnly':true,'fgColor':'rgb(92, 184, 92)' }"></knob>
+                                                        <span class="knobSubtext">1.70GB of 46.15GB</span>
+                                                        <span class="knobInner">0%</span>
+                                                    </div>
+                                                </div>
+												<div class="col-md-2 col-sm-3 col-xs-6">
+                                                    <div class="loadAvgContainer">
+                                                        <span class="knobTitle">Load Average</span>
+                                                        <span class="loadAvg">0.24</span>
+                                                        <span class="loadAvg">0.23</span>
+                                                        <span class="loadAvg">0.29</span>
+                                                    </div>
+												</div>
+											</div>
+											<!-- end ngIf: healthDetails -->
+											<!-- ngIf: !healthDetails -->
+										</div>
+									</td>
+								</tr>
+								<tr class="even ng-scope openRow">
+                                    <td class="expandable" ng-click="itemExpand[1] = !itemExpand[1]" ng-class="{expanded: itemExpand[1]}">
+                                        <span class="expand-indicator"></span>
+                                    </td>
+									<td class="name sorting_1">
+										<url>
+											<a href="/system/health/vipr2" class="ng-binding" prevent-default>vipr2</a>
+										</url>
+									</td>
+									<td class="ip">192.168.103.20</td>
+									<td class="status">
+										<status status="Good" type="node" class="ng-isolate-scope">
+											<span ng-class="status.class" class="ng-binding text-success">
+													<span class="glyphicon glyphicon-ok">
+														<content></content>
+													</span>
+												Good
+											</span>
+										</status>
+									</td>
+									<td class="type">Controller</td>
+									<td class="actions">
+										<actions>
+											<div class="btn-group" dropdown>
+												<a ui-sref="SystemHealthServices({name: 'vipr2'})"  role="button" class="btn btn-default btn-xs ng-binding">Services</a>
+												<button class="btn btn-default btn-xs dropdown-toggle" type="button">Actions<span class="caret"></span></button>
+												<ul role="menu" class="dropdown-menu dropdown-menu-right">
+													<li><a href="/system/logs?nodeId=vipr2&amp;service=apisvc&amp;service=authsvc&amp;service=controllersvc&amp;service=coordinatorsvc&amp;service=dbsvc&amp;service=fabricctrlsvc&amp;service=geodbsvc&amp;service=geosvc&amp;service=messages&amp;service=nginx_access&amp;service=nginx_error&amp;service=objcontrolsvc&amp;service=portalsvc&amp;service=sasvc&amp;service=syssvc&amp;service=systemevents&amp;service=vasasvc&amp;startTime=1412203417769" class="ng-binding" prevent-default>View Logs</a></li>
+													<li><a )="" onclick="if (!confirm('Are you sure you want to reboot?')){return false;}" href="/systemhealth/nodereboot?nodeId=vipr2" class="ng-binding" prevent-default>Reboot</a></li>
+												</ul>
+											</div>
+										</actions>
+									</td>
+								</tr>
+								<tr class="even ng-scope openedRow" ng-show="itemExpand[1]">
+									<td class="expandedRow" colspan="6">
+										<div ng-controller="HealthCtrl" class="ng-scope">
+											<span ng-init="healthDetails = {'dataCapacity':{'used':1868263424,'total':501601566720},'memoryCapacity':{'used':10672115712,'total':16862932992},'serviceCount':13,'statusCount':{'Good':13},'rootCapacity':{'used':1684533248,'total':10031050752},'cpuLoad':{'loadAvgTasksPastMinute':0.31,'loadAvgTasksPastFiveMinutes':0.36,'loadAvgTasksPastFifteenMinutes':0.34}};nodeId = 'vipr2';init &amp;&amp; init()"></span>  <!-- ngIf: healthDetails -->
+                                            <div ng-if="healthDetails" class="ng-scope">
+                                                <div class="col-md-2 col-sm-3 col-xs-6">
+                                                    <div class="knobContainer">
+                                                        <span class="knobTitle">Services</span>
+                                                        <knob knob-data="13" knob-max="13" knob-options="{'width':100,'height':100,'displayInput':false,'angleArc':250,'angleOffset':234,'readOnly':true,'fgColor':'rgb(92, 184, 92)' }"></knob>
+                                                        <span class="knobSubtext">13 of 13</span>
+                                                        <span class="knobInner">13</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 col-sm-3 col-xs-6">
+                                                    <div class="knobContainer">
+                                                        <span class="knobTitle">Memory</span>
+                                                        <knob knob-data="63" knob-max="100" knob-options="{'width':100,'height':100,'displayInput':false,'angleArc':250,'angleOffset':234,'readOnly':true,'fgColor':'rgb(92, 184, 92)' }"></knob>
+                                                        <span class="knobSubtext">9.94GB of 15.70GB</span>
+                                                        <span class="knobInner">63%</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 col-sm-3 col-xs-6">
+                                                    <div class="knobContainer">
+                                                        <span class="knobTitle">Root Storage</span>
+                                                        <knob knob-data="17" knob-max="100" knob-options="{'width':100,'height':100,'displayInput':false,'angleArc':250,'angleOffset':234,'readOnly':true,'fgColor':'rgb(92, 184, 92)' }"></knob>
+                                                        <span class="knobSubtext">1.57GB of 9.34GB</span>
+                                                        <span class="knobInner">17%</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 col-sm-3 col-xs-6">
+                                                    <div class="knobContainer">
+                                                        <span class="knobTitle">Data Storage</span>
+                                                        <knob knob-data="0" knob-max="100" knob-options="{'width':100,'height':100,'displayInput':false,'angleArc':250,'angleOffset':234,'readOnly':true,'fgColor':'rgb(92, 184, 92)' }"></knob>
+                                                        <span class="knobSubtext">1.74GB of 46.15GB</span>
+                                                        <span class="knobInner">0%</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 col-sm-3 col-xs-6">
+                                                    <div class="loadAvgContainer">
+                                                        <span class="knobTitle">Load Average</span>
+                                                        <span class="loadAvg">0.31</span>
+                                                        <span class="loadAvg">0.36</span>
+                                                        <span class="loadAvg">0.34</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+											<!-- end ngIf: healthDetails -->
+											<!-- ngIf: !healthDetails -->
+										</div>
+									</td>
+								</tr>
+								<tr class="odd ng-scope openRow">
+                                    <td class="expandable" ng-click="itemExpand[2] = !itemExpand[2]" ng-class="{expanded: itemExpand[2]}">
+                                        <span class="expand-indicator"></span>
+                                    </td>
+									<td class="name sorting_1">
+										<url>
+											<a href="/system/health/vipr3" class="ng-binding" prevent-default>vipr3</a>
+										</url>
+									</td>
+									<td class="ip">192.168.103.21</td>
+									<td class="status">
+										<status status="Good" type="node" class="ng-isolate-scope">
+											<span ng-class="status.class" class="ng-binding text-success">
+												<span class="glyphicon glyphicon-ok">
+                                                    <content></content>
+                                                </span>
+												Good
+											</span>
+										</status>
+									</td>
+									<td class="type">Controller</td>
+									<td class="actions">
+										<actions>
+											<div class="btn-group" dropdown>
+												<a ui-sref="SystemHealthServices({name: 'vipr3'})"  role="button" class="btn btn-default btn-xs ng-binding">Services</a>
+												<button data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle ng-binding" type="button">Actions<span class="caret"></span></button>
+												<ul role="menu" class="dropdown-menu dropdown-menu-right">
+													<li><a href="/system/logs?nodeId=vipr3&amp;service=apisvc&amp;service=authsvc&amp;service=controllersvc&amp;service=coordinatorsvc&amp;service=dbsvc&amp;service=fabricctrlsvc&amp;service=geodbsvc&amp;service=geosvc&amp;service=messages&amp;service=nginx_access&amp;service=nginx_error&amp;service=objcontrolsvc&amp;service=portalsvc&amp;service=sasvc&amp;service=syssvc&amp;service=systemevents&amp;service=vasasvc&amp;startTime=1412203417773" class="ng-binding" prevent-default>View Logs</a></li>
+													<li><a )="" onclick="if (!confirm('Are you sure you want to reboot?')){return false;}" href="/systemhealth/nodereboot?nodeId=vipr3" class="ng-binding" prevent-default>Reboot</a></li>
+												</ul>
+											</div>
+										</actions>
+									</td>
+								</tr>
+								<tr class="odd ng-scope openedRow" ng-show="itemExpand[2]">
+									<td class="expandedRow" colspan="6">
+										<div ng-controller="HealthCtrl" class="ng-scope">
+											<span ng-init="healthDetails = {'dataCapacity':{'used':1818136576,'total':501601566720},'memoryCapacity':{'used':10628300800,'total':16862932992},'serviceCount':13,'statusCount':{'Good':13},'rootCapacity':{'used':1631023104,'total':10031050752},'cpuLoad':{'loadAvgTasksPastMinute':0.27,'loadAvgTasksPastFiveMinutes':0.31,'loadAvgTasksPastFifteenMinutes':0.3}};nodeId = 'vipr3';init &amp;&amp; init()"></span>  <!-- ngIf: healthDetails -->
+                                            <div ng-if="healthDetails" class="ng-scope">
+                                                <div class="col-md-2 col-sm-3 col-xs-6">
+                                                    <div class="knobContainer">
+                                                        <span class="knobTitle">Services</span>
+                                                        <knob knob-data="13" knob-max="13" knob-options="{'width':100,'height':100,'displayInput':false,'angleArc':250,'angleOffset':234,'readOnly':true,'fgColor':'rgb(92, 184, 92)' }"></knob>
+                                                        <span class="knobSubtext">13 of 13</span>
+                                                        <span class="knobInner">13</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 col-sm-3 col-xs-6">
+                                                    <div class="knobContainer">
+                                                        <span class="knobTitle">Memory</span>
+                                                        <knob knob-data="63" knob-max="100" knob-options="{'width':100,'height':100,'displayInput':false,'angleArc':250,'angleOffset':234,'readOnly':true,'fgColor':'rgb(92, 184, 92)' }"></knob>
+                                                        <span class="knobSubtext">9.94GB of 15.70GB</span>
+                                                        <span class="knobInner">63%</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 col-sm-3 col-xs-6">
+                                                    <div class="knobContainer">
+                                                        <span class="knobTitle">Root Storage</span>
+                                                        <knob knob-data="16" knob-max="100" knob-options="{'width':100,'height':100,'displayInput':false,'angleArc':250,'angleOffset':234,'readOnly':true,'fgColor':'rgb(92, 184, 92)' }"></knob>
+                                                        <span class="knobSubtext">1.57GB of 9.34GB</span>
+                                                        <span class="knobInner">16%</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 col-sm-3 col-xs-6">
+                                                    <div class="knobContainer">
+                                                        <span class="knobTitle">Data Storage</span>
+                                                        <knob knob-data="0" knob-max="100" knob-options="{'width':100,'height':100,'displayInput':false,'angleArc':250,'angleOffset':234,'readOnly':true,'fgColor':'rgb(92, 184, 92)' }"></knob>
+                                                        <span class="knobSubtext">1.74GB of 46.15GB</span>
+                                                        <span class="knobInner">0%</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 col-sm-3 col-xs-6">
+                                                    <div class="loadAvgContainer">
+                                                        <span class="knobTitle">Load Average</span>
+                                                        <span class="loadAvg">0.27</span>
+                                                        <span class="loadAvg">0.31</span>
+                                                        <span class="loadAvg">0.30</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+											<!-- end ngIf: healthDetails -->
+											<!-- ngIf: !healthDetails -->
+										</div>
+									</td>
+								</tr>
+								<tr class="even ng-scope openRow" ng-hide="true">
+                                    <td class="expandable" ng-click="itemExpand[3] = !itemExpand[3]" ng-class="{expanded: itemExpand[3]}">
+                                        <span class="expand-indicator"></span>
+                                    </td>
+									<td class="name sorting_1">
+										<url>
+											<a href="/system/health/vipr4" class="ng-binding" prevent-default>vipr4</a>
+										</url>
+									</td>
+									<td class="ip">192.168.103.22</td>
+									<td class="status">
+										<status status="Good" type="node" class="ng-isolate-scope">
+											<span ng-class="status.class" class="ng-binding text-success">
+												<span class="glyphicon glyphicon-ok">
+                                                    <content></content>
+                                                </span>
+												Good
+											</span>
+										</status>
+									</td>
+									<td class="type">Controller</td>
+									<td class="actions">
+										<actions>
+											<div class="btn-group" dropdown>
+												<a ui-sref="SystemHealthServices({name: 'vipr4'})"  role="button" class="btn btn-default btn-xs ng-binding">Services</a>
+												<button data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle ng-binding" type="button">Actions<span class="caret"></span></button>
+												<ul role="menu" class="dropdown-menu dropdown-menu-right">
+													<li><a href="/system/logs?nodeId=vipr4&amp;service=apisvc&amp;service=authsvc&amp;service=controllersvc&amp;service=coordinatorsvc&amp;service=dbsvc&amp;service=fabricctrlsvc&amp;service=geodbsvc&amp;service=geosvc&amp;service=messages&amp;service=nginx_access&amp;service=nginx_error&amp;service=objcontrolsvc&amp;service=portalsvc&amp;service=sasvc&amp;service=syssvc&amp;service=systemevents&amp;service=vasasvc&amp;startTime=1412203417777" class="ng-binding" prevent-default>View Logs</a></li>
+													<li><a )="" onclick="if (!confirm('Are you sure you want to reboot?')){return false;}" href="/systemhealth/nodereboot?nodeId=vipr4" class="ng-binding" prevent-default>Reboot</a></li>
+												</ul>
+											</div>
+										</actions>
+									</td>
+								</tr>
+								<tr class="even ng-scope openedRow" ng-show="itemExpand[3]">
+									<td class="expandedRow" colspan="6">
+										<div ng-controller="HealthCtrl" class="ng-scope">
+											<span ng-init="healthDetails = {'dataCapacity':{'used':1952526336,'total':501601566720},'memoryCapacity':{'used':10455588864,'total':16862932992},'serviceCount':13,'statusCount':{'Good':13},'rootCapacity':{'used':1631490048,'total':10031050752},'cpuLoad':{'loadAvgTasksPastMinute':0.41,'loadAvgTasksPastFiveMinutes':0.36,'loadAvgTasksPastFifteenMinutes':0.34}};nodeId = 'vipr4';init &amp;&amp; init()"></span>  <!-- ngIf: healthDetails -->
+                                            <div ng-if="healthDetails" class="ng-scope">
+                                                <div class="col-md-2 col-sm-3 col-xs-6">
+                                                    <div class="knobContainer">
+                                                        <span class="knobTitle">Services</span>
+                                                        <knob knob-data="13" knob-max="13" knob-options="{'width':100,'height':100,'displayInput':false,'angleArc':250,'angleOffset':234,'readOnly':true,'fgColor':'rgb(92, 184, 92)' }"></knob>
+                                                        <span class="knobSubtext">13 of 13</span>
+                                                        <span class="knobInner">13</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 col-sm-3 col-xs-6">
+                                                    <div class="knobContainer">
+                                                        <span class="knobTitle">Memory</span>
+                                                        <knob knob-data="62" knob-max="100" knob-options="{'width':100,'height':100,'displayInput':false,'angleArc':250,'angleOffset':234,'readOnly':true,'fgColor':'rgb(92, 184, 92)' }"></knob>
+                                                        <span class="knobSubtext">9.74GB of 15.70GB</span>
+                                                        <span class="knobInner">62%</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 col-sm-3 col-xs-6">
+                                                    <div class="knobContainer">
+                                                        <span class="knobTitle">Root Storage</span>
+                                                        <knob knob-data="16" knob-max="100" knob-options="{'width':100,'height':100,'displayInput':false,'angleArc':250,'angleOffset':234,'readOnly':true,'fgColor':'rgb(92, 184, 92)' }"></knob>
+                                                        <span class="knobSubtext">1.52GB of 9.34GB</span>
+                                                        <span class="knobInner">16%</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 col-sm-3 col-xs-6">
+                                                    <div class="knobContainer">
+                                                        <span class="knobTitle">Data Storage</span>
+                                                        <knob knob-data="0" knob-max="100" knob-options="{'width':100,'height':100,'displayInput':false,'angleArc':250,'angleOffset':234,'readOnly':true,'fgColor':'rgb(92, 184, 92)' }"></knob>
+                                                        <span class="knobSubtext">1.82GB of 46.15GB</span>
+                                                        <span class="knobInner">0%</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 col-sm-3 col-xs-6">
+                                                    <div class="loadAvgContainer">
+                                                        <span class="knobTitle">Load Average</span>
+                                                        <span class="loadAvg">0.41</span>
+                                                        <span class="loadAvg">0.36</span>
+                                                        <span class="loadAvg">0.34</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+											<!-- end ngIf: healthDetails -->
+											<!-- ngIf: !healthDetails -->
+										</div>
+									</td>
+								</tr>
+								<tr class="odd ng-scope openRow" ng-hide="true">
+                                    <td class="expandable" ng-click="itemExpand[4] = !itemExpand[4]" ng-class="{expanded: itemExpand[4]}">
+                                        <span class="expand-indicator"></span>
+                                    </td>
+									<td class="name sorting_1">
+										<url>
+											<a href="/system/health/vipr5" class="ng-binding" prevent-default>vipr5</a>
+										</url>
+									</td>
+									<td class="ip">192.168.103.23</td>
+									<td class="status">
+										<status status="Good" type="node" class="ng-isolate-scope">
+											<span ng-class="status.class" class="ng-binding text-success">
+												<span class="glyphicon glyphicon-ok">
+                                                    <content></content>
+                                                </span>
+												Good
+											</span>
+										</status>
+									</td>
+									<td class="type">Controller</td>
+									<td class="actions">
+										<actions>
+											<div class="btn-group" dropdown>
+												<a ui-sref="SystemHealthServices({name: 'vipr5'})"  role="button" class="btn btn-default btn-xs ng-binding">Services</a>
+												<button data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle ng-binding" type="button">Actions<span class="caret"></span></button>
+												<ul role="menu" class="dropdown-menu dropdown-menu-right">
+													<li><a href="/system/logs?nodeId=vipr5&amp;service=apisvc&amp;service=authsvc&amp;service=controllersvc&amp;service=coordinatorsvc&amp;service=dbsvc&amp;service=fabricctrlsvc&amp;service=geodbsvc&amp;service=geosvc&amp;service=messages&amp;service=nginx_access&amp;service=nginx_error&amp;service=objcontrolsvc&amp;service=portalsvc&amp;service=sasvc&amp;service=syssvc&amp;service=systemevents&amp;service=vasasvc&amp;startTime=1412203417781" class="ng-binding" prevent-default>View Logs</a></li>
+													<li><a )="" onclick="if (!confirm('Are you sure you want to reboot?')){return false;}" href="/systemhealth/nodereboot?nodeId=vipr5" class="ng-binding" prevent-default>Reboot</a></li>
+												</ul>
+											</div>
+										</actions>
+									</td>
+								</tr>
+								<tr class="odd ng-scope openedRow" ng-show="itemExpand[4]">
+									<td class="expandedRow" colspan="6">
+										<div ng-controller="HealthCtrl" class="ng-scope">
+											<span ng-init="healthDetails = {'dataCapacity':{'used':1869819904,'total':501601566720},'memoryCapacity':{'used':10537971712,'total':16862932992},'serviceCount':13,'statusCount':{'Good':13},'rootCapacity':{'used':1631154176,'total':10031050752},'cpuLoad':{'loadAvgTasksPastMinute':0.17,'loadAvgTasksPastFiveMinutes':0.22,'loadAvgTasksPastFifteenMinutes':0.24}};nodeId = 'vipr5';init &amp;&amp; init()"></span>  <!-- ngIf: healthDetails -->
+                                            <div ng-if="healthDetails" class="ng-scope">
+                                                <div class="col-md-2 col-sm-3 col-xs-6">
+                                                    <div class="knobContainer">
+                                                        <span class="knobTitle">Services</span>
+                                                        <knob knob-data="13" knob-max="13" knob-options="{'width':100,'height':100,'displayInput':false,'angleArc':250,'angleOffset':234,'readOnly':true,'fgColor':'rgb(92, 184, 92)' }"></knob>
+                                                        <span class="knobSubtext">13 of 13</span>
+                                                        <span class="knobInner">13</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 col-sm-3 col-xs-6">
+                                                    <div class="knobContainer">
+                                                        <span class="knobTitle">Memory</span>
+                                                        <knob knob-data="62" knob-max="100" knob-options="{'width':100,'height':100,'displayInput':false,'angleArc':250,'angleOffset':234,'readOnly':true,'fgColor':'rgb(92, 184, 92)' }"></knob>
+                                                        <span class="knobSubtext">9.81GB of 15.70GB</span>
+                                                        <span class="knobInner">62%</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 col-sm-3 col-xs-6">
+                                                    <div class="knobContainer">
+                                                        <span class="knobTitle">Root Storage</span>
+                                                        <knob knob-data="16" knob-max="100" knob-options="{'width':100,'height':100,'displayInput':false,'angleArc':250,'angleOffset':234,'readOnly':true,'fgColor':'rgb(92, 184, 92)' }"></knob>
+                                                        <span class="knobSubtext">1.52GB of 9.34GB</span>
+                                                        <span class="knobInner">16%</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 col-sm-3 col-xs-6">
+                                                    <div class="knobContainer">
+                                                        <span class="knobTitle">Data Storage</span>
+                                                        <knob knob-data="0" knob-max="100" knob-options="{'width':100,'height':100,'displayInput':false,'angleArc':250,'angleOffset':234,'readOnly':true,'fgColor':'rgb(92, 184, 92)' }"></knob>
+                                                        <span class="knobSubtext">1.74GB of 46.15GB</span>
+                                                        <span class="knobInner">0%</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 col-sm-3 col-xs-6">
+                                                    <div class="loadAvgContainer">
+                                                        <span class="knobTitle">Load Average</span>
+                                                        <span class="loadAvg">0.17</span>
+                                                        <span class="loadAvg">0.22</span>
+                                                        <span class="loadAvg">0.24</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+											<!-- end ngIf: healthDetails -->
+											<!-- ngIf: !healthDetails -->
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="dataTables_footer">
+							<div class="dataTables_paginate paging_bootstrapFirstLast pagination">
+								<ul class="pagination pagination-sm">
+									<li class="prev disabled"><a href="#">First</a></li>
+									<li class="prev disabled"><a href="#">←</a></li>
+									<li class="active"><a href="#">1</a></li>
+									<li class="next disabled"><a href="#">→</a></li>
+									<li class="next disabled"><a href="#">Last</a></li>
+								</ul>
+							</div>
+							<div id="DataTables_Table_0_processing" class="dataTables_processing" style="visibility: hidden;"> <span class="glyphicon glyphicon-refresh rotate "></span>Loading...</div>
+							<div class="dataTables_info" id="DataTables_Table_0_info">Showing 1 to 3 of 3 entries</div>
+							<div class="dataTables_selectedItems"></div>
+							<div class="dataTables_processingError" style="display: none;"></div>
+						</div>
+					</div>
+					<div class="button-bar">
+						<a class="btn btn-sm btn-danger" href="/admindashboard/clusterpoweroff" ng-disabled="true"> <span class="glyphicon glyphicon-off "></span> Shutdown All</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="menuCloser"></div>
+</div>

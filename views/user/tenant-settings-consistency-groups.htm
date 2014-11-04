@@ -1,0 +1,99 @@
+﻿<div class="mainContent" ng-controller="ConsistencyGroupsCtrl" ng-init="currentPage = 1; rpp = 10">
+    <form action="/admin/selectTenant" method="post" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" id="selectTenantForm" class="form form-inline">
+        <input type="hidden" name="authenticityToken" value="b1ad100e76ccea28cfba2fdd3a1c82f47da1f052">
+        <input type="hidden" name="url" value="/consistencygroups/list">
+        <div class="well well-sm">
+            <span class="tenant-select">
+                <label for="tenantId">Tenant:</label>
+                <select id="tenantId" name="tenantId" class="form-control input-sm" chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true" allow-single-deselect="false">
+                    <option value="urn:storageos:TenantOrg:992a41c6-597f-4b0f-8d66-206c11665c13:global" selected="selected">Provider Tenant</option>
+                    <option value="urn:storageos:TenantOrg:bc6d46d4-58e6-4dd4-817b-32b805f8c14f:global">RainPole Tenant</option>
+                </select>
+            </span>
+            <span class="project-select">
+                <label for="project">Project:</label>
+                <select id="project" name="project" class="form-control input-sm" chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true" allow-single-deselect="false">
+                    <option value="urn:storageos:Project:81d183df-2e15-4b17-9a0f-de82140bb5cf:global" selected="selected">Engineering</option>
+                    <option value="urn:storageos:Project:d056956b-dbbd-4a67-b3e0-a2c528c11882:global">Marketing</option>
+                    <option value="urn:storageos:Project:81333d2d-5a20-4cf5-aec0-39a9df57fac3:global">QA</option>
+                </select>
+            </span>
+        </div>
+    </form>
+    <div class="clear"></div>
+    <p id="alerts_success" class="alert alert-success" style="display:none">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">�</button>
+        <span class="message"></span>
+    </p>
+    <p id="alerts_error" class="alert alert-danger" style="display:none">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">�</button>
+        <span class="message"></span>
+    </p>
+    <p id="alerts_warning" class="alert alert-warning" style="display:none">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">�</button>
+        <span class="message"></span>
+    </p>
+    <p id="alerts_info" class="alert alert-info" style="display:none">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">�</button>
+        <span class="message"></span>
+    </p>
+    <div class="section-header pull-left ">
+        <h1 class="">Consistency Groups</h1>
+    </div>
+    <div id="consistencyGroups" class="dataTableContainer">
+        <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline" role="grid">
+            <div class="dataTables_filter" id="DataTables_Table_0_filter">
+                <label>
+                    <input type="text" aria-controls="DataTables_Table_0" class="form-control input-sm search-query" placeholder="Search..." ng-model="query">
+                </label>
+            </div>
+            <table class="table table-hover table-condensed table-styled dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
+                <thead>
+                    <tr role="row">
+                        <th class="selection sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="">
+                            <div class="th-wrapper">
+                                <input type="checkbox" name="selectAll">
+                            </div>
+                        </th>
+                        <th ng-click="colSort('name')" ng-class="{sorting_asc: sortField=='name' && reverse==true, sorting_desc: sortField=='name' && reverse==false, sorting: sortField!='name'}" class="name" role="columnheader" rowspan="1" colspan="1" aria-label="Name">
+                            <div class="th-wrapper">Name</div>
+                        </th>
+                        <th class="actions sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="Edit">
+                            <div class="th-wrapper">Edit</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody role="alert" aria-live="polite" aria-relevant="all">
+                    <tr ng-if="totalItems == 0" class="odd">
+                        <td valign="top" colspan="3" class="dataTables_empty">No results</td>
+                    </tr>
+                    <tr ng-if="totalItems > 0" class="odd" ng-repeat="item in consistencyGroups | filter:query | orderBy:sortField:reverse | slice:(currentPage-1)*rpp:(currentPage*rpp)">
+                        <td class="selection">
+                            <input type="checkbox" name="selected" value="">
+                        </td>
+                        <td class="name sorting_1"><a ui-sref="userConsistency_edit({consistencyGroupsId: {{ item.id }} })">{{ item.name }}</a></td>
+                        <td class="actions">
+                            <a class="btn btn-default btn-xs" ui-sref="userConsistency_edit({consistencyGroupsId: {{ item.id }} })">Edit</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="dataTables_footer">
+                <div class="dataTables_paginate paging_bootstrapFirstLast pagination">
+                    <pagination total-items="totalItems" ng-model="currentPage"></pagination>
+                </div>
+                <div id="DataTables_Table_0_processing" class="dataTables_processing" style="visibility: hidden;">
+                    <span class="glyphicon glyphicon-refresh rotate "></span>Loading...
+                </div>
+                <div class="dataTables_info" id="DataTables_Table_0_info">
+                    <page-info total-items="totalItems" ng-model="currentPage"></page-info>
+                </div>
+                <div class="dataTables_processingError" style="display: none;"></div>
+            </div>
+        </div>
+        <div class="button-bar">
+            <button type="button" class="btn btn-success " name="button.add" ui-sref="userConsistency_create"><span class="glyphicon glyphicon-plus "></span> Add</button>
+            <button type="button" class="btn btn-danger " name="button.delete" data-enabled="selected" data-form="deleteForm" disabled=""><span class="glyphicon glyphicon-trash "></span>  Delete  </button>
+        </div>
+    </div>
+</div>

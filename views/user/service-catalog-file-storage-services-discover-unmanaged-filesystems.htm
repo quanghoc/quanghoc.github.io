@@ -1,0 +1,100 @@
+<div class="mainContent" ng-controller="GenericOrderFormCtrl" ng-init="data.orderTypeId = 29">
+    <ul class="breadcrumb breadcrumb-navbar">
+        <li><a ui-sref="catalog">Service Catalog</a>
+            <span class="divider"></span>
+        </li>
+        <li><a ui-sref="FileStorageServices">File Storage Services</a>
+            <span class="divider"></span>
+        </li>
+        <li class="active">Discover Unmanaged File Systems</li>
+    </ul>
+    <div class="container">
+        <div class="form-header">
+            <div class="image">
+                <img class="" src="/img/serviceCatalog/Service_Discover_Unmanaged_Filesystems.png">
+            </div>
+            <div class="description">
+                <h2>Discover Unmanaged File Systems</h2>
+                <p>Discovers file systems on arrays that were not created by ViPR</p>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="clear"></div>
+        <p id="alerts_success" class="alert alert-success" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_error" class="alert alert-danger" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_warning" class="alert alert-warning" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_info" class="alert alert-info" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <span class="message"></span>
+        </p>
+        <!-- asset error -->
+        <div id="assetError" class="alert alert-danger" style="display:none;">
+            <button type="button" class="close">×</button>
+            <div id="assetErrorMessage" style="white-space: pre-line;"></div>
+        </div>
+        <form id="serviceForm" class="form-horizontal" ng-submit="submit()">
+            <div id="storageSystemsControlGroup" class="form-group  required">
+                <label class="control-label col-sm-3" for="storageSystems" set-model="data.details[0].name">Storage Systems:</label>
+                <div class="col-sm-6 controls">
+                    <div class="selectMany span6 ">
+                        <div class="selectManySearch row col-gap-sm" style="display: none;">
+                            <div class="col-sm-8">
+                                <input id="storageSystemsSearch" type="text" class="form-control input-sm" autocomplete="off">
+                            </div>
+                            <span class="btn-group selectManyButtons col-sm-4">
+                                <button id="storageSystemsCheck" type="button" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-check "></span>All</button>
+                                <button id="storageSystemsUncheck" type="button" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-remove-circle "></span>None</button>
+                            </span>
+                        </div>
+                        <div id="storageSystems" name="storageSystems" class="selectManyContent">
+                            <div class="checkbox">
+                                <label for="storageSystemsurn_storageos_StorageSystem_7a3aef66_5680_4b62_9b67_70d4e7f7077f_vdc1">
+                                    <input id="storageSystemsurn_storageos_StorageSystem_7a3aef66_5680_4b62_9b67_70d4e7f7077f_vdc1" name="storageSystems" type="checkbox" value="Isilon">Isilon
+                                </label>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="checkbox">
+                                <label for="storageSystemsurn_storageos_StorageSystem_f42650ec_b860_4fe9_b1c8_91cfeb9fa20b_vdc1">
+                                    <input id="storageSystemsurn_storageos_StorageSystem_f42650ec_b860_4fe9_b1c8_91cfeb9fa20b_vdc1" name="storageSystems" type="checkbox" value="NetApp">NetApp
+                                </label>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="checkbox">
+                                <label for="storageSystemsurn_storageos_StorageSystem_67e03519_4b60_4c80_ae94_69247fcf4fd6_vdc1">
+                                    <input id="storageSystemsurn_storageos_StorageSystem_67e03519_4b60_4c80_ae94_69247fcf4fd6_vdc1" name="storageSystems" type="checkbox" value="VNX-File">VNX-File
+                                </label>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                    <span class="loading hide">
+                        <span class="glyphicon glyphicon-refresh rotate "></span>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group button-bar">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <button type="submit" class="btn btn-primary btn-large " name="service.order">
+                        <span class="glyphicon glyphicon-shopping-cart "></span>&nbsp;Order</button>
+                    <button type="button" class="btn btn-default btn-large " name="button.cancel">
+                        <span class="glyphicon glyphicon-trash " ng-click="cancel()"></span>&nbsp;Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

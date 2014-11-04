@@ -1,0 +1,368 @@
+<div class="mainContent" ng-controller="EditFileVirtualPoolsCtrl">
+	<ul class="breadcrumb">
+		<li>
+			<a ui-sref="fileVirtualPools">File Virtual Pools</a> 
+			<span class="divider"></span>
+		</li>
+		<li class="active">
+			Edit/Create File Virtual Pool 
+		</li>
+	</ul>
+	<div id="virtualPool" class="container">
+		<div class="form-header">
+			<div class="image">
+				<img src="/img/assets/VirtualPool.png">  
+			</div>
+			<div class="description">
+				<h2>
+					Edit/Create File Virtual Pool      
+				</h2>
+				<p>Enter the information to edit/create a file virtual pool.</p>
+			</div>
+			<div style="clear:both"></div>
+		</div>
+		<div class="clear"></div>
+		<p id="alerts_success" class="alert alert-success" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<span class="message"></span>
+		</p>
+		<p id="alerts_error" class="alert alert-danger" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<span class="message"></span>
+		</p>
+		<p id="alerts_warning" class="alert alert-warning" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<span class="message"></span>
+		</p>
+		<p id="alerts_info" class="alert alert-info">
+			<span class="message">
+				This demo has disabled the ability to select your own virtual arrays.
+			</span>
+		</p>
+		<form ng-submit="add()" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" class="form form-horizontal" autocomplete="off">
+			<div id="vpool_nameControlGroup" class="form-group  required">
+				<label class="control-label col-sm-3" for="vpool_name">Name:</label>
+				<div class="col-sm-6 controls">
+					<input type="text" class="form-control initialFocus" id="vpool_name" name="vpool.name" autocomplete="off" required="required" ng-model="fileVirtualPool.name">      
+				</div>
+				<div class="col-sm-3">
+					<span class="help-inline"></span>
+				</div>
+			</div>
+			<div id="vpool_descriptionControlGroup" class="form-group  required">
+				<label class="control-label col-sm-3" for="vpool_description">Description:</label>
+				<div class="col-sm-6 controls">
+					<input type="text" class="form-control span6" id="vpool_description" name="vpool.description" value="" autocomplete="off" required="required" ng-model="fileVirtualPool.desc">      
+				</div>
+				<div class="col-sm-3">
+					<span class="help-inline"></span>
+				</div>
+			</div>
+			<div class="storagePoolCriteria">
+				<div id="vpool_virtualArraysControlGroup" class="form-group  required" tooltip="This demo has disabled custom selection of virtual arrays. All virtual arrays below are defined with file storage systems">
+					<label class="control-label col-sm-3" for="vpool_virtualArrays">Virtual Arrays:</label>
+					<div class="col-sm-6 controls">
+						<div class="selectMany span6 ">
+							<div class="selectManySearch row col-gap-sm" style="display: none;">
+								<div class="col-sm-8">
+									<input id="vpool_virtualArraysSearch" type="text" class="form-control input-sm" autocomplete="off">
+								</div>
+								<span class="btn-group selectManyButtons col-sm-4">
+								<button id="vpool_virtualArraysCheck" type="button" class="btn btn-default btn-sm" onclick="window.vpool_virtualArrays.checkAll()"><span class="glyphicon glyphicon-check "></span> All</button>
+								<button id="vpool_virtualArraysUncheck" type="button" class="btn btn-default btn-sm" onclick="window.vpool_virtualArrays.uncheckAll()"><span class="glyphicon glyphicon-remove-circle "></span> None</button>
+								</span>
+							</div>
+							<div id="vpool_virtualArrays" name="vpool.virtualArrays" class="selectManyContent">
+								<div class="checkbox" ng-repeat="item in fileVirtualArrays">
+									<label>
+										<input type="checkbox" checked disabled="">
+									 {{ item.name }}
+									</label>
+								</div>
+							</div>
+						</div>
+						<span class="help-block">A Virtual Pool must be associated with one or more Virtual Arrays before the options for other available criteria can be determined.</span>  
+					</div>
+					<div class="col-sm-3">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+			</div>
+			<div id="vpool_enableQuotaControlGroup" class="form-group  ">
+				<label class="control-label col-sm-3" for="vpool_enableQuota">Enable Quota:</label>
+				<div class="col-sm-6 controls">
+					<div class="checkbox">
+						<input type="checkbox" class="span0" id="vpool_enableQuota" name="vpool.enableQuota" value="true" ng-model="enableQuota">
+					</div>  
+				</div>
+				<div class="col-sm-3">
+					<span class="help-inline"></span>
+				</div>
+			</div>
+			<div ng-show="enableQuota">
+				<div id="vpool_quotaControlGroup" class="form-group  ">
+					<label class="control-label col-sm-3" for="vpool_quota">Quota:</label>
+					<div class="col-sm-3 controls">
+						<div class="input-group">
+							<input type="text" class="form-control span6" id="vpool_quota" name="vpool.quota" value="" autocomplete="off">        <span class="input-group-addon">GB</span>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+			</div>
+			<div class="panel-group">
+				<div class="storagePoolCriteria">
+					<div class="panel panel-default panel-collapse">
+						<div class="panel-heading" ng-click="opened[0] = !opened[0]" data-toggle="collapse" data-target="#vpool_group_hardware">
+							<h4 class="panel-title">
+								<span class="glyphicon glyphicon-chevron-right indicator" ng-show="!opened[0]"></span>
+								<span class="glyphicon glyphicon-chevron-down indicator" ng-show="opened[0]"></span>
+								<span class="glyphicon glyphicon-align-justify "></span>      Hardware
+							</h4>
+						</div>
+						<div id="vpool_group_hardware" class="panel-collapse" ng-class="{collapse: !opened[0]}">
+							<div class="panel-body">
+								<div id="vpool_provisioningTypeControlGroup" class="form-group  required">
+									<label class="control-label col-sm-3" for="vpool_provisioningType">Provisioning Type:</label>
+									<div class="col-sm-6 controls">
+				 						<select chosen="{inherit_select_classes:true}"
+											id="vpool_provisioningType"
+											class="form-control span6"
+											disable-search="true" 
+											name="vpool.provisioningType">
+											<option value=""></option>
+											<option value="Thick" selected="selected">Thick</option>
+											<option value="Thin">Thin</option>
+										</select>
+									</div>
+									<div class="col-sm-3">
+										<span class="help-inline"></span>
+									</div>
+								</div>
+								<div id="vpool_protocolsControlGroup" class="form-group  required">
+									<label class="control-label col-sm-3" for="vpool_protocols">Protocols:</label>
+									<div class="col-sm-6 controls">
+										<div class="selectMany span6 ">
+											<div class="selectManySearch row col-gap-sm" style="display: none;">
+												<div class="col-sm-8">
+													<input id="vpool_protocolsSearch" type="text" class="form-control input-sm" autocomplete="off">
+												</div>
+												<span class="btn-group selectManyButtons col-sm-4">
+												<button id="vpool_protocolsCheck" type="button" class="btn btn-default btn-sm" onclick="window.vpool_protocols.checkAll()"><span class="glyphicon glyphicon-check "></span> All</button>
+												<button id="vpool_protocolsUncheck" type="button" class="btn btn-default btn-sm" onclick="window.vpool_protocols.uncheckAll()"><span class="glyphicon glyphicon-remove-circle "></span> None</button>
+												</span>
+											</div>
+											<div id="vpool_protocols" name="vpool.protocols" class="selectManyContent">
+												<div class="checkbox">
+													<label for="vpool_protocolsCIFS" style="display: inline;">
+													<input id="vpool_protocolsCIFS" name="vpool.protocols" type="checkbox" value="CIFS" style="display: block;">
+													CIFS
+													</label>
+												</div>
+												<div class="clearfix"></div>
+												<div class="checkbox">
+													<label for="vpool_protocolsNFS" style="display: inline;">
+													<input id="vpool_protocolsNFS" name="vpool.protocols" type="checkbox" checked="checked" value="NFS" style="display: block;">
+													NFS
+													</label>
+												</div>
+												<div class="clearfix"></div>
+											</div>
+										</div>
+										<span class="help-block">Matching storage pools will be limited to those that can support all selected protocols</span>  
+									</div>
+									<div class="col-sm-3">
+										<span class="help-inline"></span>
+									</div>
+								</div>
+								<div id="vpool_systemTypeControlGroup" class="form-group  ">
+									<label class="control-label col-sm-3" for="vpool_systemType">System Type:</label>
+									<div class="col-sm-6 controls">
+										<select id="vpool_systemType" name="vpool.systemType" class="form-control span4" style="display: none;">
+											<option value="NONE">None</option>
+											<option value="isilon">EMC Isilon</option>
+											<option value="vnxfile">EMC VNX File</option>
+											<option value="netapp">NetApp</option>
+										</select>
+										<div class="chosen-container chosen-container-single chosen-container-single-nosearch form-control span4" style="" title="" id="vpool_systemType_chosen">
+											<a class="chosen-single" tabindex="-1">
+												<span>None</span>
+												<div><b></b></div>
+											</a>
+											<div class="chosen-drop">
+												<div class="chosen-search"><input type="text" autocomplete="off" readonly=""></div>
+												<ul class="chosen-results"></ul>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3">
+										<span class="help-inline"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default panel-collapse">
+						<div class="panel-heading in" data-toggle="collapse" ng-click="opened[1] = !opened[1]" data-target="#vpool_group_protection">
+							<h4 class="panel-title">
+								<span class="glyphicon glyphicon-chevron-right indicator" ng-show="!opened[1]"></span>
+								<span class="glyphicon glyphicon-chevron-down indicator" ng-show="opened[1]"></span>
+								<span class="vipricon vipricon-protectionv8 "></span>      Data Protection
+							</h4>
+						</div>
+						<div id="vpool_group_protection" style="height: auto;" class="panel-collapse" ng-class="{collapse: !opened[1]}">
+							<div class="panel-body">
+								<div id="vpool_maxSnapshotsControlGroup" class="form-group  ">
+									<label class="control-label col-sm-3" for="vpool_maxSnapshots">Maximum Snapshots:</label>
+									<div class="col-sm-6 controls">
+										<input type="text" class="form-control span1" id="vpool_maxSnapshots" name="vpool.maxSnapshots" value="" autocomplete="off">    <span class="help-block">Maximum number of local snapshots allowed for resources from this Virtual Pool</span>  
+									</div>
+									<div class="col-sm-3">
+										<span class="help-inline"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-default panel-collapse">
+					<div class="panel-heading in" data-toggle="collapse" ng-click="opened[2] = !opened[2]" data-target="#vpool_group_accessControl">
+						<h4 class="panel-title">
+							<span class="glyphicon glyphicon-chevron-right indicator" ng-show="!opened[2]"></span>
+							<span class="glyphicon glyphicon-chevron-down indicator" ng-show="opened[2]"></span>
+							<span class="glyphicon glyphicon-user "></span>      Access Control
+						</h4>
+					</div>
+					<div id="vpool_group_accessControl" style="height: auto;" class="panel-collapse" ng-class="{collapse: !opened[2]}">
+						<div class="panel-body">
+							<div id="vpool_enableTenantsControlGroup" class="form-group  ">
+								<label class="control-label col-sm-3" for="vpool_enableTenants">Grant Access to Tenants:</label>
+								<div class="col-sm-6 controls">
+									<div class="checkbox">
+										<input type="checkbox" class="span0" id="vpool_enableTenants" name="vpool.enableTenants" value="true">
+									</div> 
+								</div>
+								<div class="col-sm-3">
+									<span class="help-inline"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-default panel-collapse">
+					<div class="panel-heading in" data-toggle="collapse" ng-click="opened[3] = !opened[3]" data-target="#vpool_group_storagePools">
+						<h4 class="panel-title">
+							<span class="glyphicon glyphicon-chevron-right indicator" ng-show="!opened[3]"></span>
+							<span class="glyphicon glyphicon-chevron-down indicator" ng-show="opened[3]"></span>
+							<span class="glyphicon glyphicon-tasks "></span>      Storage Pools
+							<span id="matchingPools" class="badge">3</span>    <span id="matchingPoolsRefresh" style="display: none;"><span class="glyphicon glyphicon-refresh rotate "></span></span>
+						</h4>
+					</div>
+					<div id="vpool_group_storagePools" style="height: auto;" class="panel-collapse" ng-class="{collapse: !opened[3]}">
+						<div class="panel-body">
+							<div id="vpool_poolAssignmentControlGroup" class="form-group  ">
+								<label class="control-label col-sm-3" for="vpool_poolAssignment">Pool Assignment:</label>
+								<div class="col-sm-6 controls">
+									<select id="vpool_poolAssignment" name="vpool.poolAssignment" class="form-control span3" style="display: none;">
+										<option value="automatic">Automatic</option>
+										<option value="manual">Manual</option>
+									</select>
+									<div class="chosen-container chosen-container-single chosen-container-single-nosearch form-control span3" style="" title="" id="vpool_poolAssignment_chosen">
+										<a class="chosen-single" tabindex="-1">
+											<span>Automatic</span>
+											<div><b></b></div>
+										</a>
+										<div class="chosen-drop">
+											<div class="chosen-search"><input type="text" autocomplete="off" readonly=""></div>
+											<ul class="chosen-results"></ul>
+										</div>
+									</div>
+									<span class="help-block">Choosing manual pool assignment allows selection of a subset of the storage pools matching the criteria  </span>  
+								</div>
+								<div class="col-sm-3">
+									<span class="help-inline"></span>
+								</div>
+							</div>
+							<div class="storagePools" data-ids="">
+								<div id="storagePools" class="dataTableContainer">
+									<div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline" role="grid">
+										<div class="dataTables_filter" id="DataTables_Table_0_filter"><label><input type="text" aria-controls="DataTables_Table_0" class="form-control input-sm search-query" placeholder="Search..."></label></div>
+										<table class="table table-hover table-condensed table-styled dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
+											<thead>
+												<tr role="row">
+													<th class="name sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">
+														<div class="th-wrapper">Name</div>
+													</th>
+													<th class="storageSystem sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Storage System: activate to sort column ascending">
+														<div class="th-wrapper">Storage System</div>
+													</th>
+													<th class="volumeTypes sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Provisioning: activate to sort column ascending">
+														<div class="th-wrapper">Provisioning</div>
+													</th>
+													<th class="freeCapacity sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Free: activate to sort column ascending">
+														<div class="th-wrapper">Free</div>
+													</th>
+													<th class="subscribedCapacity sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Subscribed: activate to sort column ascending">
+														<div class="th-wrapper">Subscribed</div>
+													</th>
+													<th class="totalCapacity sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Total: activate to sort column ascending">
+														<div class="th-wrapper">Total</div>
+													</th>
+												</tr>
+											</thead>
+											<tbody role="alert" aria-live="polite" aria-relevant="all">
+												<tr class="odd">
+													<td class="name sorting_1">aggr0</td>
+													<td class="storageSystem">lppa009</td>
+													<td class="volumeTypes">Thin, Thick</td>
+													<td class="freeCapacity">19 GB</td>
+													<td class="subscribedCapacity">1 GB</td>
+													<td class="totalCapacity">20 GB</td>
+												</tr>
+												<tr class="even">
+													<td class="name sorting_1">clarsas_archive</td>
+													<td class="storageSystem">VNX FIle</td>
+													<td class="volumeTypes">Thin, Thick</td>
+													<td class="freeCapacity">2232 GB</td>
+													<td class="subscribedCapacity"> GB</td>
+													<td class="totalCapacity">3282 GB</td>
+												</tr>
+												<tr class="odd">
+													<td class="name sorting_1">x200_5.5tb_200gb-ssd_6gb</td>
+													<td class="storageSystem">lglca145</td>
+													<td class="volumeTypes">Thin, Thick</td>
+													<td class="freeCapacity">14753 GB</td>
+													<td class="subscribedCapacity">7 GB</td>
+													<td class="totalCapacity">15759 GB</td>
+												</tr>
+											</tbody>
+										</table>
+										<div class="dataTables_footer">
+											<div class="dataTables_info" id="DataTables_Table_0_info">Showing 1 to 3 of 3 entries</div>
+											<div class="dataTables_processingError" style="display: none;"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br />
+			<div class="form-group button-bar">
+				<div class="col-sm-offset-3 col-sm-9">
+					<button type="submit" class="btn btn-primary btn-large " name="button.save">
+						<span class="glyphicon glyphicon-ok-sign "></span>  Save  
+					</button>  
+					<button type="button" class="btn btn-default btn-large " name="button.cancel" ng-click="cancel()">
+						<span class="glyphicon glyphicon-trash "></span>  Cancel  
+					</button>  
+					<span class="extraButtons">
+					</span>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

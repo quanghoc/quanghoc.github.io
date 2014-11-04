@@ -1,0 +1,154 @@
+<div class="mainContent" ng-controller="NetworksCtrl" ng-init="currentPage = 1; rpp = 10">
+	<div class="clear"></div>
+	<p id="alerts_success" class="alert alert-success" style="display:none">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+		×
+		</button>
+		<span class="message"></span>
+	</p>
+	<p id="alerts_error" class="alert alert-danger" style="display:none">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+		×
+		</button>
+		<span class="message"></span>
+	</p>
+	<p id="alerts_warning" class="alert alert-warning" style="display:none">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+		×
+		</button>
+		<span class="message"></span>
+	</p>
+	<p id="alerts_info" class="alert alert-info" style="display:none">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+		×
+		</button>
+		<span class="message"></span>
+	</p>
+	<div class="section-header pull-left ">
+		<h1 class="">Networks</h1>
+	</div>
+	<div id="networks" class="dataTableContainer">
+		<div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline" role="grid">
+			<div class="dataTables_filter" id="DataTables_Table_0_filter">
+				<label>
+				<input type="text" aria-controls="DataTables_Table_0" class="form-control input-sm search-query" placeholder="Search...">
+				</label>
+			</div>
+			<table class="table table-hover table-condensed table-styled dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
+				<thead>
+					<tr role="row">
+						<th class="selection sorting_disabled" role="columnheader" rowspan="1" colspan="1">
+							<div class="th-wrapper">
+								<input type="checkbox" name="selectAll">
+							</div>
+						</th>
+						<th class="name sorting_asc" role="columnheader" tabindex="0" rowspan="1" colspan="1">
+							<div class="th-wrapper">
+								Name
+							</div>
+						</th>
+						<th class="registrationStatus sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Registered: activate to sort column ascending">
+							<div class="th-wrapper">
+								Registered
+							</div>
+						</th>
+						<th class="type sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Type: activate to sort column ascending">
+							<div class="th-wrapper">
+								Type
+							</div>
+						</th>
+						<th class="discovered sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Discovered: activate to sort column ascending">
+							<div class="th-wrapper">
+								Discovered
+							</div>
+						</th>
+						<th class="virtualArrayNames sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Virtual Arrays: activate to sort column ascending">
+							<div class="th-wrapper">
+								Virtual Arrays
+							</div>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="item in networks">
+						<td class="selection">
+							<input type="checkbox" name="selected">
+						</td>
+						<td class="name sorting_1"><a>{{ item.name }}</a></td>
+						<td class="registrationStatus"><span class="glyphicon glyphicon-ok"></span></td>
+						<td class="type">{{ item.type }}</td>
+						<td class="discovered"><span class="glyphicon glyphicon-ok"></span></td>
+						<td class="virtualArrayNames"></td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="dataTables_footer">
+				<div class="dataTables_paginate paging_bootstrapFirstLast pagination">
+					<pagination total-items="totalItems" ng-model="currentPage"></pagination>
+				</div>
+				<div id="DataTables_Table_0_processing" class="dataTables_processing" style="visibility: hidden;">
+					<span class="glyphicon glyphicon-refresh rotate "></span>Loading...
+				</div>
+				<div class="dataTables_info" id="DataTables_Table_0_info">
+					<page-info total-items="totalItems" ng-model="currentPage"></page-info>
+				</div>
+				<div class="dataTables_processingError" style="display: none;"></div>
+			</div>
+		</div>
+		<div class="button-bar">
+			<button type="button" class="btn btn-info " name="Networks.createIpNetwork" disabled="">
+			<span class="glyphicon glyphicon-plus "></span> Create IP Network
+			</button>
+			<button type="button" class="btn btn-danger " name="button.remove" disabled="">
+			<span class="glyphicon glyphicon-minus "></span> Remove
+			</button>
+			<button type="button" class="btn btn-default " name="button.register" disabled="">
+			<span class="glyphicon glyphicon-ok "></span> Register
+			</button>
+			<button type="button" class="btn btn-default " name="button.deregister" disabled="">
+			<span class="glyphicon glyphicon-remove "></span> Deregister
+			</button>
+		</div>
+	</div>
+	<div id="createDialog" class="modal fade">
+		<div class="modal-dialog ">
+			<div class="modal-content">
+				<div class="modal-header ">
+					<button type="button" class="close" data-dismiss="modal">
+					×
+					</button>
+					<h4 class="modal-title">Create IP Network</h4>
+					Enter the name of the IP network.  Once the network is created its ports may be edited.
+				</div>
+				<form action="" method="post" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" id="createForm" class="form form-horizontal">
+					<input type="hidden" name="authenticityToken" value="49141522d311863382cf10c84aad57d20cbac571">
+					<div class="modal-body ">
+						<input type="hidden" name="virtualArrayId" value="">
+						<div id="nameControlGroup" class="form-group  ">
+							<label class="control-label col-sm-3" for="name">Name:</label>
+							<div class="col-sm-6 controls">
+								<input type="text" class="form-control span6" id="name" name="name" value="" autocomplete="off">
+							</div>
+							<div class="col-sm-3">
+								<span class="help-inline"></span>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="modal-footer ">
+						<div class="form-group button-bar">
+							<div class="col-sm-offset-3 col-sm-9">
+								<button type="submit" class="btn btn-primary ">
+								<span class="glyphicon glyphicon-ok-sign "></span> Done
+								</button>
+								<button type="button" class="btn btn-default ">
+								<span class="glyphicon glyphicon-trash "></span> Cancel
+								</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

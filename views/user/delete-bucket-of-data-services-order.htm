@@ -1,0 +1,235 @@
+<div class="mainContent">
+    <div>
+        <div id="orderDetails" class="container" style="margin-bottom: 2em;">
+            <div class="form-header">
+                <div class="image">
+                    <img class="" src="/img/serviceCatalog/icon_delete_bucket.png">
+                </div>
+                <div class="description">
+                    <h2>Delete Bucket of Data Services</h2>
+                    <p>
+                        Delete a bucket from Data Services
+                    </p>
+                </div>
+                <div style="clear:both"></div>
+            </div>
+            <div class="clear"></div>
+            <p id="alerts_success" class="alert alert-success" style="display: none;">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                    ×
+                </button>
+                <span class="message">Your order has been successfully received and is being processed. You may leave this page and return at any time through your Orders.</span>
+            </p>
+            <p id="alerts_error" class="alert alert-danger" style="display: none;">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                    ×
+                </button>
+                <span class="message"></span>
+            </p>
+            <p id="alerts_warning" class="alert alert-warning" style="display: none;">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                    ×
+                </button>
+                <span class="message"></span>
+            </p>
+            <p id="alerts_info" class="alert alert-info" style="display: none;">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                    ×
+                </button>
+                <span class="message"></span>
+            </p>
+            <div id="lastUpdated" style="display:none">
+                1406909965009
+            </div>
+            <div class="pull-left span5">
+                <dl class="dl-horizontal nomargin">
+                    <dt>
+                        Order Number:
+                    </dt>
+                    <dd>
+                        4&nbsp;
+                    </dd>
+                    <dt>
+                        Date Submitted:
+                    </dt>
+                    <dd>
+                        <span class="localDateTime" style="">Aug 1st 2014, 12:19:23 pm</span>&nbsp;
+                    </dd>
+                    <dt>
+                        Submitted By:
+                    </dt>
+                    <dd>
+                        vipradmin@ecs.demo&nbsp;
+                    </dd>
+                    <dt>
+                        Status:
+                    </dt>
+                    <dd>
+                        <span id="orderStatus">
+                            <span class="glyphicon glyphicon-ok "></span>Order Successfully Fulfilled
+                            <span class="value" style="display:none">SUCCESS</span>
+                        </span>&nbsp;
+                    </dd>
+                    <dd>
+                    </dd>
+                    <dt class="executionTime" style="">
+                        Execution Time:
+                    </dt>
+                    <dd class="executionTime" style="">
+                        <span id="executionTime">1 second</span>
+                    </dd>
+                    <dt class="precheckTasks" style="display: none;">
+                        Precheck Steps:
+                    </dt>
+                    <dd class="precheckTasks" style="display: none;">
+                        <div class="progressBar">
+                            <span class="label label-success">0</span>
+                        </div>
+                    </dd>
+                    <dt class="executeTasks" style="">
+                        Execution Steps:
+                    </dt>
+                    <dd class="executeTasks">
+                        <div class="progressBar">
+                            <span class="label label-success">1</span>
+                            <span class="dot dot-success"></span>
+                        </div>
+                    </dd>
+                    <dt class="rollbackTasks" style="display: none;">
+                        Rollback Steps:
+                    </dt>
+                    <dd class="rollbackTasks" style="display: none;">
+                        <div class="progressBar">
+                            <span class="label label-success">0</span>
+                        </div>
+                    </dd>
+                    <dt>
+                        &nbsp;
+                    </dt>
+                    <dd>
+                        <span id="currentStep"></span>
+                    </dd>
+                </dl>
+            </div>
+            <div class="pull-left span6" style="overflow:hidden">
+                <dl class="dl-horizontal nomargin wide">
+                    <dt>
+                        Name:
+                    </dt>
+                    <dd>
+                        bucket1
+                    </dd>
+                    <span id="reorderForm" style="display: none;">
+                        <dt>
+                            Re-Submit:
+                        </dt>
+                        <dd>
+                            <form action="" method="post">
+                                <input type="hidden" name="authenticityToken" value="3ce2076449de4d06c8d804b8f83b2a5fe9047d6c">
+                                <input type="hidden" name="serviceId" value="urn:storageos:CatalogService:e6b87775-701a-4e69-a949-ecf377927432:vdc1">
+                                <input type="hidden" name="name" value="bucket1">
+                                <button type="submit" class="btn btn-xs btn-primary" name="action" value="execute">
+                                    Order
+                                </button>
+                            </form>
+                        </dd>
+                    </span>
+                </dl>
+            </div>
+            <div style="clear:both"></div>
+            <div id="orderMessage" style="display: none;">
+                <div class="alert alert-info"></div>
+            </div>
+            <div id="approval" style="display: none;"></div>
+            <div id="affectedResources" style="display: none;">
+                <div class="section-header">
+                    <h1>Affected Resources</h1>
+                </div>
+                <div class="content"></div>
+            </div>
+            <div id="Order_executionLogs" style="display: none;">
+                <div class="master-detail">
+                    <div class="header">
+                        <i class="indicator"></i>Logs
+                    </div>
+                    <div class="content" style="display:none">
+                        <table class="logs table table-condensed table-striped" style="display: none;">
+                            <thead>
+                                <tr>
+                                    <th class="dateColumn">Date</th>
+                                    <th class="levelColumn">Level</th>
+                                    <th class="messageColumn">Message</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div id="Order_precheckTasks" style="display: none;">
+                <div class="master-detail">
+                    <div class="header">
+                        <i class="indicator"></i>Precheck Steps
+                    </div>
+                    <div class="content" style="display:none">
+                        <table class="taskLogs table table-striped table-condensed" style="display: none;">
+                            <thead>
+                                <tr>
+                                    <th class="messageColumn">Summary</th>
+                                    <th class="detailColumn">Detail</th>
+                                    <th class="elapsedColumn">Elapsed</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div id="Order_executeTasks" style="">
+                <div class="master-detail">
+                    <div class="header expanded">
+                        <i class="indicator"></i>Execution Steps
+                    </div>
+                    <div class="content" style="display: block;">
+                        <table class="taskLogs table table-striped table-condensed" style="">
+                            <thead>
+                                <tr>
+                                    <th class="messageColumn">Summary</th>
+                                    <th class="detailColumn">Detail</th>
+                                    <th class="elapsedColumn">Elapsed</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="">
+                                    <td class="messageColumn">Delete Bucket</td>
+                                    <td class="detailColumn">Bucket Name: bucket1</td>
+                                    <td class="elapsedColumn">1 second</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div id="Order_rollbackTasks" style="display: none;">
+                <div class="master-detail">
+                    <div class="header">
+                        <i class="indicator"></i>Rollback Steps
+                    </div>
+                    <div class="content" style="display:none">
+                        <table class="taskLogs table table-striped table-condensed" style="display: none;">
+                            <thead>
+                                <tr>
+                                    <th class="messageColumn">Summary</th>
+                                    <th class="detailColumn">Detail</th>
+                                    <th class="elapsedColumn">Elapsed</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div style="padding-bottom: 1em;"></div>
+        </div>
+    </div>
+</div>

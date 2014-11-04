@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+ <head>
+	<meta charset="utf-8" />
+    <meta property="og:title" content="ViPR Demo" /> <!-- title of page excluding any branding -->
+    <meta property="og:site_name" content="ViPR Demo" /> <!-- site name without url -->
+    <meta property="og:url" content="http://www.emc.com/microsites/vipr-demo/" /> <!--recommended by both FB and linkedin-->
+    <meta property="og:description" content="ViPR Demo allows you to do this and that" />
+    <meta property="og:image" content="http://www.emc.com/images/microsites/vipr-demo/splashscreen.jpg" />
+    <meta property="fb:app_id" content="..." /> <!-- unique ID that is crucial for FB Insights to work -->
+
+	<title>ViPR 2.1 Demo</title>
+    <!-- build:css:dist assets/app.css -->
+	<link rel="stylesheet" href="css/bootstrap.css" />
+	<link rel="stylesheet" href="css/bootstrap-custom.css" media="screen" charset="utf-8" />
+	<link rel="stylesheet" href="css/bootstrap-datatables.css" media="screen" charset="utf-8" />
+	<link rel="stylesheet" href="css/bootstrap-formhelpers.css" media="screen" charset="utf-8" />
+	<link rel="stylesheet" href="css/chosen.min.css" media="screen" charset="utf-8" />
+	<link rel="stylesheet" href="css/chosen-custom.css" media="screen" charset="utf-8" />
+	<link rel="stylesheet" href="css/vipricons.css" media="screen" charset="utf-8" />
+	<link rel="stylesheet" href="css/common.css" media="screen" charset="utf-8" />
+	<link rel="stylesheet" href="css/content.css" media="screen" charset="utf-8" />
+	<link rel="stylesheet" href="css/catalog.css" type="text/css" media="screen" charset="utf-8"/>
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/introjs-custom.css" media="screen" charset="utf-8" />
+    <!-- /build -->
+	<link rel="shortcut icon" href="favicon.ico" />
+
+    <!-- build:js:dist assets/lib.min.js -->
+	<script src="js/vendors/jquery.js"></script>
+	<script src="js/angular/angular.js"></script>
+	<script src="js/angular/angular-ui-router.js"></script>
+	<script src="js/angular/angular-cookies.js"></script>
+	<script src="js/angular/ngStorage.min.js"></script>
+	<script src="js/vendors/underscore.js"></script>
+	<script src="js/vendors/angular-underscore.js"></script>
+    <script src="js/vendors/jquery.knob.min.js"></script>
+    <script src="js/angular/angular-knob.js"></script>
+	<script src="js/vendors/ui-bootstrap-tpls-0.11.0.js"></script>
+	<script src="js/vendors/chosen.jquery.js"></script>
+	<script src="js/vendors/chosen.js"></script>
+	<script src="js/vendors/intro-custom.js"></script>
+	<script src="js/vendors/angular-intro.js"></script>
+	<script src="js/ecue.js"></script>
+    <!-- /build -->
+	<script src="http://admin.brightcove.com/js/BrightcoveExperiences.js"></script>
+	<script src="http://admin.brightcove.com/js/APIModules_all.js"></script>
+
+    <!-- build:js:dist assets/app.min.js -->
+	<!-- Include model data here -->
+	<script src="js/models/nav.js"></script>
+	<script src="js/models/guidedTour.js"></script>
+	<script src="js/models/models.js"></script>
+	<script src="js/models/vdc1/storage-systems.js"></script>
+	
+	<!-- This is our bootstrap app and modules -->
+	<script src="js/app.js"></script>
+	<script src="js/services.js"></script>
+	<script src="js/filters.js"></script>
+	<script src="js/directives.js"></script>
+	<script src="js/controllers.js"></script>
+    <!-- /build -->
+ </head>
+
+ <body ng-app="vipr" ng-class="{'is-tour': isTour && isTourOn}" ng-controller="EnvironmentCtrl"
+ 	ng-init="rpp = 10; internalEMC = false;"
+ 	class="wLeftNav" 
+ 	ng-intro-options="IntroOptions" ng-intro-method="guidedTour" 
+ 	ng-intro-autostart="false" ng-intro-oncomplete="ExitEvent" ng-intro-onchange="ChangeEvent"
+ 	ng-intro-onbeforechange="BeforeChangeEvent" ng-intro-onafterchange="AfterChangeEvent" ng-intro-onexit="ExitEvent"
+    ng-intro-reset="enableGuidedTour" ng-intro-currentstep="currentStep"
+    ng-cloak>
+
+ 	<!--[if lt IE 10]>
+ 	<div style="height:100%;width:100%;z-index:1000;position:absolute;top:0;bottom:0;background:#f5f5f5;padding:30px;color:#777;font-size:15px;line-height:30px;">
+ 		<h1>
+ 			Your browser does not support this ViPR demo
+ 		</h1>
+ 		<p>
+ 			The browser requirements for ViPR are described below.
+ 		</p>
+
+ 		<p>
+ 			<ol>
+ 				<li>
+ 					Google Chrome (version 34 and 35)
+				</li>
+ 				<li>
+ 					Internet Explorer (version 9, 10 and 11). Compatibility mode must be off.
+				</li>
+ 				<li>
+ 					Mozilla Firefox (version 28 and 29). Enable cookies and pop-ups. Disable all add-ons. Enable Javascript.
+				</li>
+			</ol>
+ 		</p>
+ 	</div>
+ 	<![endif]-->
+ 	
+	<header ng-controller="TopCtrl" id="ECUEtopBanner">
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="navbar-header" tooltip-placement="bottom">
+				<a class="navbar-brand" href="#/">EMC ViPR</a>
+			</div>
+			<div class="collapse navbar-collapse" id="navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right">
+					<li id="requestAQuote" ng-hide="internalEMC">
+						<button type="button" class="btn btn-success navbar-btn" ng-click='openUrl("https://store.emc.com/quotecheckout?productCode=EMC-ViPR&qty=1&showConfig=true&PID=EMC_OTHR-VIPR-BE83_HEAD")'>
+							<span class="glyphicon glyphicon-list-alt"></span>
+							Request a Quote
+						</button>
+					</li>
+					<li tooltip-placement="bottom" tooltip="Download your free ViPR Controller (2.3 GB)" ng-hide="internalEMC">
+						<button type="button" class="btn btn-info navbar-btn" ng-click='openUrl("https://www.emc.com/auth/viprsoftwaredownload.htm?PID=VIPRDW_DOWNLOAD_BUTTON")'>
+							<span class="glyphicon glyphicon-cloud-download"></span>
+							Download ViPR
+						</button>
+					</li>
+					<li class="dropdown" ng-hide="internalEMC">
+						<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+							<span class="glyphicon glyphicon-play"></span> 
+							How-to Videos 
+							<b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<!-- <a href="" ng-click='openUseCase("gxcIshIhmgU")'> -->
+								<a href="" ng-click='openUseCase("3804745394001")'>
+									Discover Physical Arrays
+								</a>
+							</li>
+							<li>
+								<!-- <a href="" ng-click='openUseCase("sp10fBTYyho")'> -->
+								<a href="" ng-click='openUseCase("3804630992001")'>
+									Add Fabric Managers
+								</a>
+							</li>
+							<li>
+								<!-- <a href="" ng-click='openUseCase("UgvLFLSAX20")'> -->
+								<a href="" ng-click='openUseCase("3804759738001")'>
+									Setup Multi-tenancy
+								</a>
+							</li>
+							<li>
+								<!-- <a href="" ng-click='openUseCase("T8kwZQXueds")'> -->
+								<a href="" ng-click='openUseCase("3804759724001")'>
+									Add Hosts and vCenters
+								</a>
+							</li>
+							<li>
+								<!-- <a href="" ng-click='openUseCase("TKBU8xJ04b0")'> -->
+								<a href="" ng-click='openUseCase("3804631013001")'>
+									Add Virtual Arrays and Virtual Pools
+								</a>
+							</li>
+							<li>
+								<!-- <a href="" ng-click='openUseCase("uqdLL9Ag0pw")'> -->
+								<a href="" ng-click='openUseCase("3804929372001")'>
+									Provision Block and File Storage
+								</a>
+							</li>
+							<li>
+								<!-- <a href="" ng-click='openUseCase("ks6u2XGkY18")'> -->
+								<a href="" ng-click='openUseCase("3804929403001")'>
+									VMware Integration
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li id="vdcSwitch" class="dropdown">
+						<a data-toggle="dropdown" class="dropdown-toggle" href="#" ng-if="vdcId == 1">
+							<span class="vipricon vipricon-vdc"></span> 
+							vdc1 
+							<b class="caret"></b>
+						</a>
+						<a data-toggle="dropdown" class="dropdown-toggle" href="#" ng-if="vdcId == 2">
+							<span class="vipricon vipricon-vdc"></span> 
+							vdc2
+							<b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li class="">
+								<a ui-sref="adminDashboard({id: 1})" ng-if="vdcId == 2">vdc1</a>
+								<a ui-sref="adminDashboard({id: 2})" ng-if="vdcId == 1">vdc2</a>
+							</li>
+							<li class="divider"></li>
+							<li class="">
+								<a ui-sref="VirtualDataCenters">
+								Virtual Data Centers
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user "></span> root <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li>
+								<a ui-sref="UserPreferences">Preferences</a>
+							</li>
+							<li>
+								<a ui-sref="ObjectAccessKeys">Object Access Keys</a>
+							</li>
+							<li class="divider" ng-if="enableLocalStorage"></li>
+							<li ng-if="enableLocalStorage" class="">
+								<a ng-click="resetLocalStorage()">Reset Demo</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+	
+	<div id="ECUEleftNav" ng-controller="NavigationCtrl">
+		<a ng-class="{active : isActiveMenu(item.id)}" ng-repeat="item in ViPRnav[0].nav"
+			ng-click="canIGo($event,item.id,item.kids)"
+			data-subnav="menu_{{item.id}}" data-title="{{item.name}}" 
+			class="rootNav" 
+			tooltip-placement="right" tooltip="{{item.name}}">
+			<span class="{{item.iconClass}}"></span>
+			<span class="sr-only">{{item.name}} menu</span>
+		</a>
+	</div>
+	
+	<div id="ECUEleftMenus" ng-controller="NavigationCtrl">
+		<div ng-if="item.kids" ng-repeat="item in ViPRnav[0].nav" id="menu_{{item.id}}" class="ECUEleftMenu">
+			<div class="menuPin">
+				<span class="glyphicon glyphicon-pushpin"></span>
+			</div>
+			<div class="menuTitle">{{item.name}}</div>
+			<div class="menuTree">
+				<ul class="">
+					<li ng-repeat="kid in item.kids"><a ui-sref-active="selected" ui-sref="{{kid.id}}">{{kid.name}}</a><hr ng-if="kid.divider" /></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div id="ECUEleftMenuClose">&nbsp;</div>
+
+	<!-- ui-view is just a placeholder container to inject other templates -->
+	<div id="ECUEcontentArea" ui-view></div>
+
+	<nav class="navbar navbar-fixed-bottom navbar-tour" role="navigation" ng-hide="internalEMC" >
+		<ul class="nav navbar-nav navbar-right">
+			<li>
+				<button type="button" class="btn btn-primary btn-lg navbar-btn animated bounce" ng-disabled="guidedTourEnabled()" ng-click='runGuidedTour(); isTourOn = true'>
+					Behind the Scenes
+				</button>
+			</li>
+            <li>
+                <div id="oneFS-preview" ng-show="oneFS" ng-click="openOneFS()">
+                    <img src="/img/assets/oneFS_thmb.jpg" width="250" height="140" alt="oneFS Preview">
+                </div>
+            </li>
+		</ul>
+	</nav>
+    <!-- build:template:dist
+        <%= templates %>
+    /build -->
+ </body>
+</html>

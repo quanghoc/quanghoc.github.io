@@ -1,0 +1,177 @@
+<div class="mainContent" ng-controller="VMwarevCenterCtrl" ng-init="currentPage = 1; rpp = 10">
+    <form action="" method="" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" id="selectTenantForm" class="form form-inline">
+        <input type="hidden" name="authenticityToken" value="b1ad100e76ccea28cfba2fdd3a1c82f47da1f052">
+        <input type="hidden" name="url" value="/admin/vCenters/list">
+        <div class="well well-sm">
+            <span class="tenant-select">
+                <label for="tenantId">Tenant:</label>
+                <select id="tenantId" name="tenantId" class="form-control input-sm" chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true" allow-single-deselect="false">
+                    <option value="urn:storageos:TenantOrg:992a41c6-597f-4b0f-8d66-206c11665c13:global" selected="selected">Provider Tenant</option>
+                    <option value="urn:storageos:TenantOrg:bc6d46d4-58e6-4dd4-817b-32b805f8c14f:global">RainPole Tenant</option>
+                </select>
+            </span>
+        </div>
+    </form>
+    
+    <div class="clear"></div>
+    <p id="alerts_success" class="alert alert-success" ng-show="$root.alert.success">
+        <button type="button" class="close" ng-click="$root.alert = {}">×</button>
+        <span class="message">
+            {{ $root.alert.message }}
+        </span>
+    </p>
+    <p id="alerts_error" class="alert alert-danger" style="display:none">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">?</button>
+        <span class="message"></span>
+    </p>
+    <p id="alerts_warning" class="alert alert-warning" style="display:none">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">?</button>
+        <span class="message"></span>
+    </p>
+    <p id="alerts_info" class="alert alert-info" style="display:none">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">?</button>
+        <span class="message"></span>
+    </p>
+    <div class="section-header pull-left ">
+        <h1 class="">vCenters</h1>
+    </div>
+    <div id="vCenter" class="dataTableContainer">
+        <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline" role="grid">
+            <div class="dataTables_filter" id="DataTables_Table_0_filter">
+                <label>
+                    <input type="text" aria-controls="DataTables_Table_0" class="form-control input-sm search-query" placeholder="Search..." ng-model="query">
+                </label>
+            </div>
+            <table class="table table-hover table-condensed table-styled dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
+                <thead>
+                    <tr role="row">
+                        <th class="selection sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="">
+                            <div class="th-wrapper">
+                                <input type="checkbox" name="selectAll">
+                            </div>
+                        </th>
+                        <th class="expandable sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="">
+                            <div class="th-wrapper"></div>
+                        </th>
+                        <th ng-click="colSort('name')" ng-class="{sorting_asc: sortField=='name' && reverse==true, sorting_desc: sortField=='name' && reverse==false, sorting: sortField!='name'}" class="name" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">
+                            <div class="th-wrapper">Name</div>
+                        </th>
+                        <th ng-click="colSort('host')" ng-class="{sorting_asc: sortField=='host' && reverse==true, sorting_desc: sortField=='host' && reverse==false, sorting: sortField!='host'}" class="host" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Host: activate to sort column ascending">
+                            <div class="th-wrapper">Host</div>
+                        </th>
+                        <th ng-click="colSort('status')"  ng-class="{sorting_asc: sortField=='status' && reverse==true, sorting_desc: sortField=='status' && reverse==false, sorting: sortField!='status'}" class="discoveryStatus" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending">
+                            <div class="th-wrapper">Status</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody role="alert" aria-live="polite" aria-relevant="all">
+                    <tr class="odd" ng-repeat-start="item in VMwarevCenters | filter:query | orderBy:sortField:reverse | slice:(currentPage-1)*rpp:(currentPage*rpp)">
+                        <td class="selection">
+                            <input type="checkbox" name="selected">
+                        </td>
+                        <td class="expandable" ng-click="itemExpand[$index] = !itemExpand[$index]" ng-class="{expanded: itemExpand[$index]}">
+                            <span class="expand-indicator"></span>
+                        </td>
+                        <td class="name sorting_1"><a href="">{{ item.name }}</a>
+                        </td>
+                        <td class="hostname">{{ item.host }}</td>
+                        <td class="discoveryStatus">
+                            <span class="label label-success">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr class="odd openedRow" ng-show="itemExpand[$index]" ng-repeat-end>
+                        <td class="expandedRow" colspan="5">
+                            <dl class="dl-horizontal">
+                                <dt ng-if="item.version">Version</dt>
+                                <dd ng-if="item.version">{{ item.version }}</dd>
+                                <dt ng-if="item.datacenters">Datacenters</dt>
+                                <dd ng-if="item.datacenters">{{ item.datacenters }}</dd>
+                                <dt ng-if="item.lastDiscovery">Last Discovery</dt>
+                                <dd ng-if="item.lastDiscovery">
+                                    <span data-relative-time="1409716943695">{{ item.lastDiscovery }}</span>
+                                </dd>
+                                <dt ng-if="item.lastSuccessfulDiscovery">Last Successful Discovery</dt>
+                                <dd ng-if="item.lastSuccessfulDiscovery">
+                                    <span data-relative-time="1409716943695">{{ item.lastSuccessfulDiscovery }}</span>
+                                </dd>
+                                <dt ng-if="item.discoveryStatus">Discovery Status</dt>
+                                <dd ng-if="item.discoveryStatus">{{ item.discoveryStatus }}</dd>
+                                <dt ng-if="item.compatibilityStatus">Compatibility Status</dt>
+                                <dd ng-if="item.compatibilityStatus">{{ item.compatibilityStatus }}</dd>
+                            </dl>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="dataTables_footer">
+                <div class="dataTables_paginate paging_bootstrapFirstLast pagination">
+                    <pagination total-items="totalItems" ng-model="currentPage"></pagination>
+                </div>
+                <div id="DataTables_Table_0_processing" class="dataTables_processing" style="visibility: hidden;">
+                    <span class="glyphicon glyphicon-refresh rotate "></span>Loading...
+                </div>
+                <div class="dataTables_info" id="DataTables_Table_0_info">
+                    Showing {{ (currentPage-1)*rpp+1 }} to {{ currentPage*rpp > totalItems ? totalItems : currentPage*rpp }} of {{ totalItems }} entries
+                </div>
+                <div class="dataTables_processingError" style="display: none;"></div>
+            </div>
+        </div>
+        <div class="button-bar">
+            <button type="button" class="btn btn-success " name="button.add">
+                <span class="glyphicon glyphicon-plus "></span>&nbsp;Add</button>
+            <button type="button" class="btn btn-danger " name="button.delete" data-enabled="selected" disabled="">
+                <span class="glyphicon glyphicon-trash "></span>&nbsp;Delete</button>
+            <button type="button" class="btn btn-info " name="button.rediscover" data-enabled="selected" data-property="discoveryStatus" data-not-value="IN_PROGRESS" data-form="rediscoverForm" disabled="">
+                <span class="glyphicon glyphicon-repeat "></span>&nbsp;Rediscover</button>
+            <button type="button" class="btn btn-info " name="button.detachStorage" data-enabled="selected" data-form="detachStorageForm" disabled="">
+                <span class="glyphicon glyphicon-hdd "></span>&nbsp;Detach Storage</button>
+        </div>
+    </div>
+
+    <form action="" method="" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" id="detachStorageForm" class="hide">
+        <input type="hidden" name="authenticityToken" value="b1ad100e76ccea28cfba2fdd3a1c82f47da1f052">
+        <input type="hidden" name="ids">
+    </form>
+    <form action="" method="" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" id="deleteModalForm" class="show form form-horizontal">
+        <input type="hidden" name="authenticityToken" value="b1ad100e76ccea28cfba2fdd3a1c82f47da1f052">
+        <input type="hidden" name="ids">
+        <div id="deleteVcenterDialog" class="modal fade">
+            <div class="modal-dialog ">
+                <div class="modal-content">
+                    <div class="modal-body ">
+                        <div class="form-header">
+                            <div class="image" style="display:none">
+                            </div>
+                            <div class="title">
+                                <h2>
+                                    Delete vCenters</h2>
+                            </div>
+                            <div style="clear:both"></div>
+                        </div>Are you sure you want to delete the selected vCenters?
+                        <div id="detachStorageControlGroup" class="form-group  ">
+                            <label class="control-label col-sm-3" for="detachStorage">Detach Storage:</label>
+                            <div class="col-sm-6 controls">
+                                <div class="checkbox">
+                                    <input type="checkbox" class="span0" id="detachStorage" name="detachStorage" value="true" checked="checked">
+                                </div>
+                                <span class="help-block">Detach any storage from the selected vCenter(s) before deactivating.</span>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="help-inline"></span>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="modal-footer ">
+                        <button type="button" class="btn btn-danger " data-form="deleteModalForm">
+                            <span class="glyphicon glyphicon-trash "></span>&nbsp;Delete</button>
+                        <button type="button" class="btn btn-default " data-dismiss="modal">
+                            <span class="glyphicon glyphicon-primary "></span>&nbsp;Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

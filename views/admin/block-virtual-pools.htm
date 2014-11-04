@@ -1,0 +1,92 @@
+<div class="mainContent" ng-controller="BlockVirtualPoolsCtrl">
+	<div class="clear"></div>
+	<p id="alerts_success" class="alert alert-success" style="display:none">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		<span class="message"></span>
+	</p>
+	<p id="alerts_error" class="alert alert-danger" style="display:none">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		<span class="message"></span>
+	</p>
+	<p id="alerts_warning" class="alert alert-warning" style="display:none">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		<span class="message"></span>
+	</p>
+	<p id="alerts_info" class="alert alert-info">
+		<span class="message">
+			This demo may not behave exactly as a properly deployed product. You could add Block Virtual Pools but they may not technically reflect in other areas of the ViPR UI.
+		</span>
+	</p>
+	<div class="section-header pull-left ">
+		<h1 class="">Block Virtual Pools</h1>
+	</div>
+	<div id="virtualPools" class="dataTableContainer">
+		<div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline" role="grid">
+			<div id="DataTables_Table_0_filter" class="dataTables_filter"><label><input placeholder="Search..." class="form-control input-sm search-query" aria-controls="DataTables_Table_0" type="text" ng-model="query"></label></div>
+			<table aria-describedby="DataTables_Table_0_info" id="DataTables_Table_0" class="table table-hover table-condensed table-styled dataTable">
+				<thead>
+					<tr role="row">
+						<th aria-label="" colspan="1" rowspan="1" role="columnheader" class="selection sorting_disabled">
+							<div class="th-wrapper"><input name="selectAll" type="checkbox"></div>
+						</th>
+						<th ng-click="colSort('name')" ng-class="{sorting_asc: sortField=='name' && reverse==true, sorting_desc: sortField=='name' && reverse==false, sorting: sortField!='name'}" aria-label="Name: activate to sort column descending" aria-sort="ascending" colspan="1" rowspan="1" aria-controls="DataTables_Table_0" tabindex="0" role="columnheader" class="name">
+							<div class="th-wrapper">Name</div>
+						</th>
+						<th ng-click="colSort('desc')" ng-class="{sorting_asc: sortField=='desc' && reverse==true, sorting_desc: sortField=='desc' && reverse==false, sorting: sortField!='desc'}" aria-label="Description: activate to sort column ascending" colspan="1" rowspan="1" aria-controls="DataTables_Table_0" tabindex="0" role="columnheader" class="description">
+							<div class="th-wrapper">Description</div>
+						</th>
+						<th ng-click="colSort('provisioning')" ng-class="{sorting_asc: sortField=='provisioning' && reverse==true, sorting_desc: sortField=='provisioning' && reverse==false, sorting: sortField!='provisioning'}" aria-label="Provisioning: activate to sort column ascending" colspan="1" rowspan="1" aria-controls="DataTables_Table_0" tabindex="0" role="columnheader" class="provisioningType">
+							<div class="th-wrapper">Provisioning</div>
+						</th>
+						<th ng-click="colSort('assignment')" ng-class="{sorting_asc: sortField=='assignment' && reverse==true, sorting_desc: sortField=='assignment' && reverse==false, sorting: sortField!='assignment'}" aria-label="Pool Assignment: activate to sort column ascending" colspan="1" rowspan="1" aria-controls="DataTables_Table_0" tabindex="0" role="columnheader" class="storagePoolAssignment">
+							<div class="th-wrapper">Pool Assignment</div>
+						</th>
+						<th ng-click="colSort('protocols')" ng-class="{sorting_asc: sortField=='protocols' && reverse==true, sorting_desc: sortField=='protocols' && reverse==false, sorting: sortField!='protocols'}" aria-label="Protocols: activate to sort column ascending" colspan="1" rowspan="1" aria-controls="DataTables_Table_0" tabindex="0" role="columnheader" class="protocols">
+							<div class="th-wrapper">Protocols</div>
+						</th>
+						<th ng-click="colSort('pools')" ng-class="{sorting_asc: sortField=='pools' && reverse==true, sorting_desc: sortField=='pools' && reverse==false, sorting: sortField!='pools'}" aria-label="Pools: activate to sort column ascending" colspan="1" rowspan="1" aria-controls="DataTables_Table_0" tabindex="0" role="columnheader" class="numPools">
+							<div class="th-wrapper">Pools</div>
+						</th>
+						<th ng-click="colSort('resources')" ng-class="{sorting_asc: sortField=='resources' && reverse==true, sorting_desc: sortField=='resources' && reverse==false, sorting: sortField!='resources'}" aria-label="Resources: activate to sort column ascending" colspan="1" rowspan="1" aria-controls="DataTables_Table_0" tabindex="0" role="columnheader" class="numResources">
+							<div class="th-wrapper">Resources</div>
+						</th>
+					</tr>
+				</thead>
+				<tbody aria-relevant="all" aria-live="polite" role="alert">
+					<tr class="odd" ng-repeat="item in blockVirtualPools | filter:query | orderBy:sortField:reverse | slice:(currentPage-1)*rpp:(currentPage*rpp)">
+					  <td class="selection">
+							<input type="checkbox" ng-click="selected[$index] = !selected[$index]" name="selected" value="">
+						</td>
+						<td class="name sorting_1"><a ui-sref="blockVirtualPools_edit({vpoolId: {{ item.id }} })">{{ item.name }}</a></td>
+						<td class="description">{{ item.desc }}</td>
+						<td class="provisioningType">{{ item.provisioning }}</td>
+						<td class="storagePoolAssignment">{{ item.assignment }}</td>
+						<td class="protocols">{{ item.protocols }}</td>
+						<td class="numPools">{{ item.pools }}</td>
+						<td class="numResources">{{ item.resources }}</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="dataTables_footer">
+				<div class="dataTables_paginate paging_bootstrapFirstLast pagination">
+				    <pagination total-items="totalItems" ng-model="currentPage"></pagination>
+				</div>
+				<div id="DataTables_Table_0_processing" class="dataTables_processing" style="visibility: hidden;">
+				    <span class="glyphicon glyphicon-refresh rotate "></span>Loading...
+				</div>
+				<div class="dataTables_info" id="DataTables_Table_0_info">
+				    Showing {{ (currentPage-1)*rpp+1 }} to {{ currentPage*rpp > totalItems ? totalItems : currentPage*rpp }} of {{ totalItems }} entries
+				</div>
+				<div class="dataTables_processingError" style="display: none;"></div>
+			</div>
+		</div>
+		<div class="button-bar">
+			<button type="button" class="btn btn-success " name="button.add" ui-sref="blockVirtualPools_edit({vpoolId: {{ UID }} })">
+			 <span class="glyphicon glyphicon-plus "></span>  Add  
+			</button>  
+			<button disabled="" type="button" class="btn btn-danger " name="button.delete" data-enabled="selected" data-form="deleteForm">
+			 <span class="glyphicon glyphicon-trash "></span>  Delete  
+			</button>          
+		</div>
+	</div>
+</div>

@@ -1,0 +1,144 @@
+<div class="mainContent" ng-controller="ClustersCtrl">
+	<form action="" accept-charset="utf-8" id="selectTenantForm" class="form form-inline"novalidate>
+		<div class="well well-sm">
+			<span class="tenant-select">
+				<label for="tenantId">Tenant:</label>
+				<select id="tenantId" name="tenantId" class="form-control input-sm" chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true" allow-single-deselect="false">
+					<option value="urn:storageos:TenantOrg:992a41c6-597f-4b0f-8d66-206c11665c13:global" selected="selected">Provider Tenant</option>
+					<option value="urn:storageos:TenantOrg:bc6d46d4-58e6-4dd4-817b-32b805f8c14f:global">RainPole Tenant</option>
+				</select>
+			</span></div>
+	</form>
+	<div class="clear"></div>
+	<p id="alerts_success" class="alert alert-success" style="display:none">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		<span class="message"></span>
+	</p>
+	<p id="alerts_error" class="alert alert-danger" style="display:none">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		<span class="message"></span>
+	</p>
+	<p id="alerts_warning" class="alert alert-warning" style="display:none">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		<span class="message"></span>
+	</p>
+	<p id="alerts_info" class="alert alert-info" style="display:none">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		<span class="message"></span>
+	</p>
+	<div class="section-header pull-left ">
+		<h1 class="">Clusters</h1>
+	</div>
+	<div id="cluster" class="dataTableContainer">
+		<div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline" role="grid">
+			<div class="dataTables_filter" id="DataTables_Table_0_filter">
+				<label>
+					<input type="text" aria-controls="DataTables_Table_0" class="form-control input-sm search-query" placeholder="Search...">
+				</label>
+			</div>
+			<table class="table table-hover table-condensed table-styled dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
+				<thead>
+					<tr role="row">
+						<th class="selection sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="">
+							<div class="th-wrapper">
+								<input type="checkbox" name="selectAll">
+							</div>
+						</th>
+						<th class="expandable sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="">
+							<div class="th-wrapper"></div>
+						</th>
+						<th class="name sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Cluster: activate to sort column descending">
+							<div class="th-wrapper">Cluster</div>
+						</th>
+						<th class="discovered sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Discovered: activate to sort column ascending">
+							<div class="th-wrapper">Discovered</div>
+						</th>
+						<th class="actions sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="Edit">
+							<div class="th-wrapper">Edit</div>
+						</th>
+					</tr>
+				</thead>
+
+				<tbody role="alert" aria-live="polite" aria-relevant="all">
+					<tr class="odd">
+						<td class="selection">
+							<input type="checkbox" name="selected" value="urn:storageos:Cluster:682d468e-61c0-4643-80ae-8b39525e7fb4:vdc1">
+						</td>
+						<td class="expandable">
+							<span class="expand-indicator"></span>
+						</td>
+						<td class="name sorting_1"><a href="">Hyper-V-Cluster.vLab.local</a>
+						</td>
+						<td class="discovered"></td>
+						<td class="actions">
+							<div class="btn-group"><a class="btn btn-default btn-xs" href="">Hosts</a>
+							</div>
+						</td>
+					</tr>
+					<tr class="even">
+						<td class="selection">
+							<input type="checkbox" name="selected" value="urn:storageos:Cluster:e20780e4-930a-4df3-883e-37d91b2a4e86:vdc1">
+						</td>
+						<td class="expandable">
+							<span class="expand-indicator"></span>
+						</td>
+						<td class="name sorting_1"><a href="">RainPole Cluster [RainPole Datacenter]</a>
+						</td>
+						<td class="discovered">
+							<span class="glyphicon glyphicon-ok"></span>
+						</td>
+						<td class="actions">
+							<div class="btn-group"><a class="btn btn-default btn-xs" href="">Hosts</a>
+							</div>
+						</td>
+					</tr>
+					<tr class="odd">
+						<td class="selection">
+							<input type="checkbox" name="selected" value="urn:storageos:Cluster:bacce5c4-c0d3-4b48-8435-5dbcd3465995:vdc1">
+						</td>
+						<td class="expandable">
+							<span class="expand-indicator"></span>
+						</td>
+						<td class="name sorting_1"><a href="">ws_cluster</a>
+						</td>
+						<td class="discovered"></td>
+						<td class="actions">
+							<div class="btn-group"><a class="btn btn-default btn-xs" href="">Hosts</a>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="dataTables_footer">
+				<div class="dataTables_paginate paging_bootstrapFirstLast pagination">
+					<ul class="pagination pagination-sm">
+						<li class="prev disabled"><a href="">First</a>
+						</li>
+						<li class="prev disabled"><a href="">←</a>
+						</li>
+						<li class="active"><a href="">1</a>
+						</li>
+						<li class="next disabled"><a href="">→</a>
+						</li>
+						<li class="next disabled"><a href="">Last</a>
+						</li>
+					</ul>
+				</div>
+				<div id="DataTables_Table_0_processing" class="dataTables_processing" style="visibility: hidden;">
+					<span class="glyphicon glyphicon-refresh rotate "></span>Loading...</div>
+				<div class="dataTables_info" id="DataTables_Table_0_info">Showing 1 to 3 of 3 entries</div>
+				<div class="dataTables_processingError" style="display: none;"></div>
+			</div>
+		</div>        
+		<div class="button-bar">
+				<button type="button" class="btn btn-success " name="button.add" disabled="">
+					<span class="glyphicon glyphicon-plus "></span>  
+					Add  
+				</button>
+			<button type="button" class="btn btn-danger " name="button.delete" data-enabled="selected" disabled="">
+				<span class="glyphicon glyphicon-trash "></span> Delete</button>
+			<button type="button" class="btn btn-info " name="button.detachStorage" data-enabled="selected" data-form="detachStorageForm" disabled="">
+				<span class="glyphicon glyphicon-hdd "></span> Detach Storage</button>
+		</div>
+	</div>
+</div>

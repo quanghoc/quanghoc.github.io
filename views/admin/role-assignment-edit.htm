@@ -1,0 +1,249 @@
+<div class="mainContent">
+    <style type="text/css">
+    .table tbody tr {
+        cursor: pointer;
+    }
+    .table .checkbox .roleCheckbox {
+        float: none;
+    }
+    </style>
+    <ul class="breadcrumb">
+        <li>
+            <a href="" ui-sref="rolesAssignments">Role Assignments</a> 
+            <span class="divider"></span>
+        </li>
+        <li class="active">
+            Edit Role Assignment
+        </li>
+    </ul>
+    <div class="container">
+        <div class="form-header">
+            <div class="image">
+                <img src="/img/icon_roles.png">
+            </div>
+            <div class="title">
+                <h2>
+                    Edit Role Assignment</h2>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div class="clear"></div>
+        <p id="alerts_success" class="alert alert-success" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">�</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_error" class="alert alert-danger" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">�</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_warning" class="alert alert-warning" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">�</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_info" class="alert alert-info" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">�</button>
+            <span class="message"></span>
+        </p>
+        <form accept-charset="utf-8" enctype="application/x-www-form-urlencoded" id="roleAssignmentForm" class="form form-horizontal" autocomplete="off">
+            <input type="hidden" name="authenticityToken" value="b1ad100e76ccea28cfba2fdd3a1c82f47da1f052">
+            <input type="hidden" name="roleAssignment.id" value="urn:storageos:TenantOrg:992a41c6-597f-4b0f-8d66-206c11665c13:global~~~~root~~~~USER">
+            <input type="hidden" name="roleAssignment.name" value="root">
+            <input type="hidden" name="roleAssignment.type" value="USER">
+            <div id="roleAssignment_typeControlGroup" class="form-group  ">
+                <label class="control-label col-sm-3" for="roleAssignment_type">Type:</label>
+                <div class="col-sm-6 controls">
+                    <div class="span6" style="margin-left:0px;">
+                        <div class="radio">
+                            <label class="inline">
+                                <input type="radio" class="bla" id="roleAssignment_type" name="roleAssignment.type" value="GROUP" disabled="disabled">Group
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label class="inline">
+                                <input type="radio" class="bla" id="roleAssignment_type" name="roleAssignment.type" value="USER" disabled="disabled" checked="checked">User
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div id="roleAssignment_nameControlGroup" class="form-group  required">
+                <label class="control-label col-sm-3" for="roleAssignment_name">User:</label>
+                <div class="col-sm-6 controls">
+                    <input type="text" class="form-control span6 initialFocus" id="roleAssignment_name" name="roleAssignment.name" value="root" autocomplete="off" disabled="disabled">
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <fieldset>
+                <legend>Tenant Roles
+                    <small>Roles which determine what functions Users/Groups can perform within the Tenant.</small>
+                </legend>
+                <div id="roleAssignment_tenantControlGroup" class="form-group  ">
+                    <label class="control-label col-sm-3" for="roleAssignment_tenant">Tenant:</label>
+                    <div class="col-sm-6 controls">
+                        <p class="form-control-static">Provider Tenant</p>
+                    </div>
+                    <div class="col-sm-3">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <table id="tenantRolesTable" class="table">
+                            <thead>
+                                <tr>
+                                    <th style="text-align: center; width: 10%;">Grant</th>
+                                    <th style="width: 20%;">Role</th>
+                                    <th style="width: 70%;">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="success">
+                                    <td style="text-align: center;">
+                                        <div class="checkbox">
+                                            <input type="checkbox" class="roleCheckbox" id="roleAssignment_tenantAdmin" name="roleAssignment.tenantAdmin" value="true" checked="checked" disabled="">
+                                        </div>
+                                    </td>
+                                    <td>Tenant Administrator</td>
+                                    <td>
+                                        <ul>
+                                            <li>Creates projects and has all permissions for projects in their tenant.</li>
+                                            <li>Sets ACL permissions for projects and the service catalog.</li>
+                                            <li>Assigns tenant roles.</li>
+                                            <li>Manages resources for all projects in their tenant.</li>
+                                            <li>Creates and manages subtenants.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr style="cursor: not-allowed;">
+                                    <td style="text-align: center;">
+                                        <div class="checkbox">
+                                            <input type="checkbox" class="roleCheckbox" id="roleAssignment_projectAdmin" name="roleAssignment.projectAdmin" value="true" disabled="disabled">
+                                            <input type="hidden" id="roleAssignment_projectAdminFalse" name="roleAssignment.projectAdmin" value="false">
+                                        </div>
+                                    </td>
+                                    <td>Project Administrator</td>
+                                    <td>
+                                        <ul>
+                                            <li>Creates projects in their tenant.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr style="cursor: not-allowed;">
+                                    <td style="text-align: center;">
+                                        <div class="checkbox">
+                                            <input type="checkbox" class="roleCheckbox" id="roleAssignment_tenantApprover" name="roleAssignment.tenantApprover" value="true" disabled="disabled">
+                                            <input type="hidden" id="roleAssignment_tenantApproverFalse" name="roleAssignment.tenantApprover" value="false">
+                                        </div>
+                                    </td>
+                                    <td>Tenant Approver</td>
+                                    <td>
+                                        <ul>
+                                            <li>Approves orders in their tenant.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Virtual Data Center Roles
+                    <small>Roles which determine what functions Users/Groups can perform within the Virtual Data Center.</small>
+                </legend>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <table id="systemRolesTable" class="table">
+                            <thead>
+                                <tr>
+                                    <th style="text-align: center; width: 10%;">Grant</th>
+                                    <th style="width: 20%;">Role</th>
+                                    <th style="width: 70%;">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="success" style="cursor: not-allowed;">
+                                    <td style="text-align: center;">
+                                        <div class="checkbox">
+                                            <input type="checkbox" class="roleCheckbox" id="roleAssignment_systemAdmin" name="roleAssignment.systemAdmin" value="true" disabled="disabled" checked="checked">
+                                            <input type="hidden" id="roleAssignment_systemAdminFalse" name="roleAssignment.systemAdmin" value="true">
+                                        </div>
+                                    </td>
+                                    <td>System Administrator</td>
+                                    <td>
+                                        <ul>
+                                            <li>Manages the Virtual Data Center physical and virtual assets.</li>
+                                            <li>Manages software and license updates.</li>
+                                            <li>Retrieves ViPR status and system health.</li>
+                                            <li>Configures Data Services.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr class="success" style="cursor: not-allowed;">
+                                    <td style="text-align: center;">
+                                        <div class="checkbox">
+                                            <input type="checkbox" class="roleCheckbox" id="roleAssignment_securityAdmin" name="roleAssignment.securityAdmin" value="true" disabled="disabled" checked="checked">
+                                            <input type="hidden" id="roleAssignment_securityAdminFalse" name="roleAssignment.securityAdmin" value="true">
+                                        </div>
+                                    </td>
+                                    <td>Security Administrator</td>
+                                    <td>
+                                        <ul>
+                                            <li>Manages the Virtual Data Center authentication providers.</li>
+                                            <li>Sets system configuration parameters for the Virtual Data Center.</li>
+                                            <li>Assigns roles for the Virtual Data Center and for tenants.</li>
+                                            <li>Manage Virtual Data Centers in a GEO Configuration.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr class="success" style="cursor: not-allowed;">
+                                    <td style="text-align: center;">
+                                        <div class="checkbox">
+                                            <input type="checkbox" class="roleCheckbox" id="roleAssignment_systemMonitor" name="roleAssignment.systemMonitor" value="true" disabled="disabled" checked="checked">
+                                            <input type="hidden" id="roleAssignment_systemMonitorFalse" name="roleAssignment.systemMonitor" value="true">
+                                        </div>
+                                    </td>
+                                    <td>System Monitor</td>
+                                    <td>
+                                        <ul>
+                                            <li>Retrieves metering and monitoring records for the Virtual Data Center.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr class="success" style="cursor: not-allowed;">
+                                    <td style="text-align: center;">
+                                        <div class="checkbox">
+                                            <input type="checkbox" class="roleCheckbox" id="roleAssignment_systemAuditor" name="roleAssignment.systemAuditor" value="true" disabled="disabled" checked="checked">
+                                            <input type="hidden" id="roleAssignment_systemAuditorFalse" name="roleAssignment.systemAuditor" value="true">
+                                        </div>
+                                    </td>
+                                    <td>System Auditor</td>
+                                    <td>
+                                        <ul>
+                                            <li>Retrieves audit logs for the Virtual Data Center.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="form-group button-bar">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <button type="submit" class="btn btn-primary btn-large " name="button.save" disabled="">
+                        <span class="glyphicon glyphicon-ok-sign "></span>&nbsp;Save</button>
+                    <button type="button" class="btn btn-default btn-large " name="button.cancel" ui-sref="rolesAssignments">
+                        <span class="glyphicon glyphicon-trash "></span>&nbsp;Cancel</button>
+                    <span class="extraButtons">
+                    </span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

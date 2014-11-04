@@ -1,0 +1,180 @@
+<ui-view>
+<div class="mainContent">
+	<div id="breadcrumbs">
+		<ul class="breadcrumb breadcrumb-navbar" data-id="urn:storageos:CatalogCategory:7b26acb1-3e09-4ab1-a93f-dfb5d74d01bb:vdc1" data-parent="" data-path="ServiceCatalog">
+			<li class="active">Service Catalog
+			</li>
+		</ul>
+	</div>
+	<div class="clear"></div>
+	<p class="alert alert-success" id="alerts_success" style="display:none">
+		<button class="close" data-dismiss="alert" type="button">×</button> <span class="message"></span>
+	</p>
+	<p class="alert alert-danger" id="alerts_error" style="display:none">
+		<button class="close" data-dismiss="alert" type="button">×</button> <span class="message"></span>
+	</p>
+	<p class="alert alert-warning" id="alerts_warning" style="display:none">
+		<button class="close" data-dismiss="alert" type="button">×</button> <span class="message"></span>
+	</p>
+	<p class="alert alert-info" id="alerts_info" style="display:none">
+		<button class="close" data-dismiss="alert" type="button">×</button> <span class="message"></span>
+	</p>
+	<div class="catalog" id="catalog">
+		<ul class="catalog-items" data-id="urn:storageos:CatalogCategory:7b26acb1-3e09-4ab1-a93f-dfb5d74d01bb:vdc1" data-parent="" data-path="ServiceCatalog">
+			<li ui-sref="BlockStorageServices" class="catalog-item category-item" data-id="urn:storageos:CatalogCategory:325512e5-21e3-4ae7-b68c-ceae7cf6e7b6:vdc1" data-name="BlockStorageServices" data-title="Block Storage Services">
+				<div class="panel panel-default">
+					<div class="panel-heading catalog-title">
+						<h3 class="panel-title">
+							<span class="glyphicon glyphicon-folder-open"></span> Block Storage Services
+						</h3>
+					</div>
+					<div class="panel-body">
+						<div class="catalog-image catalog-image-inner">
+							<img class="" src="/img/serviceCatalog/icon_host.png">
+						</div>
+						<p class="catalog-description">
+							Block storage services for fibre channel and iSCSI
+						</p>
+					</div>
+				</div>
+			</li>
+			<li ui-sref="BlockProtectionServices" class="catalog-item category-item" data-id="urn:storageos:CatalogCategory:eadc70fb-d484-4cdb-a107-7b3288d2104f:vdc1" data-name="BlockProtectionServices" data-title="Block Protection Services">
+				<div class="panel panel-default">
+					<div class="panel-heading catalog-title">
+						<h3 class="panel-title">
+							<span class="glyphicon glyphicon-folder-open"></span> Block Protection Services
+						</h3>
+					</div>
+					<div class="panel-body">
+						<div class="catalog-image catalog-image-inner">
+							<img class="" src="/img/serviceCatalog/Category_Block_Protection_Services.png">
+						</div>
+						<p class="catalog-description">
+							Protection services for block storage
+						</p>
+					</div>
+				</div>
+			</li>
+			<li ui-sref="FileStorageServices" class="catalog-item category-item" data-id="urn:storageos:CatalogCategory:06c269f4-c000-437f-8ef5-bfe399345ba9:vdc1" data-name="FileStorageServices" data-title="File Storage Services">
+				<div class="panel panel-default">
+					<div class="panel-heading catalog-title">
+						<h3 class="panel-title">
+							<span class="glyphicon glyphicon-folder-open"></span> File Storage Services
+						</h3>
+					</div>
+					<div class="panel-body">
+						<div class="catalog-image catalog-image-inner">
+							<img class="" src="/img/serviceCatalog/icon_folder.png">
+						</div>
+						<p class="catalog-description">
+							Network attached storage services for Windows and Unix systems
+						</p>
+					</div>
+				</div>
+			</li>
+			<li ui-sref="FileProtectionServices" class="catalog-item category-item" data-id="urn:storageos:CatalogCategory:c42b9d38-c1fc-4d02-9cc2-3c6c535ccd29:vdc1" data-name="FileProtectionServices" data-title="File Protection Services">
+				<div class="panel panel-default">
+					<div class="panel-heading catalog-title">
+						<h3 class="panel-title">
+							<span class="glyphicon glyphicon-folder-open"></span> File Protection Services
+						</h3>
+					</div>
+					<div class="panel-body">
+						<div class="catalog-image catalog-image-inner">
+							<img class="" src="/img/serviceCatalog/Category_File_Protection_Services.png">
+						</div>
+						<p class="catalog-description">
+							Protection services for network attached storage
+						</p>
+					</div>
+				</div>
+			</li>
+			<li ui-sref="BlockServicesLinux" class="catalog-item category-item" data-id="urn:storageos:CatalogCategory:ea21774c-8a9d-49d1-8a1c-b4f998b66eaf:vdc1" data-name="BlockServicesforLinux" data-title="Block Services for Linux">
+				<div class="panel panel-default">
+					<div class="panel-heading catalog-title">
+						<h3 class="panel-title">
+							<span class="glyphicon glyphicon-folder-open"></span> Block Services for Linux
+						</h3>
+					</div>
+					<div class="panel-body">
+						<div class="catalog-image catalog-image-inner">
+							<img class="" src="/img/serviceCatalog/icon_linux.png">
+						</div>
+						<p class="catalog-description">
+							Block storage services for Linux hosts
+						</p>
+					</div>
+				</div>
+			</li>
+			<li ui-sref="BlockServicesWindows" class="catalog-item category-item" data-id="urn:storageos:CatalogCategory:924f4b34-1f1d-4190-8ed9-bc2d0ce9c395:vdc1" data-name="BlockServicesforWindows" data-title="Block Services for Windows">
+				<div class="panel panel-default">
+					<div class="panel-heading catalog-title">
+						<h3 class="panel-title">
+							<span class="glyphicon glyphicon-folder-open"></span> Block Services for Windows
+						</h3>
+					</div>
+					<div class="panel-body">
+						<div class="catalog-image catalog-image-inner">
+							<img class="" src="/img/serviceCatalog/icon_windowsServer.png">
+						</div>
+						<p class="catalog-description">
+							Block storage services for Windows hosts
+						</p>
+					</div>
+				</div>
+			</li>
+			<li ui-sref="BlockServicesVMware" class="catalog-item category-item" data-id="urn:storageos:CatalogCategory:35c776c8-8db4-4a90-86a0-c477d8f34715:vdc1" data-name="BlockServicesforVMwarevCenter" data-title="Block Services for VMware vCenter">
+				<div class="panel panel-default">
+					<div class="panel-heading catalog-title">
+						<h3 class="panel-title">
+							<span class="glyphicon glyphicon-folder-open"></span> Block Services for VMware vCenter
+						</h3>
+					</div>
+					<div class="panel-body">
+						<div class="catalog-image catalog-image-inner">
+							<img class="" src="/img/serviceCatalog/icon_VMware.png">
+						</div>
+						<p class="catalog-description">
+							Block storage services for VMware vCenter/ESX Environments
+						</p>
+					</div>
+				</div>
+			</li>
+			<li ui-sref="FileServicesVMware" class="catalog-item category-item" data-id="urn:storageos:CatalogCategory:66225bb1-bbc0-46ce-8946-e1347350f23f:vdc1" data-name="FileServicesforVMwarevCenter" data-title="File Services for VMware vCenter">
+				<div class="panel panel-default">
+					<div class="panel-heading catalog-title">
+						<h3 class="panel-title">
+							<span class="glyphicon glyphicon-folder-open"></span> File Services for VMware vCenter
+						</h3>
+					</div>
+					<div class="panel-body">
+						<div class="catalog-image catalog-image-inner">
+							<img class="" src="/img/serviceCatalog/icon_storage_vmware_nfs.png">
+						</div>
+						<p class="catalog-description">
+							VMware vCenter NFS Datastore Services
+						</p>
+					</div>
+				</div>
+			</li>
+			<li ui-sref="DataServices" class="catalog-item category-item" data-id="urn:storageos:CatalogCategory:640682d5-885a-4703-af10-dedc6eda05ff:vdc1" data-name="DataServices" data-title="Data Services">
+				<div class="panel panel-default">
+					<div class="panel-heading catalog-title">
+						<h3 class="panel-title">
+							<span class="glyphicon glyphicon-folder-open"></span> Data Services
+						</h3>
+					</div>
+					<div class="panel-body">
+						<div class="catalog-image catalog-image-inner">
+							<img class="" src="/img/serviceCatalog/icon_data_services.png">
+						</div>
+						<p class="catalog-description">
+							HDFS and Object based Storage Services
+						</p>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+</ui-view>

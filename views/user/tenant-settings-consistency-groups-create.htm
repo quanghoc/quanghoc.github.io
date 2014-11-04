@@ -1,0 +1,68 @@
+<div class="mainContent" ng-controller="ConsistencyGroupsCtrl" ng-init="currentPage = 1; rpp = 10">
+	<ul class="breadcrumb">
+		<li>
+			<a ui-sref="userConsistency">Consistency Groups</a> <span class="divider"></span>
+		</li>
+		<li class="active">Add Consistency Group
+		</li>
+	</ul>
+	<div class="container">
+		<div class="form-header">
+			<div class="image">
+				<!--<img src="/img/assets/StorageArray.png">-->
+			</div>
+			<div class="description">
+				<h2>
+					Add Consistency Group
+				</h2>
+				<p>
+					Enter the name for new Consistency Group.
+				</p>
+			</div>
+			<div style="clear:both"></div>
+		</div>
+		<div class="clear"></div>
+		<p class="alert alert-success" id="alerts_success" style="display:none">
+			<button class="close" data-dismiss="alert" type="button">×</button> <span class="message"></span>
+		</p>
+		<p class="alert alert-danger" id="alerts_error" ng-show="submitted && !(consistencyGroupArrayForm.$valid)">
+			<button class="close" data-dismiss="alert" type="button" ng-click="submitted=false">×</button>
+			<span class="message" ng-show="consistencyGroupArrayForm.name.$invalid">Consistency Group name is required</span>
+		</p>
+		<p class="alert alert-warning" id="alerts_warning" style="display:none">
+			<button class="close" data-dismiss="alert" type="button">×</button> <span class="message"></span>
+		</p>
+		<p class="alert alert-info" id="alerts_info" style="display:none">
+			<button class="close" data-dismiss="alert" type="button">×</button> <span class="message"></span>
+		</p>
+		<form autocomplete="off" class="form form-horizontal" id="consistencyGroupArrayForm" name="consistencyGroupArrayForm" ng-submit="consistencyGroupArrayForm.$valid && add()" novalidate>
+			<fieldset>
+				<div class="form-group required" id="consistencyGroupArray_nameControlGroup">
+					<label class="control-label col-sm-3" for="consistencyGroupArray_name">Name:</label>
+					<div class="col-sm-6 controls">
+						<input autocomplete="off" class="form-control span6" id="consistencyGroupArray_name" name="name"
+							type="text" 
+							required
+							ng-model="consistencyGroup.name">
+					</div>
+					<div class="col-sm-3">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+			</fieldset>
+			<div class="form-group button-bar">
+				<div class="col-sm-offset-3 col-sm-9">
+					<button class="btn btn-primary btn-large" ng-click="submitted=true" type="submit">
+						<span class="glyphicon glyphicon-ok-sign"></span> 
+						Save
+					</button>
+					<button class="btn btn-default btn-large" type="button" ui-sref="userConsistency">
+						<span class="glyphicon glyphicon-trash"></span> 
+						Cancel
+					</button> 
+					<span class="extraButtons"></span>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

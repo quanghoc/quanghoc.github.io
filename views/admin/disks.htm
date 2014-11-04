@@ -1,0 +1,266 @@
+<div class="mainContent" ng-controller="CommodityNodeCtrl">
+
+	<style>
+		.definitionLabel {
+			padding-right: 5px;
+			color: #000000;
+			text-align: right;
+			vertical-align: top;
+			font-weight: bold
+		}
+
+		.myList {
+			margin-left: 0px;
+			padding-left: 0px;
+			list-style: none;
+			margin-bottom: 0px;
+		}
+
+		.myTable tr td {
+			padding-bottom: 5px;
+		}
+
+		.title H2 {
+			margin-top: 0px;
+			margin-bottom: 2px;
+		}
+
+	</style>
+
+	<ul class="breadcrumb">
+		<li>
+			<a ui-sref="CommodityNodes">Commodity Nodes</a>
+			<span class="divider"></span>
+		</li>
+
+		<li class="active">
+			{{ commodityNode.name }}
+		</li>
+
+	</ul>
+
+	<div class="page-header">
+		<h3>{{ commodityNode.name }}</h3>
+	</div>
+
+	<div class="clear"></div>
+	<p id="alerts_success" class="alert alert-success" style="display:none">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+			×
+		</button>
+		<span class="message"></span>
+	</p>
+	<p id="alerts_error" class="alert alert-danger" style="display:none">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+			×
+		</button>
+		<span class="message"></span>
+	</p>
+	<p id="alerts_warning" class="alert alert-warning" style="display:none">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+			×
+		</button>
+		<span class="message"></span>
+	</p>
+	<p id="alerts_info" class="alert alert-info" style="display:none">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+			×
+		</button>
+		<span class="message"></span>
+	</p>
+
+	<table class="myTable" style="float:left">
+		<tbody>
+			<tr>
+				<td class="definitionLabel">Node Status:</td><td><span class="label label-success"><span class="glyphicon glyphicon-ok "></span> Good</span></td>
+			</tr>
+			<tr>
+				<td class="definitionLabel">Mode:</td><td><span class="text-info"><span class="glyphicon glyphicon-ok-sign "></span> Operational</span></td>
+			</tr>
+			<tr>
+				<td class="definitionLabel">Fault Domains:</td>
+				<td><ul class="myList">
+
+				</ul></td>
+			</tr>
+			<tr>
+				<td class="definitionLabel">Services:</td>
+				<td>
+				<ul class="myList">
+
+					<li style="margin-bottom:3px">
+
+						Object Service
+
+						<span class="text-info">Installed</span>
+					</li>
+
+				</ul></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<ul style="float:left; padding-left:15px">
+		<li class="list-group-item list-group-item-success">
+			<b>Management Network Interface</b>
+		</li>
+		<li class="list-group-item">
+			<table>
+				<tbody>
+					<tr>
+						<td class="definitionLabel">FQ Name:</td><td>{{ commodityNode.management.FQName }}</td>
+					</tr>
+					<tr>
+						<td class="definitionLabel">IPv4 Address:</td><td>{{ commodityNode.management.IPv4 }}</td>
+					</tr>
+					<tr>
+						<td class="definitionLabel">IPv6 Address:</td><td>{{ commodityNode.management.IPv6 }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</li>
+	</ul>
+
+	<ul style="float:left; padding-left:15px">
+		<li class="list-group-item list-group-item-success">
+			<b>Data Network Interface</b>
+		</li>
+		<li class="list-group-item">
+			<table>
+				<tbody>
+					<tr>
+						<td class="definitionLabel">FQ Name:</td><td>{{ commodityNode.data.FQName }}</td>
+					</tr>
+					<tr>
+						<td class="definitionLabel">IPv4 Address:</td><td>{{ commodityNode.data.IPv4 }}</td>
+					</tr>
+					<tr>
+						<td class="definitionLabel">IPv6 Address:</td><td>{{ commodityNode.data.IPv6 }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</li>
+	</ul>
+
+	<div style="clear: both"></div>
+	<div class="form-header">
+		<div class="image" style="display:none"></div>
+
+		<div class="title">
+			<h2> Disks </h2>
+		</div>
+		<div style="clear:both"></div>
+	</div>
+	<div class="row">
+		<div class="col-sm-6" style="height:30px;">
+			<span style="display:inline-block; vertical-align: middle; line-height: 20px;"> 
+				<span style="font-size: 2em;vertical-align: middle;margin-left:10px; ">
+					{{ commodityNode.disks.length }}
+				</span> 
+				<span class="text-success">
+					<span class="glyphicon glyphicon-ok "></span> 
+					Good
+				</span> 
+			</span>
+		</div>
+		<div class="col-sm-6" style="height:30px;">
+			<span style="display:inline-block; vertical-align: middle; line-height: 20px;"> 
+				<span class="text-muted" style="vertical-align: middle;">Disks</span> 
+				<span style="font-size: 2em;vertical-align: middle;margin-right:10px;">
+					{{ commodityNode.disks.length }}
+				</span> 
+				<span class="text-muted" style="vertical-align: middle;">Capacity</span> 
+				<span style="font-size: 2em;vertical-align: middle;">
+				{{ commodityNode.capacity }}
+				</span> 
+				<span style="vertical-align: middle;">TB</span> 
+			</span>
+		</div>
+	</div>
+
+<!-- 	<form action="" method="post" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" id="diskMaintenanceModeForm" class="hide">
+		<input type="hidden" name="authenticityToken" value="3ce2076449de4d06c8d804b8f83b2a5fe9047d6c">
+		<input type="hidden" name="nodeId" value="urn:fabric:node:25054df1-2ec0-11e3-aeae-001e67698584:">
+		<input type="hidden" name="ids">
+
+	</form>
+	<form action="" method="post" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" id="diskOperationalModeForm" class="hide">
+		<input type="hidden" name="authenticityToken" value="3ce2076449de4d06c8d804b8f83b2a5fe9047d6c">
+		<input type="hidden" name="nodeId" value="urn:fabric:node:25054df1-2ec0-11e3-aeae-001e67698584:">
+		<input type="hidden" name="ids">
+
+	</form> -->
+
+	<div id="disk" class="dataTableContainer">
+		<div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline" role="grid">
+			<table class="table table-hover table-condensed table-styled dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
+				<thead>
+					<tr role="row">
+						<th class="selection sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="">
+						<div class="th-wrapper">
+							<input type="checkbox" name="selectAll">
+						</div></th><th class="expandable sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label=""><div class="th-wrapper"></div></th><th class="name sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="Name">
+						<div class="th-wrapper">
+							Name
+						</div></th><th class="status sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="Status">
+						<div class="th-wrapper">
+							Status
+						</div></th><th class="type sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="Type">
+						<div class="th-wrapper">
+							Type
+						</div></th>
+					</tr>
+				</thead>
+
+				<tbody role="alert" aria-live="polite" aria-relevant="all">
+					<tr class="odd" ng-repeat-start="item in commodityNode.disks | slice:(currentPage-1)*rpp:(currentPage*rpp)">
+						<td class="selection sorting_1">
+							<input type="checkbox" name="selected">
+						</td>
+						<td class="expandable" ng-click="itemExpand[$index] = !itemExpand[$index]" ng-class="{expanded: itemExpand[$index]}">
+							<span class="expand-indicator"></span>
+						</td>
+						<td class="name">{{ item.name }}</td>
+						<td class="status"><span class="text-success"><span class="glyphicon glyphicon-ok "></span> Good</span></td>
+						<td class="type"></td>
+					</tr>
+					<tr class="odd openedRow" ng-show="itemExpand[$index]" ng-repeat-end>
+						<td class="expandedRow" colspan="5">
+						<dl class="dl-horizontal">
+							<dt>
+								Capacity
+							</dt>
+							<dd>
+								{{ item.capacity }} TB
+							</dd>
+							<dt>
+								Hardware Id
+							</dt>
+							<dd>
+								9WM2DPBA
+							</dd>
+							<dt>
+								Software Id
+							</dt>
+							<dd>
+								000b7241-4764-4160-85a7-ded69fa8ecc3
+							</dd>
+						</dl></td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="dataTables_footer">
+				<div class="dataTables_paginate paging_bootstrapFirstLast pagination">
+					<pagination total-items="totalItems" ng-model="currentPage"></pagination>
+				</div>
+<!-- 				<div id="DataTables_Table_0_processing" class="dataTables_processing" style="visibility: hidden;">
+					<span class="glyphicon glyphicon-refresh rotate "></span>Loading...
+				</div> -->
+				<div class="dataTables_info" id="DataTables_Table_0_info">
+					Showing {{ (currentPage-1)*rpp+1 }} to {{ currentPage*rpp > totalItems ? totalItems : currentPage*rpp }} of {{ totalItems }} entries
+				</div><div class="dataTables_processingError" style="display: none;"></div>
+			</div>
+		</div>
+
+	</div>
+</div>

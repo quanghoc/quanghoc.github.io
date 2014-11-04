@@ -1,0 +1,147 @@
+<div class="mainContent" ng-controller="CommodityNodesCtrl">
+
+	<div class="page-header">
+		<h3>Commodity Nodes</h3>
+	</div>
+
+	<div class="clear"></div>
+	<p id="alerts_success" class="alert alert-success" style="display:none">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		<span class="message"></span>
+	</p>
+	<p id="alerts_error" class="alert alert-danger" style="display:none">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		<span class="message"></span>
+	</p>
+	<p id="alerts_warning" class="alert alert-warning" style="display:none">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		<span class="message"></span>
+	</p>
+	<p id="alerts_info" class="alert alert-info" style="display:none">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		<span class="message"></span>
+	</p>
+
+	<div class="row">
+		<div class="col-sm-4">
+			<select id="fabricServiceId" name="fabricServiceId" class="form-control span6" 
+				chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" 
+				disable-search="true" allow-single-deselect="false">
+				<option value=""></option>
+				<option value="All Services" selected>All Services</option>
+				<option value="Block Service">Block Service</option>
+				<option value="Object Service">Object Service</option>
+			</select>
+		</div>
+		<div class="col-sm-8" style="text-align: right;">
+			<span style="display:inline-block; vertical-align: middle; line-height: 40px;"> <span class="text-muted">Fabric Status</span> <span class="label label-success"><span class="glyphicon glyphicon-ok "></span> Good</span> </span>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-6" style="height:40px;">
+			<span style="display:inline-block; vertical-align: middle; line-height: 40px;"> <span style="font-size: 2em;vertical-align: middle;">4</span> <span class="text-success" style="vertical-align: middle;margin-right:10px;"><span class="glyphicon glyphicon-ok "></span> Good</span> </span>
+		</div>
+		<div class="col-sm-6" style="height:40px;text-align: right;">
+			<span style="display:inline-block; vertical-align: middle; line-height: 40px;"> <span class="text-muted" style="vertical-align: middle;">Total Nodes</span> <span style="font-size: 2em;vertical-align: middle;margin-right:10px;">4</span> <span class="text-muted" style="vertical-align: middle;">Capacity</span> <span style="font-size: 2em;vertical-align: middle;">115.2</span> <span style="vertical-align: middle;">TB</span> </span>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+
+			<form action="" method="post" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" id="nodeMaintenanceModeForm" class="hide">
+				<input type="hidden" name="authenticityToken" value="3ce2076449de4d06c8d804b8f83b2a5fe9047d6c">
+				<input type="hidden" name="fabricServiceId" value="">
+				<input type="hidden" name="ids">
+			</form>
+			<form action="" method="post" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" id="nodeOperationalModeForm" class="hide">
+				<input type="hidden" name="authenticityToken" value="3ce2076449de4d06c8d804b8f83b2a5fe9047d6c">
+				<input type="hidden" name="fabricServiceId" value="">
+				<input type="hidden" name="ids">
+			</form>
+
+			<div id="fabricnodes" class="dataTableContainer">
+				<div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline" role="grid">
+					<table class="table table-hover table-condensed table-styled dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
+						<thead>
+							<tr role="row">
+								<th class="expandable sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label=""><div class="th-wrapper"></div></th><th class="name sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="Name">
+								<div class="th-wrapper">
+									Name
+								</div></th><th class="status sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="Status">
+								<div class="th-wrapper">
+									Status
+								</div></th><th class="mode sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="Mode">
+								<div class="th-wrapper">
+									Mode
+								</div></th><th class="type sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="Type">
+								<div class="th-wrapper">
+									Type
+								</div></th><th class="capacityLabel sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="Capacity">
+								<div class="th-wrapper">
+									Capacity
+								</div></th>
+							</tr>
+						</thead>
+
+						<tbody role="alert" aria-live="polite" aria-relevant="all">
+							<tr class="odd" ng-repeat-start="item in commodityNodes | slice:(currentPage-1)*rpp:(currentPage*rpp)">
+								<td class="expandable" ng-click="itemExpand[$index] = !itemExpand[$index]" ng-class="{expanded: itemExpand[$index]}">
+									<span class="expand-indicator"></span>
+								</td>
+								<td class="name">
+									<a ui-sref="Disks({nodeId:{{ item.id }}})">
+										{{ item.name }}
+									</a>
+								</td>
+								<td class="status"><span class="text-success"><span class="glyphicon glyphicon-ok "></span> Good</span></td>
+								<td class="mode"><span class="text-info"><span class="glyphicon glyphicon-ok-sign "></span> Operational</span></td>
+								<td class="type"></td>
+								<td class="capacityLabel">{{ item.capacity }} TB</td>
+							</tr>
+							<tr class="odd openedRow" ng-show="itemExpand[$index]" ng-repeat-end>
+								<td class="expandedRow" colspan="6">
+								<div class="row">
+									<div class="col-xs-2 col-xs-offset-1">
+										<strong>Disks</strong>
+										<br>
+										<div style="margin-left:10px;">
+											<span style="font-size:1.5em;">{{ item.disks.length }}</span>
+											<span class="text-success">
+												<span class="glyphicon glyphicon-ok "></span> 
+												Good
+											</span>
+											<br>
+										</div>
+									</div>
+									<div class="col-xs-4">
+										<strong>Services</strong>
+										<br>
+										<div style="margin-left:10px;">
+											Object Service <span class="text-info">Installed</span>
+										</div>
+									</div>
+								</div></td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="dataTables_footer">
+						<div class="dataTables_paginate paging_bootstrapFirstLast pagination">
+							<pagination total-items="totalItems" ng-model="currentPage"></pagination>
+						</div>
+						<div id="DataTables_Table_0_processing" class="dataTables_processing" style="visibility: hidden;">
+							<span class="glyphicon glyphicon-refresh rotate "></span>Loading...
+						</div>
+						<div class="dataTables_info" id="DataTables_Table_0_info">
+							Showing {{ (currentPage-1)*rpp+1 }} to {{ currentPage*rpp > totalItems ? totalItems : currentPage*rpp }} of {{ totalItems }} entries
+						</div><div class="dataTables_processingError" style="display: none;"></div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+</div>

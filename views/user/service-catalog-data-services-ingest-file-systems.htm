@@ -1,0 +1,111 @@
+<div class="mainContent" ng-controller="GenericOrderFormCtrl" ng-init="data.orderTypeId = 58">
+    <ul class="breadcrumb breadcrumb-navbar">
+        <li><a href="" ui-sref="catalog">Service Catalog</a>
+            <span class="divider"></span>
+        </li>
+        <li><a href="" ui-sref="DataServices">Data Services</a>
+            <span class="divider"></span>
+        </li>
+        <li class="active">Ingest File Systems</li>
+    </ul>
+    <div class="container">
+        <div class="form-header">
+            <div class="image">
+                <img class="" src="/img/serviceCatalog/icon_ingest_filesystems.png">
+            </div>
+            <div class="description">
+                <h2>Ingest File Systems</h2>
+                <p>Ingest data from a file share into an existing bucket</p>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="clear"></div>
+        <p id="alerts_success" class="alert alert-success" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_error" class="alert alert-danger" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_warning" class="alert alert-warning" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_info" class="alert alert-info" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <span class="message"></span>
+        </p>
+        <!-- asset error -->
+        <div id="assetError" class="alert alert-danger" style="display:none;">
+            <button type="button" class="close">×</button>
+            <div id="assetErrorMessage" style="white-space: pre-line;"></div>
+        </div>
+        <form id="serviceForm" class="form-horizontal" ng-submit="submit()">
+            <div id="datastoreNameControlGroup" class="form-group  required">
+                <label class="control-label col-sm-3" for="datastoreName" set-model="data.details[0].name">Datastore Name:</label>
+                <div class="col-sm-6 controls">
+                    <input type="text" class="form-control span6" id="datastoreName" name="datastoreName" value="" autocomplete="off" maxlength="128" ng-model="data.details[0].value">
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div id="dataStoreDescriptionControlGroup" class="form-group  required">
+                <label class="control-label col-sm-3" for="dataStoreDescription" set-model="data.details[1].name">Datastore Description:</label>
+                <div class="col-sm-6 controls">
+                    <input type="text" class="form-control span6" id="dataStoreDescription" name="dataStoreDescription" value="" autocomplete="off" ng-model="data.details[1].value" maxlength="1024">
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div id="projectControlGroup" class="form-group  required">
+                <label class="control-label col-sm-3" for="project" set-model="data.details[2].name">Project:</label>
+                <div class="col-sm-6 controls">
+                    <select id="project" name="project" class="form-control span6" chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true" allow-single-deselect="false" ng-model="data.details[2].value">
+                        <option value="Engineering">Engineering</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="QA">QA</option>
+                    </select>
+                    <span class="help-block">Please select Project to filter the File Share options list below.</span>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                    <span class="loading hide">
+                        <span class="glyphicon glyphicon-refresh rotate "></span>
+                    </span>
+                </div>
+            </div>
+            <div id="fileShareIDControlGroup" class="form-group  required">
+                <label class="control-label col-sm-3" for="fileShareID" set-model="data.details[3].name">File Share:</label>
+                <div class="col-sm-6 controls">
+                    <select id="fileShareID" name="fileShareID" class="form-control span6" chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true" allow-single-deselect="false" ng-model="data.details[3].value">
+                        <option value="Fileshare #1">Fileshare #1</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div id="destinationBucketControlGroup" class="form-group  required">
+                <label class="control-label col-sm-3" for="destinationBucket" set-model="data.details[4].name">Destination Bucket:</label>
+                <div class="col-sm-6 controls">
+                    <input type="text" class="form-control span6" id="destinationBucket" name="destinationBucket" value="" autocomplete="off" maxlength="255" ng-model="data.details[4].value">
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group button-bar">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <button type="submit" class="btn btn-primary btn-large" name="service.order">
+                    <span class="glyphicon glyphicon-shopping-cart "></span>&nbsp;Order</button>
+                    <button type="button" class="btn btn-default btn-large " name="button.cancel" ng-click="cancel()">
+                    <span class="glyphicon glyphicon-trash "></span>&nbsp;Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

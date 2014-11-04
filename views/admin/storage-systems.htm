@@ -1,0 +1,133 @@
+<div id="contentArea" class=" " ng-controller="storageSystemsCtrl" ng-init="currentPage = 1; rpp = 10">
+	<div class="mainContent">
+		<div class="clear"></div>
+		<p id="alerts_success" class="alert alert-success" ng-show="$root.alert.success">
+			<button type="button" class="close" ng-click="$root.alert = {}">×</button>
+			<span class="message">
+				{{ $root.alert.message }}
+			</span>
+		</p>
+		<p id="alerts_error" class="alert alert-danger" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<span class="message"></span>
+		</p>
+		<p id="alerts_warning" class="alert alert-warning" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<span class="message"></span>
+		</p>
+		<p id="alerts_info" class="alert alert-info" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<span class="message"></span>
+		</p>
+		<div class="section-header pull-left ">
+			<h1 class="">Storage Systems</h1>
+		</div>
+
+		<div id="storageArray" class="dataTableContainer">
+			<div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline" role="grid">
+				<div class="dataTables_filter pull-right" id="DataTables_Table_0_filter">
+					<label><input type="text" ng-model="query" aria-controls="DataTables_Table_0" class="form-control input-sm search-query" placeholder="Search..."></label>
+				</div>
+				<table class="table table-hover table-condensed table-styled dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
+					<thead>
+						<tr role="row">
+							<th class="selection sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="">
+								<div class="th-wrapper"><input type="checkbox" name="selectAll"></div>
+							</th>
+							<th class="expandable sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="">
+								<div class="th-wrapper"></div>
+							</th>
+							<th ng-click="colSort('name')" ng-class="{sorting_asc: sortField=='name' && reverse==true, sorting_desc: sortField=='name' && reverse==false, sorting: sortField!='name'}" class="name" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">
+								<div class="th-wrapper">Name</div>
+							</th>
+							<th ng-click="colSort('registered')" ng-class="{sorting_asc: sortField=='registered' && reverse==true, sorting_desc: sortField=='registered' && reverse==false, sorting: sortField!='registered'}" class="registrationStatus" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Registered: activate to sort column ascending">
+								<div class="th-wrapper">Registered</div>
+							</th>
+							<th ng-click="colSort('host')" ng-class="{sorting_asc: sortField=='host' && reverse==true, sorting_desc: sortField=='host' && reverse==false, sorting: sortField!='host'}" class="host" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Host: activate to sort column ascending">
+								<div class="th-wrapper">Host</div>
+							</th>
+							<th ng-click="colSort('type')" ng-class="{sorting_asc: sortField=='type' && reverse==true, sorting_desc: sortField=='type' && reverse==false, sorting: sortField!='type'}" class="type" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Type: activate to sort column ascending">
+								<div class="th-wrapper">Type</div>
+							</th>
+							<th ng-click="colSort('status')"  ng-class="{sorting_asc: sortField=='status' && reverse==true, sorting_desc: sortField=='status' && reverse==false, sorting: sortField!='status'}" class="discoveryStatus" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending">
+								<div class="th-wrapper">Status</div>
+							</th>
+							<th class="actions sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="Edit">
+								<div class="th-wrapper">Edit</div>
+							</th>
+						</tr>
+					</thead>
+					<tbody role="alert" aria-live="polite" aria-relevant="all">
+						<tr class="odd" ng-repeat-start="item in storageSystems | filter:query | orderBy:sortField:reverse | slice:(currentPage-1)*rpp:(currentPage*rpp)">
+							<td class="selection">
+								<input type="checkbox" name="selected" value="">
+							</td>
+							<td class="expandable" ng-click="itemExpand[$index] = !itemExpand[$index]" ng-class="{expanded: itemExpand[$index]}">
+								<span class="expand-indicator"></span>
+							</td>
+							<td class="name sorting_1"><a ui-sref="storageSystems_edit({storageSystemId: {{ item.id }} })">{{ item.name }}</a></td>
+							<td class="registrationStatus"><span class="glyphicon glyphicon-ok"></span></td>
+							<td class="host">{{ item.host }}</td>
+							<td class="type">{{ item.type }}</td>
+							<td class="discoveryStatus"><span class="label label-success"><span class="glyphicon glyphicon-ok"></span></span></td>
+							<td class="actions">
+								<div class="btn-group">
+									<a class="btn btn-default btn-xs" ui-sref="storageSystems_pools({storageSystemId: {{ item.id }} })">Pools</a>
+									<a class="btn btn-default btn-xs" ui-sref="storageSystems_ports({storageSystemId: {{ item.id }} })">Ports</a>
+								</div>
+							</td>
+						</tr>
+
+						<tr class="odd openedRow" ng-show="itemExpand[$index]" ng-repeat-end>
+							<td class="expandedRow" colspan="8">
+								<dl class="dl-horizontal">
+									<dt ng-if="item.version">Version</dt>
+									<dd ng-if="item.version">{{ item.version }}</dd>
+									<dt ng-if="item.storageProvider">Storage Provider</dt>
+									<dd ng-if="item.storageProvider"><a href="">{{ item.storageProvider }}</a></dd>
+									<dt ng-if="item.dataProtection">Data Protection</dt>
+									<dd ng-if="item.dataProtection">{{ item.dataProtection }}</dd>
+									<dt>Last Discovery</dt>
+									<dd>
+										<span>an hour ago</span>  
+									</dd>
+									<dt>Last Successful Discovery</dt>
+									<dd>
+										<span>an hour ago</span>  
+									</dd>
+									<dt>Discovery Status</dt>
+									<dd>Completed</dd>
+									<dt>Compatibility Status</dt>
+									<dd>Compatible</dd>
+								</dl>
+							</td>
+						</tr>
+
+					</tbody>
+				</table>
+				<div class="dataTables_footer">
+					<div class="dataTables_paginate paging_bootstrapFirstLast pagination">
+						<pagination total-items="totalItems" ng-model="currentPage"></pagination>
+					</div>
+					<div id="DataTables_Table_0_processing" class="dataTables_processing" style="visibility: hidden;">
+						<span class="glyphicon glyphicon-refresh rotate "></span>Loading...
+					</div>
+					<div class="dataTables_info" id="DataTables_Table_0_info">
+						<page-info total-items="totalItems" ng-model="currentPage"></page-info>
+					</div>
+					<div class="dataTables_processingError" style="display: none;"></div>
+				</div>
+			</div>
+				<div class="button-bar">
+					<button type="button" class="btn btn-success " name="button.add" ui-sref="storageSystems_create">
+						<span class="glyphicon glyphicon-plus "></span> Add  
+					</button>
+					<button type="button" class="btn btn-danger " name="button.delete" data-enabled="selected" data-form="deleteForm" disabled=""><span class="glyphicon glyphicon-trash "></span>  Delete  </button>
+					<button type="button" class="btn btn-info " name="button.rediscover" data-enabled="selected" data-property="discoveryStatus" data-not-value="IN_PROGRESS" data-form="rediscoverForm" disabled=""><span class="glyphicon glyphicon-repeat "></span>  Rediscover</button>
+					<button type="button" class="btn btn-default " name="button.register" data-enabled="selected" data-property="registrationStatus" data-value="UNREGISTERED" data-form="registerForm" disabled=""><span class="glyphicon glyphicon-plus "></span>  Register</button>
+					<button type="button" class="btn btn-default " name="button.deregister" data-enabled="selected" data-property="registrationStatus" data-value="REGISTERED" data-form="deregisterForm" disabled=""><span class="glyphicon glyphicon-minus "></span>  Deregister</button>
+				</div>
+		</div>
+	</div>
+	<div id="menuCloser"></div>
+</div>

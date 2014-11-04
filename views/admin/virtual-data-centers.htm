@@ -1,0 +1,160 @@
+<div class="mainContent" ng-controller="VDCCtrl">
+
+	<div class="clear"></div>
+	<p id="alerts_success" class="alert alert-success" style="display:none">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+			×
+		</button>
+		<span class="message"></span>
+	</p>
+	<p id="alerts_error" class="alert alert-danger" style="display:none">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+			×
+		</button>
+		<span class="message"></span>
+	</p>
+	<p id="alerts_warning" class="alert alert-warning" style="display:none">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+			×
+		</button>
+		<span class="message"></span>
+	</p>
+	<p id="alerts_info" class="alert alert-info" style="display:none">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+			×
+		</button>
+		<span class="message"></span>
+	</p>
+	<div class="section-header pull-left ">
+		<h1 class="">Virtual Data Centers</h1>
+	</div>
+
+	<div id="vdcs" class="dataTableContainer">
+		<div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline" role="grid">
+			<div class="dataTables_filter" id="DataTables_Table_0_filter">
+				<label>
+					<input type="text" aria-controls="DataTables_Table_0" class="form-control input-sm search-query" placeholder="Search...">
+				</label>
+			</div>
+			<table class="table table-hover table-condensed table-styled dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
+				<thead>
+					<tr role="row">
+						<th class="selection sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="">
+						<div class="th-wrapper">
+							<input type="checkbox" name="selectAll">
+						</div></th><th class="expandable sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label=""><div class="th-wrapper"></div></th><th class="name sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">
+						<div class="th-wrapper">
+							Name
+						</div></th><th class="apiEndpoint sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="ViPR Virtual IP: activate to sort column ascending">
+						<div class="th-wrapper">
+							ViPR Virtual IP
+						</div></th><th class="connectionStatus sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Connection Status: activate to sort column ascending">
+						<div class="th-wrapper">
+							Connection Status
+						</div></th><th class="local sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Local: activate to sort column ascending">
+						<div class="th-wrapper">
+							Local
+						</div></th>
+					</tr>
+				</thead>
+
+				<tbody role="alert" aria-live="polite" aria-relevant="all">
+					<tr class="odd" ng-repeat-start="item in data">
+						<td class="selection">
+							<input type="checkbox" name="selected">
+						</td>
+						<td class="expandable" ng-click="itemExpand[$index] = !itemExpand[$index]" ng-class="{expanded: itemExpand[$index]}">
+							<span class="expand-indicator"></span>
+						</td>
+						<td class="name sorting_1">
+							<a ui-sref="EditVirtualDataCenter({vdcId: {{ item.id }} })">
+								{{ item.name }}
+							</a>
+						</td>
+						<td class="apiEndpoint">
+							{{ item.virtualIP }}
+						</td>
+						<td class="connectionStatus"><span class="label label-success"><span class="glyphicon glyphicon-ok"></span></span><span>Connected</span></td>
+						<td class="local"><span class="glyphicon" ng-class='{"glyphicon-ok": item.local }'></span></td>
+					</tr>
+					<tr class="odd" ng-show="itemExpand[$index]" ng-repeat-end>
+						<td class="expandedRow" colspan="6">
+						<dl class="dl-horizontal">
+							<dt>
+								Description
+							</dt>
+							<dd>
+								{{ item.description }}
+							</dd>
+						</dl></td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="dataTables_footer">
+				<div class="dataTables_paginate paging_bootstrapFirstLast pagination">
+					<ul class="pagination pagination-sm">
+						<li class="prev disabled">
+							<a href="">First</a>
+						</li>
+						<li class="prev disabled">
+							<a href="">←</a>
+						</li>
+						<li class="active">
+							<a href="">1</a>
+						</li>
+						<li class="next disabled">
+							<a href="">→</a>
+						</li>
+						<li class="next disabled">
+							<a href="">Last</a>
+						</li>
+					</ul>
+				</div>
+				<div id="DataTables_Table_0_processing" class="dataTables_processing" style="visibility: hidden;">
+					<span class="glyphicon glyphicon-refresh rotate "></span>Loading...
+				</div>
+				<div class="dataTables_info" id="DataTables_Table_0_info">
+					Showing 1 to 2 of 2 entries
+				</div><div class="dataTables_processingError" style="display: none;"></div>
+			</div>
+		</div>
+
+		<div class="button-bar">
+			<button type="button" class="btn btn-success " name="button.add" data-form="createForm" disabled="">
+				<span class="glyphicon glyphicon-plus "></span> Add
+			</button>
+			<button type="button" class="btn btn-danger " name="button.delete" data-enabled="selected" data-form="deleteForm" disabled="">
+				<span class="glyphicon glyphicon-minus "></span> Delete
+			</button>
+			<button type="button" class="btn btn-default " name="button.secretKey">
+				<span class="vipricon vipricon-secretkey "></span> Secret Key
+			</button>
+			<a id="cert_download" class="btn btn-default"><span class="glyphicon glyphicon-certificate "></span> Download Certificate Chain</a>
+		</div>
+	</div>
+	<div id="secretKeyDialog" class="modal fade">
+		<div class="modal-dialog ">
+			<div class="modal-content">
+				<div class="modal-header ">
+					<button type="button" class="close" data-dismiss="modal">
+						×
+					</button>
+					<h4 class="modal-title">Get Secret Key</h4>
+				</div>
+				<div class="modal-body form-horizontal">
+
+					<input type="text" class="form-control span6" id="vdc_secretKey_modal" name="vdc.secretKey.modal" value="q2CndCIolKGR3yVFnJJTflF67qCr+L22BunvNOE4mGc=" autocomplete="off">
+					<div>
+						<span class="help-block">Use this Secret key when you add this Virtual Data Center to a remote Virtual Data Center.</span>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="modal-footer ">
+					<button type="button" class="btn btn-default " data-dismiss="modal">
+						<span class="glyphicon glyphicon-trash "></span> Close
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

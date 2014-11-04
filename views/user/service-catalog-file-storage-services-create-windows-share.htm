@@ -1,0 +1,134 @@
+<div class="mainContent" ng-controller="GenericOrderFormCtrl" ng-init="data.orderTypeId = 25">
+	<ul class="breadcrumb breadcrumb-navbar">
+		<li><a ui-sref="catalog">Service Catalog</a>
+			<span class="divider"></span>
+		</li>
+		<li><a ui-sref="FileStorageServices">File Storage Services</a>
+			<span class="divider"></span>
+		</li>
+		<li class="active">Create Windows Share</li>
+	</ul>
+	<div class="container" ng-controller="FileCtrl">
+		<div class="form-header">
+			<div class="image">
+				<img class="" src="/img/serviceCatalog/icon_folder_CIFS_add.png">
+			</div>
+			<div class="description">
+				<h2>Create Windows Share</h2>
+				<p>Create new file system and CIFS share</p>
+			</div>
+			<div style="clear:both"></div>
+		</div>
+		<div class="clear"></div>
+		<div class="clear"></div>
+		<p id="alerts_success" class="alert alert-success" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<span class="message"></span>
+		</p>
+		<p id="alerts_error" class="alert alert-danger" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<span class="message"></span>
+		</p>
+		<p id="alerts_warning" class="alert alert-warning" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<span class="message"></span>
+		</p>
+		<p id="alerts_info" class="alert alert-info" style="display:none">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<span class="message"></span>
+		</p>
+		<!-- asset error -->
+		<div id="assetError" class="alert alert-danger" style="display:none;">
+			<button type="button" class="close">×</button>
+			<div id="assetErrorMessage" style="white-space: pre-line;"></div>
+		</div>
+		<form id="serviceForm" class="form-horizontal" ng-submit="submit()">
+			<div id="virtualArrayControlGroup" class="form-group  required">
+				<label class="control-label col-sm-3" for="virtualArray" set-model="data.details[0].name">Virtual Array:</label>
+				<div class="col-sm-6 controls">
+					<select id="virtualArray" name="virtualArray" class="form-control span6" 
+						chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true" 
+						allow-single-deselect="false"
+						ng-options="fileVirtualArray.name as fileVirtualArray.name for fileVirtualArray in data.fileVirtualArrays"
+						ng-model="data.details[0].value">
+						<option value=""></option>
+					</select>
+				</div>
+				<div class="col-sm-3">
+					<span class="help-inline"></span>
+				</div>
+			</div>
+			<div id="virtualPoolControlGroup" class="form-group  required">
+				<label class="control-label col-sm-3" for="virtualPool" set-model="data.details[1].name">Virtual Pool:</label>
+				<div class="col-sm-6 controls">
+					<select id="virtualPool" name="virtualPool" class="form-control span6"
+						chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true" 
+						allow-single-deselect="false"
+						ng-options="fileVirtualPool.name as fileVirtualPool.name for fileVirtualPool in data.fileVirtualPools"
+						ng-model="data.details[1].value">
+						<option value=""></option>
+					</select>
+				</div>
+				<div class="col-sm-3">
+					<span class="help-inline"></span>
+					<span class="loading hide">
+						<span class="glyphicon glyphicon-refresh rotate "></span>
+					</span>
+				</div>
+			</div>
+			<div id="projectControlGroup" class="form-group  required">
+				<label class="control-label col-sm-3" for="project" set-model="data.details[2].name">Project:</label>
+				<div class="col-sm-6 controls">
+					<select id="project" name="project" class="form-control span6" chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true" allow-single-deselect="false" ng-model="data.details[2].value">
+						<option value=""></option>
+						<option value="Engineering">Engineering</option>
+						<option value="Marketing">Marketing</option>
+						<option value="QA">QA</option>
+					</select>
+				</div>
+				<div class="col-sm-3">
+					<span class="help-inline"></span>
+					<span class="loading hide">
+						<span class="glyphicon glyphicon-refresh rotate "></span>
+					</span>
+				</div>
+			</div>
+			<div id="volumeNameControlGroup" class="form-group  required">
+				<label class="control-label col-sm-3" for="volumeName" set-model="data.details[3].name">Share Name:</label>
+				<div class="col-sm-6 controls">
+					<input type="text" class="form-control span6" id="volumeName" name="volumeName" value="" autocomplete="off" maxlength="128" ng-model="data.details[3].value">
+				</div>
+				<div class="col-sm-3">
+					<span class="help-inline"></span>
+				</div>
+			</div>
+			<div id="shareCommentControlGroup" class="form-group  ">
+				<label class="control-label col-sm-3" for="shareComment" set-model="data.details[4].name">Share Comment:</label>
+				<div class="col-sm-6 controls">
+					<input type="text" class="form-control span6" id="shareComment" name="shareComment" value="" autocomplete="off" maxlength="256" ng-model="data.details[4].value">
+				</div>
+				<div class="col-sm-3">
+					<span class="help-inline"></span>
+				</div>
+			</div>
+			<div id="sizeControlGroup" class="form-group  required">
+				<label class="control-label col-sm-3" for="size" set-model="data.details[5].name">Size (GB):</label>
+				<div class="col-sm-6 controls">
+					<input type="text" class="form-control span2" id="size" name="size" value="" autocomplete="off" maxlength="18" ng-model="data.details[5].value">
+					<span class="help-block">The size for this FileSystem.</span>
+				</div>
+				<div class="col-sm-3">
+					<span class="help-inline"></span>
+				</div>
+			</div>
+			<div class="form-group button-bar">
+				<div class="col-sm-offset-3 col-sm-9">
+					<button type="submit" class="btn btn-primary btn-large " name="service.order">
+						<span class="glyphicon glyphicon-shopping-cart "></span>&nbsp;Order</button>
+					<button type="button" class="btn btn-default btn-large " name="button.cancel">
+						<span class="glyphicon glyphicon-trash " ng-click="cancel()"></span>&nbsp;Cancel</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

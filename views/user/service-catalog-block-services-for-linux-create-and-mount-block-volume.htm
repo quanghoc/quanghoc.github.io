@@ -1,0 +1,184 @@
+<div class="mainContent" ng-controller="GenericOrderFormCtrl" ng-init="data.orderTypeId = 34">
+    <ul class="breadcrumb breadcrumb-navbar">
+        <li><a ui-sref="catalog">Service Catalog</a>
+            <span class="divider"></span>
+        </li>
+        <li><a ui-sref="BlockServicesLinux">Block Services for Linux</a>
+            <span class="divider"></span>
+        </li>
+        <li class="active">Create and Mount Block Volume</li>
+    </ul>
+    <div class="container" ng-controller="BlockCtrl">
+        <div class="form-header">
+            <div class="image">
+                <img class="" src="/img/serviceCatalog/icon_provision_linux_add.png">
+            </div>
+            <div class="description">
+                <h2>Create and Mount Block Volume</h2>
+                <p>Create, mount and format a block volume on a Linux host.</p>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="clear"></div>
+        <p id="alerts_success" class="alert alert-success" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_error" class="alert alert-danger" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_warning" class="alert alert-warning" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_info" class="alert alert-info" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <span class="message"></span>
+        </p>
+        <div class="alert alert-warning" style="display:none">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            This service is missing required data. This could be caused by:
+            <br>
+            <br>
+            <ul>
+                <li>No Options available for field: Linux Host</li>
+                <li>Required assets (Host, Switches, Storage Arrays) are not defined or you do not have permission.</li>
+                <li>The system is busy discoverying assets (Host, Switches, Storage Arrays).</li>
+                <li>Unable to connect to a ViPR backend server.</li>
+            </ul>
+        </div>
+        <!-- asset error -->
+        <div id="assetError" class="alert alert-danger" style="display:none;">
+            <button type="button" class="close">×</button>
+            <div id="assetErrorMessage" style="white-space: pre-line;"></div>
+        </div>
+        <form id="serviceForm" class="form-horizontal" ng-submit="submit()">
+            <div id="hostControlGroup" class="form-group  required">
+                <label class="control-label col-sm-3" for="host" set-model="data.details[0].name">Linux Host:</label>
+                <div class="col-sm-6 controls" ng-init="hosts = getHosts({operatingSystem: 'Other'})">
+                    <select id="host" name="host"
+                            chosen="{inherit_select_classes:true}"
+                            disable-search="true"
+                            class="form-control span6"
+                            ng-options="host.name as host.name for host in hosts"
+                            ng-model="data.details[0].value">
+                        <option value=""></option>
+                    </select>
+                    <span class="help-block">Mount will occur on the selected host only.</span>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div id="virtualArrayControlGroup" class="form-group  required">
+                <label class="control-label col-sm-3" for="virtualArray" set-model="data.details[1].name">Virtual Array:</label>
+                <div class="col-sm-6 controls">
+                    <select id="virtualArray" name="virtualArray" class="form-control span6"
+                            chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true"
+                            allow-single-deselect="false"
+                            ng-options="blockVirtualArray.name as blockVirtualArray.name for blockVirtualArray in data.blockVirtualArrays"
+                            ng-model="data.details[1].value">
+                        <option value=""></option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div id="virtualPoolControlGroup" class="form-group  required">
+                <label class="control-label col-sm-3" for="virtualPool" set-model="data.details[2].name">Virtual Pool:</label>
+                <div class="col-sm-6 controls">
+                    <select id="virtualPool" name="virtualPool" class="form-control span6"
+                            chosen="{inherit_select_classes:true}"
+                            data-placeholder="Select an Option" disable-search="true" allow-single-deselect="false"
+                            ng-options="blockVirtualPool.name as blockVirtualPool.name for blockVirtualPool in data.blockVirtualPools"
+                            ng-model="data.details[2].value">
+                        <option value=""></option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div id="projectControlGroup" class="form-group  required">
+                <label class="control-label col-sm-3" for="project" set-model="data.details[3].name">Project:</label>
+                <div class="col-sm-6 controls">
+                    <select id="project" name="project" class="form-control span6" chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true" allow-single-deselect="false" ng-model="data.details[3].value">
+                        <option value="Engineering">Engineering</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="QA">QA</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div id="nameControlGroup" class="form-group  required">
+                <label class="control-label col-sm-3" for="name" set-model="data.details[4].name">Name:</label>
+                <div class="col-sm-6 controls">
+                    <input type="text" class="form-control span6" id="name" name="name" value="" autocomplete="off" maxlength="128" ng-model="data.details[4].value">
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div id="consistencyGroupControlGroup" class="form-group" ng-controller="ConsistencyGroupsCtrl">
+                <label class="control-label col-sm-3" for="consistencyGroup" set-model="data.details[5].name">Consistency Group:</label>
+                <div class="col-sm-6 controls">
+                    <select id="consistencyGroup" name="consistencyGroup" class="form-control span6"
+                            chosen="{inherit_select_classes:true}"
+                            data-placeholder="Select an Option" disable-search="true" allow-single-deselect="false"
+                            ng-options="consistencyGroups.name as consistencyGroups.name for consistencyGroups in consistencyGroups"
+                            ng-model="data.details[5].value">
+                        <option value=""></option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div id="sizeControlGroup" class="form-group  required">
+                <label class="control-label col-sm-3" for="size" set-model="data.details[6].name">Size (GB):</label>
+                <div class="col-sm-6 controls">
+                    <input type="text" class="form-control span2" id="size" name="size" value="" autocomplete="off" maxlength="18" ng-model="data.details[6].value">
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div id="fileSystemTypeControlGroup" class="form-group  required">
+                <label class="control-label col-sm-3" for="fileSystemType" set-model="data.details[7].name">File System Type:</label>
+                <div class="col-sm-6 controls">
+                    <select id="fileSystemType" name="fileSystemType" class="form-control span6" chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true" allow-single-deselect="false" ng-model="data.details[7].value">
+                        <option value="ext2">ext2</option>
+                        <option value="ext3" selected="selected">ext3</option>
+                        <option value="ext4">ext4</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div id="mountPointControlGroup" class="form-group  required">
+                <label class="control-label col-sm-3" for="mountPoint" set-model="data.details[8].name">Mount Point:</label>
+                <div class="col-sm-6 controls">
+                    <input type="text" class="form-control span6" id="mountPoint" name="mountPoint" value="" autocomplete="off" maxlength="1024" ng-model="data.details[8].value">
+                    <span class="help-block">The path where the storage will be available. Example: /mnt/share01</span>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group button-bar">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <button type="submit" class="btn btn-primary btn-large " name="service.order">
+                        <span class="glyphicon glyphicon-shopping-cart "></span>&nbsp;Order</button>
+                    <button type="button" class="btn btn-default btn-large " name="button.cancel">
+                        <span class="glyphicon glyphicon-trash " ng-click="cancel()"></span>&nbsp;Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

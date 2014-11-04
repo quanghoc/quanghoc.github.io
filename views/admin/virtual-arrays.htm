@@ -1,0 +1,97 @@
+<div class="mainContent" ng-controller="virtualArraysCtrl">
+	<div class="clear"></div>
+
+	<p class="alert alert-success" id="alerts_success" style="display:none"><button class="close" data-dismiss="alert" type="button">×</button> <span class="message"></span></p>
+
+	<p class="alert alert-danger" id="alerts_error" style="display:none"><button class="close" data-dismiss="alert" type="button">×</button> <span class="message"></span></p>
+
+	<p class="alert alert-warning" id="alerts_warning" style="display:none"><button class="close" data-dismiss="alert" type="button">×</button> <span class="message"></span></p>
+
+	<p class="alert alert-info" id="alerts_info">
+		<span class="message">
+			This demo may not behave exactly as a properly deployed product. You could add Virtual Arrays but they may not technically reflect in other areas of the ViPR UI.
+		</span>
+	</p>
+
+	<div class="section-header pull-left">
+		<h1 class="">Virtual Arrays</h1>
+	</div>
+
+	<div class="dataTableContainer" id="virtualArrays">
+		<div class="dataTables_wrapper form-inline" id="DataTables_Table_0_wrapper">
+			<div class="dataTables_filter" id="DataTables_Table_0_filter">
+				<label><input class="form-control input-sm search-query" ng-model="query" placeholder="Search..." type="text"></label>
+			</div>
+
+			<table class="table table-hover table-condensed table-styled dataTable" id="DataTables_Table_0">
+				<thead>
+					<tr>
+						<th class="selection sorting_disabled" colspan="1" rowspan="1">
+							<div class="th-wrapper">
+								<input name="selectAll" type="checkbox">
+							</div>
+						</th>
+
+						<th class="expandable sorting_disabled" colspan="1" rowspan="1">
+							<div class="th-wrapper"></div>
+						</th>
+
+						<th class="name sorting_asc" colspan="1" rowspan="1" tabindex="0">
+							<div class="th-wrapper">
+								Name
+							</div>
+						</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr class="openRow odd" ng-repeat-start="item in virtualArrays | filter:query | orderBy:sortField:reverse | slice:(currentPage-1)*rpp:(currentPage*rpp)">
+						<td class="selection">
+							<input type="checkbox" name="selected" value="">
+						</td>
+						<td class="expandable" ng-click="itemExpand[$index] = !itemExpand[$index]" ng-class="{expanded: itemExpand[$index]}">
+							<span class="expand-indicator"></span>
+						</td>
+						<td class="name sorting_1"><a ui-sref="EditVirtualArray({varrayId: {{ item.id }} })">{{ item.name }}</a></td>
+					</tr>
+
+					<tr class="odd openedRow" ng-show="itemExpand[$index]" ng-repeat-end>
+						<td class="expandedRow" colspan="3">
+							<dl class="dl-horizontal">
+								<dt>Protection (Block)</dt>
+								<dd style="font-style: italic">{{item.protectionBlock}}</dd>
+								<dt>Protection (Object)</dt>
+								<dd style="font-style: italic">{{item.protectionObject}}</dd>
+								<dt>Protocols</dt>
+								<dd style="font-style: italic">{{item.protocols}}</dd>
+								<dt>System Types</dt>
+								<dd style="font-style: italic">{{item.systemTypes}}</dd>
+								<dt>Raid Levels</dt>
+								<dd style="font-style: italic">{{item.raidLevels}}</dd>
+								<dt>Drive Types</dt>
+								<dd style="font-style: italic">{{item.driveTypes}}</dd>
+							</dl>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div class="dataTables_footer">
+				<div class="dataTables_paginate paging_bootstrapFirstLast pagination">
+					<pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></pagination>
+				</div>
+				<div id="DataTables_Table_0_processing" class="dataTables_processing" style="visibility: hidden;">
+					<span class="glyphicon glyphicon-refresh rotate "></span>Loading...
+				</div>
+				<div class="dataTables_info" id="DataTables_Table_0_info">
+					Showing {{ (currentPage-1)*rpp+1 }} to {{ currentPage*rpp > totalItems ? totalItems : currentPage*rpp }} of {{ totalItems }} entries
+				</div>
+				<div class="dataTables_processingError" style="display: none;"></div>
+			</div>
+		</div>
+
+		<div class="button-bar">
+			<button class="btn btn-success" ng-click="showAddModal()" type="button"><span class="glyphicon glyphicon-plus"></span> Add</button> <button class="btn btn-danger" data-enabled="selected" data-form="deleteForm" disabled name="button.delete" type="button"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+		</div>
+	</div>
+</div>

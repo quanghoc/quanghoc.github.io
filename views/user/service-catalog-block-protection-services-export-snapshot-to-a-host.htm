@@ -1,0 +1,157 @@
+<div class="mainContent" ng-controller="GenericOrderFormCtrl" ng-init="data.orderTypeId = 23">
+    <ul class="breadcrumb breadcrumb-navbar">
+        <li><a href="" ui-sref="catalog">Service Catalog</a>
+            <span class="divider"></span>
+        </li>
+        <li><a href="" ui-sref="BlockProtectionServices">Block Protection Services</a>
+            <span class="divider"></span>
+        </li>
+        <li class="active">Export Snapshot to a Host</li>
+    </ul>
+    <div class="container">
+        <div class="form-header">
+            <div class="image">
+                <img class="" src="/img/serviceCatalog/icon_host_add_snapshot.png">
+            </div>
+            <div class="description">
+                <h2>Export Snapshot to a Host</h2>
+                <p>Export a snapshot of a block volume to a host</p>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="clear"></div>
+        <p id="alerts_success" class="alert alert-success" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_error" class="alert alert-danger" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_warning" class="alert alert-warning" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <span class="message"></span>
+        </p>
+        <p id="alerts_info" class="alert alert-info" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <span class="message"></span>
+        </p>
+        <!-- asset error -->
+        <div id="assetError" class="alert alert-danger" style="display:none;">
+            <button type="button" class="close">×</button>
+            <div id="assetErrorMessage" style="white-space: pre-line;"></div>
+        </div>
+        <form id="serviceForm" class="form-horizontal" ng-submit="submit()">
+            <div id="storageTypeControlGroup" class="form-group  required">
+                <label class="control-label col-sm-3" for="storageType" set-model="data.details[0].name">Storage Type:</label>
+                <div class="col-sm-6 controls">
+                    <select id="storageType" name="storageType" class="form-control span6" chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true" allow-single-deselect="false" ng-model="data.details[0].value">
+                        <option value="Exclusive" selected="selected">Exclusive</option>
+                        <option value="Shared">Shared</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                    <span class="loading hide">
+                        <span class="glyphicon glyphicon-refresh rotate "></span>
+                    </span>
+                </div>
+            </div>
+            <div id="hostControlGroup" class="form-group  required">
+                <label class="control-label col-sm-3" for="host" set-model="data.details[1].name">Host:</label>
+                <div class="col-sm-6 controls">
+                    <select id="host" name="host" class="form-control span6" chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="false" allow-single-deselect="false" ng-model="data.details[1].value">
+                        <option value="192.168.1.180">192.168.1.180</option>
+                        <option value="192.168.1.181">192.168.1.181</option>
+                        <option value="192.168.1.182">192.168.1.182</option>
+                        <option value="esx01.vlab.local [cluster: RainPole Cluster]">esx01.vlab.local [cluster: RainPole Cluster]</option>
+                        <option value="esx02.vlab.local [cluster: RainPole Cluster]">esx02.vlab.local [cluster: RainPole Cluster]</option>
+                        <option value="Hyper-V.vLab.local">Hyper-V.vLab.local</option>
+                        <option value="iSCSI-Host">iSCSI-Host</option>
+                        <option value="NFS-Host">NFS-Host</option>
+                        <option value="WinHost1">WinHost1</option>
+                        <option value="WinHost2">Winhost2 [cluster: ws_cluster]</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                    <span class="loading hide">
+                        <span class="glyphicon glyphicon-refresh rotate "></span>
+                    </span>
+                </div>
+            </div>
+            <div id="projectControlGroup" class="form-group  required">
+                <label class="control-label col-sm-3" for="project" set-model="data.details[2].name">Project:</label>
+                <div class="col-sm-6 controls">
+                    <select id="project" name="project" class="form-control span6" chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true" allow-single-deselect="false" ng-model="data.details[2].value">
+                        <option value="Engineering">Engineering</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="QA">QA</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                    <span class="loading hide">
+                        <span class="glyphicon glyphicon-refresh rotate "></span>
+                    </span>
+                </div>
+            </div>
+            <div id="volumeControlGroup" class="form-group  required">
+                <label class="control-label col-sm-3" for="volume" set-model="data.details[3].name">Volume:</label>
+                <div class="col-sm-6 controls">
+                    <select id="volume" name="volume" class="form-control span6" disabled="" chosen="{inherit_select_classes:true}" data-placeholder="Select an Option" disable-search="true" allow-single-deselect="false" ng-model="data.details[3].value"></select>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                    <span class="loading hide">
+                        <span class="glyphicon glyphicon-refresh rotate "></span>
+                    </span>
+                </div>
+            </div>
+            <div id="snapshotsControlGroup" class="form-group  required">
+                <label class="control-label col-sm-3" for="snapshots" set-model="data.details[4].name">Snapshot:</label>
+                <div class="col-sm-6 controls">
+                    <div class="selectMany span6 ">
+                        <div class="selectManySearch row col-gap-sm" style="display: none;">
+                            <div class="col-sm-8">
+                                <input id="snapshotsSearch" type="text" class="form-control input-sm" autocomplete="off" ng-model="data.details[4].value">
+                            </div>
+                            <span class="btn-group selectManyButtons col-sm-4">
+                                <button id="snapshotsCheck" type="button" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-check "></span>All</button>
+                                <button id="snapshotsUncheck" type="button" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-remove-circle "></span>None</button>
+                            </span>
+                        </div>
+                        <div id="snapshots" name="snapshots" class="selectManyContent"></div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                    <span class="loading hide">
+                        <span class="glyphicon glyphicon-refresh rotate "></span>
+                    </span>
+                </div>
+            </div>
+            <div id="hluControlGroup" class="form-group  ">
+                <label class="control-label col-sm-3" for="hlu" set-model="data.details[5].name">HLU:</label>
+                <div class="col-sm-6 controls">
+                    <input type="text" class="form-control span2" id="hlu" name="hlu" value="-1" autocomplete="off" maxlength="18" ng-model="data.details[5].value">
+                    <span class="help-block">Host logical unit number for this volume. A value of '-1' means automatically assign.</span>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group button-bar">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <button type="submit" class="btn btn-primary btn-large " name="service.order">
+                        <span class="glyphicon glyphicon-shopping-cart "></span>&nbsp;Order</button>
+                    <button type="button" class="btn btn-default btn-large " name="button.cancel">
+                        <span class="glyphicon glyphicon-trash " ng-click="cancel()"></span>&nbsp;Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

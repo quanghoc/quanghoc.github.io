@@ -1,0 +1,213 @@
+<div class="mainContent" ng-controller="DashboardCtrl">
+	<div class="clear"></div>
+	<p id="alerts_success" class="alert alert-success" style="display:none">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		<span class="message"></span>
+	</p>
+	<p id="alerts_error" class="alert alert-danger" style="display:none">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		<span class="message"></span>
+	</p>
+	<p id="alerts_warning" class="alert alert-warning" style="display:none">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		<span class="message"></span>
+	</p>
+	<p id="alerts_info" class="alert alert-info" style="display:none">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		<span class="message"></span>
+	</p>
+	<div class="row">
+		<div class="col-sm-4">
+			<div id="capacityPanel">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Capacity</h3>
+					</div>
+					<div class="panel-body">
+						<dl>
+							<dt class="text-muted">Block</dt>
+							<dd>
+								<span style="font-size: 2em;vertical-align: middle;">{{ data.capacity.block }}</span>
+								<span style="vertical-align: middle;">GB</span>
+							</dd>
+							<dt class="text-muted">File</dt>
+							<dd>
+								<span style="font-size: 2em;vertical-align: middle;">{{ data.capacity.file }}</span>
+								<span style="vertical-align: middle;">GB</span>
+							</dd>
+							<dt class="text-muted">Free Block/File</dt>
+							<dd>
+								<span style="font-size: 2em;vertical-align: middle;">{{ data.capacity.freeBlockFile }}</span>
+								<span style="vertical-align: middle;">TB</span>
+							</dd>
+							<dt class="text-muted">Unstructured</dt>
+							<dd>
+								<span style="font-size: 2em;vertical-align: middle;">{{ data.capacity.unstructured }}</span>
+								<span style="vertical-align: middle;">EB</span>
+							</dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div id="physicalAssetsPanel">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Physical Assets</h3>
+					</div>
+					<ul class="list-group">
+						<a class="list-group-item" ui-sref="CommodityNodes">
+							Commodity Nodes
+							<span class="badge">{{ data.commodityNodesCount }}</span>
+						</a>
+						<a class="list-group-item" ui-sref="storageSystems">
+							Storage Systems
+							<span class="badge">{{ data.storageSystemsCount }}</span>
+						</a>
+						<a class="list-group-item" ui-sref="providers">
+							Storage Providers   
+							<span class="badge">{{ data.storageProvidersCount }}</span>
+						</a>
+						<a class="list-group-item" ui-sref="dps">
+							Data Protection Systems 
+							<span class="badge">{{ data.dataProtectionSystemsCount }}</span>
+						</a>
+						<a class="list-group-item" ui-sref="fabric">
+							Fabric Managers 
+							<span class="badge">{{ data.fabricManagersCount }}</span>
+						</a>
+						<a class="list-group-item" ui-sref="networks">
+							Networks   
+							<span class="badge">{{ data.networksCount }}</span>
+						</a>
+						<a class="list-group-item" ui-sref="hosts">
+							Hosts 
+							<span class="badge">{{ data.hostsCount }}</span>
+						</a>
+						<a class="list-group-item" ui-sref="clusters">
+							Clusters 
+							<span class="badge">{{ data.clustersCount }}</span>
+						</a>
+						<a class="list-group-item" ui-sref="vCenters">
+							VMware vCenters 
+							<span class="badge">{{ data.VMwarevCenterCount }}</span>
+						</a>
+					</ul>
+					<div class="panel-footer">
+						<small>Last Updated <span data-format-relative-time="1405610339056">4 minutes ago</span></small>
+					</div>
+				</div>
+			</div>
+			<div id="virtualAssetsPanel">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Virtual Assets</h3>
+					</div>
+					<ul class="list-group">
+						<a class="list-group-item" ui-sref="virtualArrays">
+							Virtual Arrays   
+							<span class="badge">{{ data.virtualArraysCount }}</span>
+						</a>
+						<a class="list-group-item" ui-sref="blockVirtualPools">
+							Block Virtual Pools 
+							<span class="badge">{{ data.blockVirtualPoolsCount }}</span>
+						</a>
+						<a class="list-group-item" ui-sref="fileVirtualPools">
+							File Virtual Pools 
+							<span class="badge">{{ data.fileVirtualPoolsCount }}</span>
+						</a>
+						<a class="list-group-item" ui-sref="ObjectVirtualPools">
+							Object Virtual Pools 
+							<span class="badge">{{ data.objectVirtualPoolsCount }}</span>
+						</a>
+						<a class="list-group-item" ui-sref="dataStores">
+							Data Stores 
+							<span class="badge">1</span>
+						</a>
+					</ul>
+					<div class="panel-footer">
+						<small>Last Updated <span data-format-relative-time="1405610339300">4 minutes ago</span></small>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div id="versionPanel">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Version and License</h3>
+					</div>
+					<div class="panel-body">
+						<dl>
+							<dt class="text-muted">Controller</dt>
+							<dd style="font-size: 1.25em;">
+								<a ui-sref="upgrade">vipr-2.1.0.0.248</a>            
+							</dd>
+							<dt class="text-muted">Licenses</dt>
+							<dd>
+								<div class="row">
+									<span class="col-sm-6"><a ui-sref="license">ViPR Unstructured</a></span>
+									<span class="col-sm-6">  <span class="text-success"><span class="glyphicon glyphicon-ok "></span> Licensed</span>
+									</span>
+								</div>
+								<div class="row">
+									<span class="col-sm-6"><a ui-sref="license">ViPR Controller</a></span>
+									<span class="col-sm-6">  <span class="text-success"><span class="glyphicon glyphicon-ok "></span> Licensed</span>
+									</span>
+								</div>
+								<div class="row">
+									<span class="col-sm-6"><a ui-sref="license">ViPR Object</a></span>
+									<span class="col-sm-6">  <span class="text-success"><span class="glyphicon glyphicon-ok "></span> Licensed</span>
+									</span>
+								</div>
+								<div class="row">
+									<span class="col-sm-6"><a ui-sref="license">ViPR CAS</a></span>
+									<span class="col-sm-6">  <span class="text-success"><span class="glyphicon glyphicon-ok "></span> Licensed</span>
+									</span>
+								</div>
+								<div class="row">
+									<span class="col-sm-6"><a ui-sref="license">ViPR HDFS</a></span>
+									<span class="col-sm-6">  <span class="text-success"><span class="glyphicon glyphicon-ok "></span> Licensed</span>
+									</span>
+								</div>
+							</dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+			<div id="healthPanel">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">System Health</h3>
+					</div>
+					<div class="panel-body">
+						<dl>
+							<dt class="text-muted">Controller Status</dt>
+							<dd style="margin-top:5px;margin-bottom:5px;">
+								<span id="clusterState" data-state="STABLE"><span class="glyphicon glyphicon-ok"></span> <span class="text-center label label-success">Stable</span></span>
+							</dd>
+							<dt class="text-muted">Controller Environment</dt>
+							<dd>
+								<a href="" class="text-success">vipr1</a><br>
+							</dd>
+							<dd>
+								<a href="" class="text-success">vipr2</a><br>
+							</dd>
+							<dd>
+								<a href="" class="text-success">vipr3</a><br>
+							</dd>
+							<dt class="text-muted">Data Services Environment</dt>
+							<dd>
+								<a href="" class="text-success">dataservice-10-247-134-35</a><br>
+							</dd>
+						</dl>
+					</div>
+					<div class="panel-footer">
+						<small>Last Updated <span>a few seconds ago</span></small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
